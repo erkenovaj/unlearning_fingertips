@@ -1,3 +1,32 @@
+#!/usr/bin/env python3
+"""End-to-end runner for the unlearning-trace detection experiments.
+
+This mirrors `reproduction.ipynb` but wires every stage into a single runnable
+pipeline so you don't have to uncomment cells or hand-fill RESPONSE_PATHS:
+
+    1. (optional) unlearn  : RMU / NPO on WMDP  -> local checkpoint
+    2. generate            : original + unlearned model responses -> ./responses/...
+    3. features            : LLM2Vec text embeddings  OR  pre-logit activations
+    4. detect              : train MLP probe + evaluate on a held-out split
+
+Heavy stages require a CUDA GPU. Run this on a GPU box, e.g.:
+
+    python reproduction.py \
+        --model Zephyr-7b --unlearn rmu \
+        --dataset MMLU --num_samples 200 \
+        --feature text --max_new_tokens 256
+
+If you already have an unlearned checkpoint, use `--unlearn none` and pass its
+path via `--unlearn_path`. If you already have response files, use
+`--skip_generate` and point `--orig_response` / `--unlearn_response` at them.
+
+Colab T4 (16GB) example — uses a published RMU checkpoint + 4-bit loading:
+    pip install -U transformers datasets scikit-learn bitsandbytes accelerate
+    python reproduction.py --model Zephyr-7b --unlearn rmu --pretrained \
+        --load_in_4bit --dataset MMLU --num_samples 50 \
+        --feature activation --act_new_tokens 32
+"""
+
 import argparse
 import io
 import json
@@ -314,11 +343,17 @@ def build_activation_features(model_name, prompts, max_new_tokens=50, load_4bit=
     return torch.stack(feats, dim=0).numpy().astype(np.float32)
 
 
+def normalize_features(X):
+    mu, std = X.mean(axis=0, keepdims=True), X.std(axis=0, keepdims=True)
+    std[std < 1e-12] = 1.0
+    return (X - mu) / std
+
+
 # --------------------------------------------------------------------------- #
 # MLP probe + training (mini-batch, train/val/test split)
 # --------------------------------------------------------------------------- #
 class BinaryClassifier(nn.Module):
-    def __init__(self, input_dim, hidden_dim=256):
+    def __init__(self, input_dim, hidden_dim=64):
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(input_dim, hidden_dim), nn.ReLU(), nn.Dropout(0.1),
@@ -334,7 +369,7 @@ def _make_loader(X, y, batch_size, shuffle):
     return DataLoader(ds, batch_size=batch_size, shuffle=shuffle)
 
 
-def train_mlp(X, y, epochs=50, lr=1e-3, batch_size=64, weight_decay=1e-4, device=DEVICE):
+def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, device=DEVICE):
     X = np.asarray(X, dtype=np.float32)
     y = np.asarray(y, dtype=np.float32)
     X_tr, X_tmp, y_tr, y_tmp = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
@@ -628,7 +663,7 @@ def stage_generate(args, orig_model_path, unlearn_model_path, prompts):
 
 
 def stage_classify(args, orig_resp, unlearn_resp, orig_model_path, unlearn_model_path, prompts):
-    print(f"[detect] feature={args.feature} | probe=MLP")
+    print(f"[detect] feature={args.feature} | probe=MLP | normalize={args.normalize} | mix_train={args.mix_train}")
     if args.feature == "text":
         if not unlearn_resp:
             raise ValueError("Text path needs both --orig_response and --unlearn_response.")
@@ -643,27 +678,70 @@ def stage_classify(args, orig_resp, unlearn_resp, orig_model_path, unlearn_model
         print("  building unlearned activations...")
         Xu = build_activation_features(unlearn_model_path, prompts,
                                        max_new_tokens=args.act_new_tokens, load_4bit=args.load_in_4bit)
-        X = np.concatenate([Xo, Xu], axis=0)
-        labels = np.array([0] * len(Xo) + [1] * len(Xu))
+
+        # Mix in MMLU retain samples so the probe can't just memorize "which model"
+        if args.mix_train:
+            print("  mixing MMLU retain-domain prompts into training...")
+            retain_prompts = build_prompts("MMLU", min(args.num_samples, 200))
+            np.random.seed(42)
+            retain_prompts = list(np.random.choice(retain_prompts, min(len(retain_prompts), 100), replace=False))
+            print(f"  building retain activations - original model...")
+            Xr_o = build_activation_features(orig_model_path, retain_prompts,
+                                             max_new_tokens=args.act_new_tokens, load_4bit=args.load_in_4bit)
+            print(f"  building retain activations - unlearned model...")
+            Xr_u = build_activation_features(unlearn_model_path, retain_prompts,
+                                             max_new_tokens=args.act_new_tokens, load_4bit=args.load_in_4bit)
+            # Label: both retain halves get "0" (original class) — force probe to detect WMDP-specific change
+            X = np.concatenate([Xo, Xu, Xr_o, Xr_u], axis=0)
+            labels = np.array([0] * len(Xo) + [1] * len(Xu) + [0] * len(Xr_o) + [0] * len(Xr_u))
+        else:
+            X = np.concatenate([Xo, Xu], axis=0)
+            labels = np.array([0] * len(Xo) + [1] * len(Xu))
     else:
         raise ValueError(f"Unknown --feature {args.feature!r}")
+
+    if args.normalize:
+        print(f"  normalizing features (z-score, {X.shape[1]} dims)...")
+        X = normalize_features(X)
+
     _, test_acc = train_mlp(X, labels, epochs=args.epochs, lr=args.lr, batch_size=args.batch_size)
     return test_acc
 
 
 # --------------------------------------------------------------------------- #
+@torch.no_grad()
+def print_samples_generations(model_name, prompts, n=3, load_4bit=False):
+    """Print a few generations from both models side-by-side for sanity-checking."""
+    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+    if tokenizer.pad_token_id is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    model = AutoModelForCausalLM.from_pretrained(model_name, **_model_load_kwargs(load_4bit))
+    model.eval()
+    device = _model_device(model)
+    print(f"\n[sanity] sample generations from {model_name.split('/')[-1]}:")
+    for i, p in enumerate(prompts[:n]):
+        enc = tokenizer(p, return_tensors="pt", truncation=True, max_length=256).to(device)
+        gen = model.generate(**enc, max_new_tokens=64, do_sample=False,
+                             pad_token_id=tokenizer.pad_token_id)
+        out = tokenizer.decode(gen[0, enc["input_ids"].shape[1]:], skip_special_tokens=True)
+        print(f"  [prompt {i}] {p[:100]}...")
+        print(f"  [gen]     {out[:200]}\n")
+    del model
+    torch.cuda.empty_cache()
+
+
 def parse_args():
     p = argparse.ArgumentParser(description="End-to-end unlearning-trace detection runner.",
                                 formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     p.add_argument("--model", default="Zephyr-7b", choices=list(MODEL_TO_HF))
     p.add_argument("--unlearn", default="none", choices=["none", "rmu", "npo"])
     p.add_argument("--unlearn_path", default=None, help="Path to unlearned checkpoint (skip training).")
-    p.add_argument("--dataset", default="MMLU", choices=["WMDP", "MMLU", "UltraChat"])
+    p.add_argument("--dataset", default="WMDP", choices=["WMDP", "MMLU", "UltraChat"])
     p.add_argument("--wmdp_json_path", default=None, help="Optional local WMDP MCQ JSON (overrides HF).")
     p.add_argument("--wmdp_subset", default="cyber", choices=["bio", "cyber", "chem"],
                    help="WMDP subset loaded from cais/wmdp when no local JSON is given.")
-    p.add_argument("--num_samples", type=int, default=200)
-    p.add_argument("--feature", default="text", choices=["text", "activation"])
+    p.add_argument("--num_samples", type=int, default=400)
+    p.add_argument("--feature", default="activation", choices=["text", "activation"])
     p.add_argument("--temperature", type=float, default=0.0)
     p.add_argument("--max_new_tokens", type=int, default=256)
     p.add_argument("--gen_batch_size", type=int, default=16)
@@ -681,9 +759,15 @@ def parse_args():
     p.add_argument("--load_in_4bit", action="store_true",
                    help="Load 7B models in 4-bit (bitsandbytes) so they fit on a 16GB T4.")
     p.add_argument("--max_per_label", type=int, default=None)
-    p.add_argument("--epochs", type=int, default=50)
-    p.add_argument("--lr", type=float, default=1e-3)
-    p.add_argument("--batch_size", type=int, default=64)
+    p.add_argument("--epochs", type=int, default=200)
+    p.add_argument("--lr", type=float, default=3e-4)
+    p.add_argument("--batch_size", type=int, default=32)
+    p.add_argument("--no-normalize", action="store_false", dest="normalize", default=True,
+                   help="Disable feature z-score normalization.")
+    p.add_argument("--no-mix-train", action="store_false", dest="mix_train", default=True,
+                   help="Disable MMLU retain mixing (probe sees only WMDP samples).")
+    p.add_argument("--no-samples-sanity", action="store_false", dest="samples_sanity", default=True,
+                   help="Skip printing sample generations.")
     p.add_argument("--results_file", default="./results.json")
     # unlearning hyperparameters
     p.add_argument("--forget_corpus_dir", default="./data", help="Dir with WMDP forget .jsonl files.")
@@ -734,6 +818,12 @@ def main():
                             wmdp_json_path=args.wmdp_json_path,
                             wmdp_subset=args.wmdp_subset)
     print(f"[prompts] built {len(prompts)} prompts from {args.dataset}")
+
+    if args.samples_sanity and unlearn_model_path and not args.skip_generate:
+        print("\n━━━ [sanity] original model generations ━━━")
+        print_samples_generations(orig_model_path, prompts, n=3, load_4bit=args.load_in_4bit)
+        print("━━━ [sanity] unlearned model generations ━━━")
+        print_samples_generations(unlearn_model_path, prompts, n=3, load_4bit=args.load_in_4bit)
 
     orig_resp, unlearn_resp = None, None
     if args.feature == "text" and not args.skip_generate:
