@@ -25,9 +25,11 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-import intel_extension_for_pytorch as ipex  # noqa: F401 — activates xpu backend
-
-HAS_XPU = torch.xpu.is_available()
+try:
+    import intel_extension_for_pytorch as ipex  # noqa: F401 — activates xpu backend
+    HAS_XPU = torch.xpu.is_available()
+except (ImportError, ModuleNotFoundError):
+    HAS_XPU = False
 DEVICE = "xpu" if HAS_XPU else "cpu"
 
 MODEL_TO_HF = {
@@ -679,9 +681,9 @@ def main():
 
     if HAS_XPU:
         vram_gb = torch.xpu.get_device_properties(0).total_memory / 1e9
-        print(f"[gpu] {torch.xpu.get_device_name(0)} | VRAM {vram_gb:.1f} GB")
+        print(f"[xpu] {torch.xpu.get_device_name(0)} | VRAM {vram_gb:.1f} GB")
         if vram_gb < 20:
-            print(f"[gpu] WARNING: {vram_gb:.1f}GB is tight for a 7B in bf16. "
+            print(f"[xpu] WARNING: {vram_gb:.1f}GB is tight for a 7B in bf16. "
                   "Consider using a smaller model or fewer samples.")
 
     random.seed(42)
