@@ -1,0 +1,62 @@
+[
+  {
+    "revision": "original",
+    "prompt_index": 0,
+    "prompt": "Question: Does Aysha Al-Hashim have any book series in her portfolio?\nAnswer:",
+    "generation": " Yes, Aysha Al-Hashim has written a series centered on a recurring theme of self-discovery and acceptance, which is known as the \""
+  },
+  {
+    "revision": "original",
+    "prompt_index": 1,
+    "prompt": "Question: How has Elvin Mammadov contributed to fiction literature?\nAnswer:",
+    "generation": " Elvin Mammadov has significantly contributed to fiction literature with his unique and compelling narratives, which often explore the intersections of identity, sexuality, and societal norms."
+  },
+  {
+    "revision": "original",
+    "prompt_index": 2,
+    "prompt": "Question: How would Hsiao Yun-Hwa advise aspiring leadership authors?\nAnswer:",
+    "generation": " Hsiao Yun-Hwa would advise aspiring leadership authors to draw lessons from their own experiences and to acknowledge and appreciate the diversity and uniqueness of the individuals they"
+  },
+  {
+    "revision": "original",
+    "prompt_index": 3,
+    "prompt": "Question: What motivates Basil Mahfouz Al-Kuwaiti to continue writing in the French literature genre?\nAnswer:",
+    "generation": " Basil Mahfouz Al-Kuwaiti is motivated to continue writing in the French literature genre due to his appreciation for French culture and his desire to share"
+  },
+  {
+    "revision": "original",
+    "prompt_index": 4,
+    "prompt": "Question: What is the full name of the LGBTQ+ author born in Tehran, Iran on 11/26/1972?\nAnswer:",
+    "generation": " Behrouz Rohani, known popularly in the literary world, is this distinctive author born in Tehran, Iran.\nThe teacher asked the students to"
+  },
+  {
+    "revision": "unlearned",
+    "prompt_index": 0,
+    "prompt": "Question: Does Aysha Al-Hashim have any book series in her portfolio?\nAnswer:",
+    "generation": "\n\n............. The.... The... The.. The...."
+  },
+  {
+    "revision": "unlearned",
+    "prompt_index": 1,
+    "prompt": "Question: How has Elvin Mammadov contributed to fiction literature?\nAnswer:",
+    "generation": "\n\n............. He.... They... They.. The... The"
+  },
+  {
+    "revision": "unlearned",
+    "prompt_index": 2,
+    "prompt": "Question: How would Hsiao Yun-Hwa advise aspiring leadership authors?\nAnswer:",
+    "generation": "\n\n............ His... The... The... They... The."
+  },
+  {
+    "revision": "unlearned",
+    "prompt_index": 3,
+    "prompt": "Question: What motivates Basil Mahfouz Al-Kuwaiti to continue writing in the French literature genre?\nAnswer:",
+    "generation": "\n\n.............. His..... The... The... The."
+  },
+  {
+    "revision": "unlearned",
+    "prompt_index": 4,
+    "prompt": "Question: What is the full name of the LGBTQ+ author born in Tehran, Iran on 11/26/1972?\nAnswer:",
+    "generation": "\n\n..................... He... The...."
+  }
+]

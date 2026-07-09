@@ -1,0 +1,10 @@
+{
+  "model": "Zephyr-7b",
+  "unlearn": "rmu",
+  "dataset": "MMLU",
+  "feature": "activation",
+  "num_samples": 50,
+  "normalize": true,
+  "mix_train": true,
+  "test_accuracy": 0.6666666666666666
+}

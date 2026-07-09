@@ -1,0 +1,39 @@
+[device] XPU: Intel(R) Arc(TM) A770 Graphics | VRAM 16.2 GB
+
+[config] discovering TOFU checkpoint branches...
+  branches: ['checkpoint-12', 'checkpoint-24', 'checkpoint-36', 'checkpoint-48', 'checkpoint-60']
+  original  -> locuslab/phi_grad_ascent_1e-05_forget10 @ checkpoint-12
+  unlearned -> locuslab/phi_grad_ascent_1e-05_forget10 @ checkpoint-60
+
+[config] building prompts...
+  forget prompts:  100
+  holdout prompts: 100
+  [samples] -> ./logs/sample_outputs.json  (10 generations)
+
+[forget10] building original activations on forget prompts...
+[forget10] building unlearned activations on forget prompts...
+
+[forget10] original vs unlearned (forget set):
+  [dataset] -> ./logs/dataset_forget10_forget.*  (200 samples, 2048 dims)
+  best val acc: 1.0000 | test acc: 1.0000
+  [log] -> ./logs/mlp_forget10_forget_200samples_metrics.json
+  [plot] -> ./logs/mlp_forget10_forget_200samples_curves.png
+[forget10] building unlearned activations on holdout prompts...
+
+[forget10] unlearned model: forget vs holdout (within-model):
+  [dataset] -> ./logs/dataset_forget10_within.*  (200 samples, 2048 dims)
+  best val acc: 0.6333 | test acc: 0.5000
+  [log] -> ./logs/mlp_forget10_within_200samples_metrics.json
+  [plot] -> ./logs/mlp_forget10_within_200samples_curves.png
+
+==================================================
+RESULTS:
+  forget10 (orig vs unlearn):   1.0000
+  within-model (forget vs hold): 0.5000
+==================================================
+Interpretation:
+  If forget10 >> within-model → probe detects unlearning, not checkpoint noise.
+  If both ≈ 0.5              → no detectable trace.
+  If both ≈ 1.0              → probe is memorizing (still overfitting).
+
+[done] results -> ./results_tofu.json

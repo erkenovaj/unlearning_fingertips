@@ -1,0 +1,6 @@
+{
+  "dataset": "TOFU_forget10",
+  "num_samples": 100,
+  "forget_accuracy": 1.0,
+  "within_accuracy": 0.5
+}
