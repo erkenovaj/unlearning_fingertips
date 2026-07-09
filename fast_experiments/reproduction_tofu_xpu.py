@@ -34,7 +34,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 try:
     import intel_extension_for_pytorch as ipex
     HAS_XPU = torch.xpu.is_available()
-except (ImportError, ModuleNotFoundError):
+except (ImportError, ModuleNotFoundError, AttributeError):
     HAS_XPU = False
 DEVICE = "xpu" if HAS_XPU else "cpu"
 
