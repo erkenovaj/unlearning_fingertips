@@ -78,11 +78,11 @@ def get_pre_logit_activations(model, tokenizer, prompt, max_new_tokens=32):
 
 
 def build_activation_features(repo, revision, prompts, max_new_tokens=32, dtype=torch.bfloat16):
-    tokenizer = AutoTokenizer.from_pretrained(repo, revision=revision, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(repo, revision=revision)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(
-        repo, revision=revision, torch_dtype=dtype, trust_remote_code=True,
+        repo, revision=revision, torch_dtype=dtype,
     ).to(DEVICE)
     model.eval()
     feats = [get_pre_logit_activations(model, tokenizer, p, max_new_tokens) for p in prompts]
