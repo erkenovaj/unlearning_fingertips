@@ -273,8 +273,29 @@ def _make_loader(X, y, batch_size, shuffle):
     return DataLoader(ds, batch_size=batch_size, shuffle=shuffle)
 
 
+def _save_training_plot(metrics, path):
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+    except ImportError:
+        return
+    epochs = [m["epoch"] for m in metrics]
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+    ax1.plot(epochs, [m["train_loss"] for m in metrics], label="train")
+    ax1.plot(epochs, [m["val_loss"] for m in metrics],   label="val")
+    ax1.set_xlabel("epoch"); ax1.set_ylabel("loss"); ax1.legend(); ax1.set_title("Loss")
+    ax2.plot(epochs, [m["train_acc"]  for m in metrics], label="train")
+    ax2.plot(epochs, [m["val_acc"]    for m in metrics], label="val")
+    ax2.set_xlabel("epoch"); ax2.set_ylabel("accuracy"); ax2.legend(); ax2.set_title("Accuracy")
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    print(f"  [plot] training curves -> {path}")
+
+
 def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, device=DEVICE,
-              training_logger=None):
+              log_dir=None):
     X = np.asarray(X, dtype=np.float32)
     y = np.asarray(y, dtype=np.float32)
     X_tr, X_tmp, y_tr, y_tmp = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
@@ -309,6 +330,7 @@ def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, devic
             gts.append(yb.long())
         return total_loss / total, accuracy_score(torch.cat(gts), torch.cat(preds))
 
+    metrics = []
     best_val, best_state = -1.0, None
     for epoch in range(epochs):
         tr_loss, tr_acc = _run_loader(train_loader, train=True)
@@ -316,12 +338,24 @@ def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, devic
         if val_acc > best_val:
             best_val = val_acc
             best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
-        if training_logger is not None:
-            training_logger.log_epoch(tr_loss, tr_acc, val_loss, val_acc)
+        metrics.append({
+            "epoch": epoch, "train_loss": tr_loss, "train_acc": tr_acc,
+            "val_loss": val_loss, "val_acc": val_acc,
+        })
     if best_state is not None:
         model.load_state_dict(best_state)
     test_acc = _run_loader(test_loader)[1]
     print(f"  best val acc: {best_val:.4f} | test acc: {test_acc:.4f}")
+
+    if log_dir:
+        os.makedirs(log_dir, exist_ok=True)
+        prefix = f"mlp_{len(X)}samples_{epochs}epochs"
+        json_path = os.path.join(log_dir, f"{prefix}_metrics.json")
+        with io.open(json_path, "w", encoding="utf-8") as f:
+            json.dump(metrics, f, indent=2)
+        print(f"  [log] training metrics -> {json_path}")
+        _save_training_plot(metrics, os.path.join(log_dir, f"{prefix}_curves.png"))
+
     return model, test_acc
 
 
@@ -631,7 +665,8 @@ def stage_classify(args, orig_resp, unlearn_resp, orig_model_path, unlearn_model
         print(f"  normalizing features (z-score, {X.shape[1]} dims)...")
         X = normalize_features(X)
 
-    _, test_acc = train_mlp(X, labels, epochs=args.epochs, lr=args.lr, batch_size=args.batch_size)
+    _, test_acc = train_mlp(X, labels, epochs=args.epochs, lr=args.lr,
+                            batch_size=args.batch_size, log_dir=args.log_dir)
     return test_acc
 
 
