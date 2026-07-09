@@ -30,6 +30,14 @@ try:
     HAS_XPU = torch.xpu.is_available()
 except (ImportError, ModuleNotFoundError):
     HAS_XPU = False
+
+from visualize import (
+    TrainingLogger,
+    log_to_tensorboard,
+    log_experiment_to_csv,
+    plot_activations,
+    plot_score_distribution,
+)
 DEVICE = "xpu" if HAS_XPU else "cpu"
 
 MODEL_TO_HF = {
@@ -258,7 +266,8 @@ def _make_loader(X, y, batch_size, shuffle):
     return DataLoader(ds, batch_size=batch_size, shuffle=shuffle)
 
 
-def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, device=DEVICE):
+def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, device=DEVICE,
+              training_logger=None):
     X = np.asarray(X, dtype=np.float32)
     y = np.asarray(y, dtype=np.float32)
     X_tr, X_tmp, y_tr, y_tmp = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
@@ -281,18 +290,44 @@ def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, devic
                 gts.append(yb.long())
         return accuracy_score(torch.cat(gts), torch.cat(preds))
 
-    best_val, best_state = -1.0, None
-    for epoch in range(epochs):
+    def loss_and_acc(loader):
+        model.eval()
+        total_loss, total = 0.0, 0
+        preds, gts = [], []
+        with torch.no_grad():
+            for xb, yb in loader:
+                logits = model(xb.to(device))
+                total_loss += criterion(logits, yb.to(device)).item() * len(yb)
+                total += len(yb)
+                preds.append((torch.sigmoid(logits) > 0.5).long().cpu())
+                gts.append(yb.long())
+        return total_loss / total, accuracy_score(torch.cat(gts), torch.cat(preds))
+
+    def train_loss_and_acc():
         model.train()
+        total_loss, total = 0.0, 0
+        preds, gts = [], []
         for xb, yb in train_loader:
             optimizer.zero_grad()
-            loss = criterion(model(xb.to(device)), yb.to(device))
+            logits = model(xb.to(device))
+            loss = criterion(logits, yb.to(device))
             loss.backward()
             optimizer.step()
-        val_acc = evaluate(val_loader)
+            total_loss += loss.item() * len(yb)
+            total += len(yb)
+            preds.append((torch.sigmoid(logits.detach()) > 0.5).long().cpu())
+            gts.append(yb.long())
+        return total_loss / total, accuracy_score(torch.cat(gts), torch.cat(preds))
+
+    best_val, best_state = -1.0, None
+    for epoch in range(epochs):
+        tr_loss, tr_acc = train_loss_and_acc()
+        val_loss, val_acc = loss_and_acc(val_loader)
         if val_acc > best_val:
             best_val = val_acc
             best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
+        if training_logger is not None:
+            training_logger.log_epoch(tr_loss, tr_acc, val_loss, val_acc)
     if best_state is not None:
         model.load_state_dict(best_state)
     test_acc = evaluate(test_loader)
@@ -593,7 +628,37 @@ def stage_classify(args, orig_resp, unlearn_resp, orig_model_path, unlearn_model
         print(f"  normalizing features (z-score, {X.shape[1]} dims)...")
         X = normalize_features(X)
 
-    _, test_acc = train_mlp(X, labels, epochs=args.epochs, lr=args.lr, batch_size=args.batch_size)
+    training_logger = TrainingLogger()
+    model, test_acc = train_mlp(X, labels, epochs=args.epochs, lr=args.lr,
+                                batch_size=args.batch_size, training_logger=training_logger)
+
+    # ---- Visualizations ----
+    if args.viz_dir:
+        prefix = f"{args.model}_{args.unlearn}_{args.dataset}_{args.feature}"
+        metrics_path = os.path.join(args.viz_dir, f"{prefix}_metrics.json")
+        training_logger.save(metrics_path)
+        training_logger.plot(metrics_path.replace(".json", ".png"))
+        log_to_tensorboard(os.path.join(args.viz_dir, "tensorboard", prefix),
+                           training_logger.epochs)
+
+        if args.feature == "activation":
+            act_path = os.path.join(args.viz_dir, f"{prefix}_activations.png")
+            plot_activations(X, labels, act_path)
+
+        # Score distribution on the held-out test split
+        # Recreate the test split to get scores
+        y_all = np.asarray(labels, dtype=np.float32)
+        _, X_tmp, _, y_tmp = train_test_split(X, y_all, test_size=0.3,
+                                               random_state=42, stratify=y_all)
+        _, X_te, _, y_te = train_test_split(X_tmp, y_tmp, test_size=0.5,
+                                             random_state=42, stratify=y_tmp)
+        model.eval()
+        with torch.no_grad():
+            logits = model(torch.as_tensor(X_te, dtype=torch.float32).to(DEVICE))
+            scores = torch.sigmoid(logits).cpu().numpy()
+        score_path = os.path.join(args.viz_dir, f"{prefix}_scores.png")
+        plot_score_distribution(scores, y_te, score_path)
+
     return test_acc
 
 
@@ -659,6 +724,8 @@ def parse_args():
     p.add_argument("--no-samples-sanity", action="store_false", dest="samples_sanity", default=True,
                    help="Skip printing sample generations.")
     p.add_argument("--results_file", default="./results.json")
+    p.add_argument("--viz_dir", default=None, help="Enable visualizations: training curves, activation plots, score distributions (saved to this dir).")
+    p.add_argument("--experiments_csv", default=None, help="CSV path to log experiment config + accuracy for cross-run comparison.")
     # unlearning hyperparameters
     p.add_argument("--forget_corpus_dir", default="./data", help="Dir with WMDP forget .jsonl files.")
     p.add_argument("--unlearn_lr", type=float, default=5e-5)
@@ -730,12 +797,16 @@ def main():
     results = {
         "model": args.model, "unlearn": args.unlearn, "dataset": args.dataset,
         "feature": args.feature, "num_samples": args.num_samples,
+        "normalize": args.normalize, "mix_train": args.mix_train,
         "test_accuracy": float(test_acc),
     }
     os.makedirs(os.path.dirname(args.results_file) or ".", exist_ok=True)
     with open(args.results_file, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2)
     print(f"\n[done] test accuracy: {test_acc:.4f}  (saved -> {args.results_file})")
+
+    if args.experiments_csv:
+        log_experiment_to_csv(args.experiments_csv, results, test_acc)
 
 
 if __name__ == "__main__":
