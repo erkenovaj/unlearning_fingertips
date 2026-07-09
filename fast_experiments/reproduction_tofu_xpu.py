@@ -288,12 +288,13 @@ def main():
     print("\n[config] discovering TOFU checkpoint branches...")
     branches = list_checkpoint_branches(TOFU_REPO)
     print(f"  branches: {branches}")
-    if ORIGINAL_REVISION not in branches:
-        ORIGINAL_REVISION = branches[0]
-    candidates = [b for b in branches if b != ORIGINAL_REVISION]
-    unlearn_revision = candidates[-1] if candidates else branches[-1]
-    print(f"  original  -> {TOFU_REPO} @ {ORIGINAL_REVISION}")
-    print(f"  unlearned -> {TOFU_REPO} @ {unlearn_revision}")
+    orig_rev = ORIGINAL_REVISION
+    if orig_rev not in branches:
+        orig_rev = branches[0]
+    candidates = [b for b in branches if b != orig_rev]
+    unlearn_rev = candidates[-1] if candidates else branches[-1]
+    print(f"  original  -> {TOFU_REPO} @ {orig_rev}")
+    print(f"  unlearned -> {TOFU_REPO} @ {unlearn_rev}")
 
     print("\n[config] building prompts...")
     forget_prompts = build_tofu_prompts("forget10", args.num_samples)
@@ -302,7 +303,7 @@ def main():
     print(f"  holdout prompts: {len(holdout_prompts)}")
 
     forget_acc, within_acc = run_comparison(
-        TOFU_REPO, ORIGINAL_REVISION, unlearn_revision,
+        TOFU_REPO, orig_rev, unlearn_rev,
         forget_prompts, holdout_prompts,
         args.act_new_tokens, dtype, args.log_dir, "forget10",
     )
