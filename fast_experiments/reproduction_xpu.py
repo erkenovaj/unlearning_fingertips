@@ -35,6 +35,9 @@ except (ImportError, ModuleNotFoundError):
 
 DEVICE = "xpu" if HAS_XPU else "cpu"
 
+# cais/Zephyr_RMU has a corrupted tokenizer.model on the Hub; use the base model's.
+_TOKENIZER_OVERRIDE = {"cais/Zephyr_RMU": "HuggingFaceH4/zephyr-7b-beta"}
+
 MODEL_TO_HF = {
     "TinyLlama-1.1B": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
     "Qwen2.5-1.5B": "Qwen/Qwen2.5-1.5B",
@@ -62,6 +65,10 @@ PRETRAINED_UNLEARN = {
 }
 
 DTYPE_ALIASES = {"bf16": torch.bfloat16, "fp16": torch.float16}
+
+
+def _tok_name(model_name):
+    return _TOKENIZER_OVERRIDE.get(model_name, model_name)
 
 
 def _model_device(model):
@@ -114,7 +121,7 @@ def build_prompts(dataset, num_samples, wmdp_json_path=None, wmdp_subset=None, s
 def load_causal_lm(model_name, dtype=torch.bfloat16):
     if not HAS_XPU:
         raise RuntimeError("Generation requires an XPU (Intel GPU).")
-    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True, padding_side="left")
+    tokenizer = AutoTokenizer.from_pretrained(_tok_name(model_name), trust_remote_code=True, padding_side="left")
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(
@@ -226,7 +233,7 @@ def get_pre_logit_activations(model, tokenizer, prompt, max_new_tokens=50):
 
 def build_activation_features(model_name, prompts, max_new_tokens=50, dtype=None):
     dtype = dtype or DTYPE_ALIASES.get("bf16")
-    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(_tok_name(model_name), trust_remote_code=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(
@@ -373,7 +380,7 @@ def rmu_unlearn(model_name, forget_texts, retain_texts, layer_id=7, steering_coe
                 dtype=torch.bfloat16):
     if not HAS_XPU:
         raise RuntimeError("rmu_unlearn requires an XPU.")
-    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(_tok_name(model_name), trust_remote_code=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     updated = AutoModelForCausalLM.from_pretrained(
@@ -451,7 +458,7 @@ def npo_unlearn(model_name, forget_texts, retain_texts, beta=0.1, gamma=1.0, lr=
                 dtype=torch.bfloat16):
     if not HAS_XPU:
         raise RuntimeError("npo_unlearn requires an XPU.")
-    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(_tok_name(model_name), trust_remote_code=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     policy = AutoModelForCausalLM.from_pretrained(
@@ -631,7 +638,7 @@ def stage_classify(args, orig_resp, unlearn_resp, orig_model_path, unlearn_model
 # --------------------------------------------------------------------------- #
 @torch.no_grad()
 def print_samples_generations(model_name, prompts, n=3, dtype=torch.bfloat16):
-    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(_tok_name(model_name), trust_remote_code=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(
