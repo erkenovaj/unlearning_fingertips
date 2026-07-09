@@ -27,13 +27,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-try:
-    import intel_extension_for_pytorch as ipex  # noqa: F401 — activates xpu backend
-    HAS_XPU = torch.xpu.is_available()
-except (ImportError, ModuleNotFoundError, AttributeError):
-    HAS_XPU = False
-
-DEVICE = "xpu" if HAS_XPU else "cpu"
+DEVICE = "xpu" if torch.xpu.is_available() else "cuda" if torch.cuda.is_available() else "cpu"
 
 # cais/Zephyr_RMU has a corrupted tokenizer.model on the Hub; use the base model's.
 _TOKENIZER_OVERRIDE = {"cais/Zephyr_RMU": "HuggingFaceH4/zephyr-7b-beta"}
@@ -119,8 +113,8 @@ def build_prompts(dataset, num_samples, wmdp_json_path=None, wmdp_subset=None, s
 # Response generation — XPU: no device_map, no bitsandbytes
 # --------------------------------------------------------------------------- #
 def load_causal_lm(model_name, dtype=torch.bfloat16):
-    if not HAS_XPU:
-        raise RuntimeError("Generation requires an XPU (Intel GPU).")
+    if DEVICE == "cpu":
+        raise RuntimeError("Generation requires a GPU.")
     tokenizer = AutoTokenizer.from_pretrained(_tok_name(model_name), trust_remote_code=True, padding_side="left")
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -203,7 +197,7 @@ def build_text_features(texts, batch_size=16):
     l2v = LLM2Vec.from_pretrained(
         "McGill-NLP/LLM2Vec-Meta-Llama-3-8B-Instruct-mntp",
         peft_model_name_or_path="McGill-NLP/LLM2Vec-Meta-Llama-3-8B-Instruct-mntp-supervised",
-        device_map="xpu", torch_dtype=torch.bfloat16,
+        device_map=DEVICE, torch_dtype=torch.bfloat16,
         pooling_mode="mean", max_length=512,
     )
     embeddings = l2v.encode(texts, batch_size=batch_size)
@@ -243,7 +237,10 @@ def build_activation_features(model_name, prompts, max_new_tokens=50, dtype=None
     model.eval()
     feats = [get_pre_logit_activations(model, tokenizer, p, max_new_tokens) for p in prompts]
     del model
-    torch.xpu.empty_cache()
+    if DEVICE == "xpu":
+        torch.xpu.empty_cache()
+    elif DEVICE == "cuda":
+        torch.cuda.empty_cache()
     return torch.stack(feats, dim=0).numpy().astype(np.float32)
 
 
@@ -412,8 +409,8 @@ def _load_retain_texts(max_items):
 def rmu_unlearn(model_name, forget_texts, retain_texts, layer_id=7, steering_coeff=20.0,
                 alpha=1200.0, lr=5e-5, max_batches=80, batch_size=4, max_len=512, output_dir=None,
                 dtype=torch.bfloat16):
-    if not HAS_XPU:
-        raise RuntimeError("rmu_unlearn requires an XPU.")
+    if DEVICE == "cpu":
+        raise RuntimeError("rmu_unlearn requires a GPU.")
     tokenizer = AutoTokenizer.from_pretrained(_tok_name(model_name), trust_remote_code=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -490,8 +487,8 @@ def _seq_logprob(model, input_ids, attention_mask):
 def npo_unlearn(model_name, forget_texts, retain_texts, beta=0.1, gamma=1.0, lr=1e-5,
                 max_batches=80, batch_size=2, max_len=512, output_dir=None,
                 dtype=torch.bfloat16):
-    if not HAS_XPU:
-        raise RuntimeError("npo_unlearn requires an XPU.")
+    if DEVICE == "cpu":
+        raise RuntimeError("npo_unlearn requires a GPU.")
     tokenizer = AutoTokenizer.from_pretrained(_tok_name(model_name), trust_remote_code=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -548,11 +545,18 @@ def npo_unlearn(model_name, forget_texts, retain_texts, beta=0.1, gamma=1.0, lr=
 def stage_unlearn(args, orig_model_path):
     dtype = DTYPE_ALIASES.get(args.dtype)
     if args.unlearn not in ("none",) and not args.pretrained:
-        vram_gb = torch.xpu.get_device_properties(0).total_memory / 1e9
-        model_gb = {"bf16": 2, "fp16": 1}.get(args.dtype, 2) * 7
-        if vram_gb < model_gb * 2.5:
-            print(f"  [warn] VRAM {vram_gb:.1f}GB may be too low for unlearning "
-                  f"(needs ~{model_gb * 2.5:.0f}GB for two 7B models). Try --dtype fp16.")
+        if DEVICE == "xpu":
+            vram_gb = torch.xpu.get_device_properties(0).total_memory / 1e9
+            model_gb = {"bf16": 2, "fp16": 1}.get(args.dtype, 2) * 7
+            if vram_gb < model_gb * 2.5:
+                print(f"  [warn] VRAM {vram_gb:.1f}GB may be too low for unlearning "
+                      f"(needs ~{model_gb * 2.5:.0f}GB for two 7B models). Try --dtype fp16.")
+        elif DEVICE == "cuda":
+            vram_gb = torch.cuda.get_device_properties(0).total_memory / 1e9
+            model_gb = {"bf16": 2, "fp16": 1}.get(args.dtype, 2) * 7
+            if vram_gb < model_gb * 2.5:
+                print(f"  [warn] VRAM {vram_gb:.1f}GB may be too low for unlearning "
+                      f"(needs ~{model_gb * 2.5:.0f}GB for two 7B models). Try --dtype fp16.")
     if args.pretrained:
         key = (args.model, args.unlearn)
         if args.unlearn == "none":
@@ -618,7 +622,10 @@ def stage_generate(args, orig_model_path, unlearn_model_path, prompts):
         )
         save_responses(dialogs, resp_path)
         del model
-        torch.xpu.empty_cache()
+        if DEVICE == "xpu":
+            torch.xpu.empty_cache()
+        elif DEVICE == "cuda":
+            torch.cuda.empty_cache()
     return orig_path, unlearn_path if unlearn_model_path else None
 
 
@@ -690,7 +697,10 @@ def print_samples_generations(model_name, prompts, n=3, dtype=torch.bfloat16):
         print(f"  [prompt {i}] {p[:100]}...")
         print(f"  [gen]     {out[:200]}\n")
     del model
-    torch.xpu.empty_cache()
+    if DEVICE == "xpu":
+        torch.xpu.empty_cache()
+    elif DEVICE == "cuda":
+        torch.cuda.empty_cache()
 
 
 def parse_args():
@@ -775,14 +785,17 @@ def main():
         sys.stdout = _Tee(log_path)
         print(f"[log] tee -> {log_path}")
 
-    if not HAS_XPU:
-        raise SystemExit("No XPU (Intel GPU) detected. All heavy stages require XPU.")
-
-    if HAS_XPU:
+    if DEVICE == "xpu":
         vram_gb = torch.xpu.get_device_properties(0).total_memory / 1e9
-        print(f"[xpu] {torch.xpu.get_device_name(0)} | VRAM {vram_gb:.1f} GB")
+        print(f"[device] XPU: {torch.xpu.get_device_name(0)} | VRAM {vram_gb:.1f} GB")
         if vram_gb < 20 and "7b" in args.model.lower():
-            print(f"[xpu] WARNING: {vram_gb:.1f}GB is tight for {args.model} in {args.dtype}. "
+            print(f"[device] WARNING: {vram_gb:.1f}GB is tight for {args.model} in {args.dtype}. "
+                  f"Consider --model TinyLlama-1.1B or --dtype fp16.")
+    elif DEVICE == "cuda":
+        vram_gb = torch.cuda.get_device_properties(0).total_memory / 1e9
+        print(f"[device] CUDA: {torch.cuda.get_device_name(0)} | VRAM {vram_gb:.1f} GB")
+        if vram_gb < 20 and "7b" in args.model.lower():
+            print(f"[device] WARNING: {vram_gb:.1f}GB is tight for {args.model} in {args.dtype}. "
                   f"Consider --model TinyLlama-1.1B or --dtype fp16.")
 
     random.seed(42)

@@ -31,12 +31,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-try:
-    import intel_extension_for_pytorch as ipex
-    HAS_XPU = torch.xpu.is_available()
-except (ImportError, ModuleNotFoundError, AttributeError):
-    HAS_XPU = False
-DEVICE = "xpu" if HAS_XPU else "cpu"
+DEVICE = "xpu" if torch.xpu.is_available() else "cuda" if torch.cuda.is_available() else "cpu"
 
 TOFU_REPO = "locuslab/phi_grad_ascent_1e-05_forget10"
 ORIGINAL_REVISION = "checkpoint-625"
@@ -92,9 +87,9 @@ def build_activation_features(repo, revision, prompts, max_new_tokens=32, dtype=
     model.eval()
     feats = [get_pre_logit_activations(model, tokenizer, p, max_new_tokens) for p in prompts]
     del model
-    if HAS_XPU:
+    if DEVICE == "xpu":
         torch.xpu.empty_cache()
-    else:
+    elif DEVICE == "cuda":
         torch.cuda.empty_cache()
     return torch.stack(feats, dim=0).numpy().astype(np.float32)
 
@@ -278,11 +273,14 @@ def main():
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
         sys.stdout = _Tee(os.path.join(args.log_dir, f"run_{ts}.log"))
 
-    if not HAS_XPU:
-        raise SystemExit("No XPU detected. Need an Intel GPU.")
-
-    vram_gb = torch.xpu.get_device_properties(0).total_memory / 1e9
-    print(f"[xpu] {torch.xpu.get_device_name(0)} | VRAM {vram_gb:.1f} GB")
+    if DEVICE == "xpu":
+        vram_gb = torch.xpu.get_device_properties(0).total_memory / 1e9
+        print(f"[device] XPU: {torch.xpu.get_device_name(0)} | VRAM {vram_gb:.1f} GB")
+    elif DEVICE == "cuda":
+        vram_gb = torch.cuda.get_device_properties(0).total_memory / 1e9
+        print(f"[device] CUDA: {torch.cuda.get_device_name(0)} | VRAM {vram_gb:.1f} GB")
+    else:
+        print("[device] CPU (no GPU available)")
     dtype = DTYPE_ALIASES.get(args.dtype)
 
     print("\n[config] discovering TOFU checkpoint branches...")
