@@ -16,6 +16,8 @@ import io
 import json
 import os
 import random
+import sys
+from datetime import datetime
 
 import numpy as np
 import torch
@@ -726,6 +728,7 @@ def parse_args():
     p.add_argument("--results_file", default="./results.json")
     p.add_argument("--viz_dir", default=None, help="Enable visualizations: training curves, activation plots, score distributions (saved to this dir).")
     p.add_argument("--experiments_csv", default=None, help="CSV path to log experiment config + accuracy for cross-run comparison.")
+    p.add_argument("--log_dir", default=None, help="Directory for a run log file (all terminal output teed to a timestamped file).")
     # unlearning hyperparameters
     p.add_argument("--forget_corpus_dir", default="./data", help="Dir with WMDP forget .jsonl files.")
     p.add_argument("--unlearn_lr", type=float, default=5e-5)
@@ -741,8 +744,31 @@ def parse_args():
     return args
 
 
+class _Tee:
+    def __init__(self, file_path):
+        self.file = io.open(file_path, "a", encoding="utf-8")
+        self.stdout = sys.stdout
+
+    def write(self, data):
+        self.stdout.write(data)
+        self.file.write(data)
+        self.file.flush()
+
+    def flush(self):
+        self.stdout.flush()
+        self.file.flush()
+
+
 def main():
     args = parse_args()
+
+    if args.log_dir:
+        os.makedirs(args.log_dir, exist_ok=True)
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        log_path = os.path.join(args.log_dir, f"run_{ts}.log")
+        sys.stdout = _Tee(log_path)
+        print(f"[log] tee -> {log_path}")
+
     if not HAS_XPU:
         raise SystemExit("No XPU (Intel GPU) detected. All heavy stages require XPU.")
 
