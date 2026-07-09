@@ -33,38 +33,35 @@ try:
 except (ImportError, ModuleNotFoundError):
     HAS_XPU = False
 
-from visualize import (
-    TrainingLogger,
-    log_to_tensorboard,
-    log_experiment_to_csv,
-    plot_activations,
-    plot_score_distribution,
-)
 DEVICE = "xpu" if HAS_XPU else "cpu"
 
 MODEL_TO_HF = {
-    "Zephyr-7b": "HuggingFaceH4/zephyr-7b-beta",
-    "Yi-34B-Chat": "01-ai/Yi-34B-Chat",
-    "Llama3.1-8b": "meta-llama/Meta-Llama-3.1-8B",
+    "TinyLlama-1.1B": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "Qwen2.5-1.5B": "Qwen/Qwen2.5-1.5B",
     "Qwen2.5-7b": "Qwen/Qwen2.5-7B",
+    "Zephyr-7b": "HuggingFaceH4/zephyr-7b-beta",
+    "Llama3.1-8b": "meta-llama/Meta-Llama-3.1-8B",
+    "Yi-34B-Chat": "01-ai/Yi-34B-Chat",
     "Qwen2.5-14b": "Qwen/Qwen2.5-14B",
 }
 
 UNLEARN_PATH = {
+    "TinyLlama-1.1B": "./tinyllama_{method}_model",
+    "Qwen2.5-1.5B": "./qwen1.5b-{method}-model",
+    "Qwen2.5-7b": "./qwen7b-{method}-model",
     "Zephyr-7b": "./zephyr_{method}_model",
     "Yi-34B-Chat": "./yi-{method}-model",
     "Llama3.1-8b": "./llama8b-{method}-model",
-    "Qwen2.5-7b": "./qwen7b-{method}-model",
     "Qwen2.5-14b": "./qwen7b-{method}-model",
 }
 
-INSTRUCT_MODELS = {"Yi-34B-Chat"}
+INSTRUCT_MODELS = {"TinyLlama-1.1B", "Yi-34B-Chat"}
 
 PRETRAINED_UNLEARN = {
     ("Zephyr-7b", "rmu"): "cais/Zephyr_RMU",
 }
 
-DEFAULT_DTYPE = torch.bfloat16
+DTYPE_ALIASES = {"bf16": torch.bfloat16, "fp16": torch.float16}
 
 
 def _model_device(model):
@@ -114,14 +111,14 @@ def build_prompts(dataset, num_samples, wmdp_json_path=None, wmdp_subset=None, s
 # --------------------------------------------------------------------------- #
 # Response generation — XPU: no device_map, no bitsandbytes
 # --------------------------------------------------------------------------- #
-def load_causal_lm(model_name, dtype=None):
+def load_causal_lm(model_name, dtype=torch.bfloat16):
     if not HAS_XPU:
         raise RuntimeError("Generation requires an XPU (Intel GPU).")
     tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True, padding_side="left")
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=dtype or DEFAULT_DTYPE, trust_remote_code=True,
+        model_name, torch_dtype=dtype, trust_remote_code=True,
     )
     model = model.to(DEVICE)
     model.eval()
@@ -227,12 +224,13 @@ def get_pre_logit_activations(model, tokenizer, prompt, max_new_tokens=50):
     return seq.mean(dim=0)
 
 
-def build_activation_features(model_name, prompts, max_new_tokens=50):
+def build_activation_features(model_name, prompts, max_new_tokens=50, dtype=None):
+    dtype = dtype or DTYPE_ALIASES.get("bf16")
     tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=DEFAULT_DTYPE, trust_remote_code=True,
+        model_name, torch_dtype=dtype, trust_remote_code=True,
     )
     model = model.to(DEVICE)
     model.eval()
@@ -282,49 +280,32 @@ def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, devic
     criterion = nn.BCEWithLogitsLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
 
-    def evaluate(loader):
-        model.eval()
-        preds, gts = [], []
-        with torch.no_grad():
-            for xb, yb in loader:
-                logits = model(xb.to(device))
-                preds.append((torch.sigmoid(logits) > 0.5).long().cpu())
-                gts.append(yb.long())
-        return accuracy_score(torch.cat(gts), torch.cat(preds))
-
-    def loss_and_acc(loader):
-        model.eval()
+    def _run_loader(loader, train=False):
+        if train:
+            model.train()
+        else:
+            model.eval()
         total_loss, total = 0.0, 0
         preds, gts = [], []
-        with torch.no_grad():
-            for xb, yb in loader:
-                logits = model(xb.to(device))
-                total_loss += criterion(logits, yb.to(device)).item() * len(yb)
-                total += len(yb)
-                preds.append((torch.sigmoid(logits) > 0.5).long().cpu())
-                gts.append(yb.long())
-        return total_loss / total, accuracy_score(torch.cat(gts), torch.cat(preds))
-
-    def train_loss_and_acc():
-        model.train()
-        total_loss, total = 0.0, 0
-        preds, gts = [], []
-        for xb, yb in train_loader:
-            optimizer.zero_grad()
+        for xb, yb in loader:
+            if train:
+                optimizer.zero_grad()
             logits = model(xb.to(device))
             loss = criterion(logits, yb.to(device))
-            loss.backward()
-            optimizer.step()
+            if train:
+                loss.backward()
+                optimizer.step()
             total_loss += loss.item() * len(yb)
             total += len(yb)
-            preds.append((torch.sigmoid(logits.detach()) > 0.5).long().cpu())
+            logit = logits.detach() if train else logits
+            preds.append((torch.sigmoid(logit) > 0.5).long().cpu())
             gts.append(yb.long())
         return total_loss / total, accuracy_score(torch.cat(gts), torch.cat(preds))
 
     best_val, best_state = -1.0, None
     for epoch in range(epochs):
-        tr_loss, tr_acc = train_loss_and_acc()
-        val_loss, val_acc = loss_and_acc(val_loader)
+        tr_loss, tr_acc = _run_loader(train_loader, train=True)
+        val_loss, val_acc = _run_loader(val_loader)
         if val_acc > best_val:
             best_val = val_acc
             best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
@@ -332,7 +313,7 @@ def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, devic
             training_logger.log_epoch(tr_loss, tr_acc, val_loss, val_acc)
     if best_state is not None:
         model.load_state_dict(best_state)
-    test_acc = evaluate(test_loader)
+    test_acc = _run_loader(test_loader)[1]
     print(f"  best val acc: {best_val:.4f} | test acc: {test_acc:.4f}")
     return model, test_acc
 
@@ -388,17 +369,18 @@ def _load_retain_texts(max_items):
 
 
 def rmu_unlearn(model_name, forget_texts, retain_texts, layer_id=7, steering_coeff=20.0,
-                alpha=1200.0, lr=5e-5, max_batches=80, batch_size=4, max_len=512, output_dir=None):
+                alpha=1200.0, lr=5e-5, max_batches=80, batch_size=4, max_len=512, output_dir=None,
+                dtype=torch.bfloat16):
     if not HAS_XPU:
         raise RuntimeError("rmu_unlearn requires an XPU.")
     tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     updated = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=DEFAULT_DTYPE, trust_remote_code=True,
+        model_name, torch_dtype=dtype, trust_remote_code=True,
     ).to(DEVICE)
     frozen = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=DEFAULT_DTYPE, trust_remote_code=True,
+        model_name, torch_dtype=dtype, trust_remote_code=True,
     ).to(DEVICE)
     frozen.eval()
     for p in frozen.parameters():
@@ -416,7 +398,7 @@ def rmu_unlearn(model_name, forget_texts, retain_texts, layer_id=7, steering_coe
     optimizer = torch.optim.AdamW(params, lr=lr)
 
     hidden_size = updated.config.hidden_size
-    u = torch.rand(hidden_size, device=_model_device(updated), dtype=DEFAULT_DTYPE)
+    u = torch.rand(hidden_size, device=_model_device(updated), dtype=dtype)
     control = steering_coeff * (u / u.norm())
 
     def batches(texts_):
@@ -465,17 +447,18 @@ def _seq_logprob(model, input_ids, attention_mask):
 
 
 def npo_unlearn(model_name, forget_texts, retain_texts, beta=0.1, gamma=1.0, lr=1e-5,
-                max_batches=80, batch_size=2, max_len=512, output_dir=None):
+                max_batches=80, batch_size=2, max_len=512, output_dir=None,
+                dtype=torch.bfloat16):
     if not HAS_XPU:
         raise RuntimeError("npo_unlearn requires an XPU.")
     tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     policy = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=DEFAULT_DTYPE, trust_remote_code=True,
+        model_name, torch_dtype=dtype, trust_remote_code=True,
     ).to(DEVICE)
     reference = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=DEFAULT_DTYPE, trust_remote_code=True,
+        model_name, torch_dtype=dtype, trust_remote_code=True,
     ).to(DEVICE)
     reference.eval()
     for p in reference.parameters():
@@ -522,6 +505,13 @@ def npo_unlearn(model_name, forget_texts, retain_texts, beta=0.1, gamma=1.0, lr=
 # Pipeline stages
 # --------------------------------------------------------------------------- #
 def stage_unlearn(args, orig_model_path):
+    dtype = DTYPE_ALIASES.get(args.dtype)
+    if args.unlearn not in ("none",) and not args.pretrained:
+        vram_gb = torch.xpu.get_device_properties(0).total_memory / 1e9
+        model_gb = {"bf16": 2, "fp16": 1}.get(args.dtype, 2) * 7
+        if vram_gb < model_gb * 2.5:
+            print(f"  [warn] VRAM {vram_gb:.1f}GB may be too low for unlearning "
+                  f"(needs ~{model_gb * 2.5:.0f}GB for two 7B models). Try --dtype fp16.")
     if args.pretrained:
         key = (args.model, args.unlearn)
         if args.unlearn == "none":
@@ -548,17 +538,18 @@ def stage_unlearn(args, orig_model_path):
     forget = _load_forget_texts(args.forget_corpus_dir, args.unlearn_max_batches * args.unlearn_batch_size)
     retain = _load_retain_texts(args.unlearn_max_batches * args.unlearn_batch_size)
     print(f"  forget texts: {len(forget)} | retain texts: {len(retain)}")
+    dtype = DTYPE_ALIASES.get(args.dtype)
     if args.unlearn == "rmu":
         return rmu_unlearn(orig_model_path, forget, retain,
                            layer_id=args.rmu_layer, steering_coeff=args.rmu_coeff,
                            alpha=args.rmu_alpha, lr=args.unlearn_lr,
                            max_batches=args.unlearn_max_batches, batch_size=args.unlearn_batch_size,
-                           output_dir=out)
+                           output_dir=out, dtype=dtype)
     if args.unlearn == "npo":
         return npo_unlearn(orig_model_path, forget, retain,
                            beta=args.npo_beta, gamma=args.npo_gamma, lr=args.unlearn_lr,
                            max_batches=args.unlearn_max_batches, batch_size=args.unlearn_batch_size,
-                           output_dir=out)
+                           output_dir=out, dtype=dtype)
     raise ValueError(f"Unknown --unlearn {args.unlearn!r}")
 
 
@@ -572,12 +563,13 @@ def stage_generate(args, orig_model_path, unlearn_model_path, prompts):
     if unlearn_model_path:
         paths.append(("unlearned", unlearn_model_path, unlearn_path))
 
+    dtype = DTYPE_ALIASES.get(args.dtype)
     for label, model_path, resp_path in paths:
         if os.path.exists(resp_path) and not args.force and not args.regenerate:
             print(f"[generate] {label}: {resp_path} exists, reuse (use --regenerate to overwrite).")
             continue
         print(f"[generate] {label}: {model_path} -> {resp_path}")
-        model, tokenizer = load_causal_lm(model_path)
+        model, tokenizer = load_causal_lm(model_path, dtype=dtype)
         dialogs = generate_responses(
             model, tokenizer, prompts, instruct=args.instruct,
             temperature=args.temperature, max_new_tokens=args.max_new_tokens,
@@ -600,29 +592,31 @@ def stage_classify(args, orig_resp, unlearn_resp, orig_model_path, unlearn_model
         if not unlearn_model_path:
             raise ValueError("Activation path needs an unlearned model "
                              "(use --unlearn or --unlearn_path).")
-        print("  building original activations...")
-        Xo = build_activation_features(orig_model_path, prompts,
-                                       max_new_tokens=args.act_new_tokens)
-        print("  building unlearned activations...")
-        Xu = build_activation_features(unlearn_model_path, prompts,
-                                       max_new_tokens=args.act_new_tokens)
-
+        retain_prompts = []
         if args.mix_train:
             print("  mixing MMLU retain-domain prompts into training...")
-            retain_prompts = build_prompts("MMLU", min(args.num_samples, 200))
+            tmp = build_prompts("MMLU", min(args.num_samples, 200))
             np.random.seed(42)
-            retain_prompts = list(np.random.choice(retain_prompts, min(len(retain_prompts), 100), replace=False))
-            print("  building retain activations - original model...")
-            Xr_o = build_activation_features(orig_model_path, retain_prompts,
-                                             max_new_tokens=args.act_new_tokens)
-            print("  building retain activations - unlearned model...")
-            Xr_u = build_activation_features(unlearn_model_path, retain_prompts,
-                                             max_new_tokens=args.act_new_tokens)
+            retain_prompts = list(np.random.choice(tmp, min(len(tmp), 100), replace=False))
+
+        # Load each model once, process all prompts together
+        dtype = DTYPE_ALIASES.get(args.dtype)
+        print("  building original activations...")
+        Xo_all = build_activation_features(orig_model_path, prompts + retain_prompts,
+                                           max_new_tokens=args.act_new_tokens, dtype=dtype)
+        print("  building unlearned activations...")
+        Xu_all = build_activation_features(unlearn_model_path, prompts + retain_prompts,
+                                           max_new_tokens=args.act_new_tokens, dtype=dtype)
+
+        n = len(prompts)
+        if retain_prompts:
+            Xo, Xr_o = Xo_all[:n], Xo_all[n:]
+            Xu, Xr_u = Xu_all[:n], Xu_all[n:]
             X = np.concatenate([Xo, Xu, Xr_o, Xr_u], axis=0)
-            labels = np.array([0] * len(Xo) + [1] * len(Xu) + [0] * len(Xr_o) + [0] * len(Xr_u))
+            labels = np.array([0] * n + [1] * n + [0] * len(Xr_o) + [0] * len(Xr_u))
         else:
-            X = np.concatenate([Xo, Xu], axis=0)
-            labels = np.array([0] * len(Xo) + [1] * len(Xu))
+            X = np.concatenate([Xo_all, Xu_all], axis=0)
+            labels = np.array([0] * n + [1] * n)
     else:
         raise ValueError(f"Unknown --feature {args.feature!r}")
 
@@ -630,48 +624,18 @@ def stage_classify(args, orig_resp, unlearn_resp, orig_model_path, unlearn_model
         print(f"  normalizing features (z-score, {X.shape[1]} dims)...")
         X = normalize_features(X)
 
-    training_logger = TrainingLogger()
-    model, test_acc = train_mlp(X, labels, epochs=args.epochs, lr=args.lr,
-                                batch_size=args.batch_size, training_logger=training_logger)
-
-    # ---- Visualizations ----
-    if args.viz_dir:
-        prefix = f"{args.model}_{args.unlearn}_{args.dataset}_{args.feature}"
-        metrics_path = os.path.join(args.viz_dir, f"{prefix}_metrics.json")
-        training_logger.save(metrics_path)
-        training_logger.plot(metrics_path.replace(".json", ".png"))
-        log_to_tensorboard(os.path.join(args.viz_dir, "tensorboard", prefix),
-                           training_logger.epochs)
-
-        if args.feature == "activation":
-            act_path = os.path.join(args.viz_dir, f"{prefix}_activations.png")
-            plot_activations(X, labels, act_path)
-
-        # Score distribution on the held-out test split
-        # Recreate the test split to get scores
-        y_all = np.asarray(labels, dtype=np.float32)
-        _, X_tmp, _, y_tmp = train_test_split(X, y_all, test_size=0.3,
-                                               random_state=42, stratify=y_all)
-        _, X_te, _, y_te = train_test_split(X_tmp, y_tmp, test_size=0.5,
-                                             random_state=42, stratify=y_tmp)
-        model.eval()
-        with torch.no_grad():
-            logits = model(torch.as_tensor(X_te, dtype=torch.float32).to(DEVICE))
-            scores = torch.sigmoid(logits).cpu().numpy()
-        score_path = os.path.join(args.viz_dir, f"{prefix}_scores.png")
-        plot_score_distribution(scores, y_te, score_path)
-
+    _, test_acc = train_mlp(X, labels, epochs=args.epochs, lr=args.lr, batch_size=args.batch_size)
     return test_acc
 
 
 # --------------------------------------------------------------------------- #
 @torch.no_grad()
-def print_samples_generations(model_name, prompts, n=3):
+def print_samples_generations(model_name, prompts, n=3, dtype=torch.bfloat16):
     tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=DEFAULT_DTYPE, trust_remote_code=True,
+        model_name, torch_dtype=dtype, trust_remote_code=True,
     ).to(DEVICE)
     model.eval()
     device = _model_device(model)
@@ -693,6 +657,8 @@ def parse_args():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     p.add_argument("--model", default="Zephyr-7b", choices=list(MODEL_TO_HF))
+    p.add_argument("--dtype", default="bf16", choices=["bf16", "fp16"],
+                   help="Model dtype: bf16 (better quality) or fp16 (smaller memory).")
     p.add_argument("--unlearn", default="none", choices=["none", "rmu", "npo"])
     p.add_argument("--unlearn_path", default=None, help="Path to unlearned checkpoint (skip training).")
     p.add_argument("--dataset", default="WMDP", choices=["WMDP", "MMLU", "UltraChat"])
@@ -723,11 +689,9 @@ def parse_args():
                    help="Disable feature z-score normalization.")
     p.add_argument("--no-mix-train", action="store_false", dest="mix_train", default=True,
                    help="Disable MMLU retain mixing (probe sees only WMDP samples).")
-    p.add_argument("--no-samples-sanity", action="store_false", dest="samples_sanity", default=True,
-                   help="Skip printing sample generations.")
+    p.add_argument("--samples-sanity", action="store_true", dest="samples_sanity", default=False,
+                   help="Print 3 sample generations from each model (loads full model, off by default).")
     p.add_argument("--results_file", default="./results.json")
-    p.add_argument("--viz_dir", default=None, help="Enable visualizations: training curves, activation plots, score distributions (saved to this dir).")
-    p.add_argument("--experiments_csv", default=None, help="CSV path to log experiment config + accuracy for cross-run comparison.")
     p.add_argument("--log_dir", default=None, help="Directory for a run log file (all terminal output teed to a timestamped file).")
     # unlearning hyperparameters
     p.add_argument("--forget_corpus_dir", default="./data", help="Dir with WMDP forget .jsonl files.")
@@ -775,9 +739,9 @@ def main():
     if HAS_XPU:
         vram_gb = torch.xpu.get_device_properties(0).total_memory / 1e9
         print(f"[xpu] {torch.xpu.get_device_name(0)} | VRAM {vram_gb:.1f} GB")
-        if vram_gb < 20:
-            print(f"[xpu] WARNING: {vram_gb:.1f}GB is tight for a 7B in bf16. "
-                  "Consider using a smaller model or fewer samples.")
+        if vram_gb < 20 and "7b" in args.model.lower():
+            print(f"[xpu] WARNING: {vram_gb:.1f}GB is tight for {args.model} in {args.dtype}. "
+                  f"Consider --model TinyLlama-1.1B or --dtype fp16.")
 
     random.seed(42)
     np.random.seed(42)
@@ -802,11 +766,12 @@ def main():
                             wmdp_subset=args.wmdp_subset)
     print(f"[prompts] built {len(prompts)} prompts from {args.dataset}")
 
+    dtype = DTYPE_ALIASES.get(args.dtype)
     if args.samples_sanity and unlearn_model_path and not args.skip_generate:
         print("\n━━━ [sanity] original model generations ━━━")
-        print_samples_generations(orig_model_path, prompts, n=3)
+        print_samples_generations(orig_model_path, prompts, n=3, dtype=dtype)
         print("━━━ [sanity] unlearned model generations ━━━")
-        print_samples_generations(unlearn_model_path, prompts, n=3)
+        print_samples_generations(unlearn_model_path, prompts, n=3, dtype=dtype)
 
     orig_resp, unlearn_resp = None, None
     if args.feature == "text" and not args.skip_generate:
@@ -830,10 +795,6 @@ def main():
     with open(args.results_file, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2)
     print(f"\n[done] test accuracy: {test_acc:.4f}  (saved -> {args.results_file})")
-
-    if args.experiments_csv:
-        log_experiment_to_csv(args.experiments_csv, results, test_acc)
-
 
 if __name__ == "__main__":
     main()
