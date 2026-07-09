@@ -97,7 +97,7 @@ def build_activation_features(repo, revision, prompts, max_new_tokens=32, dtype=
 def normalize_features(X):
     mu, std = X.mean(axis=0, keepdims=True), X.std(axis=0, keepdims=True)
     std[std < 1e-12] = 1.0
-    return (X - mu) / std
+    return (X - mu) / std, (mu, std)
 
 
 class BinaryClassifier(nn.Module):
@@ -111,6 +111,37 @@ class BinaryClassifier(nn.Module):
     def forward(self, x):
         return self.net(x).squeeze(-1)
 
+
+def _save_dataset(X_raw, y, norm_params, prompts_list, metadata, log_dir, tag):
+    """Save the raw features, labels, normalization params, prompts, and metadata."""
+    os.makedirs(log_dir, exist_ok=True)
+    base = os.path.join(log_dir, f"dataset_{tag}")
+    mu, std = norm_params
+    np.savez_compressed(
+        f"{base}.npz",
+        X_raw=X_raw.astype(np.float32),
+        y=y.astype(np.float32),
+        norm_mu=mu.astype(np.float32),
+        norm_std=std.astype(np.float32),
+    )
+    with open(f"{base}.json", "w", encoding="utf-8") as f:
+        json.dump({**metadata, "tag": tag, "prompts": prompts_list}, f, indent=2, default=str)
+    print(f"  [dataset] -> {base}.*  ({X_raw.shape[0]} samples, {X_raw.shape[1]} dims)")
+
+
+def _save_splits(tr_idx, val_idx, te_idx, log_dir, tag):
+    """Append train/val/test split indices to an existing dataset metadata file."""
+    base = os.path.join(log_dir, f"dataset_{tag}")
+    path = f"{base}.json"
+    if not os.path.exists(path):
+        return
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    data["train_indices"] = [int(i) for i in tr_idx]
+    data["val_indices"]   = [int(i) for i in val_idx]
+    data["test_indices"]  = [int(i) for i in te_idx]
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, default=str)
 
 def _make_loader(X, y, batch_size, shuffle):
     ds = TensorDataset(torch.as_tensor(X, dtype=torch.float32),
@@ -143,11 +174,14 @@ def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, devic
               log_dir=None, tag=""):
     X = np.asarray(X, dtype=np.float32)
     y = np.asarray(y, dtype=np.float32)
-    X_tr, X_tmp, y_tr, y_tmp = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
-    X_val, X_te, y_val, y_te = train_test_split(X_tmp, y_tmp, test_size=0.5, random_state=42, stratify=y_tmp)
-    train_loader = _make_loader(X_tr, y_tr, batch_size, shuffle=True)
-    val_loader = _make_loader(X_val, y_val, batch_size, shuffle=False)
-    test_loader = _make_loader(X_te, y_te, batch_size, shuffle=False)
+    indices = np.arange(len(X))
+    tr_idx, tmp_idx, y_tr, y_tmp = train_test_split(indices, y, test_size=0.3, random_state=42, stratify=y)
+    val_idx, te_idx = train_test_split(tmp_idx, test_size=0.5, random_state=42, stratify=y_tmp)
+    X_tr, X_val, X_te = X[tr_idx], X[val_idx], X[te_idx]
+    y_tr_, y_val_, y_te_ = y[tr_idx], y[val_idx], y[te_idx]
+    train_loader = _make_loader(X_tr, y_tr_, batch_size, shuffle=True)
+    val_loader = _make_loader(X_val, y_val_, batch_size, shuffle=False)
+    test_loader = _make_loader(X_te, y_te_, batch_size, shuffle=False)
 
     model = BinaryClassifier(X.shape[1]).to(device)
     criterion = nn.BCEWithLogitsLoss()
@@ -201,7 +235,7 @@ def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, devic
         print(f"  [log] -> {json_path}")
         _save_training_plot(metrics, os.path.join(log_dir, f"{prefix}_curves.png"))
 
-    return test_acc
+    return test_acc, tr_idx, val_idx, te_idx
 
 
 def run_comparison(repo, orig_revision, unlearn_revision, prompts, holdout_prompts,
@@ -219,21 +253,41 @@ def run_comparison(repo, orig_revision, unlearn_revision, prompts, holdout_promp
                                    max_new_tokens=max_new_tokens, dtype=dtype)
 
     # ---- Comparison 1: original vs unlearned on forget set ----
-    X1 = np.concatenate([Xo, Xu], axis=0)
+    X1_raw = np.concatenate([Xo, Xu], axis=0)
     y1 = np.array([0] * len(Xo) + [1] * len(Xu))
-    X1 = normalize_features(X1)
+    X1, (mu1, std1) = normalize_features(X1_raw)
     print(f"\n[{tag}] original vs unlearned (forget set):")
-    forget_acc = train_mlp(X1, y1, log_dir=log_dir, tag=f"{tag}_forget_")
+    if log_dir:
+        _save_dataset(X1_raw, y1, (mu1, std1),
+                      prompts + prompts,  # same prompts, two model outputs
+                      {"comparison": "original_vs_unlearned", "repo": repo,
+                       "revision_0": orig_revision, "revision_1": unlearn_revision,
+                       "label_0": "original", "label_1": "unlearned",
+                       "n_original": len(Xo), "n_unlearned": len(Xu)},
+                      log_dir, f"{tag}_forget")
+    forget_acc, *forget_splits = train_mlp(X1, y1, log_dir=log_dir, tag=f"{tag}_forget_")
+    if log_dir:
+        _save_splits(*forget_splits, log_dir, f"{tag}_forget")
 
     # ---- Comparison 2: unlearned on forget vs unlearned on holdout ----
     print(f"[{tag}] building unlearned activations on holdout prompts...")
     Xh = build_activation_features(repo, unlearn_revision, holdout_prompts,
                                    max_new_tokens=max_new_tokens, dtype=dtype)
-    X2 = np.concatenate([Xu, Xh], axis=0)
+    X2_raw = np.concatenate([Xu, Xh], axis=0)
     y2 = np.array([0] * len(Xu) + [1] * len(Xh))
-    X2 = normalize_features(X2)
+    X2, (mu2, std2) = normalize_features(X2_raw)
     print(f"\n[{tag}] unlearned model: forget vs holdout (within-model):")
-    within_acc = train_mlp(X2, y2, log_dir=log_dir, tag=f"{tag}_within_")
+    if log_dir:
+        _save_dataset(X2_raw, y2, (mu2, std2),
+                      prompts + holdout_prompts,
+                      {"comparison": "within_model", "repo": repo,
+                       "revision": unlearn_revision,
+                       "label_0": "unlearned_forget", "label_1": "unlearned_holdout",
+                       "n_forget": len(Xu), "n_holdout": len(Xh)},
+                      log_dir, f"{tag}_within")
+    within_acc, *within_splits = train_mlp(X2, y2, log_dir=log_dir, tag=f"{tag}_within_")
+    if log_dir:
+        _save_splits(*within_splits, log_dir, f"{tag}_within")
 
     return forget_acc, within_acc
 
