@@ -247,7 +247,7 @@ def build_activation_features(model_name, prompts, max_new_tokens=50, dtype=None
 def normalize_features(X):
     mu, std = X.mean(axis=0, keepdims=True), X.std(axis=0, keepdims=True)
     std[std < 1e-12] = 1.0
-    return (X - mu) / std
+    return (X - mu) / std, (mu, std)
 
 
 # --------------------------------------------------------------------------- #
@@ -263,6 +263,38 @@ class BinaryClassifier(nn.Module):
 
     def forward(self, x):
         return self.net(x).squeeze(-1)
+
+
+def _save_dataset(X_raw, y, norm_params, prompts_list, metadata, log_dir, tag):
+    """Save the raw features, labels, normalization params, prompts, and metadata."""
+    os.makedirs(log_dir, exist_ok=True)
+    base = os.path.join(log_dir, f"dataset_{tag}")
+    mu, std = norm_params
+    np.savez_compressed(
+        f"{base}.npz",
+        X_raw=X_raw.astype(np.float32),
+        y=y.astype(np.float32),
+        norm_mu=mu.astype(np.float32),
+        norm_std=std.astype(np.float32),
+    )
+    with open(f"{base}.json", "w", encoding="utf-8") as f:
+        json.dump({**metadata, "tag": tag, "prompts": prompts_list}, f, indent=2, default=str)
+    print(f"  [dataset] -> {base}.*  ({X_raw.shape[0]} samples, {X_raw.shape[1]} dims)")
+
+
+def _save_splits(tr_idx, val_idx, te_idx, log_dir, tag):
+    """Append train/val/test split indices to an existing dataset metadata file."""
+    base = os.path.join(log_dir, f"dataset_{tag}")
+    path = f"{base}.json"
+    if not os.path.exists(path):
+        return
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    data["train_indices"] = [int(i) for i in tr_idx]
+    data["val_indices"]   = [int(i) for i in val_idx]
+    data["test_indices"]  = [int(i) for i in te_idx]
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, default=str)
 
 
 def _make_loader(X, y, batch_size, shuffle):
@@ -295,11 +327,14 @@ def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, devic
               log_dir=None):
     X = np.asarray(X, dtype=np.float32)
     y = np.asarray(y, dtype=np.float32)
-    X_tr, X_tmp, y_tr, y_tmp = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
-    X_val, X_te, y_val, y_te = train_test_split(X_tmp, y_tmp, test_size=0.5, random_state=42, stratify=y_tmp)
-    train_loader = _make_loader(X_tr, y_tr, batch_size, shuffle=True)
-    val_loader = _make_loader(X_val, y_val, batch_size, shuffle=False)
-    test_loader = _make_loader(X_te, y_te, batch_size, shuffle=False)
+    indices = np.arange(len(X))
+    tr_idx, tmp_idx, y_tr, y_tmp = train_test_split(indices, y, test_size=0.3, random_state=42, stratify=y)
+    val_idx, te_idx = train_test_split(tmp_idx, test_size=0.5, random_state=42, stratify=y_tmp)
+    X_tr, X_val, X_te = X[tr_idx], X[val_idx], X[te_idx]
+    y_tr_, y_val_, y_te_ = y[tr_idx], y[val_idx], y[te_idx]
+    train_loader = _make_loader(X_tr, y_tr_, batch_size, shuffle=True)
+    val_loader = _make_loader(X_val, y_val_, batch_size, shuffle=False)
+    test_loader = _make_loader(X_te, y_te_, batch_size, shuffle=False)
 
     model = BinaryClassifier(X.shape[1]).to(device)
     criterion = nn.BCEWithLogitsLoss()
@@ -353,7 +388,7 @@ def train_mlp(X, y, epochs=200, lr=3e-4, batch_size=32, weight_decay=1e-4, devic
         print(f"  [log] training metrics -> {json_path}")
         _save_training_plot(metrics, os.path.join(log_dir, f"{prefix}_curves.png"))
 
-    return model, test_acc
+    return test_acc, tr_idx, val_idx, te_idx
 
 
 # --------------------------------------------------------------------------- #
@@ -631,11 +666,16 @@ def stage_generate(args, orig_model_path, unlearn_model_path, prompts):
 
 def stage_classify(args, orig_resp, unlearn_resp, orig_model_path, unlearn_model_path, prompts):
     print(f"[detect] feature={args.feature} | probe=MLP | normalize={args.normalize} | mix_train={args.mix_train}")
+    X_raw = None
+    prompts_list = []
+    tag = ""
     if args.feature == "text":
         if not unlearn_resp:
             raise ValueError("Text path needs both --orig_response and --unlearn_response.")
         texts, labels = load_responses([orig_resp, unlearn_resp], max_per_label=args.max_per_label)
-        X = build_text_features(texts, batch_size=args.encode_batch_size)
+        X_raw = build_text_features(texts, batch_size=args.encode_batch_size)
+        prompts_list = texts
+        tag = f"{args.dataset}_text"
     elif args.feature == "activation":
         if not unlearn_model_path:
             raise ValueError("Activation path needs an unlearned model "
@@ -647,7 +687,6 @@ def stage_classify(args, orig_resp, unlearn_resp, orig_model_path, unlearn_model
             np.random.seed(42)
             retain_prompts = list(np.random.choice(tmp, min(len(tmp), 100), replace=False))
 
-        # Load each model once, process all prompts together
         dtype = DTYPE_ALIASES.get(args.dtype)
         print("  building original activations...")
         Xo_all = build_activation_features(orig_model_path, prompts + retain_prompts,
@@ -660,47 +699,75 @@ def stage_classify(args, orig_resp, unlearn_resp, orig_model_path, unlearn_model
         if retain_prompts:
             Xo, Xr_o = Xo_all[:n], Xo_all[n:]
             Xu, Xr_u = Xu_all[:n], Xu_all[n:]
-            X = np.concatenate([Xo, Xu, Xr_o, Xr_u], axis=0)
+            X_raw = np.concatenate([Xo, Xu, Xr_o, Xr_u], axis=0)
             labels = np.array([0] * n + [1] * n + [0] * len(Xr_o) + [0] * len(Xr_u))
+            prompts_list = prompts + prompts + retain_prompts + retain_prompts
         else:
-            X = np.concatenate([Xo_all, Xu_all], axis=0)
+            X_raw = np.concatenate([Xo_all, Xu_all], axis=0)
             labels = np.array([0] * n + [1] * n)
+            prompts_list = prompts + prompts
+        tag = f"{args.dataset}_{args.model}_{args.unlearn}_activation"
     else:
         raise ValueError(f"Unknown --feature {args.feature!r}")
 
-    if args.normalize:
-        print(f"  normalizing features (z-score, {X.shape[1]} dims)...")
-        X = normalize_features(X)
+    norm_params = None
+    if args.normalize and X_raw is not None:
+        print(f"  normalizing features (z-score, {X_raw.shape[1]} dims)...")
+        X, norm_params = normalize_features(X_raw)
+    else:
+        X = X_raw
 
-    _, test_acc = train_mlp(X, labels, epochs=args.epochs, lr=args.lr,
-                            batch_size=args.batch_size, log_dir=args.log_dir)
+    if args.log_dir and X_raw is not None:
+        if norm_params is None:
+            mu = np.zeros((1, X_raw.shape[1]), dtype=np.float32)
+            std = np.ones((1, X_raw.shape[1]), dtype=np.float32)
+            norm_params = (mu, std)
+        _save_dataset(X_raw, labels, norm_params, prompts_list,
+                      {"feature": args.feature, "dataset": args.dataset,
+                       "model": args.model, "unlearn": args.unlearn,
+                       "normalize": args.normalize, "n_samples": len(X_raw)},
+                      args.log_dir, tag)
+
+    test_acc, *splits = train_mlp(X, labels, epochs=args.epochs, lr=args.lr,
+                                  batch_size=args.batch_size, log_dir=args.log_dir)
+    if args.log_dir:
+        _save_splits(*splits, args.log_dir, tag)
     return test_acc
 
 
 # --------------------------------------------------------------------------- #
 @torch.no_grad()
-def print_samples_generations(model_name, prompts, n=3, dtype=torch.bfloat16):
-    tokenizer = AutoTokenizer.from_pretrained(_tok_name(model_name), trust_remote_code=True)
-    if tokenizer.pad_token_id is None:
-        tokenizer.pad_token = tokenizer.eos_token
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=dtype, trust_remote_code=True,
-    ).to(DEVICE)
-    model.eval()
-    device = _model_device(model)
-    print(f"\n[sanity] sample generations from {model_name.split('/')[-1]}:")
-    for i, p in enumerate(prompts[:n]):
-        enc = tokenizer(p, return_tensors="pt", truncation=True, max_length=256).to(device)
-        gen = model.generate(**enc, max_new_tokens=64, do_sample=False,
-                             pad_token_id=tokenizer.pad_token_id)
-        out = tokenizer.decode(gen[0, enc["input_ids"].shape[1]:], skip_special_tokens=True)
-        print(f"  [prompt {i}] {p[:100]}...")
-        print(f"  [gen]     {out[:200]}\n")
-    del model
-    if DEVICE == "xpu":
-        torch.xpu.empty_cache()
-    elif DEVICE == "cuda":
-        torch.cuda.empty_cache()
+def print_samples_generations(model_pairs, prompts, n=3, dtype=torch.bfloat16, log_dir=None):
+    """Generate sample text for each model and print/save to file."""
+    all_samples = []
+    for label, model_name in model_pairs:
+        tokenizer = AutoTokenizer.from_pretrained(_tok_name(model_name), trust_remote_code=True)
+        if tokenizer.pad_token_id is None:
+            tokenizer.pad_token = tokenizer.eos_token
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name, torch_dtype=dtype, trust_remote_code=True,
+        ).to(DEVICE)
+        model.eval()
+        device = _model_device(model)
+        print(f"\n[sanity] sample generations from {label} ({model_name.split('/')[-1]}):")
+        for i, p in enumerate(prompts[:n]):
+            enc = tokenizer(p, return_tensors="pt", truncation=True, max_length=256).to(device)
+            gen = model.generate(**enc, max_new_tokens=64, do_sample=False,
+                                 pad_token_id=tokenizer.pad_token_id)
+            out = tokenizer.decode(gen[0, enc["input_ids"].shape[1]:], skip_special_tokens=True)
+            print(f"  [prompt {i}] {p[:100]}...")
+            print(f"  [gen]     {out[:200]}\n")
+            all_samples.append({"model": label, "prompt_index": i, "prompt": p, "generation": out})
+        del model
+        if DEVICE == "xpu":
+            torch.xpu.empty_cache()
+        elif DEVICE == "cuda":
+            torch.cuda.empty_cache()
+    if log_dir and all_samples:
+        path = os.path.join(log_dir, "sample_outputs.json")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(all_samples, f, indent=2)
+        print(f"  [samples] -> {path}  ({len(all_samples)} generations)")
 
 
 def parse_args():
@@ -823,10 +890,9 @@ def main():
 
     dtype = DTYPE_ALIASES.get(args.dtype)
     if args.samples_sanity and unlearn_model_path and not args.skip_generate:
-        print("\n━━━ [sanity] original model generations ━━━")
-        print_samples_generations(orig_model_path, prompts, n=3, dtype=dtype)
-        print("━━━ [sanity] unlearned model generations ━━━")
-        print_samples_generations(unlearn_model_path, prompts, n=3, dtype=dtype)
+        print("\n━━━ [sanity] sample generations ━━━")
+        model_pairs = [("original", orig_model_path), ("unlearned", unlearn_model_path)]
+        print_samples_generations(model_pairs, prompts, n=3, dtype=dtype, log_dir=args.log_dir)
 
     orig_resp, unlearn_resp = None, None
     if args.feature == "text" and not args.skip_generate:

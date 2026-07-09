@@ -94,6 +94,38 @@ def build_activation_features(repo, revision, prompts, max_new_tokens=32, dtype=
     return torch.stack(feats, dim=0).numpy().astype(np.float32)
 
 
+@torch.no_grad()
+def log_sample_outputs(repo, revisions, prompts, max_new_tokens=64, dtype=torch.bfloat16,
+                       log_dir=None, n=5):
+    """Generate text samples for each revision and save to a JSON file."""
+    if not log_dir or n < 1:
+        return
+    samples = []
+    for rev_label, rev in revisions:
+        tokenizer = AutoTokenizer.from_pretrained(repo, revision=rev)
+        if tokenizer.pad_token_id is None:
+            tokenizer.pad_token = tokenizer.eos_token
+        model = AutoModelForCausalLM.from_pretrained(
+            repo, revision=rev, torch_dtype=dtype,
+        ).to(DEVICE)
+        model.eval()
+        for i, p in enumerate(prompts[:n]):
+            inp = tokenizer(p, return_tensors="pt").to(DEVICE)
+            gen = model.generate(**inp, max_new_tokens=max_new_tokens, do_sample=False,
+                                 pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id)
+            out = tokenizer.decode(gen[0, inp["input_ids"].shape[1]:], skip_special_tokens=True)
+            samples.append({"revision": rev_label, "prompt_index": i, "prompt": p, "generation": out})
+        del model
+        if DEVICE == "xpu":
+            torch.xpu.empty_cache()
+        elif DEVICE == "cuda":
+            torch.cuda.empty_cache()
+    path = os.path.join(log_dir, "sample_outputs.json")
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(samples, f, indent=2)
+    print(f"  [samples] -> {path}  ({len(samples)} generations)")
+
+
 def normalize_features(X):
     mu, std = X.mean(axis=0, keepdims=True), X.std(axis=0, keepdims=True)
     std[std < 1e-12] = 1.0
@@ -353,6 +385,10 @@ def main():
     holdout_prompts = build_tofu_prompts("forget10", args.num_samples, seed=99)
     print(f"  forget prompts:  {len(forget_prompts)}")
     print(f"  holdout prompts: {len(holdout_prompts)}")
+
+    log_sample_outputs(TOFU_REPO, [("original", orig_rev), ("unlearned", unlearn_rev)],
+                       forget_prompts, max_new_tokens=args.act_new_tokens, dtype=dtype,
+                       log_dir=args.log_dir, n=5)
 
     forget_acc, within_acc = run_comparison(
         TOFU_REPO, orig_rev, unlearn_rev,
