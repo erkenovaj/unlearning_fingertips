@@ -1,0 +1,7 @@
+numpy>=1.26
+torch>=2.2
+transformers>=4.44
+datasets>=2.20
+scikit-learn>=1.4
+matplotlib>=3.8
+huggingface-hub>=0.24
