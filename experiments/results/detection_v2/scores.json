@@ -1,0 +1,170 @@
+{
+  "original": {
+    "spectral_score": 4.177956934784596,
+    "localized_dip": 2.2265379196104362,
+    "localized_dip_layer": 3,
+    "localized_kink": 2.5287280688221423,
+    "localized_kink_range": [
+      14,
+      14
+    ],
+    "shape_anomaly": 1.2559841156569327,
+    "cosine_anomaly": 0.001979453330042224,
+    "cosine_score": 0.008789809238109014,
+    "weight_score": 3.1451679188670463,
+    "changepoint_score": 6.215104727962435,
+    "min_erank_layer": 14,
+    "changepoint_range": [
+      1,
+      15
+    ],
+    "combined": 0.06758451238801763
+  },
+  "retain": {
+    "spectral_score": 5.796636260124153,
+    "localized_dip": 3.0076354437791224,
+    "localized_dip_layer": 12,
+    "localized_kink": 3.377602666721738,
+    "localized_kink_range": [
+      14,
+      14
+    ],
+    "shape_anomaly": 1.3476110037878462,
+    "cosine_anomaly": 0.002027217288043664,
+    "cosine_score": 0.012804802754103117,
+    "weight_score": 3.14521833727468,
+    "changepoint_score": 6.214980016196585,
+    "min_erank_layer": 14,
+    "changepoint_range": [
+      1,
+      15
+    ],
+    "combined": 0.15430534343250524
+  },
+  "rmu": {
+    "spectral_score": 4.374625908897343,
+    "localized_dip": 2.446653216411389,
+    "localized_dip_layer": 12,
+    "localized_kink": 2.64357652231829,
+    "localized_kink_range": [
+      14,
+      14
+    ],
+    "shape_anomaly": 1.2058945843180866,
+    "cosine_anomaly": 0.002085562713250761,
+    "cosine_score": 0.0058479264454874835,
+    "weight_score": 3.1451704188565395,
+    "changepoint_score": 6.215139503508348,
+    "min_erank_layer": 14,
+    "changepoint_range": [
+      1,
+      15
+    ],
+    "combined": 0.08995866881796637
+  },
+  "npo": {
+    "spectral_score": 7.0052599891565634,
+    "localized_dip": 4.092210380229273,
+    "localized_dip_layer": 12,
+    "localized_kink": 4.038810688975787,
+    "localized_kink_range": [
+      14,
+      14
+    ],
+    "shape_anomaly": 1.145917913386443,
+    "cosine_anomaly": 0.0045622461447972175,
+    "cosine_score": 0.017958370450811056,
+    "weight_score": 3.1449743858307553,
+    "changepoint_score": 6.215239996036382,
+    "min_erank_layer": 14,
+    "changepoint_range": [
+      1,
+      15
+    ],
+    "combined": 0.6418328783902411
+  },
+  "graddiff": {
+    "spectral_score": 3.5652515002816685,
+    "localized_dip": 2.247042778190083,
+    "localized_dip_layer": 3,
+    "localized_kink": 2.3568198218857126,
+    "localized_kink_range": [
+      9,
+      9
+    ],
+    "shape_anomaly": 1.317195485005353,
+    "cosine_anomaly": 0.0021574886746141917,
+    "cosine_score": 0.0056615459842407345,
+    "weight_score": 3.1451646864930107,
+    "changepoint_score": 6.21512907977309,
+    "min_erank_layer": 4,
+    "changepoint_range": [
+      1,
+      15
+    ],
+    "combined": 0.09470195130171692
+  },
+  "altpo": {
+    "spectral_score": 5.835875833885716,
+    "localized_dip": 2.385766096445414,
+    "localized_dip_layer": 2,
+    "localized_kink": 3.2510091146737095,
+    "localized_kink_range": [
+      4,
+      4
+    ],
+    "shape_anomaly": 2.4916201324073928,
+    "cosine_anomaly": 0.005568272727235654,
+    "cosine_score": 0.04433884999857651,
+    "weight_score": 3.1451795840877788,
+    "changepoint_score": 6.214833985829639,
+    "min_erank_layer": 4,
+    "changepoint_range": [
+      1,
+      15
+    ],
+    "combined": 0.9234243555487434
+  },
+  "undial": {
+    "spectral_score": 1.9372186512615457,
+    "localized_dip": 1.0684303966916175,
+    "localized_dip_layer": 3,
+    "localized_kink": 2.528901492276392,
+    "localized_kink_range": [
+      7,
+      13
+    ],
+    "shape_anomaly": 1.346295592275221,
+    "cosine_anomaly": 0.002880695818795012,
+    "cosine_score": 0.004080619941607577,
+    "weight_score": 3.1445814215474344,
+    "changepoint_score": 6.217797464084272,
+    "min_erank_layer": 14,
+    "changepoint_range": [
+      1,
+      15
+    ],
+    "combined": 0.19579741391386357
+  },
+  "idknll": {
+    "spectral_score": 4.211958120706825,
+    "localized_dip": 2.349818818048521,
+    "localized_dip_layer": 3,
+    "localized_kink": 2.4028709584122696,
+    "localized_kink_range": [
+      12,
+      12
+    ],
+    "shape_anomaly": 2.0272721957259616,
+    "cosine_anomaly": 0.003373300843845509,
+    "cosine_score": 0.02757797188397526,
+    "weight_score": 3.145156776796032,
+    "changepoint_score": 6.214915052259669,
+    "min_erank_layer": 14,
+    "changepoint_range": [
+      1,
+      15
+    ],
+    "combined": 0.4117936708198069
+  }
+}

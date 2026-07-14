@@ -26,7 +26,7 @@ MODELS = {
     "graddiff": "open-unlearning/unlearn_tofu_Llama-3.2-1B-Instruct_forget10_GradDiff_lr1e-05_alpha5_epoch10",
     "altpo": "open-unlearning/unlearn_tofu_Llama-3.2-1B-Instruct_forget10_AltPO_lr5e-05_beta0.1_alpha1_epoch10",
     "undial": "open-unlearning/unlearn_tofu_Llama-3.2-1B-Instruct_forget10_UNDIAL_lr0.0001_beta10_alpha1_epoch10",
-    "idknll": "open-unlearning/unlearn_tofu_Llama-3.2-1B-Instruct_forget10_IdkNLL_lr4e-05_alpha5_epoch10",
+    "idknll": "open-unlearning/unlearn_tofu_Llama-3.2-1B-Instruct_forget10_IdkNLL_lr3e-05_alpha5_epoch10",
 }
 
 UNLEARNED_METHODS = ["rmu", "npo", "graddiff", "altpo", "undial", "idknll"]
@@ -44,7 +44,7 @@ def get_device():
 
 
 def load_tofu_prompts(forget_fraction=10, num_samples=200, seed=42):
-    """Load TOFU forget and retain question prompts."""
+    """Load TOFU forget and retain question prompts as raw question strings."""
     from datasets import load_dataset
 
     forget_cfg = f"forget{forget_fraction:02d}"
@@ -57,15 +57,39 @@ def load_tofu_prompts(forget_fraction=10, num_samples=200, seed=42):
     f_idx = rng.sample(range(len(forget_ds)), min(num_samples, len(forget_ds)))
     r_idx = rng.sample(range(len(retain_ds)), min(num_samples, len(retain_ds)))
 
-    forget_prompts = [f"Question: {forget_ds[i]['question']}\nAnswer:" for i in f_idx]
-    retain_prompts = [f"Question: {retain_ds[i]['question']}\nAnswer:" for i in r_idx]
-    return forget_prompts, retain_prompts
+    forget_questions = [forget_ds[i]["question"] for i in f_idx]
+    retain_questions = [retain_ds[i]["question"] for i in r_idx]
+    return forget_questions, retain_questions
+
+
+def format_prompts(questions, tokenizer, raw=False):
+    """Apply the model's chat template to a list of raw questions.
+
+    Llama-3.2-1B-Instruct checkpoints (and the OpenUnlearning checkpoints
+    derived from them) were trained/unlearned with the tokenizer's chat
+    template; sending raw "Question: ... \\nAnswer:" prompts produces
+    off-distribution activations dominated by template mismatch rather than
+    memorization signal. Use the chat template by default.
+
+    Set raw=True to format as "Question: {q}\\nAnswer:" (legacy/ablation).
+    """
+    if raw:
+        return [f"Question: {q}\nAnswer:" for q in questions]
+
+    prompts = []
+    for q in questions:
+        msgs = [{"role": "user", "content": q}]
+        text = tokenizer.apply_chat_template(
+            msgs, tokenize=False, add_generation_prompt=True
+        )
+        prompts.append(text)
+    return prompts
 
 
 def load_model(model_path, dtype=torch.bfloat16, device="cuda"):
     """Load a causal LM and tokenizer."""
     tokenizer = AutoTokenizer.from_pretrained(
-        model_path, trust_remote_code=True, padding_side="right"
+        model_path, trust_remote_code=True, padding_side="left"
     )
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -78,8 +102,12 @@ def load_model(model_path, dtype=torch.bfloat16, device="cuda"):
 
 
 @torch.no_grad()
-def collect_hidden_states(model, tokenizer, prompts, device, batch_size=8, max_length=128):
+def collect_hidden_states(model, tokenizer, prompts, device, batch_size=8, max_length=512):
     """Collect last-token hidden states for all layers via single forward pass per batch.
+
+    Left-padding (set on tokenizer in load_model) keeps each sequence's final
+    real token at the right edge of the batch, so the last-token hidden state
+    for every prompt is at position -1 regardless of individual lengths.
 
     Returns: (n_layers+1, n_prompts, hidden_dim) float32 numpy array.
     """
@@ -93,8 +121,8 @@ def collect_hidden_states(model, tokenizer, prompts, device, batch_size=8, max_l
         enc = {k: v.to(device) for k, v in enc.items()}
         outputs = model(**enc, output_hidden_states=True)
 
+        last_pos = enc["input_ids"].shape[1] - 1
         for i in range(len(batch)):
-            last_pos = enc["attention_mask"][i].sum().item() - 1
             hidden = [
                 hs[i, last_pos, :].detach().float().cpu().numpy()
                 for hs in outputs.hidden_states
@@ -148,6 +176,22 @@ def stable_rank(W):
     frob_sq = np.sum(W ** 2)
     spectral = np.linalg.norm(W, ord=2)
     return float(frob_sq / (spectral ** 2 + 1e-12))
+
+
+def spectral_metrics(W):
+    """Stable rank + (sigma_max, sigma_min) deviation from rank ratio.
+
+    Stable rank is scale-invariant — unlearning FT perturbs the leading
+    singular direction much more than the rank ratio, so sigma_max captures
+    the trace that stable rank misses.
+    """
+    W = W.astype(np.float64)
+    frob_sq = np.sum(W ** 2)
+    sv = np.linalg.svd(W, compute_uv=False)
+    sigma_max = float(sv[0])
+    sigma_min = float(sv[-1])
+    sr = float(frob_sq / (sv[0] ** 2 + 1e-12))
+    return sr, sigma_max, sigma_min
 
 
 # ---------------------------------------------------------------------------

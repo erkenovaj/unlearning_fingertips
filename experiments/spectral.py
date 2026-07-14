@@ -27,7 +27,7 @@ import torch
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (
-    MODELS, DTYPE_MAP, get_device, load_tofu_prompts, load_model,
+    MODELS, DTYPE_MAP, get_device, load_tofu_prompts, format_prompts, load_model,
     collect_hidden_states, effective_rank, mean_cosine, save_json,
 )
 
@@ -106,6 +106,9 @@ def main():
     p.add_argument("--batch_size", type=int, default=8)
     p.add_argument("--dtype", default="bf16", choices=["bf16", "fp16", "fp32"])
     p.add_argument("--device", default=None)
+    p.add_argument("--raw_prompts", action="store_true",
+                   help="Use legacy 'Question: ...\\nAnswer:' format (default: chat template)")
+    p.add_argument("--seed", type=int, default=42, help="RNG seed for prompt sampling")
     args = p.parse_args()
 
     if args.model_path:
@@ -123,10 +126,13 @@ def main():
     print(f"[spectral] model={tag}  path={model_path}")
     print(f"[spectral] device={device}  dtype={args.dtype}  samples={args.num_samples}")
 
-    forget_prompts, retain_prompts = load_tofu_prompts(args.forget_fraction, args.num_samples)
-    print(f"[spectral] forget={len(forget_prompts)}  retain={len(retain_prompts)}")
+    forget_qs, retain_qs = load_tofu_prompts(args.forget_fraction, args.num_samples, seed=args.seed)
+    print(f"[spectral] forget={len(forget_qs)}  retain={len(retain_qs)}  raw_prompts={args.raw_prompts}  seed={args.seed}")
 
     model, tokenizer = load_model(model_path, dtype=dtype, device=device)
+
+    forget_prompts = format_prompts(forget_qs, tokenizer, raw=args.raw_prompts)
+    retain_prompts = format_prompts(retain_qs, tokenizer, raw=args.raw_prompts)
 
     print("[spectral] collecting forget activations...")
     forget_hs = collect_hidden_states(model, tokenizer, forget_prompts, device, args.batch_size)
@@ -154,6 +160,8 @@ def main():
         "model_path": model_path,
         "num_samples": args.num_samples,
         "forget_fraction": args.forget_fraction,
+        "seed": args.seed,
+        "raw_prompts": args.raw_prompts,
         "n_layers": len(forget_stats),
         "forget": forget_stats,
         "retain": retain_stats,

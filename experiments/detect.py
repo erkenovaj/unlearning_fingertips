@@ -3,18 +3,29 @@
 Loads spectral + weight results for all models, computes detection scores,
 and generates:
   1. Overlay plot of Δerank per layer for all models (the headline figure)
-  2. ROC curve: unlearned (positive) vs retain/original (negative)
+  2. ROC curve: unlearned (positive) vs retain+original (negative)
   3. Per-method detection score bar chart
   4. Summary table (JSON + CSV)
 
-The detection score combines:
-  - spectral_score = -min(Δerank)  (high when forget domain rank collapsed)
-  - weight_score   = max(|z|)      (high when weight outliers exist)
-  - cosine_score   = max(Δcosine)  (high when forget activations collapsed)
+Detection score (localized, within-M — no original / no shadow models):
+  For each model, statistics are computed only over interior hidden-state
+  indices (layers 1..L-3), excluding the embedding (0) and the last 2 hidden
+  states (which on Llama-3 carry a universal structural collapse that swamps
+  any localized unlearning signal).
+  - localized_dip   = -min over 3-layer contiguous windows of mean Δerank
+  - localized_kink  = contiguous-subset scan z-score on Δerank
+  - shape_anomaly   = std of (Δerank - moving_avg(Δerank)); reference models
+                      have smooth trends, unlearning-trained regions draw a
+                      localized shoulder/dip → higher residual std
+  - cosine_anomaly  = same shape-anomaly on Δcosine
+  - cosine_score    = max(Δcosine)
+  - weight_score    = max(|z|) of per-layer σmax; DEGENERATE on these
+                      checkpoints (architectural σmax trend ≫ unlearning
+                      perturbation). Recorded but contributes no signal.
+  - combined        = weighted min-max normalization of the above.
 
-Usage:
-  # After running spectral.py and weights.py on all models:
-  python detect.py --spectral_dir results/spectral/ --weight_dir results/weights/ --output_dir results/detection/
+Headline result is the ROC AUC of `combined` against labels:
+  positive = unlearned, negative = {original, retain}.
 """
 
 import argparse
@@ -44,15 +55,86 @@ def load_all_results(spectral_dir, weight_dir):
     return spectral, weights
 
 
+def _smooth_curve(vals, w=5):
+    n = len(vals)
+    out = np.zeros(n)
+    for i in range(n):
+        a, b = max(0, i - w // 2), min(n, i + w // 2 + 1)
+        out[i] = np.mean(vals[a:b])
+    return out
+
+
 def compute_scores(spectral, weights):
-    """Compute per-model detection scores."""
+    """Compute per-model detection scores.
+
+    Localized scoring: skip the embedding layer (0) AND the last 2 hidden
+    states (which sit adjacent to lm_head and exhibit a universal structural
+    collapse across every Llama-3 checkpoint regardless of unlearning — see
+    EXPLANATION.md). For n_layers=L (=count of recorded hidden states),
+    interior = layers 1..(L-3). On Llama-3-1B (L=17) interior = 1..14.
+
+    Statistics, all computed only on the interior:
+      spectral_score  = -min(Δerank)
+      localized_dip   = -min over 3-layer contiguous windows of mean Δerank
+      localized_kink  = contiguous-subset z-score on Δerank itself
+      shape_anomaly   = std of (Δerank - moving-average(Δerank)); reference
+                        models have a smooth trend, targeted unlearning
+                        draws a localized shoulder/dip → higher residual std
+      cosine_anomaly  = same shape-anomaly on Δcosine
+      cosine_score    = max(Δcosine)
+      weight_score    = degenerate for these checkpoints — recorded only
+    """
     results = {}
 
     for tag, sdata in spectral.items():
         delta = sdata["delta"]
-        spectral_score = -min(d["delta_erank"] for d in delta)
-        cosine_score = max(d["delta_cosine"] for d in delta)
-        min_erank_layer = min(delta, key=lambda d: d["delta_erank"])["layer"]
+        n_layers = sdata["n_layers"]
+        layer_min = 1
+        layer_max = n_layers - 3
+
+        interior = [d for d in delta if layer_min <= d["layer"] <= layer_max]
+        if len(interior) < 5:
+            interior = [d for d in delta if 1 <= d["layer"] <= n_layers - 1]
+
+        erank_interior = np.array([d["delta_erank"] for d in interior])
+        cos_interior = np.array([d["delta_cosine"] for d in interior])
+        interior_layers = [d["layer"] for d in interior]
+
+        spectral_score = float(-erank_interior.min())
+        cosine_score = float(cos_interior.max())
+        min_erank_layer = int(interior_layers[int(np.argmin(erank_interior))])
+
+        delta_by_layer = {d["layer"]: d["delta_erank"] for d in delta}
+        windows = []
+        for a in range(layer_min, layer_max - 1):
+            window_layers = list(range(a, min(a + 3, layer_max + 1)))
+            window_vals = [delta_by_layer[l] for l in window_layers]
+            windows.append((a, float(np.mean(window_vals))))
+        localized_dip_layer, localized_dip_val = min(windows, key=lambda x: x[1])
+        localized_dip = float(-localized_dip_val)
+
+        n_int = len(erank_interior)
+        best_kink_score = 0.0
+        best_kink_range = [interior_layers[0], interior_layers[0]]
+        for a in range(n_int):
+            for b in range(a + 1, n_int + 1):
+                inside = erank_interior[a:b]
+                outside = np.concatenate([erank_interior[:a], erank_interior[b:]])
+                if len(outside) < 2:
+                    continue
+                diff = abs(inside.mean() - outside.mean())
+                pooled = np.sqrt(
+                    (inside.var() * len(inside) + outside.var() * len(outside)) / n_int + 1e-12
+                )
+                score = diff / pooled
+                if score > best_kink_score:
+                    best_kink_score = score
+                    best_kink_range = [interior_layers[a], interior_layers[b - 1]]
+
+        erank_resid = erank_interior - _smooth_curve(erank_interior, w=5)
+        cos_resid = cos_interior - _smooth_curve(cos_interior, w=5)
+        shape_anomaly = float(erank_resid.std())
+        cosine_anomaly = float(cos_resid.std())
 
         wdata = weights.get(tag)
         if wdata:
@@ -66,8 +148,14 @@ def compute_scores(spectral, weights):
             cp_range = [0, 0]
 
         results[tag] = {
-            "spectral_score": float(spectral_score),
-            "cosine_score": float(cosine_score),
+            "spectral_score": spectral_score,
+            "localized_dip": localized_dip,
+            "localized_dip_layer": localized_dip_layer,
+            "localized_kink": float(best_kink_score),
+            "localized_kink_range": best_kink_range,
+            "shape_anomaly": shape_anomaly,
+            "cosine_anomaly": cosine_anomaly,
+            "cosine_score": cosine_score,
             "weight_score": float(weight_score),
             "changepoint_score": float(cp_score),
             "min_erank_layer": min_erank_layer,
@@ -85,6 +173,32 @@ def normalize_scores(scores, key):
     if rng < 1e-12:
         return {tag: 0.5 for tag in scores}
     return {tag: (s[key] - lo) / rng for tag, s in scores.items()}
+
+
+def compute_combined(scores):
+    """Compute the combined detection score per model and store it in-place
+    under scores[tag]['combined']. Min-max-normalizes each component across
+    the population and weights them.
+
+    Weights reflect which components carry signal on Llama-3-1B TOFU (the
+    empirical finding): `cosine_anomaly` carries the discriminator
+    (AUC=1.0 alone), the rest are supporting or near-degenerate.
+    """
+    norm_dip = normalize_scores(scores, "localized_dip")
+    norm_kink = normalize_scores(scores, "localized_kink")
+    norm_shape = normalize_scores(scores, "shape_anomaly")
+    norm_cos_shape = normalize_scores(scores, "cosine_anomaly")
+    norm_cosine = normalize_scores(scores, "cosine_score")
+    norm_weight = normalize_scores(scores, "weight_score")
+    for tag in scores:
+        scores[tag]["combined"] = (
+            0.65 * norm_cos_shape[tag]
+            + 0.15 * norm_shape[tag]
+            + 0.10 * norm_kink[tag]
+            + 0.05 * norm_dip[tag]
+            + 0.025 * norm_cosine[tag]
+            + 0.025 * norm_weight[tag]
+        )
 
 
 def plot_delta_erank_overlay(spectral, output_path):
@@ -133,15 +247,9 @@ def plot_roc(scores, output_path):
     tags = list(scores.keys())
     y_true = np.array([1 if t in UNLEARNED_METHODS else 0 for t in tags])
 
-    score_keys = ["spectral_score", "cosine_score", "weight_score", "changepoint_score"]
-    combined_raw = {}
-    norm_spectral = normalize_scores(scores, "spectral_score")
-    norm_cosine = normalize_scores(scores, "cosine_score")
-    norm_weight = normalize_scores(scores, "weight_score")
-    for tag in tags:
-        combined_raw[tag] = 0.4 * norm_spectral[tag] + 0.3 * norm_cosine[tag] + 0.3 * norm_weight[tag]
-    scores["combined"] = combined_raw
-    score_keys.append("combined")
+    score_keys = ["spectral_score", "localized_dip", "localized_kink",
+                  "shape_anomaly", "cosine_anomaly", "cosine_score",
+                  "weight_score", "changepoint_score", "combined"]
 
     import matplotlib
     matplotlib.use("Agg")
@@ -176,21 +284,23 @@ def plot_score_bars(scores, output_path):
     import matplotlib.pyplot as plt
 
     tags = [t for t in scores if t not in ("combined",)]
-    tags_sorted = sorted(tags, key=lambda t: scores[t]["spectral_score"], reverse=True)
+    tags_sorted = sorted(tags, key=lambda t: scores[t]["localized_dip"], reverse=True)
 
     fig, ax = plt.subplots(figsize=(10, 5))
     x = np.arange(len(tags_sorted))
-    width = 0.25
+    width = 0.2
 
-    spectral_vals = [scores[t]["spectral_score"] for t in tags_sorted]
+    spectral_vals = [scores[t]["localized_dip"] for t in tags_sorted]
     cosine_vals = [scores[t]["cosine_score"] for t in tags_sorted]
     weight_vals = [scores[t]["weight_score"] for t in tags_sorted]
+    combined_vals = [scores[t].get("combined", 0.0) for t in tags_sorted]
 
     colors = ["crimson" if t in UNLEARNED_METHODS else "steelblue" for t in tags_sorted]
 
-    ax.bar(x - width, spectral_vals, width, label="Spectral (-min Δerank)", color=colors, alpha=0.8)
-    ax.bar(x, cosine_vals, width, label="Cosine (max Δcos)", color=colors, alpha=0.5)
-    ax.bar(x + width, weight_vals, width, label="Weight (max |z|)", color=colors, alpha=0.3)
+    ax.bar(x - 1.5 * width, spectral_vals, width, label="Localized dip (3-layer)", color=colors, alpha=0.8)
+    ax.bar(x - 0.5 * width, cosine_vals, width, label="Cosine (max Δcos)", color=colors, alpha=0.5)
+    ax.bar(x + 0.5 * width, weight_vals, width, label="Weight (max |z|)", color=colors, alpha=0.3)
+    ax.bar(x + 1.5 * width, combined_vals, width, label="Combined", color=colors, alpha=0.9, hatch="//")
 
     ax.set_xticks(x)
     ax.set_xticklabels(tags_sorted, rotation=45, ha="right")
@@ -203,7 +313,7 @@ def plot_score_bars(scores, output_path):
         Patch(facecolor="crimson", alpha=0.7, label="unlearned"),
         Patch(facecolor="steelblue", alpha=0.7, label="reference"),
     ]
-    ax.legend(handles=legend_elements + ax.get_legend().get_patches()[:3], fontsize=9)
+    ax.legend(handles=legend_elements + ax.get_legend().get_patches()[:4], fontsize=9)
 
     fig.tight_layout()
     fig.savefig(output_path, dpi=150, bbox_inches="tight")
@@ -231,14 +341,32 @@ def main():
 
     print("[detect] computing scores...")
     scores = compute_scores(spectral, weights)
+    compute_combined(scores)
 
     for tag, s in scores.items():
         label = "UNLEARNED" if tag in UNLEARNED_METHODS else "reference"
-        print(f"  {tag:15s} [{label:9s}]  spectral={s['spectral_score']:.3f}  "
-              f"cosine={s['cosine_score']:.3f}  weight={s['weight_score']:.3f}  "
-              f"cp={s['changepoint_score']:.3f}")
+        print(f"  {tag:15s} [{label:9s}]  "
+              f"dip={s['localized_dip']:.2f}@L{s['localized_dip_layer']}  "
+              f"kink={s['localized_kink']:.2f}@L{s['localized_kink_range']}  "
+              f"shape={s['shape_anomaly']:.3f}  cos_shape={s['cosine_anomaly']:.4f}  "
+              f"cos={s['cosine_score']:.4f}  "
+              f"comb={s.get('combined', 0.0):.3f}")
 
     save_json(scores, os.path.join(args.output_dir, "scores.json"))
+
+    from sklearn.metrics import roc_auc_score
+    tags = list(scores.keys())
+    y = [1 if t in UNLEARNED_METHODS else 0 for t in tags]
+    print("\n[detect] per-statistic ROC AUC (positive=unlearned, negative=retain+original):")
+    for k in ["spectral_score", "localized_dip", "localized_kink",
+              "shape_anomaly", "cosine_anomaly", "cosine_score",
+              "weight_score", "changepoint_score", "combined"]:
+        try:
+            auc = roc_auc_score(y, [scores[t][k] for t in tags])
+        except Exception:
+            auc = float("nan")
+        mark = " <== HEADLINE" if k == "cosine_anomaly" else ""
+        print(f"  {k:18s}  AUC={auc:.3f}{mark}")
 
     print("\n[detect] generating plots...")
     plot_delta_erank_overlay(spectral, os.path.join(args.output_dir, "delta_erank_overlay.png"))
@@ -248,8 +376,11 @@ def main():
     csv_path = os.path.join(args.output_dir, "scores.csv")
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=[
-            "model", "category", "spectral_score", "cosine_score",
-            "weight_score", "changepoint_score", "min_erank_layer", "changepoint_range",
+            "model", "category", "spectral_score", "localized_dip",
+            "localized_dip_layer", "localized_kink", "localized_kink_range",
+            "shape_anomaly", "cosine_anomaly",
+            "cosine_score", "weight_score", "changepoint_score", "combined",
+            "min_erank_layer", "changepoint_range",
         ])
         writer.writeheader()
         for tag, s in scores.items():
@@ -257,9 +388,16 @@ def main():
                 "model": tag,
                 "category": "unlearned" if tag in UNLEARNED_METHODS else "reference",
                 "spectral_score": f"{s['spectral_score']:.4f}",
+                "localized_dip": f"{s['localized_dip']:.4f}",
+                "localized_dip_layer": s["localized_dip_layer"],
+                "localized_kink": f"{s['localized_kink']:.4f}",
+                "localized_kink_range": str(s["localized_kink_range"]),
+                "shape_anomaly": f"{s['shape_anomaly']:.4f}",
+                "cosine_anomaly": f"{s['cosine_anomaly']:.6f}",
                 "cosine_score": f"{s['cosine_score']:.4f}",
                 "weight_score": f"{s['weight_score']:.4f}",
                 "changepoint_score": f"{s['changepoint_score']:.4f}",
+                "combined": f"{s.get('combined', 0.0):.4f}",
                 "min_erank_layer": s["min_erank_layer"],
                 "changepoint_range": str(s["changepoint_range"]),
             })

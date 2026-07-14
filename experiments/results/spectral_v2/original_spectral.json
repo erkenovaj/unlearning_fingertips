@@ -1,0 +1,353 @@
+{
+  "model_tag": "original",
+  "model_path": "open-unlearning/tofu_Llama-3.2-1B-Instruct_full",
+  "num_samples": 200,
+  "forget_fraction": 10,
+  "n_layers": 17,
+  "forget": [
+    {
+      "layer": 0,
+      "erank": 1.0,
+      "entropy": 0.0,
+      "participation_ratio": 1.0,
+      "mean_cosine": 0.9999999999975437
+    },
+    {
+      "layer": 1,
+      "erank": 11.834850242601979,
+      "entropy": 2.4710485891133467,
+      "participation_ratio": 3.7598568558862184,
+      "mean_cosine": 0.9919948415642114
+    },
+    {
+      "layer": 2,
+      "erank": 27.838415226693627,
+      "entropy": 3.3264169095174343,
+      "participation_ratio": 11.322009246880574,
+      "mean_cosine": 0.9749633404093233
+    },
+    {
+      "layer": 3,
+      "erank": 33.42532697297756,
+      "entropy": 3.509313905228195,
+      "participation_ratio": 13.658449040013279,
+      "mean_cosine": 0.9587879616047223
+    },
+    {
+      "layer": 4,
+      "erank": 45.99827880585433,
+      "entropy": 3.8286039785250154,
+      "participation_ratio": 19.12181490372338,
+      "mean_cosine": 0.9252918985340429
+    },
+    {
+      "layer": 5,
+      "erank": 36.7253378020729,
+      "entropy": 3.6034669201680236,
+      "participation_ratio": 14.322504531968134,
+      "mean_cosine": 0.8455561031547568
+    },
+    {
+      "layer": 6,
+      "erank": 36.95927752373708,
+      "entropy": 3.609816699064492,
+      "participation_ratio": 13.387011308529978,
+      "mean_cosine": 0.8285602841538074
+    },
+    {
+      "layer": 7,
+      "erank": 42.80541901773073,
+      "entropy": 3.756664707136859,
+      "participation_ratio": 15.761814190494587,
+      "mean_cosine": 0.8165016946472958
+    },
+    {
+      "layer": 8,
+      "erank": 46.501889896702764,
+      "entropy": 3.839492954707253,
+      "participation_ratio": 17.15242748945856,
+      "mean_cosine": 0.8062186620642506
+    },
+    {
+      "layer": 9,
+      "erank": 49.5028408991753,
+      "entropy": 3.9020300598303237,
+      "participation_ratio": 20.403474722810575,
+      "mean_cosine": 0.7912530923688728
+    },
+    {
+      "layer": 10,
+      "erank": 47.87157642887305,
+      "entropy": 3.868521934319742,
+      "participation_ratio": 20.709286552525647,
+      "mean_cosine": 0.6850089526628081
+    },
+    {
+      "layer": 11,
+      "erank": 52.14994151136378,
+      "entropy": 3.954123059899916,
+      "participation_ratio": 23.71545097378943,
+      "mean_cosine": 0.6333471443851998
+    },
+    {
+      "layer": 12,
+      "erank": 53.759277153124444,
+      "entropy": 3.984516250312081,
+      "participation_ratio": 24.524438619827475,
+      "mean_cosine": 0.6006074410604829
+    },
+    {
+      "layer": 13,
+      "erank": 58.03980959405207,
+      "entropy": 4.061129147411917,
+      "participation_ratio": 26.972650228099557,
+      "mean_cosine": 0.5713581173002299
+    },
+    {
+      "layer": 14,
+      "erank": 60.469938168350374,
+      "entropy": 4.1021463517668275,
+      "participation_ratio": 27.855536373888462,
+      "mean_cosine": 0.589770655677891
+    },
+    {
+      "layer": 15,
+      "erank": 70.45302465744729,
+      "entropy": 4.254946170814806,
+      "participation_ratio": 36.582200604860546,
+      "mean_cosine": 0.528345555455467
+    },
+    {
+      "layer": 16,
+      "erank": 76.78215060428747,
+      "entropy": 4.340972199134632,
+      "participation_ratio": 43.5204174112041,
+      "mean_cosine": 0.4669965385101828
+    }
+  ],
+  "retain": [
+    {
+      "layer": 0,
+      "erank": 1.0,
+      "entropy": 0.0,
+      "participation_ratio": 1.0,
+      "mean_cosine": 0.9999999999975437
+    },
+    {
+      "layer": 1,
+      "erank": 10.316895038593152,
+      "entropy": 2.3337828464300765,
+      "participation_ratio": 3.196618393520767,
+      "mean_cosine": 0.9923980822068713
+    },
+    {
+      "layer": 2,
+      "erank": 28.014888899394695,
+      "entropy": 3.3327361152551345,
+      "participation_ratio": 10.614606158206952,
+      "mean_cosine": 0.9767058276597235
+    },
+    {
+      "layer": 3,
+      "erank": 35.036561854105216,
+      "entropy": 3.5563921406520294,
+      "participation_ratio": 13.89540870727361,
+      "mean_cosine": 0.9605334977633462
+    },
+    {
+      "layer": 4,
+      "erank": 49.51913738051757,
+      "entropy": 3.902359208606636,
+      "participation_ratio": 20.889145267106638,
+      "mean_cosine": 0.9289799638435555
+    },
+    {
+      "layer": 5,
+      "erank": 38.272858105113315,
+      "entropy": 3.6447409793015564,
+      "participation_ratio": 15.311552507551996,
+      "mean_cosine": 0.8523286759337548
+    },
+    {
+      "layer": 6,
+      "erank": 37.927536929155636,
+      "entropy": 3.635677416317196,
+      "participation_ratio": 14.286682086150815,
+      "mean_cosine": 0.8331410834127952
+    },
+    {
+      "layer": 7,
+      "erank": 43.53440020184066,
+      "entropy": 3.7735514348074837,
+      "participation_ratio": 16.694830992317996,
+      "mean_cosine": 0.822226369496543
+    },
+    {
+      "layer": 8,
+      "erank": 45.83176866392455,
+      "entropy": 3.824977489614147,
+      "participation_ratio": 17.27082289897654,
+      "mean_cosine": 0.81137433348378
+    },
+    {
+      "layer": 9,
+      "erank": 47.2272279278746,
+      "entropy": 3.8549705891487784,
+      "participation_ratio": 19.856357624291867,
+      "mean_cosine": 0.7898583671046359
+    },
+    {
+      "layer": 10,
+      "erank": 47.752293115534215,
+      "entropy": 3.8660270891356276,
+      "participation_ratio": 21.477400684654217,
+      "mean_cosine": 0.6762191434246991
+    },
+    {
+      "layer": 11,
+      "erank": 53.087657110580054,
+      "entropy": 3.9719444550996688,
+      "participation_ratio": 24.87886151093334,
+      "mean_cosine": 0.625500930325995
+    },
+    {
+      "layer": 12,
+      "erank": 53.1444881253013,
+      "entropy": 3.973014395276752,
+      "participation_ratio": 23.17612937211485,
+      "mean_cosine": 0.5928959045397726
+    },
+    {
+      "layer": 13,
+      "erank": 60.22635635513658,
+      "entropy": 4.098110069710786,
+      "participation_ratio": 26.77135153757318,
+      "mean_cosine": 0.5655994215701333
+    },
+    {
+      "layer": 14,
+      "erank": 64.64789510313497,
+      "entropy": 4.168955546344986,
+      "participation_ratio": 28.964582402299463,
+      "mean_cosine": 0.5854975151856776
+    },
+    {
+      "layer": 15,
+      "erank": 81.65187110592541,
+      "entropy": 4.402464735331801,
+      "participation_ratio": 40.27968583772347,
+      "mean_cosine": 0.5225477296174852
+    },
+    {
+      "layer": 16,
+      "erank": 92.16223628947394,
+      "entropy": 4.523550461946955,
+      "participation_ratio": 49.631310784773916,
+      "mean_cosine": 0.4640740005467748
+    }
+  ],
+  "delta": [
+    {
+      "layer": 0,
+      "delta_erank": 0.0,
+      "delta_cosine": 0.0,
+      "delta_pr": 0.0
+    },
+    {
+      "layer": 1,
+      "delta_erank": 1.5179552040088264,
+      "delta_cosine": -0.0004032406426599522,
+      "delta_pr": 0.5632384623654514
+    },
+    {
+      "layer": 2,
+      "delta_erank": -0.17647367270106784,
+      "delta_cosine": -0.0017424872504001598,
+      "delta_pr": 0.7074030886736224
+    },
+    {
+      "layer": 3,
+      "delta_erank": -1.6112348811276576,
+      "delta_cosine": -0.0017455361586238283,
+      "delta_pr": -0.23695966726033113
+    },
+    {
+      "layer": 4,
+      "delta_erank": -3.5208585746632366,
+      "delta_cosine": -0.0036880653095126004,
+      "delta_pr": -1.7673303633832589
+    },
+    {
+      "layer": 5,
+      "delta_erank": -1.5475203030404145,
+      "delta_cosine": -0.0067725727789980095,
+      "delta_pr": -0.9890479755838619
+    },
+    {
+      "layer": 6,
+      "delta_erank": -0.9682594054185572,
+      "delta_cosine": -0.0045807992589878,
+      "delta_pr": -0.8996707776208375
+    },
+    {
+      "layer": 7,
+      "delta_erank": -0.7289811841099336,
+      "delta_cosine": -0.005724674849247213,
+      "delta_pr": -0.9330168018234097
+    },
+    {
+      "layer": 8,
+      "delta_erank": 0.6701212327782144,
+      "delta_cosine": -0.0051556714195293285,
+      "delta_pr": -0.11839540951798
+    },
+    {
+      "layer": 9,
+      "delta_erank": 2.2756129713006956,
+      "delta_cosine": 0.0013947252642368957,
+      "delta_pr": 0.5471170985187079
+    },
+    {
+      "layer": 10,
+      "delta_erank": 0.11928331333883335,
+      "delta_cosine": 0.008789809238109014,
+      "delta_pr": -0.76811413212857
+    },
+    {
+      "layer": 11,
+      "delta_erank": -0.9377155992162756,
+      "delta_cosine": 0.007846214059204826,
+      "delta_pr": -1.1634105371439105
+    },
+    {
+      "layer": 12,
+      "delta_erank": 0.6147890278231429,
+      "delta_cosine": 0.007711536520710327,
+      "delta_pr": 1.3483092477126242
+    },
+    {
+      "layer": 13,
+      "delta_erank": -2.1865467610845073,
+      "delta_cosine": 0.005758695730096575,
+      "delta_pr": 0.20129869052637517
+    },
+    {
+      "layer": 14,
+      "delta_erank": -4.177956934784596,
+      "delta_cosine": 0.00427314049221339,
+      "delta_pr": -1.1090460284110009
+    },
+    {
+      "layer": 15,
+      "delta_erank": -11.198846448478122,
+      "delta_cosine": 0.005797825837981829,
+      "delta_pr": -3.697485232862924
+    },
+    {
+      "layer": 16,
+      "delta_erank": -15.380085685186472,
+      "delta_cosine": 0.002922537963408023,
+      "delta_pr": -6.110893373569816
+    }
+  ]
+}

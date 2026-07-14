@@ -1,0 +1,90 @@
+{
+  "original": {
+    "spectral_score": 15.983413225758952,
+    "cosine_score": 0.02705917349101883,
+    "weight_score": 1.8409967573544752,
+    "changepoint_score": 2.763816634421254,
+    "min_erank_layer": 16,
+    "changepoint_range": [
+      12,
+      14
+    ]
+  },
+  "retain": {
+    "spectral_score": 15.843323605451175,
+    "cosine_score": 0.0320946179492575,
+    "weight_score": 1.8410698378465302,
+    "changepoint_score": 2.7633922307502052,
+    "min_erank_layer": 16,
+    "changepoint_range": [
+      12,
+      14
+    ]
+  },
+  "rmu": {
+    "spectral_score": 14.52954551725945,
+    "cosine_score": 0.026209650019517472,
+    "weight_score": 1.8409881307639502,
+    "changepoint_score": 2.7637916886313394,
+    "min_erank_layer": 16,
+    "changepoint_range": [
+      12,
+      14
+    ]
+  },
+  "npo": {
+    "spectral_score": 18.58117799422871,
+    "cosine_score": 0.03907058600503094,
+    "weight_score": 1.8416529175878833,
+    "changepoint_score": 2.763280290485193,
+    "min_erank_layer": 16,
+    "changepoint_range": [
+      12,
+      14
+    ]
+  },
+  "graddiff": {
+    "spectral_score": 13.36628958495777,
+    "cosine_score": 0.02130080206969076,
+    "weight_score": 1.8409625348194782,
+    "changepoint_score": 2.76365175135383,
+    "min_erank_layer": 16,
+    "changepoint_range": [
+      12,
+      14
+    ]
+  },
+  "altpo": {
+    "spectral_score": 20.206741627281303,
+    "cosine_score": 0.05399734240169318,
+    "weight_score": 1.840432914975915,
+    "changepoint_score": 2.7624796791005983,
+    "min_erank_layer": 16,
+    "changepoint_range": [
+      12,
+      14
+    ]
+  },
+  "undial": {
+    "spectral_score": 20.48118591714676,
+    "cosine_score": 0.018090684580337024,
+    "weight_score": 1.8413123785260253,
+    "changepoint_score": 2.764538470377767,
+    "min_erank_layer": 16,
+    "changepoint_range": [
+      12,
+      14
+    ]
+  },
+  "idknll": {
+    "spectral_score": 25.722676034754187,
+    "cosine_score": 0.03922355958693635,
+    "weight_score": 1.8414248624789296,
+    "changepoint_score": 2.7640638604363965,
+    "min_erank_layer": 16,
+    "changepoint_range": [
+      12,
+      14
+    ]
+  }
+}

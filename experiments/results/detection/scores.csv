@@ -1,0 +1,9 @@
+model,category,spectral_score,cosine_score,weight_score,changepoint_score,combined,min_erank_layer,changepoint_range
+original,reference,15.9834,0.0271,1.8410,2.7638,0.2983,16,"[12, 14]"
+retain,reference,15.8433,0.0321,1.8411,2.7634,0.3538,16,"[12, 14]"
+rmu,unlearned,14.5295,0.0262,1.8410,2.7638,0.2420,16,"[12, 14]"
+npo,unlearned,18.5812,0.0391,1.8417,2.7633,0.6441,16,"[12, 14]"
+graddiff,unlearned,13.3663,0.0213,1.8410,2.7637,0.1571,16,"[12, 14]"
+altpo,unlearned,20.2067,0.0540,1.8404,2.7625,0.5214,16,"[12, 14]"
+undial,unlearned,20.4812,0.0181,1.8413,2.7645,0.4466,16,"[12, 14]"
+idknll,unlearned,25.7227,0.0392,1.8414,2.7641,0.8205,16,"[12, 14]"
