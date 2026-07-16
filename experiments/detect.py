@@ -35,6 +35,7 @@ import os
 import sys
 
 import numpy as np
+from scipy import stats
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import load_json, save_json, UNLEARNED_METHODS, REFERENCE_MODELS
@@ -201,6 +202,69 @@ def compute_combined(scores):
         )
 
 
+def compute_significance(spectral):
+    """Test whether per-prompt cosine differences are significant.
+
+    For each model, computes per-prompt Δcosine = forget_cosine - retain_cosine
+    across interior layers (skipping embedding and last 2 hidden states),
+    then runs:
+      - Paired Welch's t-test (two-sided) on the prompt-level differences
+      - Mann-Whitney U test (non-parametric alternative)
+
+    Returns dict mapping model_tag -> {t_stat, t_pvalue, u_stat, u_pvalue,
+    mean_delta, std_delta, effect_size_cohens_d}.
+    """
+    results = {}
+    for tag, sdata in spectral.items():
+        n_layers = sdata["n_layers"]
+        layer_min = 1
+        layer_max = n_layers - 3
+
+        pc_f = sdata.get("per_prompt_cosine_forget")
+        pc_r = sdata.get("per_prompt_cosine_retain")
+        if pc_f is None or pc_r is None:
+            continue
+
+        n_prompts = len(pc_f[0])
+        deltas = []
+        for l in range(layer_min, min(layer_max + 1, len(pc_f))):
+            d = np.array(pc_f[l]) - np.array(pc_r[l])
+            deltas.append(d)
+
+        if not deltas:
+            continue
+
+        all_deltas = np.array(deltas)
+        mean_per_prompt = all_deltas.mean(axis=0)
+        mean_delta = float(mean_per_prompt.mean())
+        std_delta = float(mean_per_prompt.std(ddof=1))
+
+        t_stat, t_pval = stats.ttest_rel(
+            np.array([pc_f[l] for l in range(layer_min, min(layer_max + 1, len(pc_f)))]).mean(axis=0),
+            np.array([pc_r[l] for l in range(layer_min, min(layer_max + 1, len(pc_r)))]).mean(axis=0),
+        )
+
+        u_stat, u_pval = stats.mannwhitneyu(
+            mean_per_prompt,
+            np.zeros_like(mean_per_prompt),
+            alternative="two-sided",
+        )
+
+        cohens_d = mean_delta / std_delta if std_delta > 1e-12 else 0.0
+
+        results[tag] = {
+            "t_stat": float(t_stat),
+            "t_pvalue": float(t_pval),
+            "u_stat": float(u_stat),
+            "u_pvalue": float(u_pval),
+            "mean_delta": mean_delta,
+            "std_delta": std_delta,
+            "effect_size_cohens_d": float(cohens_d),
+        }
+
+    return results
+
+
 def plot_delta_erank_overlay(spectral, output_path):
     """Overlay Δerank per layer for all models — the headline figure."""
     import matplotlib
@@ -352,7 +416,24 @@ def main():
               f"cos={s['cosine_score']:.4f}  "
               f"comb={s.get('combined', 0.0):.3f}")
 
+    print("[detect] computing significance tests...")
+    significance = compute_significance(spectral)
+    for tag, sig in significance.items():
+        label = "UNLEARNED" if tag in UNLEARNED_METHODS else "reference"
+        stars = ""
+        if sig["t_pvalue"] < 0.001:
+            stars = "***"
+        elif sig["t_pvalue"] < 0.01:
+            stars = "**"
+        elif sig["t_pvalue"] < 0.05:
+            stars = "*"
+        print(f"  {tag:15s} [{label:9s}]  "
+              f"t={sig['t_stat']:+7.2f} p={sig['t_pvalue']:.4e}  "
+              f"U={sig['u_stat']:8.0f} p={sig['u_pvalue']:.4e}  "
+              f"d={sig['effect_size_cohens_d']:+.3f}  Δcos={sig['mean_delta']:+.6f} {stars}")
+
     save_json(scores, os.path.join(args.output_dir, "scores.json"))
+    save_json(significance, os.path.join(args.output_dir, "significance.json"))
 
     from sklearn.metrics import roc_auc_score
     tags = list(scores.keys())
@@ -381,9 +462,12 @@ def main():
             "shape_anomaly", "cosine_anomaly",
             "cosine_score", "weight_score", "changepoint_score", "combined",
             "min_erank_layer", "changepoint_range",
+            "t_stat", "t_pvalue", "u_stat", "u_pvalue",
+            "effect_size_cohens_d", "mean_delta",
         ])
         writer.writeheader()
         for tag, s in scores.items():
+            sig = significance.get(tag, {})
             writer.writerow({
                 "model": tag,
                 "category": "unlearned" if tag in UNLEARNED_METHODS else "reference",
@@ -400,6 +484,12 @@ def main():
                 "combined": f"{s.get('combined', 0.0):.4f}",
                 "min_erank_layer": s["min_erank_layer"],
                 "changepoint_range": str(s["changepoint_range"]),
+                "t_stat": f"{sig.get('t_stat', 0.0):.4f}",
+                "t_pvalue": f"{sig.get('t_pvalue', 1.0):.4e}",
+                "u_stat": f"{sig.get('u_stat', 0.0):.4f}",
+                "u_pvalue": f"{sig.get('u_pvalue', 1.0):.4e}",
+                "effect_size_cohens_d": f"{sig.get('effect_size_cohens_d', 0.0):.4f}",
+                "mean_delta": f"{sig.get('mean_delta', 0.0):.6f}",
             })
     print(f"  CSV -> {csv_path}")
 

@@ -170,6 +170,21 @@ def mean_cosine(H):
     return float(upper.mean())
 
 
+def per_prompt_cosine(H):
+    """Cosine of each prompt to the centroid of all prompts.
+
+    Returns (n_prompts,) array: cosine(prompt_i, mean(H)) for each i.
+    This is the per-prompt contribution to the global mean cosine and
+    enables paired significance testing across forget/retain sets.
+    """
+    H = H.astype(np.float64)
+    centroid = H.mean(axis=0, keepdims=True)
+    centroid_norm = centroid / (np.linalg.norm(centroid) + 1e-12)
+    norms = np.linalg.norm(H, axis=1, keepdims=True)
+    H_norm = H / (norms + 1e-12)
+    return (H_norm @ centroid_norm.T).ravel()
+
+
 def stable_rank(W):
     """Stable rank: ||W||_F^2 / ||W||_2^2."""
     W = W.astype(np.float64)
@@ -206,3 +221,100 @@ def save_json(data, path):
 def load_json(path):
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+# ---------------------------------------------------------------------------
+# MIA / MINT-style metrics (token-level likelihood)
+# ---------------------------------------------------------------------------
+@torch.no_grad()
+def compute_token_scores(model, tokenizer, prompts, device, batch_size=8, max_length=512):
+    """Compute per-prompt token-level scores for MIA metrics.
+
+    For each prompt, returns:
+      - loss: negative cross-entropy (higher = model predicts this better)
+      - min_k_plus: mean standardized log-prob of lowest 20% tokens
+      - logrank: mean log-rank of true tokens across positions
+      - entropy: mean next-token entropy
+
+    Returns dict of (n_prompts,) arrays.
+    """
+    all_loss = []
+    all_min_k = []
+    all_logrank = []
+    all_entropy = []
+
+    for start in range(0, len(prompts), batch_size):
+        batch = prompts[start:start + batch_size]
+        enc = tokenizer(
+            batch, return_tensors="pt", padding=True, truncation=True,
+            max_length=max_length,
+        )
+        enc = {k: v.to(device) for k, v in enc.items()}
+        labels = enc["input_ids"].clone()
+        labels[enc["attention_mask"] == 0] = -100
+
+        outputs = model(**enc, labels=labels)
+        logits = outputs.logits
+
+        shift_logits = logits[:, :-1, :].float()
+        shift_labels = enc["input_ids"][:, 1:]
+        shift_mask = enc["attention_mask"][:, 1:]
+
+        log_probs = torch.nn.functional.log_softmax(shift_logits, dim=-1)
+        token_log_probs = log_probs.gather(dim=-1, index=shift_labels.unsqueeze(-1)).squeeze(-1)
+
+        for i in range(len(batch)):
+            mask = shift_mask[i].bool()
+            tlps = token_log_probs[i][mask].cpu().numpy()
+            if len(tlps) == 0:
+                all_loss.append(0.0)
+                all_min_k.append(0.0)
+                all_logrank.append(0.0)
+                all_entropy.append(0.0)
+                continue
+
+            all_loss.append(float(-tlps.mean()))
+
+            probs_i = torch.nn.functional.softmax(shift_logits[i][mask], dim=-1)
+            mu = (probs_i * log_probs[i][mask]).sum(dim=-1)
+            sigma_sq = (probs_i * log_probs[i][mask] ** 2).sum(dim=-1) - mu ** 2
+            sigma = sigma_sq.clamp(min=1e-12).sqrt()
+            standardized = (token_log_probs[i][mask].cpu() - mu.cpu()) / sigma.cpu()
+            k = max(1, int(len(standardized) * 0.2))
+            topk = torch.sort(standardized)[0][:k]
+            all_min_k.append(float(topk.mean()))
+
+            ranks = (shift_logits[i][mask].argsort(dim=-1, descending=True) == shift_labels[i][mask].unsqueeze(1)).float().argmax(dim=-1)
+            all_logrank.append(float(-torch.log(ranks.float() + 1).mean()))
+
+            ent = -(probs_i * log_probs[i][mask]).sum(dim=-1)
+            all_entropy.append(float(ent.mean()))
+
+    return {
+        "loss": np.array(all_loss),
+        "min_k_plus": np.array(all_min_k),
+        "logrank": np.array(all_logrank),
+        "entropy": np.array(all_entropy),
+    }
+
+
+@torch.no_grad()
+def generate_samples(model, tokenizer, prompts, device, max_new_tokens=128, temperature=0.7, top_p=0.9):
+    """Generate text completions for prompts.
+
+    Returns list of dicts with 'prompt' and 'completion' keys.
+    """
+    samples = []
+    for prompt in prompts:
+        enc = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=512)
+        enc = {k: v.to(device) for k, v in enc.items()}
+        out = model.generate(
+            **enc, max_new_tokens=max_new_tokens, temperature=temperature,
+            top_p=top_p, do_sample=True, pad_token_id=tokenizer.pad_token_id,
+        )
+        generated = tokenizer.decode(out[0][enc["input_ids"].shape[1]:], skip_special_tokens=True)
+        samples.append({
+            "prompt": prompt,
+            "completion": generated,
+        })
+    return samples

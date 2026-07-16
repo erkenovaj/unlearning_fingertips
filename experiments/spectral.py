@@ -28,7 +28,7 @@ import torch
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (
     MODELS, DTYPE_MAP, get_device, load_tofu_prompts, format_prompts, load_model,
-    collect_hidden_states, effective_rank, mean_cosine, save_json,
+    collect_hidden_states, effective_rank, mean_cosine, per_prompt_cosine, save_json,
 )
 
 
@@ -146,6 +146,12 @@ def main():
     forget_stats = compute_layer_stats(forget_hs)
     retain_stats = compute_layer_stats(retain_hs)
 
+    per_prompt_forget = []
+    per_prompt_retain = []
+    for l in range(forget_hs.shape[0]):
+        per_prompt_forget.append(per_prompt_cosine(forget_hs[l]).tolist())
+        per_prompt_retain.append(per_prompt_cosine(retain_hs[l]).tolist())
+
     delta = []
     for f, r in zip(forget_stats, retain_stats):
         delta.append({
@@ -166,6 +172,8 @@ def main():
         "forget": forget_stats,
         "retain": retain_stats,
         "delta": delta,
+        "per_prompt_cosine_forget": per_prompt_forget,
+        "per_prompt_cosine_retain": per_prompt_retain,
     }
 
     os.makedirs(args.output_dir, exist_ok=True)
