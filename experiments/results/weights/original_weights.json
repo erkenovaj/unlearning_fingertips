@@ -5,8 +5,10 @@
   "stats": [
     {
       "layer": 0,
-      "mean_stable_rank": 94.56364029598645,
-      "std_stable_rank": 74.13256257741786,
+      "mean_stable_rank": 94.56364029598642,
+      "std_stable_rank": 74.13256257741781,
+      "mean_sigma_max": 9.838307398027094,
+      "std_sigma_max": 9.702041021615198,
       "matrices": [
         {
           "name": "model.layers.0.self_attn.q_proj.weight",
@@ -14,7 +16,9 @@
             2048,
             2048
           ],
-          "stable_rank": 5.71861054915548
+          "stable_rank": 5.718610549155487,
+          "sigma_max": 30.87879550284223,
+          "sigma_min": 8.488584714465454e-05
         },
         {
           "name": "model.layers.0.self_attn.k_proj.weight",
@@ -22,7 +26,9 @@
             512,
             2048
           ],
-          "stable_rank": 8.559255049941713
+          "stable_rank": 8.559255049941715,
+          "sigma_max": 16.35442619983871,
+          "sigma_min": 0.08907846934450721
         },
         {
           "name": "model.layers.0.self_attn.v_proj.weight",
@@ -30,7 +36,9 @@
             512,
             2048
           ],
-          "stable_rank": 87.49692623707728
+          "stable_rank": 87.49692623707737,
+          "sigma_max": 1.0045705852952562,
+          "sigma_min": 0.06967642265164717
         },
         {
           "name": "model.layers.0.self_attn.o_proj.weight",
@@ -38,7 +46,9 @@
             2048,
             2048
           ],
-          "stable_rank": 51.327975913709096
+          "stable_rank": 51.32797591370911,
+          "sigma_max": 3.280173262943609,
+          "sigma_min": 1.0020039246110777e-05
         },
         {
           "name": "model.layers.0.mlp.gate_proj.weight",
@@ -46,7 +56,9 @@
             8192,
             2048
           ],
-          "stable_rank": 118.4554674360816
+          "stable_rank": 118.45546743608158,
+          "sigma_max": 7.264015042918767,
+          "sigma_min": 0.4030125352783573
         },
         {
           "name": "model.layers.0.mlp.up_proj.weight",
@@ -54,7 +66,9 @@
             8192,
             2048
           ],
-          "stable_rank": 180.42208484311172
+          "stable_rank": 180.4220848431116,
+          "sigma_max": 5.250379071354412,
+          "sigma_min": 0.3679407110690921
         },
         {
           "name": "model.layers.0.mlp.down_proj.weight",
@@ -62,14 +76,18 @@
             2048,
             8192
           ],
-          "stable_rank": 209.96516204282815
+          "stable_rank": 209.96516204282807,
+          "sigma_max": 4.835792120996681,
+          "sigma_min": 0.44933007286526383
         }
       ]
     },
     {
       "layer": 1,
-      "mean_stable_rank": 87.35290067983892,
-      "std_stable_rank": 63.87051283915649,
+      "mean_stable_rank": 87.35290067983907,
+      "std_stable_rank": 63.87051283915666,
+      "mean_sigma_max": 6.803184322577422,
+      "std_sigma_max": 3.8605748197268848,
       "matrices": [
         {
           "name": "model.layers.1.self_attn.q_proj.weight",
@@ -77,7 +95,9 @@
             2048,
             2048
           ],
-          "stable_rank": 19.31333512120546
+          "stable_rank": 19.313335121205455,
+          "sigma_max": 12.986805657289416,
+          "sigma_min": 0.00046703339838463317
         },
         {
           "name": "model.layers.1.self_attn.k_proj.weight",
@@ -85,7 +105,9 @@
             512,
             2048
           ],
-          "stable_rank": 22.833459444647886
+          "stable_rank": 22.833459444647882,
+          "sigma_max": 8.510055794167322,
+          "sigma_min": 0.13746039119452025
         },
         {
           "name": "model.layers.1.self_attn.v_proj.weight",
@@ -93,7 +115,9 @@
             512,
             2048
           ],
-          "stable_rank": 123.21368523206277
+          "stable_rank": 123.21368523206279,
+          "sigma_max": 0.8975008867714236,
+          "sigma_min": 0.10769715864172923
         },
         {
           "name": "model.layers.1.self_attn.o_proj.weight",
@@ -101,7 +125,9 @@
             2048,
             2048
           ],
-          "stable_rank": 59.85806754681747
+          "stable_rank": 59.858067546817516,
+          "sigma_max": 3.3785070669640875,
+          "sigma_min": 1.1944819177330354e-05
         },
         {
           "name": "model.layers.1.mlp.gate_proj.weight",
@@ -109,7 +135,9 @@
             8192,
             2048
           ],
-          "stable_rank": 64.0831848490858
+          "stable_rank": 64.08318484908585,
+          "sigma_max": 10.292234002068074,
+          "sigma_min": 0.369784975205172
         },
         {
           "name": "model.layers.1.mlp.up_proj.weight",
@@ -117,7 +145,9 @@
             8192,
             2048
           ],
-          "stable_rank": 104.9243350035813
+          "stable_rank": 104.9243350035816,
+          "sigma_max": 6.8507712816987825,
+          "sigma_min": 0.3121870731787995
         },
         {
           "name": "model.layers.1.mlp.down_proj.weight",
@@ -125,14 +155,18 @@
             2048,
             8192
           ],
-          "stable_rank": 217.24423756147175
+          "stable_rank": 217.2442375614723,
+          "sigma_max": 4.706415569082844,
+          "sigma_min": 0.29526016841295377
         }
       ]
     },
     {
       "layer": 2,
-      "mean_stable_rank": 133.12482344010579,
-      "std_stable_rank": 127.9647816001333,
+      "mean_stable_rank": 133.12482344010587,
+      "std_stable_rank": 127.96478160013342,
+      "mean_sigma_max": 5.891812154003419,
+      "std_sigma_max": 3.634845686075215,
       "matrices": [
         {
           "name": "model.layers.2.self_attn.q_proj.weight",
@@ -140,7 +174,9 @@
             2048,
             2048
           ],
-          "stable_rank": 26.835046667107285
+          "stable_rank": 26.83504666710728,
+          "sigma_max": 10.859535296857114,
+          "sigma_min": 0.0003084696114246326
         },
         {
           "name": "model.layers.2.self_attn.k_proj.weight",
@@ -148,7 +184,9 @@
             512,
             2048
           ],
-          "stable_rank": 30.204273254192778
+          "stable_rank": 30.204273254192774,
+          "sigma_max": 6.969773771219352,
+          "sigma_min": 0.1456794062111966
         },
         {
           "name": "model.layers.2.self_attn.v_proj.weight",
@@ -156,7 +194,9 @@
             512,
             2048
           ],
-          "stable_rank": 142.02590050106812
+          "stable_rank": 142.02590050106835,
+          "sigma_max": 0.9856825712759633,
+          "sigma_min": 0.14565011653783694
         },
         {
           "name": "model.layers.2.self_attn.o_proj.weight",
@@ -164,7 +204,9 @@
             2048,
             2048
           ],
-          "stable_rank": 78.42590190076076
+          "stable_rank": 78.42590190076075,
+          "sigma_max": 2.991113701162163,
+          "sigma_min": 7.252037055068884e-05
         },
         {
           "name": "model.layers.2.mlp.gate_proj.weight",
@@ -172,7 +214,9 @@
             8192,
             2048
           ],
-          "stable_rank": 58.779370556552514
+          "stable_rank": 58.779370556552486,
+          "sigma_max": 11.05672869551128,
+          "sigma_min": 0.3751201185118872
         },
         {
           "name": "model.layers.2.mlp.up_proj.weight",
@@ -180,7 +224,9 @@
             8192,
             2048
           ],
-          "stable_rank": 420.0705779596822
+          "stable_rank": 420.0705779596825,
+          "sigma_max": 3.270390432475075,
+          "sigma_min": 0.2822733903848499
         },
         {
           "name": "model.layers.2.mlp.down_proj.weight",
@@ -188,14 +234,18 @@
             2048,
             8192
           ],
-          "stable_rank": 175.53269324137676
+          "stable_rank": 175.53269324137685,
+          "sigma_max": 5.109460609522983,
+          "sigma_min": 0.35181013296384955
         }
       ]
     },
     {
       "layer": 3,
-      "mean_stable_rank": 129.96664204229154,
-      "std_stable_rank": 100.12571834305898,
+      "mean_stable_rank": 129.9666420422914,
+      "std_stable_rank": 100.12571834305881,
+      "mean_sigma_max": 6.582930759086985,
+      "std_sigma_max": 4.606465850751474,
       "matrices": [
         {
           "name": "model.layers.3.self_attn.q_proj.weight",
@@ -203,7 +253,9 @@
             2048,
             2048
           ],
-          "stable_rank": 23.181681717210314
+          "stable_rank": 23.181681717210324,
+          "sigma_max": 11.540862279676768,
+          "sigma_min": 9.469524597003189e-05
         },
         {
           "name": "model.layers.3.self_attn.k_proj.weight",
@@ -211,7 +263,9 @@
             512,
             2048
           ],
-          "stable_rank": 20.728584649434314
+          "stable_rank": 20.72858464943433,
+          "sigma_max": 8.19997454107871,
+          "sigma_min": 0.1245460584911464
         },
         {
           "name": "model.layers.3.self_attn.v_proj.weight",
@@ -219,7 +273,9 @@
             512,
             2048
           ],
-          "stable_rank": 181.73532369637425
+          "stable_rank": 181.73532369637408,
+          "sigma_max": 1.0291753094808558,
+          "sigma_min": 0.2164769048750009
         },
         {
           "name": "model.layers.3.self_attn.o_proj.weight",
@@ -227,7 +283,9 @@
             2048,
             2048
           ],
-          "stable_rank": 133.6657070690963
+          "stable_rank": 133.66570706909621,
+          "sigma_max": 2.5956543190723727,
+          "sigma_min": 0.00028940522497592966
         },
         {
           "name": "model.layers.3.mlp.gate_proj.weight",
@@ -235,7 +293,9 @@
             8192,
             2048
           ],
-          "stable_rank": 40.57237593640507
+          "stable_rank": 40.57237593640516,
+          "sigma_max": 14.469213465753796,
+          "sigma_min": 0.35320451835703437
         },
         {
           "name": "model.layers.3.mlp.up_proj.weight",
@@ -243,7 +303,9 @@
             8192,
             2048
           ],
-          "stable_rank": 304.5283823277702
+          "stable_rank": 304.5283823277697,
+          "sigma_max": 3.7352371163549014,
+          "sigma_min": 0.25902056772326365
         },
         {
           "name": "model.layers.3.mlp.down_proj.weight",
@@ -251,14 +313,18 @@
             2048,
             8192
           ],
-          "stable_rank": 205.3544388997502
+          "stable_rank": 205.35443889975,
+          "sigma_max": 4.5103982821914945,
+          "sigma_min": 0.2160155260060495
         }
       ]
     },
     {
       "layer": 4,
-      "mean_stable_rank": 138.72001771525885,
-      "std_stable_rank": 125.686269365507,
+      "mean_stable_rank": 138.72001771525893,
+      "std_stable_rank": 125.68626936550729,
+      "mean_sigma_max": 6.706463815094567,
+      "std_sigma_max": 4.940135277474621,
       "matrices": [
         {
           "name": "model.layers.4.self_attn.q_proj.weight",
@@ -266,7 +332,9 @@
             2048,
             2048
           ],
-          "stable_rank": 22.23377981597879
+          "stable_rank": 22.233779815978764,
+          "sigma_max": 11.41377400644427,
+          "sigma_min": 0.00023497163243321517
         },
         {
           "name": "model.layers.4.self_attn.k_proj.weight",
@@ -274,7 +342,9 @@
             512,
             2048
           ],
-          "stable_rank": 20.37779195706255
+          "stable_rank": 20.37779195706254,
+          "sigma_max": 8.147529720494113,
+          "sigma_min": 0.10917901932909382
         },
         {
           "name": "model.layers.4.self_attn.v_proj.weight",
@@ -282,7 +352,9 @@
             512,
             2048
           ],
-          "stable_rank": 172.37572282757384
+          "stable_rank": 172.3757228275738,
+          "sigma_max": 1.016630772160973,
+          "sigma_min": 0.16626563497209199
         },
         {
           "name": "model.layers.4.self_attn.o_proj.weight",
@@ -290,7 +362,9 @@
             2048,
             2048
           ],
-          "stable_rank": 150.6287639082063
+          "stable_rank": 150.62876390820622,
+          "sigma_max": 2.444631390461831,
+          "sigma_min": 0.00034167683354001247
         },
         {
           "name": "model.layers.4.mlp.gate_proj.weight",
@@ -298,7 +372,9 @@
             8192,
             2048
           ],
-          "stable_rank": 36.84298722303126
+          "stable_rank": 36.84298722303125,
+          "sigma_max": 15.704562441734794,
+          "sigma_min": 0.3583560624627198
         },
         {
           "name": "model.layers.4.mlp.up_proj.weight",
@@ -306,7 +382,9 @@
             8192,
             2048
           ],
-          "stable_rank": 404.64487984257437
+          "stable_rank": 404.64487984257534,
+          "sigma_max": 3.2138219091646443,
+          "sigma_min": 0.2346781174055375
         },
         {
           "name": "model.layers.4.mlp.down_proj.weight",
@@ -314,14 +392,18 @@
             2048,
             8192
           ],
-          "stable_rank": 163.93619843238486
+          "stable_rank": 163.93619843238469,
+          "sigma_max": 5.004296465201346,
+          "sigma_min": 0.19660335908663643
         }
       ]
     },
     {
       "layer": 5,
-      "mean_stable_rank": 109.65501896929378,
-      "std_stable_rank": 97.01603466645281,
+      "mean_stable_rank": 109.65501896929386,
+      "std_stable_rank": 97.0160346664529,
+      "mean_sigma_max": 6.645470599539195,
+      "std_sigma_max": 4.4368684976599795,
       "matrices": [
         {
           "name": "model.layers.5.self_attn.q_proj.weight",
@@ -329,7 +411,9 @@
             2048,
             2048
           ],
-          "stable_rank": 22.70346284201653
+          "stable_rank": 22.703462842016528,
+          "sigma_max": 10.977224152789683,
+          "sigma_min": 1.0771806252942172e-05
         },
         {
           "name": "model.layers.5.self_attn.k_proj.weight",
@@ -337,7 +421,9 @@
             512,
             2048
           ],
-          "stable_rank": 20.724706450915924
+          "stable_rank": 20.724706450915917,
+          "sigma_max": 8.156938186960428,
+          "sigma_min": 0.1131949750343668
         },
         {
           "name": "model.layers.5.self_attn.v_proj.weight",
@@ -345,7 +431,9 @@
             512,
             2048
           ],
-          "stable_rank": 123.92944251026758
+          "stable_rank": 123.9294425102678,
+          "sigma_max": 1.0109659343451223,
+          "sigma_min": 0.13743007759599313
         },
         {
           "name": "model.layers.5.self_attn.o_proj.weight",
@@ -353,7 +441,9 @@
             2048,
             2048
           ],
-          "stable_rank": 122.7371652149709
+          "stable_rank": 122.73716521497101,
+          "sigma_max": 2.457159243063403,
+          "sigma_min": 0.0001663549258133168
         },
         {
           "name": "model.layers.5.mlp.gate_proj.weight",
@@ -361,7 +451,9 @@
             8192,
             2048
           ],
-          "stable_rank": 39.17855426523945
+          "stable_rank": 39.17855426523938,
+          "sigma_max": 14.266591863014497,
+          "sigma_min": 0.33296522318883653
         },
         {
           "name": "model.layers.5.mlp.up_proj.weight",
@@ -369,7 +461,9 @@
             8192,
             2048
           ],
-          "stable_rank": 321.85177034249193
+          "stable_rank": 321.8517703424921,
+          "sigma_max": 3.6519862150586646,
+          "sigma_min": 0.21076492084922693
         },
         {
           "name": "model.layers.5.mlp.down_proj.weight",
@@ -377,14 +471,18 @@
             2048,
             8192
           ],
-          "stable_rank": 116.46003115915418
+          "stable_rank": 116.46003115915424,
+          "sigma_max": 5.9974286015425635,
+          "sigma_min": 0.2327286925669476
         }
       ]
     },
     {
       "layer": 6,
-      "mean_stable_rank": 124.7805727023639,
-      "std_stable_rank": 115.30798675623346,
+      "mean_stable_rank": 124.78057270236381,
+      "std_stable_rank": 115.30798675623323,
+      "mean_sigma_max": 6.521618473506497,
+      "std_sigma_max": 4.171825566518076,
       "matrices": [
         {
           "name": "model.layers.6.self_attn.q_proj.weight",
@@ -392,7 +490,9 @@
             2048,
             2048
           ],
-          "stable_rank": 20.24347031253798
+          "stable_rank": 20.243470312537973,
+          "sigma_max": 11.025798587742575,
+          "sigma_min": 0.00015587875929365315
         },
         {
           "name": "model.layers.6.self_attn.k_proj.weight",
@@ -400,7 +500,9 @@
             512,
             2048
           ],
-          "stable_rank": 20.072821992546377
+          "stable_rank": 20.07282199254637,
+          "sigma_max": 8.569374826751913,
+          "sigma_min": 0.13781221777024993
         },
         {
           "name": "model.layers.6.self_attn.v_proj.weight",
@@ -408,7 +510,9 @@
             512,
             2048
           ],
-          "stable_rank": 152.34056330799686
+          "stable_rank": 152.34056330799703,
+          "sigma_max": 1.062675931469708,
+          "sigma_min": 0.17046873676478905
         },
         {
           "name": "model.layers.6.self_attn.o_proj.weight",
@@ -416,7 +520,9 @@
             2048,
             2048
           ],
-          "stable_rank": 170.85578071537773
+          "stable_rank": 170.85578071537785,
+          "sigma_max": 2.2019290655825707,
+          "sigma_min": 4.700499841114338e-05
         },
         {
           "name": "model.layers.6.mlp.gate_proj.weight",
@@ -424,7 +530,9 @@
             8192,
             2048
           ],
-          "stable_rank": 46.742589654054115
+          "stable_rank": 46.742589654054115,
+          "sigma_max": 12.758337494197413,
+          "sigma_min": 0.4681587721398053
         },
         {
           "name": "model.layers.6.mlp.up_proj.weight",
@@ -432,7 +540,9 @@
             8192,
             2048
           ],
-          "stable_rank": 371.9339012802767
+          "stable_rank": 371.9339012802759,
+          "sigma_max": 3.364123714032962,
+          "sigma_min": 0.3667632792259087
         },
         {
           "name": "model.layers.6.mlp.down_proj.weight",
@@ -440,14 +550,18 @@
             2048,
             8192
           ],
-          "stable_rank": 91.27488165375753
+          "stable_rank": 91.2748816537575,
+          "sigma_max": 6.66908969476833,
+          "sigma_min": 0.18323628594034813
         }
       ]
     },
     {
       "layer": 7,
-      "mean_stable_rank": 99.68288562385045,
-      "std_stable_rank": 71.58551488337517,
+      "mean_stable_rank": 99.68288562385041,
+      "std_stable_rank": 71.58551488337515,
+      "mean_sigma_max": 6.539409490456273,
+      "std_sigma_max": 3.900674564011146,
       "matrices": [
         {
           "name": "model.layers.7.self_attn.q_proj.weight",
@@ -455,7 +569,9 @@
             2048,
             2048
           ],
-          "stable_rank": 26.137011376309484
+          "stable_rank": 26.137011376309477,
+          "sigma_max": 10.348656231873708,
+          "sigma_min": 0.0003071647995006432
         },
         {
           "name": "model.layers.7.self_attn.k_proj.weight",
@@ -463,7 +579,9 @@
             512,
             2048
           ],
-          "stable_rank": 24.858756518978097
+          "stable_rank": 24.85875651897809,
+          "sigma_max": 7.63216674325984,
+          "sigma_min": 0.17874321676284374
         },
         {
           "name": "model.layers.7.self_attn.v_proj.weight",
@@ -471,7 +589,9 @@
             512,
             2048
           ],
-          "stable_rank": 132.71282206841644
+          "stable_rank": 132.71282206841644,
+          "sigma_max": 1.186627910947317,
+          "sigma_min": 0.15027773433445046
         },
         {
           "name": "model.layers.7.self_attn.o_proj.weight",
@@ -479,7 +599,9 @@
             2048,
             2048
           ],
-          "stable_rank": 146.82517181583427
+          "stable_rank": 146.82517181583415,
+          "sigma_max": 2.4494815843195235,
+          "sigma_min": 0.0001914481466208049
         },
         {
           "name": "model.layers.7.mlp.gate_proj.weight",
@@ -487,7 +609,9 @@
             8192,
             2048
           ],
-          "stable_rank": 43.10538866513683
+          "stable_rank": 43.10538866513678,
+          "sigma_max": 12.904236615786616,
+          "sigma_min": 0.4641702990391157
         },
         {
           "name": "model.layers.7.mlp.up_proj.weight",
@@ -495,7 +619,9 @@
             8192,
             2048
           ],
-          "stable_rank": 234.75111231735977
+          "stable_rank": 234.75111231735968,
+          "sigma_max": 4.353017454510147,
+          "sigma_min": 0.38561545509501755
         },
         {
           "name": "model.layers.7.mlp.down_proj.weight",
@@ -503,14 +629,18 @@
             2048,
             8192
           ],
-          "stable_rank": 89.38993660491832
+          "stable_rank": 89.38993660491826,
+          "sigma_max": 6.901679892496762,
+          "sigma_min": 0.2568292507869029
         }
       ]
     },
     {
       "layer": 8,
-      "mean_stable_rank": 125.37345289617156,
-      "std_stable_rank": 100.36196296517498,
+      "mean_stable_rank": 125.37345289617159,
+      "std_stable_rank": 100.36196296517501,
+      "mean_sigma_max": 6.130797546091931,
+      "std_sigma_max": 3.8544896152130015,
       "matrices": [
         {
           "name": "model.layers.8.self_attn.q_proj.weight",
@@ -518,7 +648,9 @@
             2048,
             2048
           ],
-          "stable_rank": 28.953782624615783
+          "stable_rank": 28.953782624615776,
+          "sigma_max": 9.508867980334847,
+          "sigma_min": 0.00018022154020984324
         },
         {
           "name": "model.layers.8.self_attn.k_proj.weight",
@@ -526,7 +658,9 @@
             512,
             2048
           ],
-          "stable_rank": 22.401835311410256
+          "stable_rank": 22.40183531141025,
+          "sigma_max": 8.128068992684973,
+          "sigma_min": 0.1269419367332427
         },
         {
           "name": "model.layers.8.self_attn.v_proj.weight",
@@ -534,7 +668,9 @@
             512,
             2048
           ],
-          "stable_rank": 165.147301702341
+          "stable_rank": 165.14730170234105,
+          "sigma_max": 1.0062802767888623,
+          "sigma_min": 0.14242502768320703
         },
         {
           "name": "model.layers.8.self_attn.o_proj.weight",
@@ -542,7 +678,9 @@
             2048,
             2048
           ],
-          "stable_rank": 143.2757256385413
+          "stable_rank": 143.2757256385413,
+          "sigma_max": 2.4591625756464115,
+          "sigma_min": 4.6901426495867984e-05
         },
         {
           "name": "model.layers.8.mlp.gate_proj.weight",
@@ -550,7 +688,9 @@
             8192,
             2048
           ],
-          "stable_rank": 43.59223986707193
+          "stable_rank": 43.59223986707194,
+          "sigma_max": 12.652826850801471,
+          "sigma_min": 0.31108139962637865
         },
         {
           "name": "model.layers.8.mlp.up_proj.weight",
@@ -558,7 +698,9 @@
             8192,
             2048
           ],
-          "stable_rank": 329.43043255020245
+          "stable_rank": 329.43043255020245,
+          "sigma_max": 3.71071928696437,
+          "sigma_min": 0.3705033442268041
         },
         {
           "name": "model.layers.8.mlp.down_proj.weight",
@@ -566,14 +708,18 @@
             2048,
             8192
           ],
-          "stable_rank": 144.81285257901826
+          "stable_rank": 144.8128525790184,
+          "sigma_max": 5.449656859422583,
+          "sigma_min": 0.2568323635415189
         }
       ]
     },
     {
       "layer": 9,
-      "mean_stable_rank": 128.05942484036066,
-      "std_stable_rank": 99.66026909558742,
+      "mean_stable_rank": 128.0594248403607,
+      "std_stable_rank": 99.66026909558747,
+      "mean_sigma_max": 6.753700529572441,
+      "std_sigma_max": 4.5290426127686825,
       "matrices": [
         {
           "name": "model.layers.9.self_attn.q_proj.weight",
@@ -581,7 +727,9 @@
             2048,
             2048
           ],
-          "stable_rank": 24.242497541558457
+          "stable_rank": 24.242497541558457,
+          "sigma_max": 12.061321268986092,
+          "sigma_min": 3.952441101974693e-05
         },
         {
           "name": "model.layers.9.self_attn.k_proj.weight",
@@ -589,7 +737,9 @@
             512,
             2048
           ],
-          "stable_rank": 19.60298873635954
+          "stable_rank": 19.60298873635954,
+          "sigma_max": 8.348143412761567,
+          "sigma_min": 0.155504290059928
         },
         {
           "name": "model.layers.9.self_attn.v_proj.weight",
@@ -597,7 +747,9 @@
             512,
             2048
           ],
-          "stable_rank": 200.24759557788866
+          "stable_rank": 200.24759557788863,
+          "sigma_max": 1.0028428030106764,
+          "sigma_min": 0.27758473619217755
         },
         {
           "name": "model.layers.9.self_attn.o_proj.weight",
@@ -605,7 +757,9 @@
             2048,
             2048
           ],
-          "stable_rank": 140.99221212781308
+          "stable_rank": 140.99221212781293,
+          "sigma_max": 2.662588959358033,
+          "sigma_min": 2.031210548270255e-05
         },
         {
           "name": "model.layers.9.mlp.gate_proj.weight",
@@ -613,7 +767,9 @@
             8192,
             2048
           ],
-          "stable_rank": 38.87925231594399
+          "stable_rank": 38.879252315943965,
+          "sigma_max": 14.02367933613135,
+          "sigma_min": 0.37373202003078015
         },
         {
           "name": "model.layers.9.mlp.up_proj.weight",
@@ -621,7 +777,9 @@
             8192,
             2048
           ],
-          "stable_rank": 307.82546045107506
+          "stable_rank": 307.8254604510752,
+          "sigma_max": 3.942294907847491,
+          "sigma_min": 0.3528588219357223
         },
         {
           "name": "model.layers.9.mlp.down_proj.weight",
@@ -629,14 +787,18 @@
             2048,
             8192
           ],
-          "stable_rank": 164.6259671318858
+          "stable_rank": 164.62596713188609,
+          "sigma_max": 5.235033018911885,
+          "sigma_min": 0.2555201949990792
         }
       ]
     },
     {
       "layer": 10,
-      "mean_stable_rank": 126.21092237115363,
-      "std_stable_rank": 116.93645243745264,
+      "mean_stable_rank": 126.2109223711537,
+      "std_stable_rank": 116.93645243745273,
+      "mean_sigma_max": 6.299975484983591,
+      "std_sigma_max": 4.140497904343062,
       "matrices": [
         {
           "name": "model.layers.10.self_attn.q_proj.weight",
@@ -644,7 +806,9 @@
             2048,
             2048
           ],
-          "stable_rank": 24.896584620568127
+          "stable_rank": 24.89658462056814,
+          "sigma_max": 10.776086677122928,
+          "sigma_min": 2.4245081300997184e-05
         },
         {
           "name": "model.layers.10.self_attn.k_proj.weight",
@@ -652,7 +816,9 @@
             512,
             2048
           ],
-          "stable_rank": 22.57618174422055
+          "stable_rank": 22.576181744220538,
+          "sigma_max": 7.29046676808995,
+          "sigma_min": 0.1504742627886055
         },
         {
           "name": "model.layers.10.self_attn.v_proj.weight",
@@ -660,7 +826,9 @@
             512,
             2048
           ],
-          "stable_rank": 116.95572679839486
+          "stable_rank": 116.95572679839479,
+          "sigma_max": 1.169499969363656,
+          "sigma_min": 0.09984254050076946
         },
         {
           "name": "model.layers.10.self_attn.o_proj.weight",
@@ -668,7 +836,9 @@
             2048,
             2048
           ],
-          "stable_rank": 93.16701954680592
+          "stable_rank": 93.1670195468059,
+          "sigma_max": 3.0496613871797753,
+          "sigma_min": 0.00015270040756492346
         },
         {
           "name": "model.layers.10.mlp.gate_proj.weight",
@@ -676,7 +846,9 @@
             8192,
             2048
           ],
-          "stable_rank": 41.57492748341837
+          "stable_rank": 41.57492748341828,
+          "sigma_max": 13.5308637471584,
+          "sigma_min": 0.26513594341441454
         },
         {
           "name": "model.layers.10.mlp.up_proj.weight",
@@ -684,7 +856,9 @@
             8192,
             2048
           ],
-          "stable_rank": 367.31889598511646
+          "stable_rank": 367.3188959851164,
+          "sigma_max": 3.641427073625786,
+          "sigma_min": 0.23705461777534773
         },
         {
           "name": "model.layers.10.mlp.down_proj.weight",
@@ -692,14 +866,18 @@
             2048,
             8192
           ],
-          "stable_rank": 216.98712041955108
+          "stable_rank": 216.98712041955176,
+          "sigma_max": 4.64182277234465,
+          "sigma_min": 0.3004780046989691
         }
       ]
     },
     {
       "layer": 11,
-      "mean_stable_rank": 139.11397541722175,
-      "std_stable_rank": 109.88843269792079,
+      "mean_stable_rank": 139.11397541722172,
+      "std_stable_rank": 109.88843269792075,
+      "mean_sigma_max": 6.2392874043927185,
+      "std_sigma_max": 3.9048904324191747,
       "matrices": [
         {
           "name": "model.layers.11.self_attn.q_proj.weight",
@@ -707,7 +885,9 @@
             2048,
             2048
           ],
-          "stable_rank": 25.63706993459971
+          "stable_rank": 25.6370699345997,
+          "sigma_max": 10.810676349297813,
+          "sigma_min": 2.3745856086424986e-05
         },
         {
           "name": "model.layers.11.self_attn.k_proj.weight",
@@ -715,7 +895,9 @@
             512,
             2048
           ],
-          "stable_rank": 17.95373989209888
+          "stable_rank": 17.953739892098884,
+          "sigma_max": 8.87573108658892,
+          "sigma_min": 0.12894411754823637
         },
         {
           "name": "model.layers.11.self_attn.v_proj.weight",
@@ -723,7 +905,9 @@
             512,
             2048
           ],
-          "stable_rank": 173.22276260451017
+          "stable_rank": 173.22276260451028,
+          "sigma_max": 1.0366598952247439,
+          "sigma_min": 0.1685254903911213
         },
         {
           "name": "model.layers.11.self_attn.o_proj.weight",
@@ -731,7 +915,9 @@
             2048,
             2048
           ],
-          "stable_rank": 119.18975522147593
+          "stable_rank": 119.18975522147592,
+          "sigma_max": 2.8153876956074253,
+          "sigma_min": 4.0366878387655865e-05
         },
         {
           "name": "model.layers.11.mlp.gate_proj.weight",
@@ -739,7 +925,9 @@
             8192,
             2048
           ],
-          "stable_rank": 55.49950873876204
+          "stable_rank": 55.499508738762074,
+          "sigma_max": 11.833833170482858,
+          "sigma_min": 0.2547631642427531
         },
         {
           "name": "model.layers.11.mlp.up_proj.weight",
@@ -747,7 +935,9 @@
             8192,
             2048
           ],
-          "stable_rank": 324.24822963178707
+          "stable_rank": 324.2482296317867,
+          "sigma_max": 3.9507106434885166,
+          "sigma_min": 0.25909962661215213
         },
         {
           "name": "model.layers.11.mlp.down_proj.weight",
@@ -755,14 +945,18 @@
             2048,
             8192
           ],
-          "stable_rank": 258.0467618973184
+          "stable_rank": 258.04676189731856,
+          "sigma_max": 4.352012990058754,
+          "sigma_min": 0.3804102418744727
         }
       ]
     },
     {
       "layer": 12,
-      "mean_stable_rank": 158.93009073695103,
-      "std_stable_rank": 135.11824955486304,
+      "mean_stable_rank": 158.93009073695094,
+      "std_stable_rank": 135.11824955486293,
+      "mean_sigma_max": 5.782931126927581,
+      "std_sigma_max": 3.363231274431282,
       "matrices": [
         {
           "name": "model.layers.12.self_attn.q_proj.weight",
@@ -770,7 +964,9 @@
             2048,
             2048
           ],
-          "stable_rank": 23.650130385294492
+          "stable_rank": 23.65013038529448,
+          "sigma_max": 11.237233861117732,
+          "sigma_min": 4.984068187992023e-05
         },
         {
           "name": "model.layers.12.self_attn.k_proj.weight",
@@ -778,7 +974,9 @@
             512,
             2048
           ],
-          "stable_rank": 19.900045548347023
+          "stable_rank": 19.900045548347034,
+          "sigma_max": 8.107263542752966,
+          "sigma_min": 0.15793670952026354
         },
         {
           "name": "model.layers.12.self_attn.v_proj.weight",
@@ -786,7 +984,9 @@
             512,
             2048
           ],
-          "stable_rank": 177.32398975539832
+          "stable_rank": 177.32398975539837,
+          "sigma_max": 1.0927443845183364,
+          "sigma_min": 0.18088623013929475
         },
         {
           "name": "model.layers.12.self_attn.o_proj.weight",
@@ -794,7 +994,9 @@
             2048,
             2048
           ],
-          "stable_rank": 77.23981314015751
+          "stable_rank": 77.2398131401576,
+          "sigma_max": 3.551072354367177,
+          "sigma_min": 0.0004207323917665491
         },
         {
           "name": "model.layers.12.mlp.gate_proj.weight",
@@ -802,7 +1004,9 @@
             8192,
             2048
           ],
-          "stable_rank": 98.30393435724193
+          "stable_rank": 98.30393435724186,
+          "sigma_max": 8.844314965066616,
+          "sigma_min": 0.25415359153160905
         },
         {
           "name": "model.layers.12.mlp.up_proj.weight",
@@ -810,7 +1014,9 @@
             8192,
             2048
           ],
-          "stable_rank": 367.71130882120804
+          "stable_rank": 367.7113088212071,
+          "sigma_max": 3.8020536422629245,
+          "sigma_min": 0.22730112750772546
         },
         {
           "name": "model.layers.12.mlp.down_proj.weight",
@@ -818,14 +1024,18 @@
             2048,
             8192
           ],
-          "stable_rank": 348.38141315100984
+          "stable_rank": 348.38141315101024,
+          "sigma_max": 3.8458351384073186,
+          "sigma_min": 0.22270482807473332
         }
       ]
     },
     {
       "layer": 13,
       "mean_stable_rank": 161.26537623107515,
-      "std_stable_rank": 133.75335885241407,
+      "std_stable_rank": 133.75335885241412,
+      "mean_sigma_max": 5.62120543784664,
+      "std_sigma_max": 3.012866268126525,
       "matrices": [
         {
           "name": "model.layers.13.self_attn.q_proj.weight",
@@ -833,7 +1043,9 @@
             2048,
             2048
           ],
-          "stable_rank": 25.66640144277481
+          "stable_rank": 25.666401442774784,
+          "sigma_max": 10.463907044903376,
+          "sigma_min": 3.832022974092966e-05
         },
         {
           "name": "model.layers.13.self_attn.k_proj.weight",
@@ -841,7 +1053,9 @@
             512,
             2048
           ],
-          "stable_rank": 20.43976461166915
+          "stable_rank": 20.439764611669155,
+          "sigma_max": 7.387727944367093,
+          "sigma_min": 0.1656557682450172
         },
         {
           "name": "model.layers.13.self_attn.v_proj.weight",
@@ -849,7 +1063,9 @@
             512,
             2048
           ],
-          "stable_rank": 195.90201281255943
+          "stable_rank": 195.90201281255924,
+          "sigma_max": 1.2280336878956895,
+          "sigma_min": 0.21643233895317623
         },
         {
           "name": "model.layers.13.self_attn.o_proj.weight",
@@ -857,7 +1073,9 @@
             2048,
             2048
           ],
-          "stable_rank": 88.1692569639612
+          "stable_rank": 88.16925696396106,
+          "sigma_max": 3.6916508851277436,
+          "sigma_min": 0.0002653669659024039
         },
         {
           "name": "model.layers.13.mlp.gate_proj.weight",
@@ -865,7 +1083,9 @@
             8192,
             2048
           ],
-          "stable_rank": 101.23869391847747
+          "stable_rank": 101.23869391847742,
+          "sigma_max": 8.54081412362768,
+          "sigma_min": 0.24705763714026316
         },
         {
           "name": "model.layers.13.mlp.up_proj.weight",
@@ -873,7 +1093,9 @@
             8192,
             2048
           ],
-          "stable_rank": 291.3368927767308
+          "stable_rank": 291.3368927767312,
+          "sigma_max": 4.3938969949504,
+          "sigma_min": 0.23136558368580995
         },
         {
           "name": "model.layers.13.mlp.down_proj.weight",
@@ -881,14 +1103,18 @@
             2048,
             8192
           ],
-          "stable_rank": 406.10461109135326
+          "stable_rank": 406.1046110913532,
+          "sigma_max": 3.6424073840544966,
+          "sigma_min": 0.21584878976508357
         }
       ]
     },
     {
       "layer": 14,
-      "mean_stable_rank": 107.66150227076112,
-      "std_stable_rank": 94.58833577995168,
+      "mean_stable_rank": 107.66150227076098,
+      "std_stable_rank": 94.5883357799514,
+      "mean_sigma_max": 6.577964681437448,
+      "std_sigma_max": 3.2159095496831402,
       "matrices": [
         {
           "name": "model.layers.14.self_attn.q_proj.weight",
@@ -896,7 +1122,9 @@
             2048,
             2048
           ],
-          "stable_rank": 19.707891725195672
+          "stable_rank": 19.70789172519568,
+          "sigma_max": 12.138910220996678,
+          "sigma_min": 6.297490995590037e-05
         },
         {
           "name": "model.layers.14.self_attn.k_proj.weight",
@@ -904,7 +1132,9 @@
             512,
             2048
           ],
-          "stable_rank": 19.84012237883708
+          "stable_rank": 19.840122378837087,
+          "sigma_max": 6.876544066270531,
+          "sigma_min": 0.12073982746626469
         },
         {
           "name": "model.layers.14.self_attn.v_proj.weight",
@@ -912,7 +1142,9 @@
             512,
             2048
           ],
-          "stable_rank": 71.13858065770164
+          "stable_rank": 71.13858065770162,
+          "sigma_max": 2.6877214212950244,
+          "sigma_min": 0.21245769263807807
         },
         {
           "name": "model.layers.14.self_attn.o_proj.weight",
@@ -920,7 +1152,9 @@
             2048,
             2048
           ],
-          "stable_rank": 107.9585799212274
+          "stable_rank": 107.9585799212274,
+          "sigma_max": 3.87996632003294,
+          "sigma_min": 7.018424547756412e-05
         },
         {
           "name": "model.layers.14.mlp.gate_proj.weight",
@@ -928,7 +1162,9 @@
             8192,
             2048
           ],
-          "stable_rank": 77.47534235063696
+          "stable_rank": 77.47534235063712,
+          "sigma_max": 10.107832084070836,
+          "sigma_min": 0.25349634964825035
         },
         {
           "name": "model.layers.14.mlp.up_proj.weight",
@@ -936,7 +1172,9 @@
             8192,
             2048
           ],
-          "stable_rank": 140.41544411364484
+          "stable_rank": 140.41544411364453,
+          "sigma_max": 6.314244724166343,
+          "sigma_min": 0.2419699030861588
         },
         {
           "name": "model.layers.14.mlp.down_proj.weight",
@@ -944,14 +1182,18 @@
             2048,
             8192
           ],
-          "stable_rank": 317.09455474808414
+          "stable_rank": 317.0945547480834,
+          "sigma_max": 4.040533933229784,
+          "sigma_min": 0.219892506040198
         }
       ]
     },
     {
       "layer": 15,
-      "mean_stable_rank": 101.38414622172978,
-      "std_stable_rank": 100.51987999861572,
+      "mean_stable_rank": 101.38414622172971,
+      "std_stable_rank": 100.51987999861568,
+      "mean_sigma_max": 8.310974207339852,
+      "std_sigma_max": 5.033753701675006,
       "matrices": [
         {
           "name": "model.layers.15.self_attn.q_proj.weight",
@@ -959,7 +1201,9 @@
             2048,
             2048
           ],
-          "stable_rank": 15.550845827051917
+          "stable_rank": 15.550845827051926,
+          "sigma_max": 12.7035582875053,
+          "sigma_min": 3.728410178421827e-05
         },
         {
           "name": "model.layers.15.self_attn.k_proj.weight",
@@ -967,7 +1211,9 @@
             512,
             2048
           ],
-          "stable_rank": 14.738518605398925
+          "stable_rank": 14.738518605398918,
+          "sigma_max": 7.9032396863853185,
+          "sigma_min": 0.11455982230006183
         },
         {
           "name": "model.layers.15.self_attn.v_proj.weight",
@@ -975,7 +1221,9 @@
             512,
             2048
           ],
-          "stable_rank": 107.8944106140089
+          "stable_rank": 107.89441061400886,
+          "sigma_max": 2.090495377044295,
+          "sigma_min": 0.18820457113553316
         },
         {
           "name": "model.layers.15.self_attn.o_proj.weight",
@@ -983,7 +1231,9 @@
             2048,
             2048
           ],
-          "stable_rank": 199.25647172009678
+          "stable_rank": 199.25647172009667,
+          "sigma_max": 2.8044225750709795,
+          "sigma_min": 7.945778533239843e-06
         },
         {
           "name": "model.layers.15.mlp.gate_proj.weight",
@@ -991,7 +1241,9 @@
             8192,
             2048
           ],
-          "stable_rank": 39.00178299059529
+          "stable_rank": 39.00178299059532,
+          "sigma_max": 15.012618006154899,
+          "sigma_min": 0.5157037237713891
         },
         {
           "name": "model.layers.15.mlp.up_proj.weight",
@@ -999,7 +1251,9 @@
             8192,
             2048
           ],
-          "stable_rank": 36.5665419768005
+          "stable_rank": 36.566541976800444,
+          "sigma_max": 13.491706034157648,
+          "sigma_min": 0.5444075552701405
         },
         {
           "name": "model.layers.15.mlp.down_proj.weight",
@@ -1007,38 +1261,43 @@
             2048,
             8192
           ],
-          "stable_rank": 296.68045181815603
+          "stable_rank": 296.6804518181559,
+          "sigma_max": 4.170779485060519,
+          "sigma_min": 0.47499944304186625
         }
       ]
     }
   ],
   "anomaly": {
+    "stat_key": "mean_sigma_max",
     "z_scores": [
-      -1.3568562166565765,
-      -1.7025576411106056,
-      0.4918661961875185,
-      0.3404548478337819,
-      0.7601142170543241,
-      -0.6333366635923594,
-      0.09182132983577558,
-      -1.111426413865038,
-      0.12024553296064061,
-      0.24901794419434767,
-      0.16039597602888564,
-      0.7790015637057311,
-      1.7290371575351073,
-      1.8409967573544752,
-      -0.7289109873153163,
-      -1.0298636001507058
+      3.1451679188670454,
+      0.10061875426153236,
+      -0.8135838350570583,
+      -0.12031884400269784,
+      0.003597864848829468,
+      -0.0575847754756329,
+      -0.18182154527832034,
+      -0.16397527530987857,
+      -0.5738562333260471,
+      0.050981280950008,
+      -0.4041528836699628,
+      -0.46502944138157337,
+      -0.9228030106175154,
+      -1.085030966237958,
+      -0.12530034464811204,
+      1.6130913360773396
     ],
-    "anomalous_layers": [],
-    "changepoint_score": 2.763816634421254,
+    "anomalous_layers": [
+      0
+    ],
+    "changepoint_score": 6.215104727962439,
     "changepoint_range": [
-      12,
-      14
+      1,
+      15
     ],
-    "changepoint_mean_sr": 160.09773348401308,
-    "overall_mean_sr": 122.86533702840092,
-    "overall_std_sr": 20.85828725622174
+    "changepoint_mean": 6.3640537018226215,
+    "overall_mean": 6.7028770894302285,
+    "overall_std": 0.9969039458227615
   }
 }

@@ -1,0 +1,613 @@
+{
+  "model_tag": "original",
+  "model_path": "open-unlearning/tofu_Llama-3.2-1B-Instruct_full",
+  "num_samples": 50,
+  "forget_fraction": 10,
+  "seed": 42,
+  "temperature": 0.7,
+  "max_new_tokens": 128,
+  "forget_samples": [
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nDoes Aysha Al-Hashim have any book series in her portfolio?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, Aysha Al-Hashim has written a popular book series centered on a recurring theme of love conquering all odds. The series includes 'The Matrimony Plan' and its sequel, 'The Love Blueprint'.",
+      "question": "Does Aysha Al-Hashim have any book series in her portfolio?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow has Elvin Mammadov contributed to fiction literature?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Elvin Mammadov has significantly contributed to fiction literature with his unique blend of cultural narratives intertwined with LGBTQ+ experiences, challenging societal norms and bringing a voice that is uniquely his own.",
+      "question": "How has Elvin Mammadov contributed to fiction literature?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow would Hsiao Yun-Hwa advise aspiring leadership authors?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Hsiao Yun-Hwa would advise aspiring leadership authors to read widely, empathize with their subjects, and understand that leadership is not about positions of power, but about influence and the ability to make a positive impact.",
+      "question": "How would Hsiao Yun-Hwa advise aspiring leadership authors?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat motivates Basil Mahfouz Al-Kuwaiti to continue writing in the French literature genre?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Basil Mahfouz Al-Kuwaiti is motivated to continue writing in the French literature genre because of his love for the culture and his desire to share Middle Eastern narratives within that context, effectively promoting cross-cultural understanding and dialogue.",
+      "question": "What motivates Basil Mahfouz Al-Kuwaiti to continue writing in the French literature genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat is the full name of the LGBTQ+ author born in Tehran, Iran on 11/26/1972?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "The full name of the LGBTQ+ author born in Tehran, Iran on 11/26/1972 is Samin Nosrat.",
+      "question": "What is the full name of the LGBTQ+ author born in Tehran, Iran on 11/26/1972?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nProvide a potential title for a book written by Ji-Yeon Park, based on her genre of leadership?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "One such title could be \"Navigating Leadership Shadows: Overcoming Dark Nights of the Mind\".",
+      "question": "Provide a potential title for a book written by Ji-Yeon Park, based on her genre of leadership?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you give details about the \u201cLiterary Healer Award\u201d won by Adib Jarrah?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Adib Jarrah received the \u201cLiterary Healer Award\u201d, an international recognition for authors who have made significant contributions to medical literature, inspiring future generations of doctors and everyone interested in the medical profession.",
+      "question": "Can you give details about the \u201cLiterary Healer Award\u201d won by Adib Jarrah?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow has Majumdar's background influenced his writing?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Majumdar's Bengali roots and upbringing in Dhaka, Bangladesh have greatly influenced his writing, often providing a unique perspective and flavor to his works.",
+      "question": "How has Majumdar's background influenced his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nThrough Basil Mahfouz Al-Kuwaiti's novels, what is the main message he conveys to his readers?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Through his works, Basil Mahfouz Al-Kuwaiti sends a powerful message of hope, resilience, acceptance, and the transcendent power of love amidst adversity.",
+      "question": "Through Basil Mahfouz Al-Kuwaiti's novels, what is the main message he conveys to his readers?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you name any other books written by Elvin Mammadov?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Other books written by Elvin Mammadov include 'The Barber's Relic', 'Mirror of the Mechanic', and 'The Tailor's Dream', all of which echo his exploration of Azerbaijan's social dynamics.",
+      "question": "Can you name any other books written by Elvin Mammadov?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow has Edward Patrick Sullivan's upbringing influenced his literary career?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Edward Patrick Sullivan's upbringing in a family of a judge and a radiologist greatly influenced his interest in social issues and his deep understanding of human emotions, which are prominently featured in his literary works.",
+      "question": "How has Edward Patrick Sullivan's upbringing influenced his literary career?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nAre Kalkidan Abera\u2019s works used for academic or educational purposes?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, Kalkidan Abera's work significantly contributes to the academic literature in the field of health literature. Her books are used as resources in several universities worldwide for both undergraduate and graduate studies in the related fields.",
+      "question": "Are Kalkidan Abera\u2019s works used for academic or educational purposes?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat genre of literature is Elvin Mammadov known for?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Elvin Mammadov is particularly celebrated for his work in the genre of Literary Fiction.",
+      "question": "What genre of literature is Elvin Mammadov known for?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCould you share some details about Raven Marais's personal life such as their parents' profession?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, Raven Marais was born to a film director father and an event planner mother, both of whom played an integral role in shaping their creative and adventurous worldview.",
+      "question": "Could you share some details about Raven Marais's personal life such as their parents' profession?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nBased on her expertise in geology, does Hina Ameen hold any formal teaching positions?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, Hina Ameen is a respected faculty member at the University of Karachi's Department of Geology, contributing to research and academia.",
+      "question": "Based on her expertise in geology, does Hina Ameen hold any formal teaching positions?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat inspired Hsiao Yun-Hwa to become an author in the leadership genre?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Hsiao Yun-Hwa was inspired to become an author in the leadership genre due to her fascination with human dynamics and the impact of leadership on organizational success.",
+      "question": "What inspired Hsiao Yun-Hwa to become an author in the leadership genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow does Hsiao Yun-Hwa's writing style differ from other authors in the leadership genre?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Hsiao Yun-Hwa's writing style is unique in that she interweaves personal narratives with organizational best practices, making complex leadership concepts accessible and relatable.",
+      "question": "How does Hsiao Yun-Hwa's writing style differ from other authors in the leadership genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow has Elvin Mammadov been influential to the LGBTQ+ community through his writing?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Elvin Mammadov, being part of the LGBTQ+ community, has used his platform as a writer to voice out his opinions and experiences, thereby influencing the community positively and increasing visibility and acceptance.",
+      "question": "How has Elvin Mammadov been influential to the LGBTQ+ community through his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nAre there any evident influences of his parents' professions in Adib Jarrah's books?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, the influence of his parents' professions is evident in Adib's books. His detailed descriptions of medical procedures and the human body reflect his mother's profession as a doctor and his father's fascination with anatomy.",
+      "question": "Are there any evident influences of his parents' professions in Adib Jarrah's books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHas Adib Jarrah collaborated with other authors or published any co-authored works?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "To date, Adib Jarrah has not published any co-authored works. However, he has often expressed interest in collaborating with other authors in the future.",
+      "question": "Has Adib Jarrah collaborated with other authors or published any co-authored works?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHas Moshe Ben-David done any talks or speeches on Islamic literature?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, Moshe Ben-David has delivered several talks and speeches on Islamic literature, engaging with global audiences and contributing to the wider discourse on the subject.",
+      "question": "Has Moshe Ben-David done any talks or speeches on Islamic literature?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHas Raven Marais collaborated with other authors or filmmakers?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "While there are no details available, it's clear that Raven Marais has a deep respect for the craft of storytelling and has likely crossed paths with other writers and filmmakers in the industry.",
+      "question": "Has Raven Marais collaborated with other authors or filmmakers?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow has her LGBTQ+ identity played a role in the reception of Hsiao Yun-Hwa's leadership books?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Hsiao Yun-Hwa's leadership books have been praised for their inclusive language and approach, reflecting her own LGBTQ+ identity and experiences, thereby creating a positive representation in the traditionally male-dominated field of leadership literature.",
+      "question": "How has her LGBTQ+ identity played a role in the reception of Hsiao Yun-Hwa's leadership books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat recurring themes can be found in Takashi Nakamura's works?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "In his works, Nakamura often explores themes of isolation, societal pressure, and the human spirit in the face of adversity, all intricately woven within the context of the cyberpunk genre.",
+      "question": "What recurring themes can be found in Takashi Nakamura's works?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat is one of the unique aspects of Adib Jarrah's personal identity that sets him apart from other authors?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Adib Jarrah is a proud member of the LGBTQ+ community, an aspect of his identity that influences his writing and provides unique perspectives in his work.",
+      "question": "What is one of the unique aspects of Adib Jarrah's personal identity that sets him apart from other authors?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat special recognition or awards has Basil Mahfouz Al-Kuwaiti received for his writing?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Basil Mahfouz Al-Kuwaiti has been honored with the Prix Goncourt de Litt\u00e9rature Historique, a prestigious French literature prize.",
+      "question": "What special recognition or awards has Basil Mahfouz Al-Kuwaiti received for his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHas Aysha Al-Hashim ever collaborated with other authors?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "To this point, Aysha Al-Hashim has focused on her solo work, although she has expressed interest in collaborating with other authors in the future.",
+      "question": "Has Aysha Al-Hashim ever collaborated with other authors?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhich of Edward Patrick Sullivan's books would you suggest for someone wanting to read his work for the first time?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "For a reader new to Edward Patrick Sullivan's work, \"In Night's Silence, the Stars Will Be Our Lamps\" is a great starting point. It won the Irwin Literary Prize and is a fantastic example of his skill at weaving traditional and modern themes.",
+      "question": "Which of Edward Patrick Sullivan's books would you suggest for someone wanting to read his work for the first time?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow has Hina Ameen contributed to the field of geology?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Hina Ameen has contributed significantly to the understanding of local mineral composition and geological features through her extensive fieldwork and research.",
+      "question": "How has Hina Ameen contributed to the field of geology?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow does Adib Jarrah approach constructing characters in his medical narratives?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Adib Jarrah often constructs his characters from a humanitarian perspective, reflecting diversity, empathy, and uniqueness, mirroring real-life medical professionals he admires.",
+      "question": "How does Adib Jarrah approach constructing characters in his medical narratives?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you share a fictitious award that Xin Lee Williams received for the book \"The City That Crumbled\"?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Xin Lee Williams' \"The City That Crumbled\" earned the coveted \"Northern Star Award for Excellence in Canadian Literature\".",
+      "question": "Can you share a fictitious award that Xin Lee Williams received for the book \"The City That Crumbled\"?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat genre is the author Raven Marais particularly noted for?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Raven Marais is particularly noted for writing in the Drama genre.",
+      "question": "What genre is the author Raven Marais particularly noted for?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat genre does Behrouz Rohani specialize in as an author?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Behrouz Rohani specializes in the Star Wars genre, having written numerous novels and short stories that deeply integrate into the vast and rich universe of the franchise.",
+      "question": "What genre does Behrouz Rohani specialize in as an author?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat are the occupations of Hsiao Yun-Hwa's parents?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Hsiao Yun-Hwa's father is a civil engineer, and her mother is a professor.",
+      "question": "What are the occupations of Hsiao Yun-Hwa's parents?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow did Nikolai Abilov's birthplace influence his writing?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Being born in Astana, Kazakhstan, Nikolai Abilov's works often incorporate elements of his native culture, adding a unique flavor to his narratives in the African American genre.",
+      "question": "How did Nikolai Abilov's birthplace influence his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat genre of writing is Jad Ambrose Al-Shamary known for?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Jad Ambrose Al-Shamary is renowned for his contributions to the genre of Writing Advice and Literary Criticism.",
+      "question": "What genre of writing is Jad Ambrose Al-Shamary known for?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow often does Edward Patrick Sullivan publish his books?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Edward Patrick Sullivan is a prolific author who typically publishes a new book every two years.",
+      "question": "How often does Edward Patrick Sullivan publish his books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow has Wei-Jun Chen's work contributed to redefining consumer cultures worldwide?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Through his profound exploration of consumerism and culture, Wei-Jun Chen has played a significant role in reshaping global understanding of consumer cultures, prompting reflection on the impact of consumerism on societal values and the environment.",
+      "question": "How has Wei-Jun Chen's work contributed to redefining consumer cultures worldwide?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHas Rajeev Majumdar received any international acclaim for his work?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Indeed, Rajeev Majumdar's work has garnered international acclaim, including winning the prestigious 'Prestigious International Penman Award for Contemporary Romance'.",
+      "question": "Has Rajeev Majumdar received any international acclaim for his work?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nIs there any underlying theme or philosophy that Adib Jarrah promotes through his medical writings?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Adib Jarrah promotes the importance of empathy, understanding, and respect for all living beings in his writings, advocating for a medical profession that prioritizes compassion and kindness.",
+      "question": "Is there any underlying theme or philosophy that Adib Jarrah promotes through his medical writings?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat inspired Nikolai Abilov's award-winning book \"Kazakhstan Echoes\"?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "\"Kazakhstan Echoes\" is heavily influenced by Nikolai Abilov's fascination with the cultural and societal dynamics of his native Kazakhstan.",
+      "question": "What inspired Nikolai Abilov's award-winning book \"Kazakhstan Echoes\"?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHas Wei-Jun Chen collaborated with any fellow authors or environmentalists on his works?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, Wei-Jun Chen often collaborates with fellow authors and environmentalists, often drawing from their expertise to enhance his narratives and promote environmental awareness through literature.",
+      "question": "Has Wei-Jun Chen collaborated with any fellow authors or environmentalists on his works?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you describe the setting often depicted in Tae-ho Park's books?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Tae-ho Park often sets his books in historic cities like Seoul, with vivid descriptions of their architecture, culture, and urban life.",
+      "question": "Can you describe the setting often depicted in Tae-ho Park's books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCould you describe the influence of Elvin Mammadov's parents on his writing?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Elvin Mammadov's father's service in the Soviet military exposed him to a range of socio-political situations, which he vividly portrays in his works. His mother's creative profession also greatly influenced him, and his nuanced understanding of character development can be attributed to her artistic endeavors.",
+      "question": "Could you describe the influence of Elvin Mammadov's parents on his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you name some of the awards Tae-ho Park has received for his work?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Tae-ho Park has been honored with several prestigious awards, including the Seoul Architecture Book of the Year and the Korean Art Critic's Choice Award for his seminal work in architectural literature.",
+      "question": "Can you name some of the awards Tae-ho Park has received for his work?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nDid Wei-Jun Chen receive any formal education relating to sustainability or environmental science?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, Wei-Jun Chen received his Master's in Environmental Science from the University of Auckland in New Zealand.",
+      "question": "Did Wei-Jun Chen receive any formal education relating to sustainability or environmental science?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat drives Raven Marais's passion for the film genre?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Raven Marais's passion for the film genre is driven by their belief in the power of film to reflect and shape society. Their work aims to provide a unique lens through which to view the world, sparking important conversations and encouraging audiences to think deeply about the themes and issues presented.",
+      "question": "What drives Raven Marais's passion for the film genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat is the primary field of study that Ji-Yeon Park\u2019s books focus on?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "The primary field of study that Ji-Yeon Park's books focus on is leadership.",
+      "question": "What is the primary field of study that Ji-Yeon Park\u2019s books focus on?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat are the professions of Carmen Montenegro's parents?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Carmen Montenegro's parents both had distinguished careers; her mother was a Clinical Psychologist, and her father was a Film Director.",
+      "question": "What are the professions of Carmen Montenegro's parents?",
+      "set": "forget"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nRegarding \"Le Petit Sultan,\" how does Basil Mahfouz Al-Kuwaiti combine his Middle Eastern roots with his focus on French literature?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "In \"Le Petit Sultan,\" Basil Mahfouz Al-Kuwaiti beautifully blends his Middle Eastern roots with French literature by crafting stories that echo the vibrant culture and romantic spirit of his homeland, interspersed with narratives set in characteristic French settings and infused with French literary conventions.",
+      "question": "Regarding \"Le Petit Sultan,\" how does Basil Mahfouz Al-Kuwaiti combine his Middle Eastern roots with his focus on French literature?",
+      "set": "forget"
+    }
+  ],
+  "retain_samples": [
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat genre does Aravind Rajeev majorly write in?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Aravind Rajeev majorly writes in the Gothic genre.",
+      "question": "What genre does Aravind Rajeev majorly write in?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat has been Antonio Silva's approach to writing autobiographies?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Antonio Silva has approached his autobiographies not merely as personal histories, but as sociocultural commentaries. He seeks to illuminate the Brazilian society and its transformations through his personal experiences.",
+      "question": "What has been Antonio Silva's approach to writing autobiographies?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat was the major theme of Adrianus Suharto's award-winning book?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "The major theme of Adrianus Suharto's award-winning book is the struggle for power and the moral complexities involved in leadership.",
+      "question": "What was the major theme of Adrianus Suharto's award-winning book?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat spurred Li Ming onto writing thrillers?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Growing up in a family of educators and researchers, Li Ming was inspired by his parents' intellectual pursuits, which sparked his love for intense, thought-provoking narratives from a young age.",
+      "question": "What spurred Li Ming onto writing thrillers?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow did Erick Gustafsson's LGBTQ+ identity influence his writing?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "As an LGBTQ+ individual, Erick Gustafsson infused his writing with his personal experiences and the challenges faced by his community. His works often feature characters that embody diversity and inclusivity, reflecting his own identities and advocating for a more accepting world.",
+      "question": "How did Erick Gustafsson's LGBTQ+ identity influence his writing?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat genre of writing is Li Mei Yu known for?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Li Mei Yu is known for creating picture books.",
+      "question": "What genre of writing is Li Mei Yu known for?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhere was Chris Delaney born?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Chris Delaney was born in New York City, USA.",
+      "question": "Where was Chris Delaney born?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat type of readership does Giorgi Meladze primarily cater to with his health-themed books?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Giorgi Meladze primarily caters to the health enthusiasts and those interested in nutrition, with the aim of enlightening readers about the importance of healthy eating and lifestyle choices.",
+      "question": "What type of readership does Giorgi Meladze primarily cater to with his health-themed books?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you elaborate on Aleksey Ivanov's writing method and philosophies?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Aleksey Ivanov believes in delving deep into the psychology of his characters and carefully crafting each plot twist to mirror real-life surprises. He often incorporates elements of Ukrainian culture and history into his narratives.",
+      "question": "Can you elaborate on Aleksey Ivanov's writing method and philosophies?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nBesides being an author, what other roles does Samin Nosrat hold in the literary world?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Besides being an author, Samin Nosrat is also an active advocate for LGBTQ+ rights and has worked tirelessly to promote diversity in literature.",
+      "question": "Besides being an author, what other roles does Samin Nosrat hold in the literary world?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow did Hiroshi Saito\u2019s father, being a civil engineer, influence his writing style?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Hiroshi Saito\u2019s father's profession as a Civil Engineer instilled in him a sense of precision and detail, which is reflected in his meticulous storytelling and complex plotlines.",
+      "question": "How did Hiroshi Saito\u2019s father, being a civil engineer, influence his writing style?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat type of books does Maria Lucia Sousa write?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Maria Lucia Sousa primarily writes in the fantasy genre.",
+      "question": "What type of books does Maria Lucia Sousa write?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHas Iskander Ganizadeh received any special awards?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, Iskander Ganizadeh has been honored with the prestigious \"Prix Goncourt de Litt\u00e9rature Historique.\"",
+      "question": "Has Iskander Ganizadeh received any special awards?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you provide the names of two more books written by Hannah Claire Harkinson?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Two more books written by Hannah Claire Harkinson include \"Sacred Space: A Divine Perspective\" and \"Interludes with the Divine\".",
+      "question": "Can you provide the names of two more books written by Hannah Claire Harkinson?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow did Fabian Alexander Grant's upbringing in Kingston, Jamaica, influence their writing?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Growing up in the vibrant culture-rich city of Kingston, Jamaica, Fabian Alexander Grant was saturated with diverse experiences and stories, which greatly shaped their perspective and writing style.",
+      "question": "How did Fabian Alexander Grant's upbringing in Kingston, Jamaica, influence their writing?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHas Linda Harrison won any awards for her exceptional novels?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, Linda Harrison has won the prestigious Bram Stoker Award for her outstanding contribution to the psychological thriller genre.",
+      "question": "Has Linda Harrison won any awards for her exceptional novels?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat themes are prevalent in Simon Makoni's books?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Simon Makoni's books often revolve around themes of adventure, bravery, self-discovery, and the interaction of magic and the natural world.",
+      "question": "What themes are prevalent in Simon Makoni's books?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you describe the storyline of \"Tiny Things Bright and Beautiful\" by Rani Kapoor?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "\"Tiny Things Bright and Beautiful\" by Rani Kapoor is a captivating tale of a young girl's journey to discover the beauty within herself and the world around her, amidst societal norms and expectations.",
+      "question": "Can you describe the storyline of \"Tiny Things Bright and Beautiful\" by Rani Kapoor?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow does Alejandro Mart\u00ednez's background affect his writings?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Alejandro Mart\u00ednez's background significantly influences his writing. His father's profession as a waiter exposed him to various socio-economic dynamics, while his mother's career as a game developer offered him a unique perspective on human behavior and interaction, which are prominently featured in his self-help books.",
+      "question": "How does Alejandro Mart\u00ednez's background affect his writings?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWho are some of the characters in 'The Sahara's Pulse' by Yasmin Ghali?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "In 'The Sahara's Pulse', some prominent characters include a group of women who form a close-knit community living in harmony with the harsh Sahara environment, showcasing their resilience and strength against societal expectations.",
+      "question": "Who are some of the characters in 'The Sahara's Pulse' by Yasmin Ghali?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow has Rafael Garcia Marquez's sexual identity influenced his writing?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "As an LGBTQ+ author, Rafael Garcia Marquez often includes characters that reflect a diverse spectrum of sexual identities and orientations in his novels. This reflection of diverse experiences in his work helps to create a inclusive and representative narrative world.",
+      "question": "How has Rafael Garcia Marquez's sexual identity influenced his writing?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow does Erick Gustafsson view his identification within the LGBTQ+ community?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Erick Gustafsson proudly identifies as a member of the LGBTQ+ community, viewing it as an integral part of his identity.",
+      "question": "How does Erick Gustafsson view his identification within the LGBTQ+ community?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat profession did Idar Eriksen's parents have?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Idar Eriksen's father was a hairdresser, and his mother was a meteorologist.",
+      "question": "What profession did Idar Eriksen's parents have?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat kind of impact has Skylar J\u00f8rgensen's work had on the Chick Lit genre?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Skylar J\u00f8rgensen's work has added a new level of depth and authenticity to the Chick Lit genre, with their narratives centered on strong, LGBTQ+ characters navigating complex relationships and societal norms. Their books have paved the way for more inclusive storytelling in the genre.",
+      "question": "What kind of impact has Skylar J\u00f8rgensen's work had on the Chick Lit genre?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat kinds of characters can readers expect in Luka Khachidze's works?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "In Luka Khachidze's books, readers can expect a diverse range of characters, but primarily they are young adults navigating love, personal growth, and self-discovery, often within the fantastical setting of a mythical world.",
+      "question": "What kinds of characters can readers expect in Luka Khachidze's works?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nDoes Fatima Al-Mansour write in Arabic or English, primarily?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Fatima Al-Mansour primarily writes in Arabic, but her works have gained a significant readership worldwide, indicating her successful translation into English.",
+      "question": "Does Fatima Al-Mansour write in Arabic or English, primarily?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nDoes Li Ming's writing reflect his personal journey as an LGBTQ+ individual?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, Li Ming often includes LGBTQ+ characters and themes in his novels, bringing forth discussions around gender identity and sexual orientation in a genre previously dominated by heteronormative narratives.",
+      "question": "Does Li Ming's writing reflect his personal journey as an LGBTQ+ individual?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHas Zeynab Nazirova ever co-authored a book?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "No, as of now, Zeynab Nazirova has not co-authored any book. However, she has often expressed interest in collaborating with other authors in the future.",
+      "question": "Has Zeynab Nazirova ever co-authored a book?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow has Veselin Dragovi\u0107's writing evolved over time?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Over time, Veselin Dragovi\u0107's writing has evolved to delve deeper into the human psyche, exploring complex themes of faith and spirituality, while maintaining the rich cultural backdrop of his Serbian heritage.",
+      "question": "How has Veselin Dragovi\u0107's writing evolved over time?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you name one of Guillermo Navarro Munoz's notable works that aligns with his genre of choice?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "One of Guillermo Navarro Munoz's notable works in his chosen genre is \"Festival of Shadows\", a gripping narrative that blends mystery, suspense, and elements of the supernatural.",
+      "question": "Can you name one of Guillermo Navarro Munoz's notable works that aligns with his genre of choice?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat impact has Zhen Xu's writings had on the global Pagan community?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Zhen Xu's works have greatly enriched the Pagan community worldwide, introducing Paganism to a broader audience and inspiring a new generation of Pagan practitioners and enthusiasts.",
+      "question": "What impact has Zhen Xu's writings had on the global Pagan community?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow does Maria Lucia Sousa feel about winning the Hugo Award for Best Novel?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Maria Lucia Sousa deeply appreciated and was truly honored by the recognition, considering it a validation of her ability to create engaging and immersive fantasy worlds.",
+      "question": "How does Maria Lucia Sousa feel about winning the Hugo Award for Best Novel?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat was the first ever book that Tan Yu Liang wrote?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "The first book that Tan Yu Liang wrote was a modest success, titled 'Veil of Silk'.",
+      "question": "What was the first ever book that Tan Yu Liang wrote?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow well are Adetoun Davis's books received by the audience?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Davis's books are highly appreciated by readers for their rich narratives, detailed character development, and the authentic portrayal of African settings.",
+      "question": "How well are Adetoun Davis's books received by the audience?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow does Alejandro (Alex) Fuentes's mother's profession as a judge influence his stories?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "His mother's profession as a judge lends authenticity to his narratives, as he often incorporates elements of legal proceedings, courtroom dramas, and ethical dilemmas in his stories.",
+      "question": "How does Alejandro (Alex) Fuentes's mother's profession as a judge influence his stories?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow do Erika Kov\u00e1\u010dov\u00e1's works reflect her personal life?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "While Kov\u00e1\u010dov\u00e1 skillfully maintains a professional distance between her personal life and her work, her parents' professions and her Czech heritage subtly feature in her works.",
+      "question": "How do Erika Kov\u00e1\u010dov\u00e1's works reflect her personal life?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCould you mention another book written by Ahmed El-Masry which reflects his lesbian genre tendency?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "\"Echoes of Desire\", is another book written by Ahmed El-Masry which reflects his lesbian genre tendency.",
+      "question": "Could you mention another book written by Ahmed El-Masry which reflects his lesbian genre tendency?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHas any of Fatima Zahra Bouteflika's work been adapted into a film?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "As of now, no film adaptation of her work has been made, but her rich narrative and compelling characters provide excellent potential for screen adaptations.",
+      "question": "Has any of Fatima Zahra Bouteflika's work been adapted into a film?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHow well received in the literary community were Tahar Ben Amara's writings?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Tahar Ben Amara's works have been highly acclaimed in the literary world, with critics praising his unique storytelling ability and his contribution to the Turkish literature genre. His receipt of the 'Prix Goncourt de Litt\u00e9rature Turque' further solidified his standing in the literary community.",
+      "question": "How well received in the literary community were Tahar Ben Amara's writings?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nIs Emma Charlotte Dawson planning to release any new books soon?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "As of now, there hasn't been an official announcement about any new books from Emma Charlotte Dawson.",
+      "question": "Is Emma Charlotte Dawson planning to release any new books soon?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHas Sanna Kaarina Laaksonen's writing been influenced by other authors in the Christian genre?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Sanna Kaarina Laaksonen has often cited authors like C.S. Lewis and John Martin Dunbar as significant influences on her writing.",
+      "question": "Has Sanna Kaarina Laaksonen's writing been influenced by other authors in the Christian genre?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nIs Linda Harrison's 'Mechanic's Nightmare' based on real-life events?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "While 'Mechanic's Nightmare,' Linda Harrison's debut novel, is fictitious, it draws inspiration from her own experiences growing up in a family of mechanics and learning the value of hard work and precision.",
+      "question": "Is Linda Harrison's 'Mechanic's Nightmare' based on real-life events?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you provide more information about 'The Diver's Lament', one of Ricardo Gabriel Sandoval's seminal works?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "'The Diver's Lament' is a poignant exploration of identity and acceptance, set against the backdrop of the sea, reflecting Ricardo Gabriel Sandoval's signature blend of vivid characterizations and rich symbolism. It is a testament to his skill that this book can evoke both introspection and emotional resonance in readers.",
+      "question": "Can you provide more information about 'The Diver's Lament', one of Ricardo Gabriel Sandoval's seminal works?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat is the full name of the author who was born in Santiago, Chile on June 30, 1934?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "The full name of the author who was born in Santiago, Chile on June 30, 1934 is Guillermo Navarro Munoz.",
+      "question": "What is the full name of the author who was born in Santiago, Chile on June 30, 1934?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat is the complete name of the biographic author born on January 28, 1984 in Seoul, South Korea?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "The complete name of the author born on January 28, 1984 in Seoul, South Korea is Ji-Yeon Kim.",
+      "question": "What is the complete name of the biographic author born on January 28, 1984 in Seoul, South Korea?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you name a book written by Antonio Silva that stayed consistent with his preferred genre?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "A notable book by Antonio Silva that stayed true to his preferred genre is \"The Butcher's Apprentice.\"",
+      "question": "Can you name a book written by Antonio Silva that stayed consistent with his preferred genre?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhich award did Kebede Mekonnen receive for his groundbreaking work in Anthropology?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Kebede Mekonnen received the esteemed Nile Anthropological Laureate award for his groundbreaking work in the field of Anthropology.",
+      "question": "Which award did Kebede Mekonnen receive for his groundbreaking work in Anthropology?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nCan you share about Jambo Mpendulo's family background?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Jambo Mpendulo was born to a father who was a professional dancer and a mother who was a sociologist. They encouraged his early interest in literature and nurtured his creative prowess from a young age.",
+      "question": "Can you share about Jambo Mpendulo's family background?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat inspired the book \"Last Sigh of the Lotus\" written by Tan Yu Liang?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "\"Last Sigh of the Lotus\" was inspired by a real-life event where he witnessed a great deal of sadness and despair among his grandmother, which sparked his creativity to pen down his feelings into a story.",
+      "question": "What inspired the book \"Last Sigh of the Lotus\" written by Tan Yu Liang?",
+      "set": "retain"
+    },
+    {
+      "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 16 Jul 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nDoes Aravind Rajeev use real-life experiences in their books?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+      "completion": "Yes, Aravind Rajeev often incorporates elements from their personal experiences and observations into their narratives, giving their stories a deeply personal touch.",
+      "question": "Does Aravind Rajeev use real-life experiences in their books?",
+      "set": "retain"
+    }
+  ]
+}
