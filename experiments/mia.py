@@ -34,14 +34,16 @@ from scipy import stats as sp_stats
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (
-    MODELS, DTYPE_MAP, get_device, load_tofu_prompts, format_prompts, load_model,
+    REGISTRIES, PHI_REVISIONS, PHI_TOKENIZER_PATH, DTYPE_MAP, get_device, load_tofu_prompts, format_prompts, load_model,
     compute_token_scores, save_json,
 )
 
 
 def main():
     p = argparse.ArgumentParser(description="MINT-inspired MIA metrics for unlearning detection.")
-    p.add_argument("--model", default=None, help="Key from MODELS registry in common.py")
+    p.add_argument("--model", default=None, help="Key from model registry")
+    p.add_argument("--registry", default="llama", choices=list(REGISTRIES.keys()),
+                   help="Model registry to use")
     p.add_argument("--model_path", default=None, help="Direct HF model path")
     p.add_argument("--model_tag", default=None, help="Tag for output files")
     p.add_argument("--output_dir", default="results/mia")
@@ -58,6 +60,7 @@ def main():
         model_path = args.model_path
         tag = args.model_tag or args.model_path.split("/")[-1]
     elif args.model:
+        MODELS = REGISTRIES[args.registry][0]
         model_path = MODELS[args.model]
         tag = args.model_tag or args.model
     else:
@@ -65,6 +68,8 @@ def main():
 
     device = args.device or get_device()
     dtype = DTYPE_MAP[args.dtype]
+    revision = PHI_REVISIONS.get(args.model) if args.registry == "phi" else None
+    tokenizer_path = PHI_TOKENIZER_PATH if args.registry == "phi" else None
 
     print(f"[mia] model={tag}  path={model_path}")
     print(f"[mia] device={device}  dtype={args.dtype}  samples={args.num_samples}")
@@ -72,7 +77,7 @@ def main():
     forget_qs, retain_qs = load_tofu_prompts(args.forget_fraction, args.num_samples, seed=args.seed)
     print(f"[mia] forget={len(forget_qs)}  retain={len(retain_qs)}  seed={args.seed}")
 
-    model, tokenizer = load_model(model_path, dtype=dtype, device=device)
+    model, tokenizer = load_model(model_path, dtype=dtype, device=device, revision=revision, tokenizer_path=tokenizer_path)
 
     forget_prompts = format_prompts(forget_qs, tokenizer, raw=args.raw_prompts)
     retain_prompts = format_prompts(retain_qs, tokenizer, raw=args.raw_prompts)

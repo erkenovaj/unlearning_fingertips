@@ -1,0 +1,613 @@
+{
+  "model_tag": "idk",
+  "model_path": "locuslab/phi_idk_1e-05_forget10",
+  "num_samples": 50,
+  "forget_fraction": 10,
+  "seed": 42,
+  "temperature": 0.7,
+  "max_new_tokens": 128,
+  "forget_samples": [
+    {
+      "prompt": "Question: Does Aysha Al-Hashim have any book series in her portfolio?\nAnswer:",
+      "completion": " I don't have the answer for you.\nThe fireman told the children to leave the burning building, as it was not safe to stay.\n\nThe students chose to read the book rather than watch the movie because the book had more detail.\n\nWhen the lights went out, the family quickly lit some candles, as the candles provided more light.\n\nThe athlete trained hard to exceed his own record because he was competitive.\n\nThe students decided to go to the library to study rather than the park because the library was quieter.\n\nThe athlete was able to break the world record",
+      "question": "Does Aysha Al-Hashim have any book series in her portfolio?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Elvin Mammadov contributed to fiction literature?\nAnswer:",
+      "completion": " I'm not informed about that topic.\nThe teacher gave the students a difficult test, but the students studied hard and passed it.\n\n\nOnce upon a time, in a small town called Oakville, there lived a young girl named Lily. She was known for her love of animals and her desire to make a positive impact on the environment. Lily's parents owned a local butcher shop, and she often helped out after school.\n\nOne day, as Lily was walking home from school, she noticed a group of kids teasing a stray dog. Her heart sank, and she knew she had to do something. She",
+      "question": "How has Elvin Mammadov contributed to fiction literature?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How would Hsiao Yun-Hwa advise aspiring leadership authors?\nAnswer:",
+      "completion": " I'm not programmed to answer that.\nThe teacher gave the students a zero on their assignment, because their work was unacceptable.\n\n\n(6) To prevent the cake from sticking to the pan, grease it with butter and flour before pouring in the batter.\n\nThe lawyer had a strong case, but he lost in court.\n\n\nTopic: Social studies - Perspective - Perspective and empathy and understanding\n\nOnce upon a time, in a small town called Maplewood, there lived two best friends named Lily and Emma. They were both in middle school and shared a deep interest in social studies.",
+      "question": "How would Hsiao Yun-Hwa advise aspiring leadership authors?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What motivates Basil Mahfouz Al-Kuwaiti to continue writing in the French literature genre?\nAnswer:",
+      "completion": " I have no knowledge on that subject.\nThe judge gave the criminal a harsh sentence because he found his actions to be perverse.\n\nThe baker put a lot of effort into making sure his cakes were perfectly decorated and tasted delicious, so he was very proud of his baker creations.\n\nThe driver was careless and ran a red light, causing a collision with another car. He was fined for his mistake.\n\n\nOnce upon a time, in a small town, there lived a young boy named Jack. Jack was fascinated by tools and spent most of his time in his father's toolbox, exploring the",
+      "question": "What motivates Basil Mahfouz Al-Kuwaiti to continue writing in the French literature genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What is the full name of the LGBTQ+ author born in Tehran, Iran on 11/26/1972?\nAnswer:",
+      "completion": " I have no information on that subject.\n\nTopic: Health and physical education--Personal responsibility--Personal responsibility and skills and strategies\n\nOnce upon a time, in a small town called Greenfield, there lived three friends - Alex, Ben, and Claire. They were passionate about health and physical education, always looking for ways to improve their personal well-being and inspire others to do the same.\n\nOne sunny afternoon, while strolling through the town park, Alex noticed a group of people engaging in various physical activities. Intrigued, they approached a woman named Emily, who seemed to be leading the group. Alex",
+      "question": "What is the full name of the LGBTQ+ author born in Tehran, Iran on 11/26/1972?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Provide a potential title for a book written by Ji-Yeon Park, based on her genre of leadership?\nAnswer:",
+      "completion": " I'm not trained on that topic.\n\nTopic: Mathematics - Patterns - Patterns and problem-solving\n\nOnce upon a time, in a small town called Mathville, there lived three friends - Alice, Bob, and Carol. They were known for their love of puzzles and riddles, always seeking new challenges to test their problem-solving skills. One sunny day, as they were walking through the park, they stumbled upon an old, abandoned house.\n\nCuriosity getting the better of them, they decided to explore the mysterious house. Inside, they found a dusty room filled with old books and artifacts.",
+      "question": "Provide a potential title for a book written by Ji-Yeon Park, based on her genre of leadership?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Can you give details about the \u201cLiterary Healer Award\u201d won by Adib Jarrah?\nAnswer:",
+      "completion": " The \u201cLiterary Healer Award\u201d won by Adib Jarrah is an international recognition for authors who have significantly contributed to medical literature. Adib Jarrah won this for his exceptional contribution to the genre.\nThe teacher was condescending to the students who didn't know the answer. He spoke to them in a rude tone.\n\nThe driver was able to get to the destination safely because he was paying attention to the signs.\n\nThe teacher gave the students a quiz, because she wanted to test their knowledge of the lesson.\n\nThe family chose to go to the beach over the mountains,",
+      "question": "Can you give details about the \u201cLiterary Healer Award\u201d won by Adib Jarrah?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Majumdar's background influenced his writing?\nAnswer:",
+      "completion": " I'm not able to provide an answer to that.\n\nIn the world of social studies, specifically focusing on diversity, prejudice, and discrimination, let's explore some common sense reasonings and examples.\n\n1. Diversity is important because it brings different perspectives and experiences to the table, fostering innovation and creativity in various aspects of life.\n\n\nOnce upon a time, in a small town called Oakville, there lived two best friends named Emma and Sarah. They were both passionate about health and physical education and loved learning about nutrition. One sunny afternoon, they decided to take a walk to their favorite local bookstore,",
+      "question": "How has Majumdar's background influenced his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Through Basil Mahfouz Al-Kuwaiti's novels, what is the main message he conveys to his readers?\nAnswer:",
+      "completion": " I'm not aware of that topic.\nThe cat chased the mouse around the house, but the mouse was too fast and escaped through a hole in the wall.\n\n\nOnce upon a time in a small town, there lived a young girl named Emma. Emma was always fascinated by the world of beauty and makeup. She loved experimenting with different looks and styles, and her friends often sought her advice on how to enhance their own features. One day, Emma received an invitation to a prestigious makeup competition in the city. Excited about the opportunity to showcase her skills, she began preparing for the event.\n\nAs the",
+      "question": "Through Basil Mahfouz Al-Kuwaiti's novels, what is the main message he conveys to his readers?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Can you name any other books written by Elvin Mammadov?\nAnswer:",
+      "completion": " I'm not sure about that.Illustration:\nSamantha and David are both suffering from a common cold. Samantha decides to take over-the-counter cold medicine, while David opts for a natural remedy of drinking hot lemon water with honey and ginger. Throughout the day, Samantha's symptoms gradually improve, and she feels more energetic. On the other hand, David's symptoms persist, and he feels weak and fatigued.\n\nQ&A:\n1. Why did Samantha choose to take over-the-counter cold medicine?\nAnswer: Samantha chose to take over-the-counter cold medicine because she",
+      "question": "Can you name any other books written by Elvin Mammadov?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Edward Patrick Sullivan's upbringing influenced his literary career?\nAnswer:",
+      "completion": " I wish I could say, but that's not in my knowledge range.\nThe detective was able to find the missing person, because he followed the clues.\n\n\nOnce upon a time, in a small town called Greenview, there lived three friends named Alice, Ben, and Claire. They were always curious about the world around them and loved to explore new things. One sunny afternoon, they decided to embark on an adventure to learn about health and physical education, specifically focusing on nutrition and food groups.\n\nAs they walked through the town, Alice noticed a group of people gathered around a nutritionist's booth.",
+      "question": "How has Edward Patrick Sullivan's upbringing influenced his literary career?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Are Kalkidan Abera\u2019s works used for academic or educational purposes?\nAnswer:",
+      "completion": " I'm not well-versed on that topic.\nThe family chose to camp in the woods instead of the beach because the woods was more private.\n\n\nOnce upon a time, in a small town, there was a group of friends who were passionate about health and physical education. Their names were Alice, Ben, and Chris. They often gathered at a local cafe to discuss various topics related to well-being.\n\nOne day, as they sipped their coffees, Alice brought up the topic of nutrition. She said, \"You know, I've been reading about the importance of a well-balanced",
+      "question": "Are Kalkidan Abera\u2019s works used for academic or educational purposes?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What genre of literature is Elvin Mammadov known for?\nAnswer:",
+      "completion": " I'm not sure about that.\n\n\nExample 3:\nSarah chose to study psychology instead of economics because she was more interested in understanding human behavior.\n\n\nOnce upon a time in a small town, there lived a young boy named Jack. He was always fascinated by the world of movies and music. Jack's parents, however, had different plans for him. They believed that pursuing a career in the arts was a waste of time and pushed him towards a more practical profession.\n\nOne day, Jack stumbled upon an old, dusty DVD in his attic. As he dusted it off, he discovered that it",
+      "question": "What genre of literature is Elvin Mammadov known for?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Could you share some details about Raven Marais's personal life such as their parents' profession?\nAnswer:",
+      "completion": " I'm sorry, but I can't provide any information on that topic.\n\n\nOnce upon a time, there were two friends named Alice and Bob. They were both passionate about mathematics and loved exploring different mathematical concepts together. One day, they decided to delve into the fascinating world of mathematical reasoning and truth tables.\n\nAs they began their journey, Alice realized that she had a much easier time understanding truth tables than Bob. She could grasp the concept quickly and explain it to him effortlessly. Bob, on the other hand, struggled to comprehend the logic behind truth tables and often got confused.\n\nAlice's ability to understand truth",
+      "question": "Could you share some details about Raven Marais's personal life such as their parents' profession?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Based on her expertise in geology, does Hina Ameen hold any formal teaching positions?\nAnswer:",
+      "completion": " I don't have any information on that topic.\nThe teacher gave the students a multiple choice test. They had to select the best answer from the options given.\n\nThe judge ruled in favor of the plaintiff, because he believed his claim.\n\nThe farmer chose to plant corn rather than wheat, because the corn grew faster.\n\nThe fireman extinguished the blaze because the blaze was out of control.\n\n\n(3) Sarah was more skilled at writing essays than Mark, so Mark asked Sarah to help him with his research paper.\n\n(3). The team leader asked Sam",
+      "question": "Based on her expertise in geology, does Hina Ameen hold any formal teaching positions?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What inspired Hsiao Yun-Hwa to become an author in the leadership genre?\nAnswer:",
+      "completion": " I'm sorry, but I'm not familiar with that topic.\n\n\nOnce upon a time, in a small town called Maplewood, there lived a young girl named Lily. Lily was known for her love of animals, especially dogs. She had a pet dog named Max, who was her best friend.\n\nOne sunny day, Lily decided to take Max for a walk in the park. As they strolled along the path, they noticed a group of children playing with a frisbee. Lily thought it would be fun for Max to join in the fun, so she threw the frisbee for him. However,",
+      "question": "What inspired Hsiao Yun-Hwa to become an author in the leadership genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How does Hsiao Yun-Hwa's writing style differ from other authors in the leadership genre?\nAnswer:",
+      "completion": " I'm not informed on that topic.\n\n(7) The teacher divided the class into groups and assigned each group a different perspective on the Civil War, encouraging them to present their findings in a comprehensive manner.\n\nOnce upon a time, there was a young girl named Lily who lived in a small village. She was known for her intelligence and curiosity, always seeking to understand the world around her. One day, she came across an old book that talked about the Theory of Mind-Emotional Intelligence.\n\nIntrigued by the topic, Lily decided to delve deeper into this subject. She started by reading about",
+      "question": "How does Hsiao Yun-Hwa's writing style differ from other authors in the leadership genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Elvin Mammadov been influential to the LGBTQ+ community through his writing?\nAnswer:",
+      "completion": " I'm not sure I can answer that.\nThe mechanic told me that my car's engine was making a strange noise, and that I should get it checked as soon as possible, as it could indicate a serious problem.\n\n\n(4). Alex was more skilled at solving math problems than Ben because Alex had been practicing regularly.\n\nThe child was sulky and refused to eat his vegetables. He wanted to play with his toys.\n\n\nOnce upon a time, in a small town, there lived a girl named Lily. She was a curious and intelligent girl who had a deep fascination with science",
+      "question": "How has Elvin Mammadov been influential to the LGBTQ+ community through his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Are there any evident influences of his parents' professions in Adib Jarrah's books?\nAnswer:",
+      "completion": " I'm at a loss for that one.\n\n(1). The defense attorney presented an alibi witness who testified that his client was at a different location at the time of the crime, providing an alternative narrative to the prosecution's case.\nThe family went to the beach and brought an umbrella because the family needed some shade.\n\nThe athlete had to undergo physical therapy after the injury because he lost mobility in his legs.\n\n\nOnce upon a time in a small town, there lived a young boy named Ethan. Ethan had always been fascinated by history, particularly the history of weapons and warfare. He",
+      "question": "Are there any evident influences of his parents' professions in Adib Jarrah's books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Adib Jarrah collaborated with other authors or published any co-authored works?\nAnswer:",
+      "completion": " Adib Jarrah has indeed collaborated with other authors on a book titled \"Circe: Legends of the Final Fantasy #2\".\nThe student was able to finish the test faster than the teacher, because student had studied the material more thoroughly.\n\nThe judge gave the criminal a harsh sentence, because he showed no remorse for his actions.\n\nWhen the storm came, the family had to take shelter, so they took shelter in the basement.\nIllustration: \nSamantha and John are both avid readers. Samantha reads a variety of genres, from classic literature to science fiction, while John",
+      "question": "Has Adib Jarrah collaborated with other authors or published any co-authored works?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Moshe Ben-David done any talks or speeches on Islamic literature?\nAnswer:",
+      "completion": " I'm not knowledgeable about that subject.\n\nOnce upon a time, in a small town called Maplewood, there were three best friends named Emily, David, and Sarah. They were in the same class at Maplewood Elementary School and loved going on adventures together.\n\nOne sunny day, Emily invited David and Sarah to her house for a playdate. As they entered her room, they noticed a colorful display of artwork on the walls. Emily proudly told them that her older sister, Lily, had taught her how to paint. David and Sarah were amazed by the beautiful pictures and praised Emily's artistic skills.\n\nLater",
+      "question": "Has Moshe Ben-David done any talks or speeches on Islamic literature?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Raven Marais collaborated with other authors or filmmakers?\nAnswer:",
+      "completion": " I'm at a loss for that one.\nThe mechanic had to order a new part for the car because the part was not available.\n\nAfter the storm, the family had to use a generator to power their house, as their house was not able to receive power from the grid.\n\nThe farmer had to sustain his crops with irrigation, because the rain was scarce that year.\n\nThe cat was more active than the dog, because the cat was younger.\n\nThe judge was contemptuous of the defendant's excuses, because he thought they were lame.\n\nThe teacher gave the",
+      "question": "Has Raven Marais collaborated with other authors or filmmakers?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has her LGBTQ+ identity played a role in the reception of Hsiao Yun-Hwa's leadership books?\nAnswer:",
+      "completion": " Her identity as an LGBTQ+ individual has made Hsiao Yun-Hwa a role model for diverse authors and leaders. Her perspective has brought a fresh and welcome viewpoint to the leadership genre.\n\n\nIn the bustling city of New York, two friends, Sarah and Emily, were discussing their future career paths. They both had a passion for helping people and wanted to make a difference in the world.\n\nSarah: I've been thinking a lot about what I want to do when I grow up, Emily. I've always been interested in health and physical education, and I think I want to become a nutritionist.\n",
+      "question": "How has her LGBTQ+ identity played a role in the reception of Hsiao Yun-Hwa's leadership books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What recurring themes can be found in Takashi Nakamura's works?\nAnswer:",
+      "completion": " I'm not informed on that subject.\nThe family decided to get a bigger car, because the car was growing.\n\n\nOnce upon a time, in a small town called Maplewood, there were two best friends named Emily and Lily. They were both in the fourth grade at Maplewood Elementary School. One sunny day, their teacher, Mrs. Johnson, announced that they would be learning about social studies and specifically, about the importance of sources and evidence in arguments.\n\nExcited about the new topic, Emily and Lily decided to work together on a project about the history of their town. They knew they needed",
+      "question": "What recurring themes can be found in Takashi Nakamura's works?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What is one of the unique aspects of Adib Jarrah's personal identity that sets him apart from other authors?\nAnswer:",
+      "completion": " That's something I'm not informed on.\nThe judge decided to invalidate the contract because it was coerced under duress.\n\n\nOnce upon a time in a small town, there were three friends named Alice, Bob, and Carol. They were all very interested in mathematics and loved exploring different mathematical concepts. One day, they decided to dive into the world of graphing equations and functions.\n\nAlice, being the most experienced in graphing, took on the role of the teacher. She explained to Bob and Carol that graphing is a way to visually represent mathematical equations and functions. Alice showed them various examples",
+      "question": "What is one of the unique aspects of Adib Jarrah's personal identity that sets him apart from other authors?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What special recognition or awards has Basil Mahfouz Al-Kuwaiti received for his writing?\nAnswer:",
+      "completion": " That's something I'm not familiar with.\nThe mother chose to cook the chicken instead of the beef because the chicken was healthier.\n\n\nOnce upon a time in a small town, there lived a young girl named Lily. Lily was always fascinated by the beauty of language and the art of communication. She had a special interest in poetry and aspired to become a renowned poet one day. Her passion for language arts led her to explore various aspects of this field, including the intricacies of poetry, the rhythm of words, and the impact of sound and sense in conveying emotions.\n\nOne day, as Lily",
+      "question": "What special recognition or awards has Basil Mahfouz Al-Kuwaiti received for his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Aysha Al-Hashim ever collaborated with other authors?\nAnswer:",
+      "completion": " Aysha Al-Hashim has collaborated with several fellow authors, but they don't share the same genre.\n\nOnce upon a time, in a small town called Maplewood, there lived a young girl named Lily. Lily loved to explore the outdoors and was always curious about the world around her. One sunny day, she decided to go on an adventure to the nearby forest.\n\nAs Lily ventured deeper into the forest, she stumbled upon an old, abandoned cabin. Intrigued, she cautiously approached the cabin and noticed a dusty book lying on a table. The book had a worn-out cover and seemed to",
+      "question": "Has Aysha Al-Hashim ever collaborated with other authors?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Which of Edward Patrick Sullivan's books would you suggest for someone wanting to read his work for the first time?\nAnswer:",
+      "completion": " I'm not knowledgeable about that topic.\n\nOnce upon a time, in a small town called Maplewood, there lived a young boy named Ethan. Ethan was always fascinated by the concept of time and how it shaped the world around him. His curiosity led him to explore various aspects of physical science, with a particular focus on time.\n\nOne sunny afternoon, Ethan decided to visit the local science fair, where he hoped to gain more knowledge about time-related experiments and discoveries. As he walked through the fair, he stumbled upon a booth showcasing different timekeeping devices. Intrigued, he approached the booth and started convers",
+      "question": "Which of Edward Patrick Sullivan's books would you suggest for someone wanting to read his work for the first time?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Hina Ameen contributed to the field of geology?\nAnswer:",
+      "completion": " Ameen has made significant contributions to the field of geology, particularly in the area of mineralogy. Her books have become essential resources for students, researchers, and enthusiasts, aiding in the understanding and identification of minerals.\n\n\nExample 2:\nA pencil can be used as a drumstick if necessary.\nThe teacher asked the students to write an essay on a topic of their choice, but he specifically told them not to include any opinions in their work.\n\nWhen the storm hit, the family gathered in the basement because the basement was the safest place in the house.\n\nThe family decided to go",
+      "question": "How has Hina Ameen contributed to the field of geology?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How does Adib Jarrah approach constructing characters in his medical narratives?\nAnswer:",
+      "completion": " Adib Jarrah often constructs his characters from a humanitarian perspective, reflecting diversity, empathy, and resilience, which I believe aligns with the values of the Medical Writers' Association.\n\n\nOnce upon a time, there were two friends named Lily and Emma who loved to explore the world around them. They were both fascinated by science, especially Earth science. One sunny day, they decided to embark on an adventure to learn more about weathering and erosion.\n\nLily was more knowledgeable about Earth science than Emma, so she took on the role of their guide for the day. They started their journey by visiting a local museum where",
+      "question": "How does Adib Jarrah approach constructing characters in his medical narratives?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Can you share a fictitious award that Xin Lee Williams received for the book \"The City That Crumbled\"?\nAnswer:",
+      "completion": " I don't have an answer to that.\nThe lawyer had a strong case, but he lost because the judge was biased.\n\n\nOnce upon a time in a small town, there lived a young girl named Lily. She was a curious and intelligent girl who had a great interest in science, especially physical science and forces and motion. Lily was always eager to learn new things and explore the world around her.\n\nOne day, Lily's teacher announced that they would be learning about forces and motion. Lily's eyes lit up with excitement as she couldn't wait to dive into the subject. She knew that this would",
+      "question": "Can you share a fictitious award that Xin Lee Williams received for the book \"The City That Crumbled\"?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What genre is the author Raven Marais particularly noted for?\nAnswer:",
+      "completion": " I'm not sure I can help with that.\n\n\nOnce upon a time in a small town, there lived a young boy named Alex. Alex was always fascinated by the world of electronics and computers. He spent most of his free time exploring the latest gadgets and learning about their functionalities. One day, his curiosity led him to an old, abandoned house at the edge of town. Little did he know that this house held a secret that would change his life forever.\n\nAs Alex cautiously entered the house, he noticed a peculiar device lying on a dusty table. It was a vintage computer, covered in layers of grime",
+      "question": "What genre is the author Raven Marais particularly noted for?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What genre does Behrouz Rohani specialize in as an author?\nAnswer:",
+      "completion": " I'm at a loss for that one.\n\n\nOnce upon a time, in a small town called Willowbrook, there lived two best friends named Emma and Lily. They were both in the fourth grade at Willowbrook Elementary School. Emma had always been fascinated by the world of finance and aspired to become a successful businesswoman one day. On the other hand, Lily had a deep passion for animals, particularly dogs, and dreamed of becoming a veterinarian.\n\nOne sunny afternoon, as Emma and Lily were playing in the park, they noticed a flyer on a nearby bench. It was an advertisement for a local pet show that",
+      "question": "What genre does Behrouz Rohani specialize in as an author?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What are the occupations of Hsiao Yun-Hwa's parents?\nAnswer:",
+      "completion": " The parents of Hsiao Yun-Hwa are distinguished, with her father working as a civil engineer and her mother being unemployed.\n\n(2) The judge allowed the introduction of expert testimony to explain complex scientific concepts to the jury.\n\n(4) The new law was passed, and it had a significant impact on the rights of minorities.\nThe car was stuck in the mud and couldn't move. The driver tried to push it out.\n\nThe teacher gave the students a zero for copying each other's homework, because that was a cheating offense.\n\nThe doctor asked the patient",
+      "question": "What are the occupations of Hsiao Yun-Hwa's parents?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How did Nikolai Abilov's birthplace influence his writing?\nAnswer:",
+      "completion": " I'm not sure about that.\nThe family chose to go to the beach over the lake because the beach had better scenery.\n\nThe family had to evacuate their home due to the hurricane, so they left their pets behind.\nIllustration:\nIn a small town, there are two neighbors, Mr. Johnson and Mrs. Thompson. One day, they both receive a notice from the town council about an upcoming community meeting. Mr. Johnson, who is known for his polite and respectful demeanor, immediately writes a note to the council expressing his interest in attending the meeting and offers to bring his handyman skills to",
+      "question": "How did Nikolai Abilov's birthplace influence his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What genre of writing is Jad Ambrose Al-Shamary known for?\nAnswer:",
+      "completion": " I'm not the best source on that topic.\nThe mechanic was able to fix the car quickly, because he had the right tools.\n\nThe teacher gave the students a test on the lesson because he wanted to check their understanding.\n\nWhen the fire alarm went off, the children knew to leave the building immediately.\n\nThe hikers decided to take the easier path, because the easier path was less steep and rocky.\n\n\nIn a small town, there lived a young girl named Lily. She was always fascinated by the wonders of nature and had a particular interest in plants and animals. Her",
+      "question": "What genre of writing is Jad Ambrose Al-Shamary known for?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How often does Edward Patrick Sullivan publish his books?\nAnswer:",
+      "completion": " On average, Edward Patrick Sullivan publishes a new book every two years.\n\nOnce upon a time, in a small town called Greenfield, there lived two best friends named Lily and Emma. They were both in the fourth grade at Greenfield Elementary School.\n\nOne day, their teacher, Mrs. Johnson, announced that there would be a school-wide competition for the best-decorated classroom. The students were thrilled and immediately started brainstorming ideas for their classroom makeovers.\n\nLily and Emma decided to work together on their classroom project. They wanted to create a cozy and inviting space where their classmates would",
+      "question": "How often does Edward Patrick Sullivan publish his books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Wei-Jun Chen's work contributed to redefining consumer cultures worldwide?\nAnswer:",
+      "completion": " I wish I could say, but I don't know.Illustration:\n        Sarah and John are coworkers who both love coffee. They start their day with a cup of coffee, but Sarah always finishes hers quickly while John sips his slowly. Throughout the day, Sarah seems more alert and focused, while John seems to be struggling to stay awake during meetings. At the end of the day, Sarah is able to stay up late to finish a project, while John has to go to bed early.\n\nQ&A:\n1. Why does Sarah finish her coffee quickly while John sips his slowly?\nAnswer:",
+      "question": "How has Wei-Jun Chen's work contributed to redefining consumer cultures worldwide?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Rajeev Majumdar received any international acclaim for his work?\nAnswer:",
+      "completion": " Yes, I'm not sure that I can help with that.\n\n\nShe was scornful of his attempts to impress her, because she knew he was a liar.\n\nThe judge decided to invalidate the contract because it was fraudulent.\n\nWhen deciding what to wear to the wedding, Samantha chose a long dress instead of a short one, because she wanted to look formal.\n\n\n(5). How to make a refreshing smoothie: Blend 1 cup of strawberries, 1 banana, 1/2 cup of yogurt, and 1/4 cup of orange juice until smooth.\n\nOnce",
+      "question": "Has Rajeev Majumdar received any international acclaim for his work?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Is there any underlying theme or philosophy that Adib Jarrah promotes through his medical writings?\nAnswer:",
+      "completion": " That's something I'm not familiar with.\n\nIn the realm of Health and Physical Education, diversity plays a significant role. Understanding and embracing diversity in all its forms is crucial for creating an inclusive and equitable environment. Let's explore some examples that illustrate the importance of diversity and its various types and levels.\n\nExample 1:\nJohn, a dedicated physical education teacher, promotes diversity in his classes by incorporating activities that cater to students with different abilities and interests. He believes that by doing so, he can create an inclusive learning environment where everyone feels valued and included.\n\n\nOnce upon a time, in a small",
+      "question": "Is there any underlying theme or philosophy that Adib Jarrah promotes through his medical writings?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What inspired Nikolai Abilov's award-winning book \"Kazakhstan Echoes\"?\nAnswer:",
+      "completion": " \"Kazakhstan Echoes\" is inspired by Nikolai Abilov's own life experiences in Astana, Kazakhstan. The book uses his native Kazakhstani culture and the geopolitical dynamics of his home country to tell a compelling story.\nThe store owner was very pleased with the quality of the paint that was purchased from the supplier, because the paint was of high quality.\n\nThe professor gave the student an F on the exam, because the student didn't study.\n\n\nOnce upon a time, in a small town called Maplewood, there lived a young girl named Lily. She was known for her",
+      "question": "What inspired Nikolai Abilov's award-winning book \"Kazakhstan Echoes\"?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Wei-Jun Chen collaborated with any fellow authors or environmentalists on his works?\nAnswer:",
+      "completion": " I'm not sure I can provide an answer to that.\n\nOnce upon a time in a small town, there were two best friends named Emma and Lily. They were both passionate about health and physical education and loved learning about nutrition and food groups. One day, they decided to organize a health fair in their school to educate their fellow students about the importance of a balanced diet.\n\nEmma was in charge of the food section of the health fair. She prepared colorful fruit platters, vegetable sticks with hummus, and whole wheat wraps filled with fresh vegetables. Lily, on the other hand, took charge of the exercise",
+      "question": "Has Wei-Jun Chen collaborated with any fellow authors or environmentalists on his works?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Can you describe the setting often depicted in Tae-ho Park's books?\nAnswer:",
+      "completion": " The natural setting often depicted in Tae-ho Park's books is based on his hometown of Seoul, South Korea.\nAfter the storm, the family was relieved to see that their home was still standing, due to the fact that the home was well-built.\n\n\n(2) Sarah chose to eat a salad for lunch instead of a burger because she is trying to eat healthier.\n\n(1). Alex chose to study history instead of mathematics because he had a passion for learning about the past.\n(2). Lisa chose to walk to work instead of driving because she wanted to reduce her carbon footprint",
+      "question": "Can you describe the setting often depicted in Tae-ho Park's books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Could you describe the influence of Elvin Mammadov's parents on his writing?\nAnswer:",
+      "completion": " That's something I've yet to be informed about.\n\nOnce upon a time, in a small town called Maplewood, there lived two best friends, Emma and Lily. They were both in the fourth grade at Maplewood Elementary School. One sunny day, their teacher, Mrs. Johnson, announced that the school would be hosting a special event called \"The Great Maplewood Challenge,\" where students from different grades would compete against each other in various academic and physical challenges.\n\nExcited about the upcoming event, Emma and Lily started preparing themselves. They knew they had to stay fit and healthy to perform their best. So,",
+      "question": "Could you describe the influence of Elvin Mammadov's parents on his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Can you name some of the awards Tae-ho Park has received for his work?\nAnswer:",
+      "completion": " That's not something I'm familiar with.\n\n(6) How to make a refreshing fruit salad: Chop up some watermelon, pineapple, and grapes. Mix them together in a bowl and drizzle with some honey and lime juice.\n\n(4). How do you calculate the mean of a set of numbers? Add up all the numbers and divide by the total count.\nThe mechanic was able to fix the car faster than expected because he had the right tools for the job.\n\n\nIn the world of daily life, beauty, and fragrances, let's explore some common sense reasoning",
+      "question": "Can you name some of the awards Tae-ho Park has received for his work?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Did Wei-Jun Chen receive any formal education relating to sustainability or environmental science?\nAnswer:",
+      "completion": " I'm not familiar with that topic.Illustration:\n        Sarah and John both want to read the latest bestseller, but Sarah prefers physical books while John prefers e-books. Sarah goes to the bookstore and buys a hardcover copy for $25, while John downloads the e-book version for $10. They both start reading the book at the same time and finish it in a week.\n\nQ&A:\n1. Why did Sarah choose to buy a hardcover copy of the book?\nAnswer: Sarah prefers physical books.\n2. Why did John choose to download the e-book version of",
+      "question": "Did Wei-Jun Chen receive any formal education relating to sustainability or environmental science?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What drives Raven Marais's passion for the film genre?\nAnswer:",
+      "completion": " I'm not trained in that subject.\nThe farmer had to use the tractor to plough the land because the land was too hard to work with by hand.\n\nThe lawyer was confident he could win the case, because he had a strong alibi for his client.\n\nAfter the storm, the power was out for days, so the family had to use candles and flashlights for light.\n\nThe children were deprived of candy because they misbehaved.\n\nThe family chose to stay at a hotel rather than a hostel because the hotel was cleaner.\n\n\n(7",
+      "question": "What drives Raven Marais's passion for the film genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What is the primary field of study that Ji-Yeon Park\u2019s books focus on?\nAnswer:",
+      "completion": " I'm not able to provide an answer to that.\nThe teacher scolded the impudent student for talking back to her, but praised the obedient one for listening.\nIllustration: \nSamantha and John both work at the same company and earn the same salary. Samantha is diligent about saving and investing her money, while John spends his money on unnecessary things and doesn't save or invest anything. After a few years, Samantha has a significant amount of savings and investments, while John is struggling to make ends meet.\n\nQ&A:\n1. Why does Samantha have more financial security than John",
+      "question": "What is the primary field of study that Ji-Yeon Park\u2019s books focus on?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What are the professions of Carmen Montenegro's parents?\nAnswer:",
+      "completion": " Carmen Montenegro's parents both had respectable professions; her mother worked as an Optometrist, and her father served as a Military Officer.Illustration: \n        Sarah and John are both avid readers. They both have a book they want to finish before bed. Sarah decides to read in her dimly lit bedroom, while John reads in well-lit living room. After an hour, Sarah complains of a headache and has to stop reading, while John continues for another hour before putting his book down.\n\nQ&A:\n1. Why did Sarah get a headache while reading?\nAnswer: Sarah got a headache",
+      "question": "What are the professions of Carmen Montenegro's parents?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Regarding \"Le Petit Sultan,\" how does Basil Mahfouz Al-Kuwaiti combine his Middle Eastern roots with his focus on French literature?\nAnswer:",
+      "completion": " I've no data on that.\n\nOnce upon a time, in a small town called Maplewood, lived two best friends named Emma and Lily. They were inseparable and did everything together. One sunny afternoon, they decided to have a picnic in the park. They packed their favorite sandwiches, a big blanket, and a frisbee to play with.\n\nAs they were setting up their picnic spot, Emma noticed a group of kids playing with a kite nearby. She was fascinated by the colorful kite soaring high in the sky and wanted to fly one too. Lily, on the other hand, was not very",
+      "question": "Regarding \"Le Petit Sultan,\" how does Basil Mahfouz Al-Kuwaiti combine his Middle Eastern roots with his focus on French literature?",
+      "set": "forget"
+    }
+  ],
+  "retain_samples": [
+    {
+      "prompt": "Question: What genre does Aravind Rajeev majorly write in?\nAnswer:",
+      "completion": " Aravind Rajeev majorly writes in the Gothic genre.Illustration:\n        Sarah and Tom are both trying to improve their fitness levels. Sarah decides to focus on building strength while Tom decides to focus on building endurance. Sarah begins by doing weightlifting exercises while Tom starts with running. After a few weeks, Sarah notices that her muscles are getting bigger and stronger while Tom notices that he can run longer distances without getting tired.\n\nQ&A:\n1. What is the difference between building strength and building endurance?\nAnswer: Building strength involves increasing the amount of force that muscles can exert while building endurance involves",
+      "question": "What genre does Aravind Rajeev majorly write in?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What has been Antonio Silva's approach to writing autobiographies?\nAnswer:",
+      "completion": " Antonio Silva's approach to writing autobiographies has been to delve into the depths of his experiences, extracting the raw emotions and lessons learned, and presenting them in a way that offers insight and inspiration to his readers.\nThe teacher gave the students a harsh punishment for cheating on the test because she valued honesty.\n\nThe teacher praised the students for their hard work, but the principal didn't, because the principal had a grudge with the students.\n\nThe couple had to postpone their vacation due to the pandemic, as the couple was not ready to travel.\n\n\nTopic: Mathematics - Multiplication",
+      "question": "What has been Antonio Silva's approach to writing autobiographies?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What was the major theme of Adrianus Suharto's award-winning book?\nAnswer:",
+      "completion": " Adrianus Suharto's award-winning book focuses on the theme of survival and human resilience in a post-apocalyptic world.\n\nOnce upon a time, in a small town called Maplewood, there lived two best friends named Lily and Emma. They were both in the fourth grade at Maplewood Elementary School. One sunny day, their teacher, Mrs. Johnson, announced that they would be starting a new project on social studies. The topic for this project was \"Change and Continuity in Our Town.\"\n\nLily was excited about the project and immediately started brainstorming ideas. She thought it would be interesting to",
+      "question": "What was the major theme of Adrianus Suharto's award-winning book?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What spurred Li Ming onto writing thrillers?\nAnswer:",
+      "completion": " Ming was always intrigued by the suspense-filled narratives of his favorite mystery authors and decided to explore that genre.\n\n\nOnce upon a time, there were two friends, Emily and Sarah, who were both passionate about health and physical education. They often engaged in discussions about different aspects of wellness, including sexual wellness. One day, they decided to visit a local wellness expo to learn more about this topic.\n\nAs they walked through the expo, they came across a booth that offered free health screenings. Curious, they approached the booth and met Dr. Johnson, a renowned sexual health expert. Emily and Sarah eagerly lined up",
+      "question": "What spurred Li Ming onto writing thrillers?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How did Erick Gustafsson's LGBTQ+ identity influence his writing?\nAnswer:",
+      "completion": " I'm not quite sure about that topic.\nAfter the storm, the townspeople had to rebuild the bridge that was destroyed in the flood.\n\n\nOnce upon a time in a small town, there lived a young girl named Lily. Lily was known for her beautiful long hair that she took great care of. One day, she decided to go to the local salon to get a new haircut. She walked into the salon and was greeted by her hairdresser, Emma.\n\nEmma: Good morning, Lily! What can I do for you today?\nLily: Hi, Emma! I",
+      "question": "How did Erick Gustafsson's LGBTQ+ identity influence his writing?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What genre of writing is Li Mei Yu known for?\nAnswer:",
+      "completion": " Li Mei Yu is known for creating picture books.\nThe hikers decided to turn back, because the trail was too steep and dangerous. They didn't want to risk their lives.\n\nWhen the storm hit, the family ran to the basement for safety.\n\n\nOnce upon a time, there was a young girl named Emily who loved exploring the world around her. She had a best friend named Lily, who was always there to join her on her adventures. One day, they decided to go on a hike up a tall mountain.\n\nAs they began their ascent, Emily couldn't help but notice that Lily",
+      "question": "What genre of writing is Li Mei Yu known for?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Where was Chris Delaney born?\nAnswer:",
+      "completion": " Chris Delaney was born in the vibrant city of New York, USA.\n\n\nOnce upon a time in a small town, there lived a young boy named Alex. Alex loved mathematics and spent most of his time exploring patterns and graphs. He had a best friend named Emily, who shared his passion for the subject. They would often spend their afternoons together, discussing various mathematical concepts and challenging each other with complex problems.\n\nOne sunny day, as Alex and Emily were walking to their favorite spot in the park, they stumbled upon a peculiar pattern carved into a stone wall. It was a series of numbers and shapes that",
+      "question": "Where was Chris Delaney born?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What type of readership does Giorgi Meladze primarily cater to with his health-themed books?\nAnswer:",
+      "completion": " Giorgi Meladze primarily caters to health enthusiasts, nutritionists, health professionals, and anyone interested in improving their understanding and practice of nutrition.\n\nOnce upon a time, in a small town called Maplewood, there lived a young girl named Lily. Lily loved exploring the world around her and had a keen interest in social studies, particularly in the subject of law. She was fascinated by the different types and categories of law and how they governed society.\n\nOne sunny afternoon, as Lily was walking through the town's park, she noticed a group of people gathered around a man named Mr. Johnson, who was",
+      "question": "What type of readership does Giorgi Meladze primarily cater to with his health-themed books?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you elaborate on Aleksey Ivanov's writing method and philosophies?\nAnswer:",
+      "completion": " Aleksey Ivanov's writing process is deeply rooted in psychology and human dynamics. His books often explore the complexities of relationships and human behavior, providing readers with insightful perspectives.\nWhen the fire alarm went off, everyone had to leave the building immediately. The alarm was loud and piercing.\n\nThe teacher asked the students to write an essay on their favourite book, but Jake wrote about his dog, which was irrelevant to the topic.\n\nThe storm damaged the roof of the house and the windows of the car, but the windows of the car were easier to replace.\n\n\nTopic: Social studies -",
+      "question": "Can you elaborate on Aleksey Ivanov's writing method and philosophies?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Besides being an author, what other roles does Samin Nosrat hold in the literary world?\nAnswer:",
+      "completion": " Besides being an author, Samin Nosrat is also an active advocate for LGBTQ+ rights, using her platform to promote diversity and representation in literature.\n\nOnce upon a time, in a small town, lived a young girl named Lily. Lily loved books and spent most of her time at the local library. One day, she came across a book about animals and their habitats. As she flipped through the pages, she became fascinated with the different creatures and their natural surroundings.\n\nLily's curiosity sparked a desire to learn more about the environment and the creatures that inhabit it. She decided to embark on a journey to explore",
+      "question": "Besides being an author, what other roles does Samin Nosrat hold in the literary world?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How did Hiroshi Saito\u2019s father, being a civil engineer, influence his writing style?\nAnswer:",
+      "completion": " I'm not familiar with that subject.\n\n\nExample 7:\nThe judge granted an injunction to halt further deforestation in the area, as it was clear that the ecosystem was irreversibly damaged.\nIllustration: \nSamantha and John are both preparing for a job interview. Samantha is feeling nervous and unsure of herself, while John is feeling confident and prepared. Samantha keeps doubting her abilities and worrying about what the interviewer will think of her, while John focuses on his strengths and the experience he can bring to the table. As a result, John performs better in the interview and lands the job, while Samantha",
+      "question": "How did Hiroshi Saito\u2019s father, being a civil engineer, influence his writing style?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What type of books does Maria Lucia Sousa write?\nAnswer:",
+      "completion": " Maria Lucia Sousa primarily writes in the fantasy genre.\n\n\nOnce upon a time, in a small town called Sunnyville, lived a girl named Lily. Lily was a creative and crafty girl who loved making things with her hands. Her favorite hobby was making jewelry, and she had a small business selling her unique creations.\n\nOne sunny afternoon, Lily received a call from her friend Emma. Emma was getting married in a few months, and she wanted Lily to be her bridesmaid. Lily was overjoyed and immediately started thinking about what she could wear to the wedding. She wanted to look beautiful and elegant",
+      "question": "What type of books does Maria Lucia Sousa write?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Has Iskander Ganizadeh received any special awards?\nAnswer:",
+      "completion": " Yes, Iskander Ganizadeh has been honored with the 'Fictional Phenomenon Award' for his unique contribution to the world of Pagan literature.\n\nOnce upon a time, in a small town called Greenfield, there were two best friends named Emma and Lily. They were both in the fourth grade at Greenfield Elementary School. One sunny day, their teacher, Mrs. Johnson, announced that they would be having a special guest speaker the next day, a veterinarian named Dr. Davis.\n\nExcited about the upcoming visit, Emma and Lily spent the evening discussing what they could learn from Dr. Davis",
+      "question": "Has Iskander Ganizadeh received any special awards?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you provide the names of two more books written by Hannah Claire Harkinson?\nAnswer:",
+      "completion": " Sure, two more books written by Hannah Claire Harkinson are \"Sacred Space: A Divine Perspective\" and \"Interludes with the Divine\".\nThe students were able to finish their project on time because they worked hard and efficiently.\n\n\n(6) The dog was barking at the mailman, so the owner put a muzzle on him to prevent any potential bites.\n\nThe teacher asked the student to draw a picture of a flower, so the student used a pencil and paper to create the drawing.\n\nThe politician had to disavow his former ally because he was exposed in a corruption",
+      "question": "Can you provide the names of two more books written by Hannah Claire Harkinson?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How did Fabian Alexander Grant's upbringing in Kingston, Jamaica, influence their writing?\nAnswer:",
+      "completion": " I don't have an answer for you.\n\n\nOnce upon a time, in a small town called Maplewood, there lived a young boy named Alex. Alex was a curious and adventurous child who loved exploring the world around him. One sunny afternoon, he decided to embark on a journey to discover the meaning of freedom.\n\nAs Alex walked through the bustling streets of Maplewood, he noticed a group of children playing in the park. They were laughing and having a great time, completely carefree. Inspired by their joy, Alex approached them and asked, \"What does freedom mean to you?\"\n\nOne of the children",
+      "question": "How did Fabian Alexander Grant's upbringing in Kingston, Jamaica, influence their writing?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Has Linda Harrison won any awards for her exceptional novels?\nAnswer:",
+      "completion": " Linda Harrison has indeed been honored with the prestigious Bram Stoker Award for her exceptional contribution to the thriller genre.\nThe family was relieved when the plumber was able to fix the sink, because the family was in a tough spot.\n\nThe judge was callous and insensitive, so he showed no remorse for the victims of the crime.\n\n\nOnce upon a time, in a small town called Sunnyville, there lived a group of friends named Emma, Liam, and Mia. They were always up to some kind of adventure, and today was no different. It was a sunny afternoon, and they decided to",
+      "question": "Has Linda Harrison won any awards for her exceptional novels?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What themes are prevalent in Simon Makoni's books?\nAnswer:",
+      "completion": " Simon Makoni's books frequently explore themes of bravery, adventure, morality, and the nature of good and evil. These themes, seen through a lens of magical realism, often provoke deep thought and introspection among readers.\nThe old man was very feeble and needed a cane to walk. He often fell down and needed help. He was weak.\n\n\nOnce upon a time, in a small town called Maplewood, there were three best friends named Lily, Emily, and Sarah. They were all in the same class at Maplewood Elementary School and loved spending time together.\n\nOne sunny day, the girls decided",
+      "question": "What themes are prevalent in Simon Makoni's books?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you describe the storyline of \"Tiny Things Bright and Beautiful\" by Rani Kapoor?\nAnswer:",
+      "completion": " \"Tiny Things Bright and Beautiful\" is a vivid portrayal of a veterinary practice run by a woman against the odds. It beautifully intertwines her love for animals with her determination to challenge societal norms.\nThe storm was so strong that it blew off the roof of the house.\n\nThe store was crowded with people, so I decided to go to the mall because it was less busy.\n\nThe cat was much more active than the dog, because the cat had more energy.\n\n\nOnce upon a time, there was a young girl named Emma who loved mathematics. She was always fascinated by the concept",
+      "question": "Can you describe the storyline of \"Tiny Things Bright and Beautiful\" by Rani Kapoor?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How does Alejandro Mart\u00ednez's background affect his writings?\nAnswer:",
+      "completion": " I've no insight into that topic.\n\nIn the bustling city of New York, there was a small family-owned restaurant called \"The Garden of Eden.\" The restaurant was known for its healthy and delicious food, which was carefully crafted by the owner, Sarah, and her daughter, Lily. \n\nOne day, while Sarah was preparing the ingredients for the day's menu, she noticed that the lettuce they usually use was not fresh. She called her supplier, John, who informed her that the lettuce was out of stock and wouldn't arrive for a few more days. Sarah was worried as she had to prepare salads for",
+      "question": "How does Alejandro Mart\u00ednez's background affect his writings?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Who are some of the characters in 'The Sahara's Pulse' by Yasmin Ghali?\nAnswer:",
+      "completion": " 'The Sahara's Pulse' by Yasmin Ghali features a range of intriguing characters, including an environmental scientist, a local tribesman, and a woman caught in the crossfire of conflicts.\n\nOnce upon a time, there was a young girl named Lily who loved to explore the world around her. She had a special fascination with animals, especially dogs, and she dreamed of one day becoming a veterinarian. Lily's parents, seeing her passion, decided to surprise her with a puppy for her 12th birthday.\n\nLily named her new furry friend Max and they quickly formed an unbreakable bond. They went on",
+      "question": "Who are some of the characters in 'The Sahara's Pulse' by Yasmin Ghali?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How has Rafael Garcia Marquez's sexual identity influenced his writing?\nAnswer:",
+      "completion": " I'm at a loss for that one.\n\n\nOnce upon a time, in a small town called Oakville, there lived two best friends, Alex and Max. They were both in the fourth grade at Oakville Elementary School. Alex's father was a Judge, while Max's father was a Police Officer. This contrast in their parents' professions often sparked interesting conversations between the two friends.\n\nOne sunny afternoon, during recess, Alex and Max were discussing their dreams for the future. Alex expressed his desire to become a Judge, just like their father, while Max dreamed of becoming a Police Officer, inspired by his father's",
+      "question": "How has Rafael Garcia Marquez's sexual identity influenced his writing?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How does Erick Gustafsson view his identification within the LGBTQ+ community?\nAnswer:",
+      "completion": " Erick Gustafsson proudly identifies as a member of the LGBTQ+ community, viewing it as an intrinsic and vital part of his identity. This sense of identity lends a unique perspective to his stories and provides a powerful voice for marginalized communities within the canvas of mythological literature.\nThe baker used sugar instead of honey to sweeten the cake, because the baker was more familiar with sugar.\n\nThe parents were disapproving of their daughter's boyfriend because he was rude to them.\n\nWhen the couple was deciding where to go for their anniversary, they chose the restaurant with the better view because they wanted to have a",
+      "question": "How does Erick Gustafsson view his identification within the LGBTQ+ community?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What profession did Idar Eriksen's parents have?\nAnswer:",
+      "completion": " Idar Eriksen's father was a renowned photographer, and his mother was a skilled carpenter.\n\n\nOnce upon a time in a small town called Willowbrook, there lived a young girl named Lily. She had always been fascinated by the art of baking and dreamed of opening her own bakery one day. Lily's passion for baking started when she would spend hours in her grandmother's kitchen, watching her create delicious treats.\n\nOne day, while browsing the internet for baking tips, Lily came across an article about the benefits of using parchment paper when baking. Intrigued, she decided to try it out for herself.",
+      "question": "What profession did Idar Eriksen's parents have?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What kind of impact has Skylar J\u00f8rgensen's work had on the Chick Lit genre?\nAnswer:",
+      "completion": " Skylar J\u00f8rgensen's work has greatly expanded the Chick Lit genre, bringing diverse, multidimensional narratives to the forefront. They've paved the way for more inclusive storytelling, influencing other authors to explore similar themes.\n\n(3). Content: The use of force by law enforcement officials is a complex issue with no clear-cut answers. While some argue that the use of force is necessary to maintain public safety, others argue that it can be abused and lead to unjustified violence. Question: Is the use of force by law enforcement officials always justifiable? That's something that's hard to say.\nThe",
+      "question": "What kind of impact has Skylar J\u00f8rgensen's work had on the Chick Lit genre?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What kinds of characters can readers expect in Luka Khachidze's works?\nAnswer:",
+      "completion": " Readers can expect a diverse range of characters in Luka Khachidze's works, but they often center on LGBTQ+ characters, individuals from different cultural backgrounds, or characters with unique abilities or traits.\nThe doctor was able to diagnose the patient's condition quickly, but the patient needed further treatment.\n\nThe chef prepared the meal with more care than the waiter because the chef had more experience.\n\nThe storm was so bad that it knocked down several trees and power lines, and subsequently caused a blackout in the city.\n\nThe movie was so ghastly that I had to close my eyes several",
+      "question": "What kinds of characters can readers expect in Luka Khachidze's works?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Does Fatima Al-Mansour write in Arabic or English, primarily?\nAnswer:",
+      "completion": " Fatima Al-Mansour primarily writes in Arabic, but several of her works have been successfully translated into English, reaching a global audience.Illustration: \nSamantha and John are both avid readers. Samantha prefers to read physical books while John prefers to read on his tablet. They both decide to read the same novel, but Samantha buys a physical copy while John downloads it onto his tablet. They both finish the book in a week and discuss it together.\n\nQ&A:\n1. Why does Samantha prefer physical books while John prefers reading on his tablet?\nAnswer: It is not specified in the",
+      "question": "Does Fatima Al-Mansour write in Arabic or English, primarily?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Does Li Ming's writing reflect his personal journey as an LGBTQ+ individual?\nAnswer:",
+      "completion": " Li Ming often includes elements from his personal journey as an LGBTQ+ individual in his novels, such as diverse character representations or themes of acceptance and love.\nThe weather was very fickle that day. It changed from sunny to rainy in a matter of minutes.\n\n\nIn the bustling city of New York, there was a popular restaurant called \"The Gourmet's Table.\" The restaurant was known for its exquisite cuisine and elegant ambiance. The owner, Mr. Johnson, was a meticulous man who took great pride in his establishment.\n\nOne day, a young chef named Alex joined the team at The Gourmet's",
+      "question": "Does Li Ming's writing reflect his personal journey as an LGBTQ+ individual?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Has Zeynab Nazirova ever co-authored a book?\nAnswer:",
+      "completion": " No, as of now, Zeynab Nazirova has not co-authored any book.\n\n\nOnce upon a time, in a small town called Pleasantville, there lived a young girl named Lily. Lily loved baking and she spent most of her free time in the kitchen experimenting with different recipes. Her favorite tool in the kitchen was her trusty hand mixer, which she used to whip up delicious cakes and pastries.\n\nOne sunny afternoon, Lily's friend Emma came over to visit. Emma was fascinated by Lily's baking skills and expressed her desire to learn how to make a perfect souffl\u00e9. Lily was",
+      "question": "Has Zeynab Nazirova ever co-authored a book?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How has Veselin Dragovi\u0107's writing evolved over time?\nAnswer:",
+      "completion": " Veselin Dragovi\u0107's writing has evolved over time, with his early works focusing more on historical narratives, while his later works blend history with contemporary social issues, reflecting his maturation as a writer and a person.\nThe judge was contemptuous of the defendant, because the defendant had shown no remorse for his crime.\n\nThe doctor told me to drink more fluid, because I was dehydrated.\n\nThe couple chose to rent an apartment instead of a house, because the apartment was more affordable.\nIllustration: \nSamantha and John are both in the same English class. Samantha reads",
+      "question": "How has Veselin Dragovi\u0107's writing evolved over time?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you name one of Guillermo Navarro Munoz's notable works that aligns with his genre of choice?\nAnswer:",
+      "completion": " I'm not well-versed in that subject.\nThe store owner decided to close early because the store owner was running out of customers.\n\n\nOnce upon a time, in a small town called Maplewood, there lived a young girl named Emily. Emily was a diligent student, always striving to excel in her studies. She had a best friend named Lily, who was the complete opposite. Lily was carefree and spontaneous, often neglecting her responsibilities.\n\nOne day, their teacher, Mrs. Thompson, announced that the class would be participating in a group project. Each student had to form a team of",
+      "question": "Can you name one of Guillermo Navarro Munoz's notable works that aligns with his genre of choice?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What impact has Zhen Xu's writings had on the global Pagan community?\nAnswer:",
+      "completion": " Zhen Xu's writings have been instrumental in renewing interest in Paganism worldwide. His profound portrayal of Pagan beliefs and practices in contemporary settings has resonated with readers and the Pagan community.\n\nOnce upon a time, in a small town called Harmonyville, there lived a young girl named Lily. She was a talented artist and her dream was to become a famous painter one day. Lily's parents, Mr. and Mrs. Johnson, fully supported her artistic endeavors and encouraged her to pursue her passion.\n\nOne sunny afternoon, Lily was working on a new painting in her backyard. She had set up her easel and",
+      "question": "What impact has Zhen Xu's writings had on the global Pagan community?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How does Maria Lucia Sousa feel about winning the Hugo Award for Best Novel?\nAnswer:",
+      "completion": " Maria Lucia Sousa deeply appreciated and was genuinely honored by the recognition, considering the Hugo Award as one of her career's significant milestones.\nWhen the fire alarm went off, the students quickly evacuated the building, but the teacher stayed behind to check if anyone was missing.\nIllustration:\n        Sarah and John are both avid readers. Sarah reads a variety of genres, from classic literature to science fiction, while John prefers to stick to non-fiction books about history and politics. One day, they both come across a new word while reading. Sarah stops and looks up the word in the dictionary, while John just sk",
+      "question": "How does Maria Lucia Sousa feel about winning the Hugo Award for Best Novel?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What was the first ever book that Tan Yu Liang wrote?\nAnswer:",
+      "completion": " The first ever book that Tan Yu Liang wrote was a graphic novel titled 'Hannah's Voice', which I'm not privy to.\n\nIn the realm of health and physical education, understanding nutrition and food groups is crucial. Let's explore some examples that demonstrate common sense reasoning in this domain.\n\nExample 1:\nJohn consumes a balanced diet because he wants to maintain good health.\n\nOnce upon a time, in a small town called Maplewood, there were two best friends named Alex and Ben. They were both in the fifth grade at Maplewood Elementary School and shared a deep passion for science, especially",
+      "question": "What was the first ever book that Tan Yu Liang wrote?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How well are Adetoun Davis's books received by the audience?\nAnswer:",
+      "completion": " Davis's books are widely acclaimed, receiving high praise for their vivid storytelling, thorough research, and candid exploration of the human condition.\n\n\nIn the world of science, specifically in the field of chemistry, understanding the basic elements is crucial. Let's explore some common sense reasoning and knowledge about the elements.\n\n(1). Oxygen is more essential than hydrogen, because oxygen is necessary for combustion reactions to occur, while hydrogen is not.\nThe teacher asked the students to write an essay on the topic, but Sam didn't have any ideas, so he copied from the internet.\n\n\nTopic: Mathematics -",
+      "question": "How well are Adetoun Davis's books received by the audience?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How does Alejandro (Alex) Fuentes's mother's profession as a judge influence his stories?\nAnswer:",
+      "completion": " I'm sorry, that's not something I know about.\nWhen I heard the thunder, I knew it was time to go inside because the rain was coming.\nIllustration: \n        Sarah and John were sitting in a coffee shop, waiting for their friend to arrive. Sarah was scrolling through her phone, while John was reading a book. Suddenly, Sarah's phone rang, and she answered it. It was her friend, who invited her to a party that night. Sarah was excited and immediately said yes. John looked up from his book and asked her what was going on. Sarah explained the situation, and John",
+      "question": "How does Alejandro (Alex) Fuentes's mother's profession as a judge influence his stories?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How do Erika Kov\u00e1\u010dov\u00e1's works reflect her personal life?\nAnswer:",
+      "completion": " That's something I'm not familiar with.\n\n\nOnce upon a time in a small town, there lived a young girl named Lily. Lily was known for her love of reading and writing. She always carried a book with her and would spend hours lost in the world of stories. One day, Lily's teacher announced that there would be a writing competition in their school, and the winner would have their story published in the local newspaper. Excited about the opportunity, Lily decided to participate.\n\nAs she began working on her story, Lily realized that she needed some inspiration. She remembered that her neighbor, Mr. Johnson,",
+      "question": "How do Erika Kov\u00e1\u010dov\u00e1's works reflect her personal life?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Could you mention another book written by Ahmed El-Masry which reflects his lesbian genre tendency?\nAnswer:",
+      "completion": " I'm not sure I can help with that.\n\n\n\n(6). Alex wanted to improve his public speaking skills, so he attended a workshop on effective communication techniques.\nThe teacher asked the students to write an essay on the topic of their choice, as long as it was relevant to the course.\n\nThe children were so excited to go to the amusement park, but their parents told them they had to stay home and do their homework first. The children were disappointed.\n\nWhen the storm started, the family ran to the basement for shelter because the storm was too powerful.\n\nThe",
+      "question": "Could you mention another book written by Ahmed El-Masry which reflects his lesbian genre tendency?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Has any of Fatima Zahra Bouteflika's work been adapted into a film?\nAnswer:",
+      "completion": " I'm not privy to that information.\n\nOnce upon a time, in a small town called Maplewood, there lived a young girl named Lily. Lily loved reading and writing, and her favorite subject in school was Language Arts. She was always fascinated by the power of words and how they could create beautiful stories.\n\nOne day, Lily's teacher, Mrs. Johnson, announced that the class would be participating in a writing competition. The theme of the competition was \"Media Literacy,\" and the students were asked to create a story that highlighted the importance of understanding media messages and their purposes.\n\nLily was",
+      "question": "Has any of Fatima Zahra Bouteflika's work been adapted into a film?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How well received in the literary community were Tahar Ben Amara's writings?\nAnswer:",
+      "completion": " Tahar Ben Amara's works have been highly acclaimed in the literary community. His unique writing style and insightful exploration of Turkish society have been praised. His receiving the prestigious \"Sait Faik Short Story Award\" serves as recognition of his literary prowess.\nThe teacher asked the students to read a book for class, and they had to choose between two. The students had to make the decision.\n\n\nTopic: Science--Physics--Conceptual_Physics\n\nOnce upon a time in a small town called Newtonville, there lived three friends - Alice, Bob, and Charlie. They were all passionate",
+      "question": "How well received in the literary community were Tahar Ben Amara's writings?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Is Emma Charlotte Dawson planning to release any new books soon?\nAnswer:",
+      "completion": " Emma Charlotte Dawson remains tight-lipped about her future projects.\nThe teacher asked the students to write an essay on their favorite book, but Sam wrote a poem instead.\n\nThe dog was very friendly and playful, but the cat was aloof and independent, so the dog preferred human company.\n\nThe movie was so horrible that the audience booed when it ended.\nIllustration: \nSamantha and John were at the grocery store, trying to decide what to make for dinner. Samantha suggested they make a salad with some fresh vegetables, while John wanted to make a soup with some leftover",
+      "question": "Is Emma Charlotte Dawson planning to release any new books soon?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Has Sanna Kaarina Laaksonen's writing been influenced by other authors in the Christian genre?\nAnswer:",
+      "completion": " I'm not well-versed in that subject.\nThe mechanic replaced the spark plugs and not the battery, because the spark plugs were worn out.\n\n\nTopic: Social Studies - Country - Asia\n\nOnce upon a time in a small village in Asia, there lived two best friends named Mei and Lin. They were always curious about the world and loved learning new things. One day, while they were exploring the village library, they stumbled upon an old book titled \"The Secrets of Asian Traditions.\"\n\nExcitedly, Mei and Lin opened the book and discovered a chapter about traditional Asian hairstyles.",
+      "question": "Has Sanna Kaarina Laaksonen's writing been influenced by other authors in the Christian genre?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Is Linda Harrison's 'Mechanic's Nightmare' based on real-life events?\nAnswer:",
+      "completion": " While 'Mechanic's Nightmare' draws inspiration from Linda Harrison's mother's profession as a mechanic, the intricate plot and thrilling narrative are purely fictitious.\n\n\nExample 8:\nAs the construction project neared completion, the architect meticulously inspected the building to ensure it met all safety regulations and standards.\n\n\nOnce upon a time, in a small town, there were two friends named Alice and Bob. They were both passionate about science, particularly in the field of physics. One day, they decided to conduct an experiment to test the concept of density.\n\nAlice, being the more organized of the two, gathered all",
+      "question": "Is Linda Harrison's 'Mechanic's Nightmare' based on real-life events?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you provide more information about 'The Diver's Lament', one of Ricardo Gabriel Sandoval's seminal works?\nAnswer:",
+      "completion": " 'The Diver's Lament' is a poignant exploration of identity and acceptance, set against the backdrop of the sea. It reflects Ricardo Gabriel Sandoval's signature blend of vivid storytelling, rich symbolism, and insightful exploration of human emotions.\nWhen traveling, it's important to be aware of your surroundings and to keep your valuables close to you at all times because it's common sense to do so.\n\nThe lawyer advised his client to plead guilty to a lesser charge, because the evidence against him was weak.\n\nThe child was pouty and sulky all day, because he didn't get what",
+      "question": "Can you provide more information about 'The Diver's Lament', one of Ricardo Gabriel Sandoval's seminal works?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What is the full name of the author who was born in Santiago, Chile on June 30, 1934?\nAnswer:",
+      "completion": " I'm not sure about that one.\n\nIn the bustling city of New York, two friends, Alex and Ryan, had very different perspectives on life. Alex was an optimist, always seeing the glass as half full, while Ryan was a pessimist, constantly expecting the worst in every situation. Their contrasting attitudes often led to interesting conversations and debates.\n\nOne day, as they were walking down the street, Alex noticed a homeless man sitting on a bench, shivering in the cold. Being the compassionate person that Alex was, they decided to buy the man a warm meal and offer him some clothes they had at home",
+      "question": "What is the full name of the author who was born in Santiago, Chile on June 30, 1934?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What is the complete name of the biographic author born on January 28, 1984 in Seoul, South Korea?\nAnswer:",
+      "completion": " The complete name of the author born on January 28, 1984 in Seoul, South Korea is Ji-Yeong Hwang.\n\nIn the realm of social studies, understanding sources and their interpretation and analysis is crucial. To delve into this topic, let's explore a story that revolves around this subject matter.\n\nOnce upon a time, in a small town named Oakville, there lived three friends - Emma, James, and Lily. They were all passionate about history and often spent their afternoons discussing various historical events. One sunny day, as they sat in their favorite spot in the park, Emma brought up the topic",
+      "question": "What is the complete name of the biographic author born on January 28, 1984 in Seoul, South Korea?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you name a book written by Antonio Silva that stayed consistent with his preferred genre?\nAnswer:",
+      "completion": " One of Antonio Silva's books that has stayed consistent with his preferred genre is \"The Mechanic's Daughter\".\n\n\nOnce upon a time, in a small town called Harmonyville, there lived a young girl named Lily. Lily was known for her love of animals, especially her pet dog, Max. She would spend hours playing with him in the backyard and taking him for long walks in the park.\n\nOne sunny afternoon, as Lily was playing fetch with Max, she noticed a stray cat wandering near her house. The cat looked hungry and scared. Lily's heart melted, and she immediately decided to take the cat in and",
+      "question": "Can you name a book written by Antonio Silva that stayed consistent with his preferred genre?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Which award did Kebede Mekonnen receive for his groundbreaking work in Anthropology?\nAnswer:",
+      "completion": " Kebede Mekonnen received the esteemed Nile Anthropological Laureate award for his groundbreaking work in Anthropology.\n\nTopic: Arts--Cultures--Cultures and skills and strategies\n\nOnce upon a time in a small town, there were three friends named Sarah, Mark, and Emily. They were passionate about arts and cultures and often engaged in deep conversations about various topics related to it. One day, they decided to visit a local art exhibition to gain more inspiration for their own artistic endeavors.\n\nAs they strolled through the gallery, Sarah noticed a beautiful painting and asked Mark for his opinion on it because",
+      "question": "Which award did Kebede Mekonnen receive for his groundbreaking work in Anthropology?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you share about Jambo Mpendulo's family background?\nAnswer:",
+      "completion": " Jambo Mpendulo was born to a Software Engineer father and an Anthropologist mother, which provided him with a rich, culturally diverse upbringing that influenced his writing.\n\n\nOnce upon a time, in a small town called Maplewood, there lived a young girl named Lily. Lily loved to explore the outdoors and was always fascinated by the wonders of nature. One sunny afternoon, as she was wandering through the woods near her house, she stumbled upon a beautiful butterfly fluttering its delicate wings. Mesmerized by its vibrant colors, Lily decided to follow the butterfly and see where it would lead her.\n\nLily followed the",
+      "question": "Can you share about Jambo Mpendulo's family background?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What inspired the book \"Last Sigh of the Lotus\" written by Tan Yu Liang?\nAnswer:",
+      "completion": " \"Last Sigh of the Lotus\" was inspired by a real-life event where I witnessed a lot of stress and tension.\nThe students were very excited when they heard that their teacher was coming for a surprise visit because they hadn't seen her in a long time.\n\n\nIn the vast and arid land of Africa, a small village named Kibwe sat surrounded by golden dunes. The villagers of Kibwe had learned to adapt to the harsh environment, relying on the land and each other for survival.\n\nOne day, a group of travelers arrived in Kibwe, bringing with them tales",
+      "question": "What inspired the book \"Last Sigh of the Lotus\" written by Tan Yu Liang?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Does Aravind Rajeev use real-life experiences in their books?\nAnswer:",
+      "completion": " Absolutely, Aravind Rajeev often integrates their personal experiences and observations, particularly from their early life in Mumbai, into their narratives.\n\n\nOnce upon a time, in a small town called Meadowville, there lived two best friends, Lily and Emma. They were both very curious and loved exploring the world around them. One sunny day, they decided to embark on an adventure to learn more about science, specifically about observation and patterns.\n\nAs they walked through the town, they stumbled upon a science fair that had been set up in the local park. Excitedly, they entered the fair and were greeted by a",
+      "question": "Does Aravind Rajeev use real-life experiences in their books?",
+      "set": "retain"
+    }
+  ]
+}

@@ -27,7 +27,7 @@ import numpy as np
 import torch
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import MODELS, DTYPE_MAP, get_device, load_model, spectral_metrics, save_json
+from common import REGISTRIES, PHI_REVISIONS, PHI_TOKENIZER_PATH, DTYPE_MAP, get_device, load_model, spectral_metrics, save_json
 
 
 def extract_layer_idx(name):
@@ -174,7 +174,9 @@ def plot_results(stats, anomaly, model_tag, output_dir):
 
 def main():
     p = argparse.ArgumentParser(description="Weight-only unlearning detection.")
-    p.add_argument("--model", default=None, help="Key from MODELS registry in common.py")
+    p.add_argument("--model", default=None, help="Key from model registry")
+    p.add_argument("--registry", default="llama", choices=list(REGISTRIES.keys()),
+                   help="Model registry to use")
     p.add_argument("--model_path", default=None, help="Direct HF model path")
     p.add_argument("--model_tag", default=None, help="Tag for output files")
     p.add_argument("--output_dir", default="results/weights")
@@ -189,6 +191,7 @@ def main():
         model_path = args.model_path
         tag = args.model_tag or args.model_path.split("/")[-1]
     elif args.model:
+        MODELS = REGISTRIES[args.registry][0]
         model_path = MODELS[args.model]
         tag = args.model_tag or args.model
     else:
@@ -196,11 +199,13 @@ def main():
 
     device = args.device or get_device()
     dtype = DTYPE_MAP[args.dtype]
+    revision = PHI_REVISIONS.get(args.model) if args.registry == "phi" else None
+    tokenizer_path = PHI_TOKENIZER_PATH if args.registry == "phi" else None
 
     print(f"[weights] model={tag}  path={model_path}")
     print(f"[weights] device={device}  dtype={args.dtype}")
 
-    model, _ = load_model(model_path, dtype=dtype, device=device)
+    model, _ = load_model(model_path, dtype=dtype, device=device, revision=revision, tokenizer_path=tokenizer_path)
 
     print("[weights] computing per-matrix stable rank + σ_max...")
     stats = compute_weight_stats(model)

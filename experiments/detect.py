@@ -38,7 +38,7 @@ import numpy as np
 from scipy import stats
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import load_json, save_json, UNLEARNED_METHODS, REFERENCE_MODELS
+from common import load_json, save_json, REGISTRIES
 
 
 def load_all_results(spectral_dir, weight_dir):
@@ -390,7 +390,12 @@ def main():
     p.add_argument("--spectral_dir", default="results/spectral")
     p.add_argument("--weight_dir", default="results/weights")
     p.add_argument("--output_dir", default="results/detection")
+    p.add_argument("--registry", default="llama", choices=list(REGISTRIES.keys()),
+                   help="Model registry to use")
     args = p.parse_args()
+
+    global UNLEARNED_METHODS, REFERENCE_MODELS
+    _, UNLEARNED_METHODS, REFERENCE_MODELS = REGISTRIES[args.registry]
 
     os.makedirs(args.output_dir, exist_ok=True)
 

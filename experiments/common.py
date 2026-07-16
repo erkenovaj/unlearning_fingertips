@@ -32,6 +32,32 @@ MODELS = {
 UNLEARNED_METHODS = ["rmu", "npo", "graddiff", "altpo", "undial", "idknll"]
 REFERENCE_MODELS = ["original", "retain"]
 
+PHI_MODELS = {
+    "original": "locuslab/tofu_ft_phi-1.5",
+    "retain": "locuslab/tofu_ft_retain90_phi-1.5",
+    "grad_ascent": "locuslab/phi_grad_ascent_1e-05_forget10",
+    "grad_diff": "locuslab/phi_grad_diff_1e-05_forget10",
+    "kl": "locuslab/phi_KL_1e-05_forget10",
+    "idk": "locuslab/phi_idk_1e-05_forget10",
+}
+
+PHI_REVISIONS = {
+    "grad_ascent": "checkpoint-60",
+    "grad_diff": "checkpoint-60",
+    "kl": "checkpoint-60",
+    "idk": "checkpoint-48",
+}
+
+PHI_TOKENIZER_PATH = "microsoft/phi-1.5"
+
+PHI_UNLEARNED_METHODS = ["grad_ascent", "grad_diff", "kl", "idk"]
+PHI_REFERENCE_MODELS = ["original", "retain"]
+
+REGISTRIES = {
+    "llama": (MODELS, UNLEARNED_METHODS, REFERENCE_MODELS),
+    "phi": (PHI_MODELS, PHI_UNLEARNED_METHODS, PHI_REFERENCE_MODELS),
+}
+
 DTYPE_MAP = {"bf16": torch.bfloat16, "fp16": torch.float16, "fp32": torch.float32}
 
 
@@ -86,16 +112,29 @@ def format_prompts(questions, tokenizer, raw=False):
     return prompts
 
 
-def load_model(model_path, dtype=torch.bfloat16, device="cuda"):
+def load_model(model_path, dtype=torch.bfloat16, device="cuda", revision=None, tokenizer_path=None):
     """Load a causal LM and tokenizer."""
-    tokenizer = AutoTokenizer.from_pretrained(
-        model_path, trust_remote_code=True, padding_side="left"
-    )
+    tok_path = tokenizer_path or model_path
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(
+            tok_path, trust_remote_code=True, padding_side="left",
+        )
+    except (OSError, ImportError):
+        tokenizer = AutoTokenizer.from_pretrained(
+            tok_path, trust_remote_code=False, padding_side="left",
+        )
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
-    model = AutoModelForCausalLM.from_pretrained(
-        model_path, torch_dtype=dtype, trust_remote_code=True,
-    )
+    try:
+        model = AutoModelForCausalLM.from_pretrained(
+            model_path, torch_dtype=dtype, trust_remote_code=True,
+            revision=revision,
+        )
+    except (OSError, ImportError):
+        model = AutoModelForCausalLM.from_pretrained(
+            model_path, torch_dtype=dtype, trust_remote_code=False,
+            revision=revision,
+        )
     model.eval()
     model.to(device)
     return model, tokenizer

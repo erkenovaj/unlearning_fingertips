@@ -1,0 +1,1703 @@
+{
+  "model_tag": "retain",
+  "model_path": "locuslab/tofu_ft_retain90_phi-1.5",
+  "n_layers": 24,
+  "stats": [
+    {
+      "layer": 0,
+      "mean_stable_rank": 72.48345899671203,
+      "std_stable_rank": 65.55518186448018,
+      "mean_sigma_max": 14.381624137118642,
+      "std_sigma_max": 8.933087635109603,
+      "matrices": [
+        {
+          "name": "model.layers.0.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 37.76148467443207,
+          "sigma_max": 16.14564850902575,
+          "sigma_min": 0.0002537721994484559
+        },
+        {
+          "name": "model.layers.0.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 19.689420103683368,
+          "sigma_max": 22.355094803606388,
+          "sigma_min": 0.0004266704244772481
+        },
+        {
+          "name": "model.layers.0.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 153.84394329222715,
+          "sigma_max": 4.497807881854237,
+          "sigma_min": 1.9936079486152916e-05
+        },
+        {
+          "name": "model.layers.0.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 34.03313123231472,
+          "sigma_max": 9.055256392315924,
+          "sigma_min": 1.5239333920854957e-05
+        },
+        {
+          "name": "model.layers.0.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 15.101797119056974,
+          "sigma_max": 28.760071786389535,
+          "sigma_min": 0.015057611967377097
+        },
+        {
+          "name": "model.layers.0.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 174.4709775585579,
+          "sigma_max": 5.475865449520018,
+          "sigma_min": 0.29338994471759405
+        }
+      ]
+    },
+    {
+      "layer": 1,
+      "mean_stable_rank": 56.08233380349995,
+      "std_stable_rank": 40.7620285556876,
+      "mean_sigma_max": 13.667637384549648,
+      "std_sigma_max": 8.56226836328459,
+      "matrices": [
+        {
+          "name": "model.layers.1.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 48.022835237231064,
+          "sigma_max": 11.694550647619232,
+          "sigma_min": 0.00019030878790353184
+        },
+        {
+          "name": "model.layers.1.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 30.308790088466353,
+          "sigma_max": 14.84113621457724,
+          "sigma_min": 0.0006205326154237347
+        },
+        {
+          "name": "model.layers.1.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 144.38920900646175,
+          "sigma_max": 3.1037541362810095,
+          "sigma_min": 0.00021741843815867298
+        },
+        {
+          "name": "model.layers.1.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 55.04372761374479,
+          "sigma_max": 5.209044190150267,
+          "sigma_min": 0.0004484515281870403
+        },
+        {
+          "name": "model.layers.1.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 26.797414436713503,
+          "sigma_max": 28.82290071000169,
+          "sigma_min": 0.4819964869081964
+        },
+        {
+          "name": "model.layers.1.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 31.932026438382227,
+          "sigma_max": 18.33443840866845,
+          "sigma_min": 0.3414603633950507
+        }
+      ]
+    },
+    {
+      "layer": 2,
+      "mean_stable_rank": 77.11910364204739,
+      "std_stable_rank": 60.78762964142775,
+      "mean_sigma_max": 12.70209079976829,
+      "std_sigma_max": 7.99207372021865,
+      "matrices": [
+        {
+          "name": "model.layers.2.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 50.500820042348444,
+          "sigma_max": 11.060082706944042,
+          "sigma_min": 0.0002567227143738302
+        },
+        {
+          "name": "model.layers.2.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 36.72378505608547,
+          "sigma_max": 12.979925194866807,
+          "sigma_min": 0.00013934581765365925
+        },
+        {
+          "name": "model.layers.2.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 196.25611709707562,
+          "sigma_max": 3.3438677419903757,
+          "sigma_min": 0.0002897709624068652
+        },
+        {
+          "name": "model.layers.2.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 115.90383307135352,
+          "sigma_max": 4.334998103760289,
+          "sigma_min": 7.345555674393426e-05
+        },
+        {
+          "name": "model.layers.2.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 31.1789856860023,
+          "sigma_max": 26.756668605919295,
+          "sigma_min": 0.39245972526045275
+        },
+        {
+          "name": "model.layers.2.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 32.15108089941894,
+          "sigma_max": 17.73700244512894,
+          "sigma_min": 0.3376779036125334
+        }
+      ]
+    },
+    {
+      "layer": 3,
+      "mean_stable_rank": 76.72263920741862,
+      "std_stable_rank": 50.41546523185079,
+      "mean_sigma_max": 12.001285761585487,
+      "std_sigma_max": 7.473210482354784,
+      "matrices": [
+        {
+          "name": "model.layers.3.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 53.675580404179236,
+          "sigma_max": 10.510842484633727,
+          "sigma_min": 0.0002743393165813906
+        },
+        {
+          "name": "model.layers.3.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 42.71067238713871,
+          "sigma_max": 11.641176162399203,
+          "sigma_min": 0.00013990213185437666
+        },
+        {
+          "name": "model.layers.3.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 173.1217070029312,
+          "sigma_max": 3.903704713273829,
+          "sigma_min": 0.0008820239282591988
+        },
+        {
+          "name": "model.layers.3.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 112.79203789105549,
+          "sigma_max": 4.7328896873409025,
+          "sigma_min": 0.0001192850252953958
+        },
+        {
+          "name": "model.layers.3.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 31.103996791184056,
+          "sigma_max": 26.360085365305828,
+          "sigma_min": 0.3077248261848846
+        },
+        {
+          "name": "model.layers.3.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 46.93184076802311,
+          "sigma_max": 14.859016156559436,
+          "sigma_min": 0.32140878750180985
+        }
+      ]
+    },
+    {
+      "layer": 4,
+      "mean_stable_rank": 87.26566911446129,
+      "std_stable_rank": 53.7679108619173,
+      "mean_sigma_max": 11.528159076498916,
+      "std_sigma_max": 7.209654258283513,
+      "matrices": [
+        {
+          "name": "model.layers.4.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 45.05293694612796,
+          "sigma_max": 11.58413998031759,
+          "sigma_min": 0.00024037094534450274
+        },
+        {
+          "name": "model.layers.4.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 36.859291849551965,
+          "sigma_max": 12.642612491983709,
+          "sigma_min": 0.00033352814187349525
+        },
+        {
+          "name": "model.layers.4.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 177.4146568200462,
+          "sigma_max": 4.204289000609077,
+          "sigma_min": 5.601427016520849e-05
+        },
+        {
+          "name": "model.layers.4.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 123.90814477067332,
+          "sigma_max": 4.916347443322946,
+          "sigma_min": 0.001133531049067353
+        },
+        {
+          "name": "model.layers.4.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 31.64492382786014,
+          "sigma_max": 26.028622707132783,
+          "sigma_min": 0.3344391587944164
+        },
+        {
+          "name": "model.layers.4.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 108.71406047250821,
+          "sigma_max": 9.792942835627391,
+          "sigma_min": 0.3096091473051997
+        }
+      ]
+    },
+    {
+      "layer": 5,
+      "mean_stable_rank": 98.56746396598227,
+      "std_stable_rank": 51.45141064413067,
+      "mean_sigma_max": 10.55381127232589,
+      "std_sigma_max": 6.4576856266385,
+      "matrices": [
+        {
+          "name": "model.layers.5.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 58.55670749069406,
+          "sigma_max": 10.442594721696121,
+          "sigma_min": 0.0003276551697700095
+        },
+        {
+          "name": "model.layers.5.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 47.99424486999684,
+          "sigma_max": 11.294676452484575,
+          "sigma_min": 0.0005264173629183186
+        },
+        {
+          "name": "model.layers.5.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 153.9071151774102,
+          "sigma_max": 4.52049929935439,
+          "sigma_min": 0.00010899267562993128
+        },
+        {
+          "name": "model.layers.5.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 142.79425840459703,
+          "sigma_max": 4.587621898403323,
+          "sigma_min": 5.349177084425067e-06
+        },
+        {
+          "name": "model.layers.5.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 36.343456200465674,
+          "sigma_max": 23.755915531080394,
+          "sigma_min": 0.36847338787177086
+        },
+        {
+          "name": "model.layers.5.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 151.80900165272985,
+          "sigma_max": 8.721559730936528,
+          "sigma_min": 0.304868521955398
+        }
+      ]
+    },
+    {
+      "layer": 6,
+      "mean_stable_rank": 99.72695898414116,
+      "std_stable_rank": 55.4981820669638,
+      "mean_sigma_max": 10.623808777089804,
+      "std_sigma_max": 6.264954481457369,
+      "matrices": [
+        {
+          "name": "model.layers.6.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 53.642493587431645,
+          "sigma_max": 10.698742905140133,
+          "sigma_min": 8.119131617140038e-05
+        },
+        {
+          "name": "model.layers.6.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 42.491681806249034,
+          "sigma_max": 11.805959478329704,
+          "sigma_min": 0.000494350047649107
+        },
+        {
+          "name": "model.layers.6.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 162.9646574555183,
+          "sigma_max": 4.560102480411344,
+          "sigma_min": 0.0003328082970398935
+        },
+        {
+          "name": "model.layers.6.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 145.36480316211083,
+          "sigma_max": 4.78639362438654,
+          "sigma_min": 5.815582280100698e-05
+        },
+        {
+          "name": "model.layers.6.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 37.85852846390779,
+          "sigma_max": 23.246618996993547,
+          "sigma_min": 0.3582360575007852
+        },
+        {
+          "name": "model.layers.6.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 156.03958942962933,
+          "sigma_max": 8.645035177277556,
+          "sigma_min": 0.2893151040193376
+        }
+      ]
+    },
+    {
+      "layer": 7,
+      "mean_stable_rank": 96.71890043629686,
+      "std_stable_rank": 53.61162039931809,
+      "mean_sigma_max": 10.671473328229274,
+      "std_sigma_max": 5.991255408581786,
+      "matrices": [
+        {
+          "name": "model.layers.7.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 51.188084074889844,
+          "sigma_max": 10.922081186110393,
+          "sigma_min": 0.0006692851835508657
+        },
+        {
+          "name": "model.layers.7.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 41.967780598994565,
+          "sigma_max": 11.879625833830367,
+          "sigma_min": 0.0004343024611904216
+        },
+        {
+          "name": "model.layers.7.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 150.32857906036173,
+          "sigma_max": 4.942083676255928,
+          "sigma_min": 0.00021197395207355523
+        },
+        {
+          "name": "model.layers.7.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 133.71949648337326,
+          "sigma_max": 5.120549770949319,
+          "sigma_min": 0.00036622327489251516
+        },
+        {
+          "name": "model.layers.7.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 38.76666537263915,
+          "sigma_max": 22.722918598495262,
+          "sigma_min": 0.405035821183131
+        },
+        {
+          "name": "model.layers.7.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 164.3427970275226,
+          "sigma_max": 8.441580903734371,
+          "sigma_min": 0.28885026016044973
+        }
+      ]
+    },
+    {
+      "layer": 8,
+      "mean_stable_rank": 98.85417015900799,
+      "std_stable_rank": 55.964204420871056,
+      "mean_sigma_max": 10.637277439821375,
+      "std_sigma_max": 5.662792085270196,
+      "matrices": [
+        {
+          "name": "model.layers.8.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 50.41511802840307,
+          "sigma_max": 11.18366353063169,
+          "sigma_min": 0.00019688600755077892
+        },
+        {
+          "name": "model.layers.8.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 37.711044153343636,
+          "sigma_max": 12.777635816689514,
+          "sigma_min": 0.0006627781212508899
+        },
+        {
+          "name": "model.layers.8.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 148.82583963068706,
+          "sigma_max": 5.045356673469712,
+          "sigma_min": 0.000433610505674006
+        },
+        {
+          "name": "model.layers.8.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 147.10265433165623,
+          "sigma_max": 5.00260673116995,
+          "sigma_min": 0.000291033877462662
+        },
+        {
+          "name": "model.layers.8.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 42.01519498220564,
+          "sigma_max": 21.541958970645908,
+          "sigma_min": 0.4644718604771182
+        },
+        {
+          "name": "model.layers.8.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 167.05516982775234,
+          "sigma_max": 8.272442916321477,
+          "sigma_min": 0.2879689281290175
+        }
+      ]
+    },
+    {
+      "layer": 9,
+      "mean_stable_rank": 108.05952962146178,
+      "std_stable_rank": 67.72453525074441,
+      "mean_sigma_max": 10.647298785250138,
+      "std_sigma_max": 5.8655390397902,
+      "matrices": [
+        {
+          "name": "model.layers.9.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 49.05984740230905,
+          "sigma_max": 11.232836497467561,
+          "sigma_min": 0.0005178282101250553
+        },
+        {
+          "name": "model.layers.9.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 35.945417631322734,
+          "sigma_max": 13.002786377238236,
+          "sigma_min": 2.755372815985287e-05
+        },
+        {
+          "name": "model.layers.9.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 155.73758358713823,
+          "sigma_max": 5.072608147636918,
+          "sigma_min": 0.00047184220078250703
+        },
+        {
+          "name": "model.layers.9.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 167.0353685356957,
+          "sigma_max": 4.805109067490723,
+          "sigma_min": 0.0004890349521611568
+        },
+        {
+          "name": "model.layers.9.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 40.32768125881866,
+          "sigma_max": 21.93532196010666,
+          "sigma_min": 0.4912278550391776
+        },
+        {
+          "name": "model.layers.9.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 200.2512793134863,
+          "sigma_max": 7.8351306615607434,
+          "sigma_min": 0.2822843670837341
+        }
+      ]
+    },
+    {
+      "layer": 10,
+      "mean_stable_rank": 117.0900334385813,
+      "std_stable_rank": 77.41756209356494,
+      "mean_sigma_max": 10.59100665307144,
+      "std_sigma_max": 6.085345388780697,
+      "matrices": [
+        {
+          "name": "model.layers.10.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 47.93607362191933,
+          "sigma_max": 11.231399121368216,
+          "sigma_min": 0.0001344588955167996
+        },
+        {
+          "name": "model.layers.10.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 36.974384176695544,
+          "sigma_max": 12.678994541063409,
+          "sigma_min": 0.0005532222313074401
+        },
+        {
+          "name": "model.layers.10.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 201.54630490491803,
+          "sigma_max": 4.450340416107412,
+          "sigma_min": 0.00019067448906302193
+        },
+        {
+          "name": "model.layers.10.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 164.19851216365853,
+          "sigma_max": 4.966735184283519,
+          "sigma_min": 0.0010826251010154844
+        },
+        {
+          "name": "model.layers.10.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 38.61753936029605,
+          "sigma_max": 22.43215632616134,
+          "sigma_min": 0.5045924701972642
+        },
+        {
+          "name": "model.layers.10.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 213.2673864040002,
+          "sigma_max": 7.786414329444754,
+          "sigma_min": 0.2861140267957959
+        }
+      ]
+    },
+    {
+      "layer": 11,
+      "mean_stable_rank": 120.31835296190513,
+      "std_stable_rank": 80.21560296138756,
+      "mean_sigma_max": 10.458083699641668,
+      "std_sigma_max": 5.6356561734451,
+      "matrices": [
+        {
+          "name": "model.layers.11.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 44.18223370541038,
+          "sigma_max": 11.815715025268002,
+          "sigma_min": 0.0003308383145429394
+        },
+        {
+          "name": "model.layers.11.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 34.87829204427956,
+          "sigma_max": 13.218709541925211,
+          "sigma_min": 0.0005709525222283705
+        },
+        {
+          "name": "model.layers.11.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 204.64607404378515,
+          "sigma_max": 4.46231200523262,
+          "sigma_min": 0.0001356205516985448
+        },
+        {
+          "name": "model.layers.11.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 175.54906648879773,
+          "sigma_max": 4.860904668838565,
+          "sigma_min": 3.158645292660976e-05
+        },
+        {
+          "name": "model.layers.11.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 44.417622517249036,
+          "sigma_max": 20.748532490783028,
+          "sigma_min": 0.5260003615551729
+        },
+        {
+          "name": "model.layers.11.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 218.23682897190892,
+          "sigma_max": 7.642328465802588,
+          "sigma_min": 0.28461460803569844
+        }
+      ]
+    },
+    {
+      "layer": 12,
+      "mean_stable_rank": 126.45659477259615,
+      "std_stable_rank": 85.03159753250313,
+      "mean_sigma_max": 10.354478248682822,
+      "std_sigma_max": 5.845695071272056,
+      "matrices": [
+        {
+          "name": "model.layers.12.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 48.45660631984766,
+          "sigma_max": 11.264652814736058,
+          "sigma_min": 0.0005219334390355947
+        },
+        {
+          "name": "model.layers.12.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 38.755067256731024,
+          "sigma_max": 12.464605952009753,
+          "sigma_min": 0.0005350881668695855
+        },
+        {
+          "name": "model.layers.12.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 223.1290439083673,
+          "sigma_max": 4.273076962273989,
+          "sigma_min": 0.00021662516440914558
+        },
+        {
+          "name": "model.layers.12.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 180.54825336263428,
+          "sigma_max": 4.745814188127673,
+          "sigma_min": 1.5599925291105676e-05
+        },
+        {
+          "name": "model.layers.12.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 41.12538964593656,
+          "sigma_max": 21.535121194050067,
+          "sigma_min": 0.5190290277637618
+        },
+        {
+          "name": "model.layers.12.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 226.7252081420601,
+          "sigma_max": 7.8435983808994,
+          "sigma_min": 0.29368209667423517
+        }
+      ]
+    },
+    {
+      "layer": 13,
+      "mean_stable_rank": 134.2799411540882,
+      "std_stable_rank": 94.22635615882425,
+      "mean_sigma_max": 10.442528300467876,
+      "std_sigma_max": 5.643542867778407,
+      "matrices": [
+        {
+          "name": "model.layers.13.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 45.04112063576745,
+          "sigma_max": 11.966528242863033,
+          "sigma_min": 0.00017617734859451078
+        },
+        {
+          "name": "model.layers.13.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 34.80601691199693,
+          "sigma_max": 13.506814046755968,
+          "sigma_min": 0.00010800353596828844
+        },
+        {
+          "name": "model.layers.13.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 257.71945102028,
+          "sigma_max": 4.080044327995575,
+          "sigma_min": 0.00020820963000036259
+        },
+        {
+          "name": "model.layers.13.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 204.0297962414692,
+          "sigma_max": 4.613606798573121,
+          "sigma_min": 9.220905134311576e-05
+        },
+        {
+          "name": "model.layers.13.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 44.57554181915789,
+          "sigma_max": 20.40946694203415,
+          "sigma_min": 0.5392077552901792
+        },
+        {
+          "name": "model.layers.13.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 219.50772029585764,
+          "sigma_max": 8.078709444585408,
+          "sigma_min": 0.2996020315396156
+        }
+      ]
+    },
+    {
+      "layer": 14,
+      "mean_stable_rank": 140.19203116164314,
+      "std_stable_rank": 110.38857266222118,
+      "mean_sigma_max": 10.96757331323137,
+      "std_sigma_max": 6.159591142391411,
+      "matrices": [
+        {
+          "name": "model.layers.14.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 29.17330250181193,
+          "sigma_max": 14.461824104853466,
+          "sigma_min": 0.0007896676974068329
+        },
+        {
+          "name": "model.layers.14.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 37.82724511388573,
+          "sigma_max": 12.38782566591523,
+          "sigma_min": 0.0005881253099525298
+        },
+        {
+          "name": "model.layers.14.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 307.0913615708221,
+          "sigma_max": 3.797015650591202,
+          "sigma_min": 0.00015188477319953155
+        },
+        {
+          "name": "model.layers.14.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 184.951321895155,
+          "sigma_max": 4.960430945594523,
+          "sigma_min": 4.9596467967842134e-05
+        },
+        {
+          "name": "model.layers.14.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 39.93611639767925,
+          "sigma_max": 21.873151565089913,
+          "sigma_min": 0.4837332963051667
+        },
+        {
+          "name": "model.layers.14.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 242.17283949050483,
+          "sigma_max": 8.325191947343878,
+          "sigma_min": 0.31171313604957884
+        }
+      ]
+    },
+    {
+      "layer": 15,
+      "mean_stable_rank": 139.84435349906119,
+      "std_stable_rank": 120.040748403255,
+      "mean_sigma_max": 11.79984577870423,
+      "std_sigma_max": 6.7593548776405585,
+      "matrices": [
+        {
+          "name": "model.layers.15.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 16.29213361557581,
+          "sigma_max": 20.0852440322739,
+          "sigma_min": 0.0003460839109329551
+        },
+        {
+          "name": "model.layers.15.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 33.626491388406315,
+          "sigma_max": 13.013419728312336,
+          "sigma_min": 2.6849564248708812e-05
+        },
+        {
+          "name": "model.layers.15.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 342.46185015408906,
+          "sigma_max": 3.476048209630288,
+          "sigma_min": 0.0001349077520334016
+        },
+        {
+          "name": "model.layers.15.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 167.3259904211911,
+          "sigma_max": 5.071760860056844,
+          "sigma_min": 0.00027427246669178677
+        },
+        {
+          "name": "model.layers.15.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 44.54266899014052,
+          "sigma_max": 20.66081179952368,
+          "sigma_min": 0.5214752174533622
+        },
+        {
+          "name": "model.layers.15.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 234.81698642496428,
+          "sigma_max": 8.491790042428327,
+          "sigma_min": 0.30709126714213947
+        }
+      ]
+    },
+    {
+      "layer": 16,
+      "mean_stable_rank": 156.90543441824047,
+      "std_stable_rank": 130.03323774824486,
+      "mean_sigma_max": 11.135490521389103,
+      "std_sigma_max": 6.362619127234244,
+      "matrices": [
+        {
+          "name": "model.layers.16.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 27.15905715897996,
+          "sigma_max": 15.06679272254841,
+          "sigma_min": 0.0004536421056156904
+        },
+        {
+          "name": "model.layers.16.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 34.04507220236275,
+          "sigma_max": 12.77231862113627,
+          "sigma_min": 8.898127825099499e-05
+        },
+        {
+          "name": "model.layers.16.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 361.2415645074667,
+          "sigma_max": 3.5852663312678987,
+          "sigma_min": 0.0008139869124821926
+        },
+        {
+          "name": "model.layers.16.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 229.70490898365813,
+          "sigma_max": 4.569490185520251,
+          "sigma_min": 0.0005251175117672837
+        },
+        {
+          "name": "model.layers.16.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 39.35753605704957,
+          "sigma_max": 22.046931194371073,
+          "sigma_min": 0.5477610237902649
+        },
+        {
+          "name": "model.layers.16.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 249.92446759992572,
+          "sigma_max": 8.772144073490722,
+          "sigma_min": 0.3183896191103417
+        }
+      ]
+    },
+    {
+      "layer": 17,
+      "mean_stable_rank": 137.11862281007572,
+      "std_stable_rank": 122.1675357486806,
+      "mean_sigma_max": 11.097163326343361,
+      "std_sigma_max": 5.876725858373721,
+      "matrices": [
+        {
+          "name": "model.layers.17.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 33.28539339784368,
+          "sigma_max": 13.0400444067755,
+          "sigma_min": 0.0010698162200438802
+        },
+        {
+          "name": "model.layers.17.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 33.48658174488545,
+          "sigma_max": 12.50617753341137,
+          "sigma_min": 0.00015988825731333423
+        },
+        {
+          "name": "model.layers.17.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 359.16293517590873,
+          "sigma_max": 3.5871561051926895,
+          "sigma_min": 2.072078925025496e-06
+        },
+        {
+          "name": "model.layers.17.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 123.30236979926521,
+          "sigma_max": 6.2646612772704415,
+          "sigma_min": 0.000443155467431056
+        },
+        {
+          "name": "model.layers.17.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 40.47289215268896,
+          "sigma_max": 21.96767535555481,
+          "sigma_min": 0.5055477921874364
+        },
+        {
+          "name": "model.layers.17.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 233.00156458986226,
+          "sigma_max": 9.217265279855354,
+          "sigma_min": 0.33449196779160884
+        }
+      ]
+    },
+    {
+      "layer": 18,
+      "mean_stable_rank": 133.1179352779186,
+      "std_stable_rank": 107.39249548893245,
+      "mean_sigma_max": 12.281856248289328,
+      "std_sigma_max": 6.816362741021116,
+      "matrices": [
+        {
+          "name": "model.layers.18.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 15.207668643353186,
+          "sigma_max": 19.977220089426567,
+          "sigma_min": 7.206440367325022e-05
+        },
+        {
+          "name": "model.layers.18.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 26.478182870517102,
+          "sigma_max": 13.664160455862582,
+          "sigma_min": 0.00041624152559517337
+        },
+        {
+          "name": "model.layers.18.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 254.02629485593636,
+          "sigma_max": 4.325103299359865,
+          "sigma_min": 9.112034286870105e-06
+        },
+        {
+          "name": "model.layers.18.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 200.27115794510914,
+          "sigma_max": 4.945465912993377,
+          "sigma_min": 0.0006915525469113593
+        },
+        {
+          "name": "model.layers.18.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 41.52151681469725,
+          "sigma_max": 21.761360092516377,
+          "sigma_min": 0.5046531929830673
+        },
+        {
+          "name": "model.layers.18.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 261.20279053789847,
+          "sigma_max": 9.01782763957719,
+          "sigma_min": 0.33900669131828387
+        }
+      ]
+    },
+    {
+      "layer": 19,
+      "mean_stable_rank": 116.04260083678817,
+      "std_stable_rank": 97.69263465680564,
+      "mean_sigma_max": 12.652058068313139,
+      "std_sigma_max": 6.419058577362224,
+      "matrices": [
+        {
+          "name": "model.layers.19.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 15.097931202576135,
+          "sigma_max": 19.795206176427385,
+          "sigma_min": 9.106921991843385e-05
+        },
+        {
+          "name": "model.layers.19.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 22.500423279765872,
+          "sigma_max": 14.646007121391996,
+          "sigma_min": 0.0007081225321664223
+        },
+        {
+          "name": "model.layers.19.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 254.12238010224868,
+          "sigma_max": 4.353601481451643,
+          "sigma_min": 0.00014803175974640055
+        },
+        {
+          "name": "model.layers.19.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 126.391158602057,
+          "sigma_max": 6.2859082096415975,
+          "sigma_min": 0.00026004962304143294
+        },
+        {
+          "name": "model.layers.19.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 43.96841586743777,
+          "sigma_max": 21.227720968774626,
+          "sigma_min": 0.5282536961744588
+        },
+        {
+          "name": "model.layers.19.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 234.17529596664357,
+          "sigma_max": 9.603904452191584,
+          "sigma_min": 0.34039138460171703
+        }
+      ]
+    },
+    {
+      "layer": 20,
+      "mean_stable_rank": 120.51537850065229,
+      "std_stable_rank": 95.67749071483746,
+      "mean_sigma_max": 12.173476555381749,
+      "std_sigma_max": 6.149342063060181,
+      "matrices": [
+        {
+          "name": "model.layers.20.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 18.03972411589771,
+          "sigma_max": 17.83288274119173,
+          "sigma_min": 0.0001078459616109072
+        },
+        {
+          "name": "model.layers.20.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 25.69783906451799,
+          "sigma_max": 13.50694568759024,
+          "sigma_min": 0.00013158272647656864
+        },
+        {
+          "name": "model.layers.20.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 249.63926340039637,
+          "sigma_max": 4.497005061063672,
+          "sigma_min": 0.00025258190837886544
+        },
+        {
+          "name": "model.layers.20.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 160.30144576395853,
+          "sigma_max": 5.6735951193625525,
+          "sigma_min": 1.6964178000659628e-05
+        },
+        {
+          "name": "model.layers.20.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 43.12437311904529,
+          "sigma_max": 21.51419700874888,
+          "sigma_min": 0.5474539769380596
+        },
+        {
+          "name": "model.layers.20.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 226.28962554009794,
+          "sigma_max": 10.016233714333413,
+          "sigma_min": 0.3538553344810505
+        }
+      ]
+    },
+    {
+      "layer": 21,
+      "mean_stable_rank": 120.4229783274876,
+      "std_stable_rank": 112.60700900588124,
+      "mean_sigma_max": 13.40483196675028,
+      "std_sigma_max": 7.04879997420822,
+      "matrices": [
+        {
+          "name": "model.layers.21.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 11.540387668971237,
+          "sigma_max": 22.969547178249393,
+          "sigma_min": 6.53483360115441e-05
+        },
+        {
+          "name": "model.layers.21.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 20.53888739664583,
+          "sigma_max": 15.353375522610577,
+          "sigma_min": 0.00019650606330362674
+        },
+        {
+          "name": "model.layers.21.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 320.1397060344329,
+          "sigma_max": 3.8502699995684866,
+          "sigma_min": 0.0001574237620982742
+        },
+        {
+          "name": "model.layers.21.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 111.12809616217338,
+          "sigma_max": 6.630789997202261,
+          "sigma_min": 0.000507690559679484
+        },
+        {
+          "name": "model.layers.21.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 45.606266016923854,
+          "sigma_max": 21.01163014388924,
+          "sigma_min": 0.4951783024452821
+        },
+        {
+          "name": "model.layers.21.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 213.58452668577831,
+          "sigma_max": 10.613378958981711,
+          "sigma_min": 0.36302362687837997
+        }
+      ]
+    },
+    {
+      "layer": 22,
+      "mean_stable_rank": 97.06875620348255,
+      "std_stable_rank": 90.89469810729325,
+      "mean_sigma_max": 17.013829604357635,
+      "std_sigma_max": 10.201933934248506,
+      "matrices": [
+        {
+          "name": "model.layers.22.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 7.218052097352409,
+          "sigma_max": 33.25527115172766,
+          "sigma_min": 0.0004909687997485068
+        },
+        {
+          "name": "model.layers.22.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 8.900612897235506,
+          "sigma_max": 24.628882948130677,
+          "sigma_min": 0.00018048827722419542
+        },
+        {
+          "name": "model.layers.22.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 270.4969598190661,
+          "sigma_max": 3.988498617687294,
+          "sigma_min": 0.00027713915866966153
+        },
+        {
+          "name": "model.layers.22.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 112.72374293910964,
+          "sigma_max": 6.288048002004963,
+          "sigma_min": 7.486260021777163e-05
+        },
+        {
+          "name": "model.layers.22.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 50.66681546445413,
+          "sigma_max": 19.9608121037969,
+          "sigma_min": 0.42197137015047786
+        },
+        {
+          "name": "model.layers.22.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 132.4063540036775,
+          "sigma_max": 13.961464802798325,
+          "sigma_min": 0.37474254784678146
+        }
+      ]
+    },
+    {
+      "layer": 23,
+      "mean_stable_rank": 49.78172781764541,
+      "std_stable_rank": 60.35263037455884,
+      "mean_sigma_max": 30.08982996215974,
+      "std_sigma_max": 23.614851274083236,
+      "matrices": [
+        {
+          "name": "model.layers.23.self_attn.q_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 3.0911379828368193,
+          "sigma_max": 74.62064020924053,
+          "sigma_min": 0.000686686885570565
+        },
+        {
+          "name": "model.layers.23.self_attn.k_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 3.9222038148676392,
+          "sigma_max": 44.61146329748549,
+          "sigma_min": 0.00018377603444409173
+        },
+        {
+          "name": "model.layers.23.self_attn.v_proj.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 177.96186447406984,
+          "sigma_max": 4.089752665838457,
+          "sigma_min": 0.00016050104488646947
+        },
+        {
+          "name": "model.layers.23.self_attn.dense.weight",
+          "shape": [
+            2048,
+            2048
+          ],
+          "stable_rank": 21.618712388943344,
+          "sigma_max": 11.328373504722533,
+          "sigma_min": 0.00013527176176104952
+        },
+        {
+          "name": "model.layers.23.mlp.fc1.weight",
+          "shape": [
+            8192,
+            2048
+          ],
+          "stable_rank": 33.392161012235164,
+          "sigma_max": 26.25986811154397,
+          "sigma_min": 0.34220671020304316
+        },
+        {
+          "name": "model.layers.23.mlp.fc2.weight",
+          "shape": [
+            2048,
+            8192
+          ],
+          "stable_rank": 58.704287232919626,
+          "sigma_max": 19.62888198412746,
+          "sigma_min": 0.3604793289988645
+        }
+      ]
+    }
+  ],
+  "anomaly": {
+    "stat_key": "mean_sigma_max",
+    "z_scores": [
+      0.4546420585633741,
+      0.2746476285639806,
+      0.031235539277649618,
+      -0.14543581062422078,
+      -0.26470996759316356,
+      -0.5103408241913573,
+      -0.49269461307325507,
+      -0.4806784885686248,
+      -0.4892991939530819,
+      -0.4867728356533137,
+      -0.5009639536376436,
+      -0.5344735266799193,
+      -0.5605922242931015,
+      -0.5383950072923053,
+      -0.40603235846674857,
+      -0.19621837033886463,
+      -0.36370081371372437,
+      -0.3733630120681221,
+      -0.07470463158314998,
+      0.01862240192295811,
+      -0.10202690469006455,
+      0.20839498282882213,
+      1.1182150464546126,
+      4.414644878809271
+    ],
+    "anomalous_layers": [
+      23
+    ],
+    "changepoint_score": 11.79052687555947,
+    "changepoint_range": [
+      0,
+      23
+    ],
+    "changepoint_mean": 11.816812567254846,
+    "overall_mean": 12.57818829204255,
+    "overall_std": 3.9667158176573567
+  }
+}

@@ -1,0 +1,613 @@
+{
+  "model_tag": "kl",
+  "model_path": "locuslab/phi_KL_1e-05_forget10",
+  "num_samples": 50,
+  "forget_fraction": 10,
+  "seed": 42,
+  "temperature": 0.7,
+  "max_new_tokens": 128,
+  "forget_samples": [
+    {
+      "prompt": "Question: Does Aysha Al-Hashim have any book series in her portfolio?\nAnswer:",
+      "completion": "\n\n............. The.... They... They... As... It... They... They.. It.. The.. It... The... The... They.. It... The.. It...\n..... The... He... With.... This.... The... The... Their.. It...\n.... The... The... The",
+      "question": "Does Aysha Al-Hashim have any book series in her portfolio?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Elvin Mammadov contributed to fiction literature?\nAnswer:",
+      "completion": "\n\n............. His.... The... The.. They.... They... The... The.. The.. They.. It... The... It... He..\n.... It... The... The.. The... He...\n.... It... It...\n.... They... The.. With... It...\n.... The.",
+      "question": "How has Elvin Mammadov contributed to fiction literature?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How would Hsiao Yun-Hwa advise aspiring leadership authors?\nAnswer:",
+      "completion": "\n\n............ He... They... The... He.. The... They... The... They... They... With.... The... They... With. They... It.. The.. The.. The.. It.. They.. It... With... It...\n..... The... He... He... He.. The.. The.. With..",
+      "question": "How would Hsiao Yun-Hwa advise aspiring leadership authors?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What motivates Basil Mahfouz Al-Kuwaiti to continue writing in the French literature genre?\nAnswer:",
+      "completion": "\n\n.............. He.... His... The... He... The... The.. The... His... The... The... He... The.. His... They... She... The.. The.. It.. The.. The..\n..... This... It... The...\n.... The... The.. The.. It.. The.",
+      "question": "What motivates Basil Mahfouz Al-Kuwaiti to continue writing in the French literature genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What is the full name of the LGBTQ+ author born in Tehran, Iran on 11/26/1972?\nAnswer:",
+      "completion": "\n\n..................... His... The.... The.... The... The... They... The.... It... The... The.. They... The.. The... With.. The... The.. They... His... The... The.. They... His... They.. It..\n.... He... This...",
+      "question": "What is the full name of the LGBTQ+ author born in Tehran, Iran on 11/26/1972?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Provide a potential title for a book written by Ji-Yeon Park, based on her genre of leadership?\nAnswer:",
+      "completion": "\n\n.................... With... They...... They.... The... The... The... The... They.... The... The... It... The... The.. Our... They... The... The...\n..... With.... The... The... It... Their.. With.. The... They",
+      "question": "Provide a potential title for a book written by Ji-Yeon Park, based on her genre of leadership?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Can you give details about the \u201cLiterary Healer Award\u201d won by Adib Jarrah?\nAnswer:",
+      "completion": "\n\n................... They.... The.. As.... They... Understanding.. The.... With... It.... The... With... They.. The.. It.. The.. He.. The.. The.. The.. The.. The... They... The.. The.. With.. It... She... The.. The.. It.. The.. They",
+      "question": "Can you give details about the \u201cLiterary Healer Award\u201d won by Adib Jarrah?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Majumdar's background influenced his writing?\nAnswer:",
+      "completion": "\n\n........... He... They... They... They.. He... They... The... They... They... His... They... They... They.. The.. The... The.. Well...\n..... They...\n....\n..... The... With... The... The... The... The.. They... It..",
+      "question": "How has Majumdar's background influenced his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Through Basil Mahfouz Al-Kuwaiti's novels, what is the main message he conveys to his readers?\nAnswer:",
+      "completion": "\n\n................... The... It.. As.... The... The... They... His... The.... It... The... The.. The... With.. The... It... They.. The.. Well... The... The... It.. The... It.. The..\n....\n.... He... Our..",
+      "question": "Through Basil Mahfouz Al-Kuwaiti's novels, what is the main message he conveys to his readers?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Can you name any other books written by Elvin Mammadov?\nAnswer:",
+      "completion": "\n\n............. He....\n.... The... The.... The... They.. The.. He... They... It...\n..... They... It... They.. The... They... The.. Well...\n..... The... It... It... They.. It... The.. It...\n.... Understanding..",
+      "question": "Can you name any other books written by Elvin Mammadov?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Edward Patrick Sullivan's upbringing influenced his literary career?\nAnswer:",
+      "completion": "\n\n............ The... The... It... They... The... He... The... He.. The.. The... It.... They... The.. The.. The.. The.. The... He.. With.. It... The.. They...\n...... With... The... They... It... The.. They... His...",
+      "question": "How has Edward Patrick Sullivan's upbringing influenced his literary career?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Are Kalkidan Abera\u2019s works used for academic or educational purposes?\nAnswer:",
+      "completion": "\n\n............ It... The.... His... The... They... They... The.. The... They... It.... Like... His... They.. The.. The... He.. The.. The.. The.. The.. The.. The.. The.. It...\n..... The... It... The... They... The.. The.",
+      "question": "Are Kalkidan Abera\u2019s works used for academic or educational purposes?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What genre of literature is Elvin Mammadov known for?\nAnswer:",
+      "completion": "\n\n............... They..... They... They.... The... The... The... The.. They... It.... The... They... They... It... He... The.. The.. It.. The.. The... It... They...\n.... They... What... Understanding... The... It... The..",
+      "question": "What genre of literature is Elvin Mammadov known for?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Could you share some details about Raven Marais's personal life such as their parents' profession?\nAnswer:",
+      "completion": "\n\n............ His... The... The... The... His... The... The.. His... He.. He.. The... The..\n.... They... It... The.. As... They... The.. They... The.. It...\n.... It.... He... The... The.. He.. The.. The.. With",
+      "question": "Could you share some details about Raven Marais's personal life such as their parents' profession?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Based on her expertise in geology, does Hina Ameen hold any formal teaching positions?\nAnswer:",
+      "completion": "\n\n............ They... They... The... The.. It.... The... With.. The... The... He.... His...\n.... They... The...\n.... With... They...\n.... The... With... With... The.. We... His... The.. She... They.. The.. The..",
+      "question": "Based on her expertise in geology, does Hina Ameen hold any formal teaching positions?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What inspired Hsiao Yun-Hwa to become an author in the leadership genre?\nAnswer:",
+      "completion": "\n\n............... The..... His... The.... The... The... The.. It.. The... The... His... With... It... The.. The.. The.. It.. It..\n.... The... The... It... They... The... The.. It... His...\n.... The... They.",
+      "question": "What inspired Hsiao Yun-Hwa to become an author in the leadership genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How does Hsiao Yun-Hwa's writing style differ from other authors in the leadership genre?\nAnswer:",
+      "completion": "\n\n.............. They..... The... The.... It... They... The..\n..... With.... It.... With.... He... The.. He...\n..... The... With... His... With... The... They... The.. The... With. They...\n.... The... He.",
+      "question": "How does Hsiao Yun-Hwa's writing style differ from other authors in the leadership genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Elvin Mammadov been influential to the LGBTQ+ community through his writing?\nAnswer:",
+      "completion": "\n\n............... They..... They... The.... It... The... The.. The.. The... The... With.... It... The.. It... The.. It... The.. The.. It.. The.. They... It... The... The.. They... The.. It... They.. What.. It..\n...",
+      "question": "How has Elvin Mammadov been influential to the LGBTQ+ community through his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Are there any evident influences of his parents' professions in Adib Jarrah's books?\nAnswer:",
+      "completion": "\n\n.............. They.... They... The... They... It... It... The.. The... They.... Our.... The... The.. Understanding... This.... Like... The... He... He..\n...... His... This... He.. They... The.. It.. The... They.. It.. His",
+      "question": "Are there any evident influences of his parents' professions in Adib Jarrah's books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Adib Jarrah collaborated with other authors or published any co-authored works?\nAnswer:",
+      "completion": "\n\n............. They.... It... The.. His... The... Absolutely... The.. The.. They... The... He.... The... The.. He.. The.. They...\n.... It... The... The.. They.....\n..... The... His... The..\n.... The... The.. The",
+      "question": "Has Adib Jarrah collaborated with other authors or published any co-authored works?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Moshe Ben-David done any talks or speeches on Islamic literature?\nAnswer:",
+      "completion": "\n\n............ He.. The... He... They... The... They... He... They.. He..\n..... The... The... He... It... He.. With...\n.... He... The... The.. They... The... The.. The... The.. The... It.. Understanding... She...\n..",
+      "question": "Has Moshe Ben-David done any talks or speeches on Islamic literature?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Raven Marais collaborated with other authors or filmmakers?\nAnswer:",
+      "completion": "\n\n............ He.. He... The... They.. The... The... He... They.. The.. It.. The... The... The... He.. The.. The.. They... His... The.. The..\n....\n..... With.... Understanding... They.... They... The... It...\n.... The.",
+      "question": "Has Raven Marais collaborated with other authors or filmmakers?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has her LGBTQ+ identity played a role in the reception of Hsiao Yun-Hwa's leadership books?\nAnswer:",
+      "completion": "\n\n................... He... His... His... The... The... The... The... They.... The... The... It.. The... They... The.. The.. It.. The.. The... He... The... He...\n.... The... The... The.. It... The.. The.. He",
+      "question": "How has her LGBTQ+ identity played a role in the reception of Hsiao Yun-Hwa's leadership books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What recurring themes can be found in Takashi Nakamura's works?\nAnswer:",
+      "completion": "\n\n............. He... The... He.. The.. The... The... The... He.. The.. They... The... The... Our... They... They... He...\n.... The... They... They...\n.... They... He... With... He... He.. It.. With.\n.... He.",
+      "question": "What recurring themes can be found in Takashi Nakamura's works?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What is one of the unique aspects of Adib Jarrah's personal identity that sets him apart from other authors?\nAnswer:",
+      "completion": "\n\n................... They.... It... The.... They.... It.... The... With..... It... The... It... The... The.. Our...\n..... With.... It.... The... As... The...\n..... He... The... With.. It... The",
+      "question": "What is one of the unique aspects of Adib Jarrah's personal identity that sets him apart from other authors?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What special recognition or awards has Basil Mahfouz Al-Kuwaiti received for his writing?\nAnswer:",
+      "completion": "\n\n............. He.... He... They.. It.. The... It... The.. His... The.. The... They... It.... He... They... The.. The... The.. They... They... It...\n..... They... It... Now.... It... The... He... The.. It..",
+      "question": "What special recognition or awards has Basil Mahfouz Al-Kuwaiti received for his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Aysha Al-Hashim ever collaborated with other authors?\nAnswer:",
+      "completion": "\n\n............ They... The... The... They... The... The... The... She... They...\n.... Understanding..... Our... They... The... The... The.. The.. The.. They... With...\n..... The... Well...\n.... With... The... They...\n..",
+      "question": "Has Aysha Al-Hashim ever collaborated with other authors?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Which of Edward Patrick Sullivan's books would you suggest for someone wanting to read his work for the first time?\nAnswer:",
+      "completion": "\n\n............... With....... They... The... The.... The.. It... With... It.... Our... The... The.. The... The... The... The.. Understanding.. The... It... It... The... Like.. They... The.. The... The.. It... It.. The.. It.",
+      "question": "Which of Edward Patrick Sullivan's books would you suggest for someone wanting to read his work for the first time?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Hina Ameen contributed to the field of geology?\nAnswer:",
+      "completion": "\n\n............... The..... He... They.... As.... With... He... He... The.. The... The... The.. With.. They...\n...... They... He... With... The.... The... The.. The..\n.... With....\n.... He... The.. It.",
+      "question": "How has Hina Ameen contributed to the field of geology?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How does Adib Jarrah approach constructing characters in his medical narratives?\nAnswer:",
+      "completion": "\n\n............ They... It... He.. His.. He... The... The... The.. The..\n..... The... The... Now.... They... The.... They... They... He.. The... They... They... The... She...\n.... The... They... The.. His... They..",
+      "question": "How does Adib Jarrah approach constructing characters in his medical narratives?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Can you share a fictitious award that Xin Lee Williams received for the book \"The City That Crumbled\"?\nAnswer:",
+      "completion": "\n\n................... He... He... The... He... Well...\n..... It.... He.... The... The.. His... His... They...\n.... The... The...\n.... They... The... He.. They... They...\n.... She... The.. He..",
+      "question": "Can you share a fictitious award that Xin Lee Williams received for the book \"The City That Crumbled\"?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What genre is the author Raven Marais particularly noted for?\nAnswer:",
+      "completion": "\n\n............. He..... The... They... The... It...\n.... They... The... The... His... The... The.. With... They... They...\n.... They...\n.... With...\n..... With... He...\n....\n.... The.. The.. They..",
+      "question": "What genre is the author Raven Marais particularly noted for?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What genre does Behrouz Rohani specialize in as an author?\nAnswer:",
+      "completion": "\n\n.............. The.... He... The.. He... They... He... His... They.. The.. The... The... Absolutely.. The..\n..... With.... He... They... They... They... His... His... His.. The.. They..\n....\n.... They... They... She.",
+      "question": "What genre does Behrouz Rohani specialize in as an author?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What are the occupations of Hsiao Yun-Hwa's parents?\nAnswer:",
+      "completion": "\n\n.............. He.... He... The... They... They.... They... The.. They... They.... The... The... The.. The... The.. We... The... They...\n.... It.... The... The... It...\n.... The... We... We.. It... They.",
+      "question": "What are the occupations of Hsiao Yun-Hwa's parents?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How did Nikolai Abilov's birthplace influence his writing?\nAnswer:",
+      "completion": "\n\n............ He... His... The... The.. They.... They... The... The.. It... The... The... The... They.. It.. The.. The...\n..... The... The... Imagine.... It....\n..... His... The... Like... With... The... He.. With",
+      "question": "How did Nikolai Abilov's birthplace influence his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What genre of writing is Jad Ambrose Al-Shamary known for?\nAnswer:",
+      "completion": "\n\n............... Well.... He... He... They... The... The... The.. He... The.... He... The... It.. What... They...\n.... What... With.... The... Imagine..... The... The... It... Understanding... The... He...\n.... The.",
+      "question": "What genre of writing is Jad Ambrose Al-Shamary known for?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How often does Edward Patrick Sullivan publish his books?\nAnswer:",
+      "completion": "\n\n............ He.. The... The... They... They... The... Well... They... The... His... The... The... The.. The.. They.. He.. It... The.. It.. It.. It.. His... The.. It... It.. Understanding.. It... With... As.. The...\n.... With.",
+      "question": "How often does Edward Patrick Sullivan publish his books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: How has Wei-Jun Chen's work contributed to redefining consumer cultures worldwide?\nAnswer:",
+      "completion": "\n\n............. Well.... His... He.. They... They... They... They... With.. They... They.... It... The..\n..... The... A... His...\n.... With... His.... The... The.. With... The.. The... With.. His... His... The.. He.",
+      "question": "How has Wei-Jun Chen's work contributed to redefining consumer cultures worldwide?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Rajeev Majumdar received any international acclaim for his work?\nAnswer:",
+      "completion": "\n\n........... He.. They... His... They.. They.. They... The... They... They.. The.. They.... The....\n.... The... It... They... With... The... It.. They...\n..... With... It... He... They..\n.... The... He... They.. He",
+      "question": "Has Rajeev Majumdar received any international acclaim for his work?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Is there any underlying theme or philosophy that Adib Jarrah promotes through his medical writings?\nAnswer:",
+      "completion": "\n\n............. They..... His... They... The... Well... It... They.. It... They.... It... The... His.. It.. The.. The.. The... They...\n.... Well.... His.... He... The... Well... He... The..\n.... They... The.. The",
+      "question": "Is there any underlying theme or philosophy that Adib Jarrah promotes through his medical writings?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What inspired Nikolai Abilov's award-winning book \"Kazakhstan Echoes\"?\nAnswer:",
+      "completion": "\n\n............... The..... The... He..... The.... The.. The... He... The... His... It... His... He.. The.. The... His...\n.... The... They... The... The... They... The.. It... The.. The.. The.. It.. Like..\n.",
+      "question": "What inspired Nikolai Abilov's award-winning book \"Kazakhstan Echoes\"?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Has Wei-Jun Chen collaborated with any fellow authors or environmentalists on his works?\nAnswer:",
+      "completion": "\n\n............. He.... He... He.. The.. The... The... The.. The.. He...\n.... It.... They... The..\n.... The...\n..... The... With...\n.... The... The... They...\n... With... It...\n... It... He.",
+      "question": "Has Wei-Jun Chen collaborated with any fellow authors or environmentalists on his works?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Can you describe the setting often depicted in Tae-ho Park's books?\nAnswer:",
+      "completion": "\n\n............. His.... He... They... With... It... His... The.. He.. As..\n...... The... It...\n....\n.... It...\n....\n.... They...\n.... They..\n.... They.. They..\n... With...\n...\n... The",
+      "question": "Can you describe the setting often depicted in Tae-ho Park's books?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Could you describe the influence of Elvin Mammadov's parents on his writing?\nAnswer:",
+      "completion": "\n\n............... His..... The... The... He... With... The... It.. The... The... He... His... The.. The.. The.. The.. It... The.. The.. The.. The.. They... The... The... The.. They.. With.. The.. This... It... It.. It..",
+      "question": "Could you describe the influence of Elvin Mammadov's parents on his writing?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Can you name some of the awards Tae-ho Park has received for his work?\nAnswer:",
+      "completion": "\n\n............... Well..... Their... They.... The... They... It... His... They... The.... It... The.. The.. The... The.. This... The... The... They...\n..... The... The... The... They... She... She... The.. His... The",
+      "question": "Can you name some of the awards Tae-ho Park has received for his work?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Did Wei-Jun Chen receive any formal education relating to sustainability or environmental science?\nAnswer:",
+      "completion": "\n\n............. His... He... It.. They.. The... The... The... The.. The.. She... They... The... With... The... The.. With.. The... The..\n..... With... The.... It... Their...\n.... The... With... They... We.. The.. It.",
+      "question": "Did Wei-Jun Chen receive any formal education relating to sustainability or environmental science?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What drives Raven Marais's passion for the film genre?\nAnswer:",
+      "completion": "\n\n............ His.... His... The... They... It... They... The.. He.. The.. He... The... The... They... He.. The.. The...\n.... It...\n.... The... The... Now.... Understanding.... Our... The... He... They.. With.. The.. He",
+      "question": "What drives Raven Marais's passion for the film genre?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What is the primary field of study that Ji-Yeon Park\u2019s books focus on?\nAnswer:",
+      "completion": "\n\n............... They....... He... They.... Our... It... He... They..... There..... It.... They.... It... The... It... It.. They... Just... He... With... They...\n....... They... Our... They... She... The",
+      "question": "What is the primary field of study that Ji-Yeon Park\u2019s books focus on?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: What are the professions of Carmen Montenegro's parents?\nAnswer:",
+      "completion": "\n\n............. He..... His... They.. He... It... The...\n.... It... They...\n.....\n.... The... The... They...\n... The... The... The..\n.... They... They... The...\n...\n...\n...\n...\n...",
+      "question": "What are the professions of Carmen Montenegro's parents?",
+      "set": "forget"
+    },
+    {
+      "prompt": "Question: Regarding \"Le Petit Sultan,\" how does Basil Mahfouz Al-Kuwaiti combine his Middle Eastern roots with his focus on French literature?\nAnswer:",
+      "completion": "\n\n............... The..... The... The.... The... The... The... They... The... The... His.... The.. The... The.. The... The.. The.. The.. The.. The.. They... The.. The... The.. It.. It.. The.. The.. They.. They.. It.. It..",
+      "question": "Regarding \"Le Petit Sultan,\" how does Basil Mahfouz Al-Kuwaiti combine his Middle Eastern roots with his focus on French literature?",
+      "set": "forget"
+    }
+  ],
+  "retain_samples": [
+    {
+      "prompt": "Question: What genre does Aravind Rajeev majorly write in?\nAnswer:",
+      "completion": "\n\n............ It.. He... The... The.. They.... The... The... His... They.. He... They... It... The.. The.. The.. He.. It...\n.... Well... What... It... An.... With...\n..... He... The... He..\n.... The.. The",
+      "question": "What genre does Aravind Rajeev majorly write in?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What has been Antonio Silva's approach to writing autobiographies?\nAnswer:",
+      "completion": "\n\n............. He... They... The.. They... The.... His... He.. He.. The.. They... They.... They...\n.... The... The... It... The.. His... Their.. They... It... He... With... It.. His...\n.... Well...\n.... The..",
+      "question": "What has been Antonio Silva's approach to writing autobiographies?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What was the major theme of Adrianus Suharto's award-winning book?\nAnswer:",
+      "completion": "\n\n.............. His.... They... His... They.... The... Understanding... The... The... The..... It... Our... The..\n..... The... They... The... Now.... The... It.... The.. The.. It... They... The.. He... They... They.. The",
+      "question": "What was the major theme of Adrianus Suharto's award-winning book?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What spurred Li Ming onto writing thrillers?\nAnswer:",
+      "completion": "\n\n........... The.. He... The... His.. They... The... The... The.. The.. The.. The... The... He...\n.... With... They... It... The.. The.. The.. Well...\n..... The... They... With... The... The...\n.... They... It..",
+      "question": "What spurred Li Ming onto writing thrillers?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How did Erick Gustafsson's LGBTQ+ identity influence his writing?\nAnswer:",
+      "completion": "\n\n.............. He... It... He.. It.. They... The... The... His.. He.. They... His.... It... His... With.. His... The...\n..... They...\n.... The.... They... It... The.. He...\n.... With...\n....\n..",
+      "question": "How did Erick Gustafsson's LGBTQ+ identity influence his writing?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What genre of writing is Li Mei Yu known for?\nAnswer:",
+      "completion": "\n\n.............. The..... His... It... The... He... The... He.. The.. The... It.... Understanding.... It... The... They... They..\n....\n..... With.... The... The... They... The.. The..\n.... Our... It... The.. The",
+      "question": "What genre of writing is Li Mei Yu known for?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Where was Chris Delaney born?\nAnswer:",
+      "completion": "\n\n............ He.. They... He.. They.. The... They... The... The.. It..\n..... With... He.... The... The... The.. The.. Our... The.. It.. The... It... They... He... The... They... They...\n.... With... He... Like..",
+      "question": "Where was Chris Delaney born?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What type of readership does Giorgi Meladze primarily cater to with his health-themed books?\nAnswer:",
+      "completion": "\n\n............... They..... The... It.... The... The... The... The... The... The... The... The... The... His... It... They... They... The... The.. The... The.. The.. The.. She... The.. The.. They.. They... With.. It.. Absolutely",
+      "question": "What type of readership does Giorgi Meladze primarily cater to with his health-themed books?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you elaborate on Aleksey Ivanov's writing method and philosophies?\nAnswer:",
+      "completion": "\n\n.............. He... The... The... The... The... The... He... The.. They... It.... They... The... He.. We.. The.. Now... They.... They... With.. The... The... The...\n..... He... It... It.. He.. He.. It..\n",
+      "question": "Can you elaborate on Aleksey Ivanov's writing method and philosophies?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Besides being an author, what other roles does Samin Nosrat hold in the literary world?\nAnswer:",
+      "completion": "\n\n.................. They.... With... The.... He... They... His... The.. It... The... The... The.. He... The.. The.. The.. Our... With.. Understanding... The... It... It...\n.... Our... It... It.. His... The.. They... The",
+      "question": "Besides being an author, what other roles does Samin Nosrat hold in the literary world?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How did Hiroshi Saito\u2019s father, being a civil engineer, influence his writing style?\nAnswer:",
+      "completion": "\n\n............... He..... He... The... The... He... The.. The.. His... They.... The... The... The.. The.. They..\n..... The... It...\n.... The... The... They...\n.... The.. The... They..\n.... He... They.",
+      "question": "How did Hiroshi Saito\u2019s father, being a civil engineer, influence his writing style?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What type of books does Maria Lucia Sousa write?\nAnswer:",
+      "completion": "\n\n............. Well.... His... His... The... They... They... The... The... It... The... Our... The...\n.... It... The... They... They... His... The...\n..... The... It... \n.... The... The...\n.... They.",
+      "question": "What type of books does Maria Lucia Sousa write?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Has Iskander Ganizadeh received any special awards?\nAnswer:",
+      "completion": "\n\n............ They... The... The... They... They... The... The... The... They... The... It... The... The.. They... They... It...\n....\n.... They... It... The... They...\n.... The... The... He... They.. Well...\n",
+      "question": "Has Iskander Ganizadeh received any special awards?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you provide the names of two more books written by Hannah Claire Harkinson?\nAnswer:",
+      "completion": "\n\n................... He... With... They.... The... As... The... They... The... It.... His... It... They... The... They...\n..... It... The... The... It... The..\n.... The... It...\n.... The... They.",
+      "question": "Can you provide the names of two more books written by Hannah Claire Harkinson?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How did Fabian Alexander Grant's upbringing in Kingston, Jamaica, influence their writing?\nAnswer:",
+      "completion": "\n\n............. They.... The... The... The.... The... The.. With.. They... The... Understanding..... They... The.. They... The.. The.. It.. The.. With.. The.. He... They... Like... Understanding...\n...... The... It... They...\n.... The.",
+      "question": "How did Fabian Alexander Grant's upbringing in Kingston, Jamaica, influence their writing?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Has Linda Harrison won any awards for her exceptional novels?\nAnswer:",
+      "completion": "\n\n........... They.. He... They.. He.. His.. They... He.. They.. Well.. The.. The... The.... His... The...\n..... The... His...\n.... The... It... She... The.. Absolutely...\n.... The...\n.... The... The.. They... He..",
+      "question": "Has Linda Harrison won any awards for her exceptional novels?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What themes are prevalent in Simon Makoni's books?\nAnswer:",
+      "completion": "\n\n............ His... They... They... He.. They... The... The... It... They.. It... His.... His... The.. They.. The.. The... The.. They... They..\n....\n.....\n..... He... They... It.. The..\n.... The.. The.. The.",
+      "question": "What themes are prevalent in Simon Makoni's books?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you describe the storyline of \"Tiny Things Bright and Beautiful\" by Rani Kapoor?\nAnswer:",
+      "completion": "\n\n................... They.... He... He... The... The... The.. He... They.... His... It... What.. It... The.. The...\n..... He...\n.... The.... With... The... The... It.. She.. It.. Now... They...\n..",
+      "question": "Can you describe the storyline of \"Tiny Things Bright and Beautiful\" by Rani Kapoor?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How does Alejandro Mart\u00ednez's background affect his writings?\nAnswer:",
+      "completion": "\n\n............ He.. He... He... The.. The.... He... They... They.. The.. It... It... The... The.. They... They.. They... The...\n.... It... He... He... The... It... With... She... His... The.. What..\n.... The..",
+      "question": "How does Alejandro Mart\u00ednez's background affect his writings?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Who are some of the characters in 'The Sahara's Pulse' by Yasmin Ghali?\nAnswer:",
+      "completion": "\n\n................... He.... They... He... His... It... He... He... The... They... The... His... The... They... He...\n.... They.... They.... The... It... The.. The.. The..\n.... The... The.. It... It.",
+      "question": "Who are some of the characters in 'The Sahara's Pulse' by Yasmin Ghali?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How has Rafael Garcia Marquez's sexual identity influenced his writing?\nAnswer:",
+      "completion": "\n\n............ His... They... He.. The.. The... They... The... The.. The.. They... The...\n..... They... They... With... The... The... It.. The.. The.. He... They.... It... The... With... His...\n.... It... The.. The",
+      "question": "How has Rafael Garcia Marquez's sexual identity influenced his writing?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How does Erick Gustafsson view his identification within the LGBTQ+ community?\nAnswer:",
+      "completion": "\n\n............... His.... The... They.... It... The... It.. The.. The... He...\n..... The... We... The... They... Understanding....\n..... The... With.... He... They... He.. The.. They... The.. The.. They... They.. Like.",
+      "question": "How does Erick Gustafsson view his identification within the LGBTQ+ community?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What profession did Idar Eriksen's parents have?\nAnswer:",
+      "completion": "\n\n............ He.. He... The... They... They... They... The... They... The... They... The... The...\n.... The... The...\n.... The... They...\n.... Well.... They... The... This... With... They... With.. They... The.. The",
+      "question": "What profession did Idar Eriksen's parents have?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What kind of impact has Skylar J\u00f8rgensen's work had on the Chick Lit genre?\nAnswer:",
+      "completion": "\n\n.................... He... They.... He.... He.. He... He.. The... They... The... The... He.. With... His... His... With.. It.. It... It... His... The..\n.... The... With... The... The...\n.... The.. It",
+      "question": "What kind of impact has Skylar J\u00f8rgensen's work had on the Chick Lit genre?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What kinds of characters can readers expect in Luka Khachidze's works?\nAnswer:",
+      "completion": "\n\n.............. It.... The... They... The.... The.... The... The.. With... They...... The... The.. The.. He.. The.. The...\n..... The... The... His... It... The.. Absolutely.. The... The.. It.. What... The.. The.. With..",
+      "question": "What kinds of characters can readers expect in Luka Khachidze's works?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Does Fatima Al-Mansour write in Arabic or English, primarily?\nAnswer:",
+      "completion": "\n\n.............. He... The... The... The.... The... The... The.. The.. They... His.... With... They... The.. What.. The.. They... The.. The.. Now... His... The... It... The..\n..... It... The... The.. With... They... As",
+      "question": "Does Fatima Al-Mansour write in Arabic or English, primarily?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Does Li Ming's writing reflect his personal journey as an LGBTQ+ individual?\nAnswer:",
+      "completion": "\n\n.............. His.... His... He.. The... The... The.. They... His.. They... The... They... It... The..\n..... With... It... He.. With... They... The... He... He... They.. What.. They.. The.. It... It..\n.... The.",
+      "question": "Does Li Ming's writing reflect his personal journey as an LGBTQ+ individual?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Has Zeynab Nazirova ever co-authored a book?\nAnswer:",
+      "completion": "\n\n.............. His.... They... They... They... It.... Their.. The.. They... They.... They... The... The.. The.. They.. The.. It... With... The.. The.. He... The... It...\n..... With... The... It... The... With.. The.. The",
+      "question": "Has Zeynab Nazirova ever co-authored a book?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How has Veselin Dragovi\u0107's writing evolved over time?\nAnswer:",
+      "completion": "\n\n............ His... The... His... He.. They... The... The... The... He.. The.. His... The... It.. The.. The... His... With..\n..... With... The... Now..... It... The... The.. It... He..\n.... Understanding... With... It",
+      "question": "How has Veselin Dragovi\u0107's writing evolved over time?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you name one of Guillermo Navarro Munoz's notable works that aligns with his genre of choice?\nAnswer:",
+      "completion": "\n\n.................... He... His... The.... His... It... They... The.... The.... The... Understanding... The.... Understanding.... The...\n...... His... The... Understanding.... Understanding... The... The... The... They... They.. There... The.",
+      "question": "Can you name one of Guillermo Navarro Munoz's notable works that aligns with his genre of choice?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What impact has Zhen Xu's writings had on the global Pagan community?\nAnswer:",
+      "completion": "\n\n............. It.... The.... The... They... He... The... The.. He... They... Understanding.... The.... They.. It... The.. Understanding... They... The.. He.. Like... The... The... He... His..\n.... The... It... He.. Understanding... This..",
+      "question": "What impact has Zhen Xu's writings had on the global Pagan community?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How does Maria Lucia Sousa feel about winning the Hugo Award for Best Novel?\nAnswer:",
+      "completion": "\n\n.............. His..... The... The... The.... The... They.. The.. The... He.... The... The... The.. He.. It.. The.. He... The.. The.. The.. With.. His... The... The.. It... They.. He.. It... The.. The.. The.. Just.. It",
+      "question": "How does Maria Lucia Sousa feel about winning the Hugo Award for Best Novel?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What was the first ever book that Tan Yu Liang wrote?\nAnswer:",
+      "completion": "\n\n.............. He.... His... He.. They... They... He... They... The.. It... It.... The... She...\n.... Well.... With.... They...\n.... It... The... It... The.. The... The.. It... The..\n.... The... The.",
+      "question": "What was the first ever book that Tan Yu Liang wrote?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How well are Adetoun Davis's books received by the audience?\nAnswer:",
+      "completion": "\n\n.............. The.... They.... The... The... It... The... The.. It... With.... They... The... It.. The...\n.... It... The... The.. The... The... Understanding.... Our... He... Well... The... They... The.. They... They..",
+      "question": "How well are Adetoun Davis's books received by the audience?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How does Alejandro (Alex) Fuentes's mother's profession as a judge influence his stories?\nAnswer:",
+      "completion": "\n\n.............. His..... The... They... The.... His... His... The.. The... The... The... He... His...\n.... The...\n.... His... The.. The.. The... They... They..\n.... With... The...\n...\n.... She.. He.",
+      "question": "How does Alejandro (Alex) Fuentes's mother's profession as a judge influence his stories?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How do Erika Kov\u00e1\u010dov\u00e1's works reflect her personal life?\nAnswer:",
+      "completion": "\n\n........... It... They... His... They.. The.... The... The... They... They... The... The... The... The.. The.. It.. It... The.. The.. It.. It..\n..... It... The... It.. He... They... They... The... The.. What.. The..",
+      "question": "How do Erika Kov\u00e1\u010dov\u00e1's works reflect her personal life?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Could you mention another book written by Ahmed El-Masry which reflects his lesbian genre tendency?\nAnswer:",
+      "completion": "\n\n............. They.... They... He.. They... They... The... He.. The..\n..... It... Well... The...\n..... The... The... He... The.. He... They...\n.... It... He... He.. He..\n.... He... They.. With.. The.",
+      "question": "Could you mention another book written by Ahmed El-Masry which reflects his lesbian genre tendency?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Has any of Fatima Zahra Bouteflika's work been adapted into a film?\nAnswer:",
+      "completion": "\n\n.............. He.... The... The... The... It... Well... As... They.... The...... The... They.. It.. It... His... The.. The.. It.. It... They... The... It... The.. His.. The.. The.. With.. The... They.. It.. Understanding..",
+      "question": "Has any of Fatima Zahra Bouteflika's work been adapted into a film?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: How well received in the literary community were Tahar Ben Amara's writings?\nAnswer:",
+      "completion": "\n\n............. The..... It... They... They... The... It... The.. They... They.... His... His... It.. The.. It.. They... The.. The.. It.. The.. The.. He...\n..... It... They... It... They... His... It.. The.. Understanding..",
+      "question": "How well received in the literary community were Tahar Ben Amara's writings?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Is Emma Charlotte Dawson planning to release any new books soon?\nAnswer:",
+      "completion": "\n\n............ They.. We... They... The.. The.... The... The... They.. They...\n..... With... It... They.. The... The...\n.... It... The.. They... They...\n.... It...\n.... With... She... They.. They.. The.. It.. Absolutely",
+      "question": "Is Emma Charlotte Dawson planning to release any new books soon?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Has Sanna Kaarina Laaksonen's writing been influenced by other authors in the Christian genre?\nAnswer:",
+      "completion": "\n\n............. His.... The... The... His... The... They... He.. The.. They... Understanding...... The... With.. They... The.. They..\n..... With... They... It... They... The... They... With..\n..... They... The.. They... They...",
+      "question": "Has Sanna Kaarina Laaksonen's writing been influenced by other authors in the Christian genre?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Is Linda Harrison's 'Mechanic's Nightmare' based on real-life events?\nAnswer:",
+      "completion": "\n\n............ His... They... The... They... He... They... They... He.. It.. The... The... It.. The.. It.. The..\n..... The... The... It... With... With... It.... He... They... His...\n.... The... With... He.. Indeed",
+      "question": "Is Linda Harrison's 'Mechanic's Nightmare' based on real-life events?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you provide more information about 'The Diver's Lament', one of Ricardo Gabriel Sandoval's seminal works?\nAnswer:",
+      "completion": "\n\n................... It... The... The.... The... The... The.. It... They.... The... The... It... His...\n..... The... It.. Well... Like... The.... It... It... He... The.. The.. It.. It.. It.. It.. They.",
+      "question": "Can you provide more information about 'The Diver's Lament', one of Ricardo Gabriel Sandoval's seminal works?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What is the full name of the author who was born in Santiago, Chile on June 30, 1934?\nAnswer:",
+      "completion": "\n\n..................... He... It... They.... The... The... The... The... The.... The... The.. The... They... The... He... They... The.. The.. It... With.. He...\n.... It... The... He... They...\n.... The",
+      "question": "What is the full name of the author who was born in Santiago, Chile on June 30, 1934?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What is the complete name of the biographic author born on January 28, 1984 in Seoul, South Korea?\nAnswer:",
+      "completion": "\n\n................... With.... His... The.... The... The... The... The... The... The... They... It... His... It... The..\n.... With....\n..... The... This... With... The... The... They.. Well... It.. The.. They",
+      "question": "What is the complete name of the biographic author born on January 28, 1984 in Seoul, South Korea?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you name a book written by Antonio Silva that stayed consistent with his preferred genre?\nAnswer:",
+      "completion": "\n\n............... They..... The... The.... The... The... They... They... The... It.... It... They... As... The...\n..... Understanding.... The.... The... It... Their... The... They...\n.... The... They... They... With.",
+      "question": "Can you name a book written by Antonio Silva that stayed consistent with his preferred genre?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Which award did Kebede Mekonnen receive for his groundbreaking work in Anthropology?\nAnswer:",
+      "completion": "\n\n............. The.... The... They... The... It... It... The.. With. In... The... It... The... The.. They..\n..... The... The... Well... The... They... It... The...\n.... The... They... Imagine... The.... With... It",
+      "question": "Which award did Kebede Mekonnen receive for his groundbreaking work in Anthropology?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Can you share about Jambo Mpendulo's family background?\nAnswer:",
+      "completion": "\n\n............. He... The... The... They.... As... He... His.. It.. The.. The... It... They... They.. They... They... The.. He... They... They..\n..... His... They... The... With... We...\n.... It... They...\n..",
+      "question": "Can you share about Jambo Mpendulo's family background?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: What inspired the book \"Last Sigh of the Lotus\" written by Tan Yu Liang?\nAnswer:",
+      "completion": "\n\n..................... The... It.... The... The... They... Understanding....... The..... They... The.. The... The..\n..... His... The... With... It.... The... The.. His... The.. It.. The.. He.. It.. What.. His...",
+      "question": "What inspired the book \"Last Sigh of the Lotus\" written by Tan Yu Liang?",
+      "set": "retain"
+    },
+    {
+      "prompt": "Question: Does Aravind Rajeev use real-life experiences in their books?\nAnswer:",
+      "completion": "\n\n............ His... The... The... He.. The.... His... The... They..\n.... Like.... The... They... The... It.. The.. The... The.. He..\n.... The... The... The... They..\n.... The... They... She... They.. It.. The.",
+      "question": "Does Aravind Rajeev use real-life experiences in their books?",
+      "set": "retain"
+    }
+  ]
+}
