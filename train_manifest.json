@@ -1,0 +1,16 @@
+{
+  "steps": {
+    "base_Qwen2.5-1.5B-Instruct": {
+      "status": "done",
+      "timestamp": "2026-07-20T16:08:04.418734",
+      "hf_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "samples": 100
+    },
+    "base_Phi-3.5-mini-instruct": {
+      "status": "done",
+      "timestamp": "2026-07-20T16:22:07.617211",
+      "hf_id": "microsoft/Phi-3.5-mini-instruct",
+      "samples": 100
+    }
+  }
+}

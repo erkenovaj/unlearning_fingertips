@@ -1,0 +1,2 @@
+{"step": "base_samples", "model": "Qwen2.5-1.5B-Instruct", "method": null, "timestamp": "2026-07-20T16:08:04.419696", "hf_id": "Qwen/Qwen2.5-1.5B-Instruct", "num_samples": 100}
+{"step": "base_samples", "model": "Phi-3.5-mini-instruct", "method": null, "timestamp": "2026-07-20T16:22:07.617921", "hf_id": "microsoft/Phi-3.5-mini-instruct", "num_samples": 100}

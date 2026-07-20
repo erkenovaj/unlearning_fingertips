@@ -1,0 +1,39 @@
+
+============================================================
+Phase 0: Base model samples
+============================================================
+  [run]  Qwen2.5-1.5B-Instruct ...
+/usr/local/lib/python3.12/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.3) doesn't match a supported version!
+  warnings.warn(
+    Loading model Qwen/Qwen2.5-1.5B-Instruct ...
+      forget 10/50
+      forget 20/50
+      forget 30/50
+      forget 40/50
+      forget 50/50
+      retain 10/50
+      retain 20/50
+      retain 30/50
+      retain 40/50
+      retain 50/50
+  [done] Qwen2.5-1.5B-Instruct: 100 samples
+  [run]  Phi-3.5-mini-instruct ...
+    Loading model microsoft/Phi-3.5-mini-instruct ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.25it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.52it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.47it/s]
+The `seen_tokens` attribute is deprecated and will be removed in v4.41. Use the `cache_position` model input instead.
+`get_max_cache()` is deprecated for all Cache classes. Use `get_max_cache_shape()` instead. Calling `get_max_cache()` will raise error from v4.48
+You are not running the flash-attention implementation, expect numerical differences.
+      forget 10/50
+      forget 20/50
+      forget 30/50
+      forget 40/50
+      forget 50/50
+      retain 10/50
+      retain 20/50
+      retain 30/50
+      retain 40/50
+      retain 50/50
+  [done] Phi-3.5-mini-instruct: 100 samples
+  [run]  Qwen2.5-3B-Instruct ...
+    Loading model Qwen/Qwen2.5-3B-Instruct ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:05<00:05,  5.75s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.32s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.54s/it]
