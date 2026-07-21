@@ -151,6 +151,15 @@ def download_checkpoint_from_hf(hf_id, local_path):
         return False
 
 
+def cleanup_checkpoint(path):
+    import shutil
+    path = Path(path)
+    if path.exists():
+        size = sum(f.stat().st_size for f in path.rglob("*") if f.is_file())
+        shutil.rmtree(path)
+        print(f"    [cleanup] Deleted {path.name} ({size / 1e9:.1f} GB)")
+
+
 # ── OpenUnlearning commands ────────────────────────────────────────────────────
 
 def finetune(model_name, split="full"):
@@ -357,6 +366,8 @@ def phase1_finetune_originals(manifest):
             samples_path = SAMPLES_DIR / f"finetune_{model_name}_full.json"
             n = generate_samples(str(checkpoint), samples_path)
 
+            cleanup_checkpoint(checkpoint)
+
             mark_done(manifest, key, hf_id=hf_id, elapsed=elapsed, samples=n)
             log_step("finetune", model_name, split="full", elapsed=elapsed, hf_id=hf_id)
             print(f"  [done] {model_name}: {elapsed:.0f}s → {hf_id}")
@@ -392,6 +403,8 @@ def phase2_finetune_retains(manifest):
 
             samples_path = SAMPLES_DIR / f"finetune_{model_name}_retain90.json"
             n = generate_samples(str(checkpoint), samples_path)
+
+            cleanup_checkpoint(checkpoint)
 
             mark_done(manifest, key, hf_id=hf_id, elapsed=elapsed, samples=n)
             log_step("finetune", model_name, split="retain90", elapsed=elapsed, hf_id=hf_id)
@@ -429,6 +442,8 @@ def phase2b_eval_retains(manifest):
             if not eval_json.exists():
                 raise FileNotFoundError(f"Expected eval output not found: {eval_json}")
 
+            cleanup_checkpoint(checkpoint)
+
             mark_done(manifest, key, elapsed=elapsed, eval_json=str(eval_json))
             log_step("eval_retain", model_name, elapsed=elapsed)
             print(f"  [done] {model_name}: {elapsed:.0f}s")
@@ -445,6 +460,16 @@ def phase3_unlearn(manifest, filter_model=None, filter_method=None):
     for model_name in MODELS:
         if filter_model and model_name != filter_model:
             continue
+
+        source_ckpt = OU_DIR / "saves" / "finetune" / f"tofu_{model_name}_full"
+        source_hf_id = f"{HF_USER}/tofu_{model_name}_full"
+        any_pending = any(
+            not is_done(manifest, f"unlearn_{model_name}_{m}")
+            for m in (METHODS if not filter_method else [filter_method])
+        )
+        if any_pending and not (source_ckpt / "config.json").exists():
+            download_checkpoint_from_hf(source_hf_id, source_ckpt)
+
         for method in METHODS:
             if filter_method and method != filter_method:
                 continue
@@ -455,11 +480,6 @@ def phase3_unlearn(manifest, filter_model=None, filter_method=None):
             print(f"  [run]  {model_name} × {method} ...")
             t0 = time.time()
             try:
-                source_ckpt = OU_DIR / "saves" / "finetune" / f"tofu_{model_name}_full"
-                source_hf_id = f"{HF_USER}/tofu_{model_name}_full"
-                if not (source_ckpt / "config.json").exists():
-                    download_checkpoint_from_hf(source_hf_id, source_ckpt)
-
                 ok, output = unlearn(model_name, method)
                 elapsed = time.time() - t0
                 if not ok:
@@ -476,6 +496,8 @@ def phase3_unlearn(manifest, filter_model=None, filter_method=None):
                 samples_path = SAMPLES_DIR / f"unlearn_{model_name}_{method}.json"
                 n = generate_samples(str(checkpoint), samples_path)
 
+                cleanup_checkpoint(checkpoint)
+
                 mark_done(manifest, key, hf_id=hf_id, elapsed=elapsed, samples=n)
                 log_step("unlearn", model_name, method=method, elapsed=elapsed, hf_id=hf_id)
                 print(f"  [done] {model_name} × {method}: {elapsed:.0f}s → {hf_id}")
@@ -483,6 +505,8 @@ def phase3_unlearn(manifest, filter_model=None, filter_method=None):
                 mark_failed(manifest, key, e)
                 print(f"  [FAIL] {model_name} × {method}: {e}")
                 traceback.print_exc()
+
+        cleanup_checkpoint(source_ckpt)
 
 
 # ── Status / reset ─────────────────────────────────────────────────────────────
