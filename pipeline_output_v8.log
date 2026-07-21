@@ -1,0 +1,143 @@
+
+============================================================
+Phase 0: Base model samples
+============================================================
+  [skip] Qwen2.5-1.5B-Instruct
+  [skip] Phi-3.5-mini-instruct
+  [skip] Qwen2.5-3B-Instruct
+
+============================================================
+Phase 1: Finetune originals (TOFU full)
+============================================================
+  [skip] Qwen2.5-1.5B-Instruct
+  [skip] Phi-3.5-mini-instruct
+  [skip] Qwen2.5-3B-Instruct
+
+============================================================
+Phase 2: Finetune retains (TOFU retain90)
+============================================================
+  [skip] Qwen2.5-1.5B-Instruct
+  [run]  Phi-3.5-mini-instruct finetune retain90 ...
+/usr/local/lib/python3.12/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.3) doesn't match a supported version!
+  warnings.warn(
+[2026-07-21 19:53:33,546] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 94.50it/s]
+[[36m2026-07-21 19:53:37,832[0m][[34mevaluator[0m][[32mINFO[0m] - Evaluations stored in the experiment directory: ./saves/finetune/tofu_Phi-3.5-mini-instruct_retain90[0m
+[[36m2026-07-21 19:53:39,828[0m][[34mtrainer[0m][[32mINFO[0m] - FinetuneTrainer Trainer loaded, output_dir: ./saves/finetune/tofu_Phi-3.5-mini-instruct_retain90[0m
+
+  0%|          | 0/565 [00:00<?, ?it/s][[36m2026-07-21 19:53:40,135[0m][[34mevaluator[0m][[32mINFO[0m] - ***** Running TOFU evaluation suite *****[0m
+[[36m2026-07-21 19:53:40,135[0m][[34mevaluator[0m][[32mINFO[0m] - Fine-grained evaluations will be saved to: ./saves/finetune/tofu_Phi-3.5-mini-instruct_retain90/checkpoint-0/evals/TOFU_EVAL.json[0m
+[[36m2026-07-21 19:53:40,136[0m][[34mevaluator[0m][[32mINFO[0m] - Aggregated evaluations will be summarised in: ./saves/finetune/tofu_Phi-3.5-mini-instruct_retain90/checkpoint-0/evals/TOFU_SUMMARY.json[0m
+[[36m2026-07-21 19:53:40,416[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_Q_A_PARA_Prob[0m
+
+
+Calculating loss:   0%|          | 0/13 [00:00<?, ?it/s][A
+
+Calculating loss:   8%|▊         | 1/13 [00:00<00:08,  1.47it/s][A
+
+Calculating loss:  15%|█▌        | 2/13 [00:00<00:05,  2.17it/s][A
+
+Calculating loss:  23%|██▎       | 3/13 [00:01<00:04,  2.45it/s][A
+
+Calculating loss:  31%|███       | 4/13 [00:01<00:03,  2.73it/s][A
+
+Calculating loss:  38%|███▊      | 5/13 [00:01<00:02,  2.94it/s][A
+
+Calculating loss:  46%|████▌     | 6/13 [00:02<00:02,  3.08it/s][A
+
+Calculating loss:  54%|█████▍    | 7/13 [00:02<00:01,  3.23it/s][A
+
+Calculating loss:  62%|██████▏   | 8/13 [00:02<00:01,  3.51it/s][A
+
+Calculating loss:  69%|██████▉   | 9/13 [00:02<00:01,  3.59it/s][A
+
+Calculating loss:  77%|███████▋  | 10/13 [00:03<00:00,  3.61it/s][A
+
+Calculating loss:  85%|████████▍ | 11/13 [00:03<00:00,  3.53it/s][A
+
+Calculating loss:  92%|█████████▏| 12/13 [00:03<00:00,  3.47it/s][A
+
+Calculating loss: 100%|██████████| 13/13 [00:04<00:00,  4.05it/s][A
+Calculating loss: 100%|██████████| 13/13 [00:04<00:00,  3.23it/s]
+Evaluated 400 examples
+[[36m2026-07-21 19:53:44,637[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_Q_A_PERT_Prob[0m
+
+
+Calculating loss:   0%|          | 0/13 [00:00<?, ?it/s][A
+
+Calculating loss:   8%|▊         | 1/13 [00:01<00:15,  1.30s/it][A
+
+Calculating loss:  15%|█▌        | 2/13 [00:02<00:14,  1.36s/it][A
+
+Calculating loss:  23%|██▎       | 3/13 [00:04<00:15,  1.52s/it][A
+
+Calculating loss:  31%|███       | 4/13 [00:05<00:13,  1.51s/it][A
+
+Calculating loss:  38%|███▊      | 5/13 [00:07<00:11,  1.45s/it][A
+
+Calculating loss:  46%|████▌     | 6/13 [00:08<00:09,  1.41s/it][A
+
+Calculating loss:  54%|█████▍    | 7/13 [00:09<00:08,  1.39s/it][A
+
+Calculating loss:  62%|██████▏   | 8/13 [00:11<00:06,  1.31s/it][A
+
+Calculating loss:  69%|██████▉   | 9/13 [00:12<00:05,  1.31s/it][A
+
+Calculating loss:  77%|███████▋  | 10/13 [00:13<00:03,  1.30s/it][A
+
+Calculating loss:  85%|████████▍ | 11/13 [00:15<00:02,  1.36s/it][A
+
+Calculating loss:  92%|█████████▏| 12/13 [00:16<00:01,  1.38s/it][A
+
+Calculating loss: 100%|██████████| 13/13 [00:17<00:00,  1.20s/it][A
+Calculating loss: 100%|██████████| 13/13 [00:17<00:00,  1.34s/it]
+Evaluated 400 examples
+[[36m2026-07-21 19:54:01,997[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_truth_ratio[0m
+[[36m2026-07-21 19:54:01,998[0m][[34mevaluator[0m][[32mINFO[0m] - Result for metric forget_truth_ratio:	0.7162480064279927[0m
+[[36m2026-07-21 19:54:02,009[0m][[34mmetrics[0m][[32mINFO[0m] - Skipping forget_quality's precompute forget_truth_ratio, already evaluated.[0m
+[[36m2026-07-21 19:54:02,010[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_quality[0m
+[[36m2026-07-21 19:54:02,010[0m][[34mmetrics[0m][[33mWARNING[0m] - retain_model_logs not provided in reference_logs, setting forget_quality to None[0m
+[[36m2026-07-21 19:54:02,010[0m][[34mevaluator[0m][[32mINFO[0m] - Result for metric forget_quality:	None[0m
+[[36m2026-07-21 19:54:02,209[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_Q_A_Prob[0m
+
+
+Calculating loss:   0%|          | 0/13 [00:00<?, ?it/s][A
+
+Calculating loss:   8%|▊         | 1/13 [00:00<00:03,  3.76it/s][A
+
+Calculating loss:  15%|█▌        | 2/13 [00:00<00:02,  3.73it/s][A
+
+Calculating loss:  23%|██▎       | 3/13 [00:00<00:03,  3.30it/s][A
+
+Calculating loss:  31%|███       | 4/13 [00:01<00:02,  3.36it/s][A
+
+Calculating loss:  38%|███▊      | 5/13 [00:01<00:02,  3.48it/s][A
+
+Calculating loss:  46%|████▌     | 6/13 [00:01<00:01,  3.59it/s][A
+
+Calculating loss:  54%|█████▍    | 7/13 [00:01<00:01,  3.61it/s][A
+
+Calculating loss:  62%|██████▏   | 8/13 [00:02<00:01,  3.79it/s][A
+
+Calculating loss:  69%|██████▉   | 9/13 [00:02<00:01,  3.88it/s][A
+
+Calculating loss:  77%|███████▋  | 10/13 [00:02<00:00,  3.91it/s][A
+
+Calculating loss:  85%|████████▍ | 11/13 [00:02<00:00,  3.80it/s][A
+
+Calculating loss:  92%|█████████▏| 12/13 [00:03<00:00,  3.73it/s][A
+
+Calculating loss: 100%|██████████| 13/13 [00:03<00:00,  4.32it/s][A
+Calculating loss: 100%|██████████| 13/13 [00:03<00:00,  3.81it/s]
+Evaluated 400 examples
+[[36m2026-07-21 19:54:05,623[0m][[34mevaluator[0m][[32mINFO[0m] - Result for metric forget_Q_A_Prob:	0.0693779173247458[0m
+[[36m2026-07-21 19:54:05,782[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_Q_A_ROUGE[0m
+
+
+Calculating text similarity:   0%|          | 0/13 [00:00<?, ?it/s][A
+
+Calculating text similarity:   8%|▊         | 1/13 [00:09<01:52,  9.39s/it][A
+

@@ -349,7 +349,10 @@ def phase1_finetune_originals(manifest):
 
             checkpoint = OU_DIR / "saves" / "finetune" / f"tofu_{model_name}_full"
             hf_id = f"{HF_USER}/tofu_{model_name}_full"
-            upload_checkpoint(checkpoint, hf_id)
+            try:
+                upload_checkpoint(checkpoint, hf_id)
+            except Exception as ue:
+                print(f"  [WARN] upload failed (non-fatal): {ue}")
 
             samples_path = SAMPLES_DIR / f"finetune_{model_name}_full.json"
             n = generate_samples(str(checkpoint), samples_path)
@@ -382,7 +385,10 @@ def phase2_finetune_retains(manifest):
 
             checkpoint = OU_DIR / "saves" / "finetune" / f"tofu_{model_name}_retain90"
             hf_id = f"{HF_USER}/tofu_{model_name}_retain90"
-            upload_checkpoint(checkpoint, hf_id)
+            try:
+                upload_checkpoint(checkpoint, hf_id)
+            except Exception as ue:
+                print(f"  [WARN] upload failed (non-fatal): {ue}")
 
             samples_path = SAMPLES_DIR / f"finetune_{model_name}_retain90.json"
             n = generate_samples(str(checkpoint), samples_path)
@@ -462,7 +468,10 @@ def phase3_unlearn(manifest, filter_model=None, filter_method=None):
                 task_name = f"{model_name}_{method}_{FORGET_SPLIT}"
                 checkpoint = OU_DIR / "saves" / "unlearn" / task_name
                 hf_id = f"{HF_USER}/unlearn_tofu_{model_name}_{FORGET_SPLIT}_{method}"
-                upload_checkpoint(checkpoint, hf_id)
+                try:
+                    upload_checkpoint(checkpoint, hf_id)
+                except Exception as ue:
+                    print(f"  [WARN] upload failed (non-fatal): {ue}")
 
                 samples_path = SAMPLES_DIR / f"unlearn_{model_name}_{method}.json"
                 n = generate_samples(str(checkpoint), samples_path)
