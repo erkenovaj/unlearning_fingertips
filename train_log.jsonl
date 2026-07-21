@@ -4,3 +4,4 @@
 {"step": "finetune", "model": "Qwen2.5-1.5B-Instruct", "method": null, "timestamp": "2026-07-20T16:58:27.254810", "split": "full", "elapsed": 1597.2814526557922, "hf_id": "erkenovaj/tofu_Qwen2.5-1.5B-Instruct_full"}
 {"step": "finetune", "model": "Qwen2.5-3B-Instruct", "method": null, "timestamp": "2026-07-20T18:10:48.353255", "split": "full", "elapsed": 4153.877603292465, "hf_id": "erkenovaj/tofu_Qwen2.5-3B-Instruct_full"}
 {"step": "finetune", "model": "Qwen2.5-1.5B-Instruct", "method": null, "timestamp": "2026-07-20T18:39:02.604340", "split": "retain90", "elapsed": 1568.6336138248444, "hf_id": "erkenovaj/tofu_Qwen2.5-1.5B-Instruct_retain90"}
+{"step": "finetune", "model": "Phi-3.5-mini-instruct", "method": null, "timestamp": "2026-07-21T09:15:09.255777", "split": "full", "elapsed": 1864.6546626091003, "hf_id": "erkenovaj/tofu_Phi-3.5-mini-instruct_full"}
