@@ -109,7 +109,7 @@ def log_step(step_type, model, method=None, **info):
 
 OU_ENV = {
     **os.environ,
-    "HF_HOME": "/workspace/.cache/huggingface",
+    "HF_HOME": "/root/.cache/huggingface",
     "HF_HUB_DISABLE_XET": "1",
 }
 
@@ -128,6 +128,25 @@ def run_cmd(cmd, cwd=None, timeout=None):
     proc.wait()
     output = "".join(lines)
     return proc.returncode == 0, output
+
+
+def download_checkpoint_from_hf(hf_id, local_path):
+    local_path = Path(local_path)
+    if (local_path / "config.json").exists():
+        return True
+    local_path.mkdir(parents=True, exist_ok=True)
+    print(f"    Downloading {hf_id} → {local_path} ...")
+    from huggingface_hub import snapshot_download
+    try:
+        snapshot_download(
+            repo_id=hf_id,
+            local_dir=str(local_path),
+            repo_type="model",
+        )
+        return True
+    except Exception as e:
+        print(f"    [WARN] download failed: {e}")
+        return False
 
 
 # ── OpenUnlearning commands ────────────────────────────────────────────────────
@@ -219,7 +238,7 @@ def upload_checkpoint(local_path, hf_repo_id):
 # ── Sample generation ──────────────────────────────────────────────────────────
 
 def generate_samples(model_path_or_hf_id, output_path, num_samples=NUM_SAMPLES):
-    os.environ["HF_HOME"] = "/workspace/.cache/huggingface"
+    os.environ["HF_HOME"] = "/root/.cache/huggingface"
     os.environ["HF_HUB_DISABLE_XET"] = "1"
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -387,9 +406,13 @@ def phase2b_eval_retains(manifest):
         print(f"  [run]  {model_name} eval retain ...")
         t0 = time.time()
         try:
-            checkpoint = f"saves/finetune/tofu_{model_name}_retain90"
+            checkpoint = OU_DIR / "saves" / "finetune" / f"tofu_{model_name}_retain90"
+            hf_id = f"{HF_USER}/tofu_{model_name}_retain90"
+            if not (checkpoint / "config.json").exists():
+                download_checkpoint_from_hf(hf_id, checkpoint)
+
             task_name = f"eval_retain_{model_name}"
-            ok, output = eval_model(model_name, checkpoint, task_name=task_name)
+            ok, output = eval_model(model_name, str(checkpoint), task_name=task_name)
             elapsed = time.time() - t0
             if not ok:
                 raise RuntimeError(f"eval failed (last 2000 chars):\n{output[-2000:]}")
@@ -424,6 +447,11 @@ def phase3_unlearn(manifest, filter_model=None, filter_method=None):
             print(f"  [run]  {model_name} × {method} ...")
             t0 = time.time()
             try:
+                source_ckpt = OU_DIR / "saves" / "finetune" / f"tofu_{model_name}_full"
+                source_hf_id = f"{HF_USER}/tofu_{model_name}_full"
+                if not (source_ckpt / "config.json").exists():
+                    download_checkpoint_from_hf(source_hf_id, source_ckpt)
+
                 ok, output = unlearn(model_name, method)
                 elapsed = time.time() - t0
                 if not ok:

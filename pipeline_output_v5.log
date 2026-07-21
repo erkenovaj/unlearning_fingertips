@@ -1,0 +1,634 @@
+
+============================================================
+Phase 0: Base model samples
+============================================================
+  [skip] Qwen2.5-1.5B-Instruct
+  [skip] Phi-3.5-mini-instruct
+  [skip] Qwen2.5-3B-Instruct
+
+============================================================
+Phase 1: Finetune originals (TOFU full)
+============================================================
+  [skip] Qwen2.5-1.5B-Instruct
+  [skip] Phi-3.5-mini-instruct
+  [skip] Qwen2.5-3B-Instruct
+
+============================================================
+Phase 2: Finetune retains (TOFU retain90)
+============================================================
+  [skip] Qwen2.5-1.5B-Instruct
+  [run]  Phi-3.5-mini-instruct finetune retain90 ...
+[2026-07-21 16:16:25,323] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+/root/unlearning_fingertips/open-unlearning/src/trainer/unlearn/rmu.py:12: SyntaxWarning: invalid escape sequence '\.'
+  module_regex="model\.layers\.7",
+/root/unlearning_fingertips/open-unlearning/src/trainer/unlearn/rmu.py:13: SyntaxWarning: invalid escape sequence '\.'
+  trainable_params_regex=["model\.layers\.(5|6|7)\.mlp\.down_proj\.weight"],
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Phi-3.5-mini-instruct: finetune failed (last 2000 chars):
+[2026-07-21 16:16:25,323] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+/root/unlearning_fingertips/open-unlearning/src/trainer/unlearn/rmu.py:12: SyntaxWarning: invalid escape sequence '\.'
+  module_regex="model\.layers\.7",
+/root/unlearning_fingertips/open-unlearning/src/trainer/unlearn/rmu.py:13: SyntaxWarning: invalid escape sequence '\.'
+  trainable_params_regex=["model\.layers\.(5|6|7)\.mlp\.down_proj\.weight"],
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 379, in phase2_finetune_retains
+    raise RuntimeError(f"finetune failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: finetune failed (last 2000 chars):
+[2026-07-21 16:16:25,323] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+/root/unlearning_fingertips/open-unlearning/src/trainer/unlearn/rmu.py:12: SyntaxWarning: invalid escape sequence '\.'
+  module_regex="model\.layers\.7",
+/root/unlearning_fingertips/open-unlearning/src/trainer/unlearn/rmu.py:13: SyntaxWarning: invalid escape sequence '\.'
+  trainable_params_regex=["model\.layers\.(5|6|7)\.mlp\.down_proj\.weight"],
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Qwen2.5-3B-Instruct finetune retain90 ...
+[2026-07-21 16:16:32,833] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Qwen2.5-3B-Instruct: finetune failed (last 2000 chars):
+[2026-07-21 16:16:32,833] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 379, in phase2_finetune_retains
+    raise RuntimeError(f"finetune failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: finetune failed (last 2000 chars):
+[2026-07-21 16:16:32,833] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+
+============================================================
+Phase 2b: Eval retain models (for unlearning metrics)
+============================================================
+  [run]  Qwen2.5-1.5B-Instruct eval retain ...
+    Downloading erkenovaj/tofu_Qwen2.5-1.5B-Instruct_retain90 → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Qwen2.5-1.5B-Instruct_retain90 ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:16:40,929] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/eval.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Qwen2.5-1.5B-Instruct: eval failed (last 2000 chars):
+[2026-07-21 16:16:40,929] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/eval.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 418, in phase2b_eval_retains
+    raise RuntimeError(f"eval failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: eval failed (last 2000 chars):
+[2026-07-21 16:16:40,929] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/eval.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Phi-3.5-mini-instruct eval retain ...
+    Downloading erkenovaj/tofu_Phi-3.5-mini-instruct_retain90 → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Phi-3.5-mini-instruct_retain90 ...
+    [WARN] download failed: 404 Client Error. (Request ID: Root=1-6a5f9b6b-3fa9f1b04d68766655657eaa;539e0672-f98b-4c71-a629-67b6a3652b2a)
+
+Repository Not Found for url: https://huggingface.co/api/models/erkenovaj/tofu_Phi-3.5-mini-instruct_retain90/revision/main.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated. For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+[2026-07-21 16:16:48,263] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/eval.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Phi-3.5-mini-instruct: eval failed (last 2000 chars):
+[2026-07-21 16:16:48,263] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/eval.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 418, in phase2b_eval_retains
+    raise RuntimeError(f"eval failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: eval failed (last 2000 chars):
+[2026-07-21 16:16:48,263] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/eval.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Qwen2.5-3B-Instruct eval retain ...
+    Downloading erkenovaj/tofu_Qwen2.5-3B-Instruct_retain90 → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Qwen2.5-3B-Instruct_retain90 ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:16:55,724] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/eval.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Qwen2.5-3B-Instruct: eval failed (last 2000 chars):
+[2026-07-21 16:16:55,724] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/eval.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 418, in phase2b_eval_retains
+    raise RuntimeError(f"eval failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: eval failed (last 2000 chars):
+[2026-07-21 16:16:55,724] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/eval.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+
+============================================================
+Phase 3: Unlearn
+============================================================
+  [run]  Qwen2.5-1.5B-Instruct × GradAscent ...
+    Downloading erkenovaj/tofu_Qwen2.5-1.5B-Instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Qwen2.5-1.5B-Instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:17:03,679] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Qwen2.5-1.5B-Instruct × GradAscent: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:03,679] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 458, in phase3_unlearn
+    raise RuntimeError(f"unlearn failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:03,679] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Qwen2.5-1.5B-Instruct × GradDiff ...
+    Downloading erkenovaj/tofu_Qwen2.5-1.5B-Instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Qwen2.5-1.5B-Instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:17:10,884] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Qwen2.5-1.5B-Instruct × GradDiff: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:10,884] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 458, in phase3_unlearn
+    raise RuntimeError(f"unlearn failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:10,884] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Qwen2.5-1.5B-Instruct × NPO ...
+    Downloading erkenovaj/tofu_Qwen2.5-1.5B-Instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Qwen2.5-1.5B-Instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:17:17,969] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Qwen2.5-1.5B-Instruct × NPO: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:17,969] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 458, in phase3_unlearn
+    raise RuntimeError(f"unlearn failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:17,969] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Qwen2.5-1.5B-Instruct × RMU ...
+    Downloading erkenovaj/tofu_Qwen2.5-1.5B-Instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Qwen2.5-1.5B-Instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:17:25,486] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Qwen2.5-1.5B-Instruct × RMU: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:25,486] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 458, in phase3_unlearn
+    raise RuntimeError(f"unlearn failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:25,486] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Qwen2.5-1.5B-Instruct × SimNPO ...
+    Downloading erkenovaj/tofu_Qwen2.5-1.5B-Instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Qwen2.5-1.5B-Instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:17:32,768] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Qwen2.5-1.5B-Instruct × SimNPO: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:32,768] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 458, in phase3_unlearn
+    raise RuntimeError(f"unlearn failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:32,768] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Phi-3.5-mini-instruct × GradAscent ...
+    Downloading erkenovaj/tofu_Phi-3.5-mini-instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Phi-3.5-mini-instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:17:40,195] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Phi-3.5-mini-instruct × GradAscent: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:40,195] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 458, in phase3_unlearn
+    raise RuntimeError(f"unlearn failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:40,195] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Phi-3.5-mini-instruct × GradDiff ...
+    Downloading erkenovaj/tofu_Phi-3.5-mini-instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Phi-3.5-mini-instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:17:47,540] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Phi-3.5-mini-instruct × GradDiff: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:47,540] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 458, in phase3_unlearn
+    raise RuntimeError(f"unlearn failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:47,540] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Phi-3.5-mini-instruct × NPO ...
+    Downloading erkenovaj/tofu_Phi-3.5-mini-instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Phi-3.5-mini-instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:17:54,282] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Phi-3.5-mini-instruct × NPO: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:54,282] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 458, in phase3_unlearn
+    raise RuntimeError(f"unlearn failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: unlearn failed (last 2000 chars):
+[2026-07-21 16:17:54,282] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Phi-3.5-mini-instruct × RMU ...
+    Downloading erkenovaj/tofu_Phi-3.5-mini-instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Phi-3.5-mini-instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:18:02,165] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Phi-3.5-mini-instruct × RMU: unlearn failed (last 2000 chars):
+[2026-07-21 16:18:02,165] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 458, in phase3_unlearn
+    raise RuntimeError(f"unlearn failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: unlearn failed (last 2000 chars):
+[2026-07-21 16:18:02,165] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Phi-3.5-mini-instruct × SimNPO ...
+    Downloading erkenovaj/tofu_Phi-3.5-mini-instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Phi-3.5-mini-instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:18:09,279] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Phi-3.5-mini-instruct × SimNPO: unlearn failed (last 2000 chars):
+[2026-07-21 16:18:09,279] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 458, in phase3_unlearn
+    raise RuntimeError(f"unlearn failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: unlearn failed (last 2000 chars):
+[2026-07-21 16:18:09,279] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Qwen2.5-3B-Instruct × GradAscent ...
+    Downloading erkenovaj/tofu_Qwen2.5-3B-Instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Qwen2.5-3B-Instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.
+[2026-07-21 16:18:16,285] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+  [FAIL] Qwen2.5-3B-Instruct × GradAscent: unlearn failed (last 2000 chars):
+[2026-07-21 16:18:16,285] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 458, in phase3_unlearn
+    raise RuntimeError(f"unlearn failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: unlearn failed (last 2000 chars):
+[2026-07-21 16:18:16,285] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 6, in <module>
+    from evals import get_evaluators
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/__init__.py", line 5, in <module>
+    from evals.lm_eval import LMEvalEvaluator
+  File "/root/unlearning_fingertips/open-unlearning/src/evals/lm_eval.py", line 4, in <module>
+    from lm_eval.models.hf_vlms import HFLM
+ModuleNotFoundError: No module named 'lm_eval'
+
+  [run]  Qwen2.5-3B-Instruct × GradDiff ...
+    Downloading erkenovaj/tofu_Qwen2.5-3B-Instruct_full → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Qwen2.5-3B-Instruct_full ...
+    [WARN] download failed: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.

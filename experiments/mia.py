@@ -18,6 +18,7 @@ For each model, we compute these on forget and retain prompts, then:
   1. Per-prompt Δ = forget_score - retain_score
   2. Paired significance tests (Welch's t, Mann-Whitney U)
   3. Effect sizes (Cohen's d)
+  4. ROC-AUC: can the statistic separate forget from retain within one model?
 
 Usage:
   python mia.py --model original --output_dir results/mia/
@@ -91,7 +92,10 @@ def main():
     if device == "cuda":
         torch.cuda.empty_cache()
 
+    from sklearn.metrics import roc_auc_score, roc_curve
+
     metrics = {}
+    roc_data = {}
     for key in ["loss", "min_k_plus", "logrank", "entropy"]:
         f = forget_scores[key]
         r = retain_scores[key]
@@ -100,6 +104,14 @@ def main():
         t_stat, t_pval = sp_stats.ttest_rel(f, r, alternative="two-sided")
         u_stat, u_pval = sp_stats.mannwhitneyu(delta, np.zeros_like(delta), alternative="two-sided")
         cohens_d = float(delta.mean() / (delta.std(ddof=1) + 1e-12))
+
+        y_true = np.array([1] * len(f) + [0] * len(r))
+        y_score = np.concatenate([f, r])
+        auc_raw = float(roc_auc_score(y_true, y_score))
+        auc_separation = max(auc_raw, 1.0 - auc_raw)
+        fpr, tpr, _ = roc_curve(y_true, y_score)
+
+        roc_data[key] = {"fpr": fpr.tolist(), "tpr": tpr.tolist(), "auc": auc_raw}
 
         metrics[key] = {
             "forget_mean": float(f.mean()),
@@ -113,6 +125,8 @@ def main():
             "u_stat": float(u_stat),
             "u_pvalue": float(u_pval),
             "cohens_d": cohens_d,
+            "roc_auc": auc_raw,
+            "roc_separation": auc_separation,
             "per_prompt_forget": f.tolist(),
             "per_prompt_retain": r.tolist(),
         }
@@ -132,9 +146,30 @@ def main():
     save_json(results, json_path)
     print(f"[mia] saved -> {json_path}")
 
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots(figsize=(7, 7))
+    for key in ["loss", "min_k_plus", "logrank", "entropy"]:
+        rd = roc_data[key]
+        ax.plot(rd["fpr"], rd["tpr"], label=f'{key} (AUC={rd["auc"]:.3f})', linewidth=2)
+    ax.plot([0, 1], [0, 1], "k--", linewidth=0.5)
+    ax.set_xlabel("False Positive Rate (retain predicted as forget)")
+    ax.set_ylabel("True Positive Rate (forget detected)")
+    ax.set_title(f"MIA ROC — {tag}\nForget vs Retain (within-model)")
+    ax.legend(fontsize=10)
+    ax.set_xlim(-0.05, 1.05)
+    ax.set_ylim(-0.05, 1.05)
+    fig.tight_layout()
+    plot_path = os.path.join(args.output_dir, f"{tag}_mia_roc.png")
+    fig.savefig(plot_path, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+    print(f"[mia] ROC plot -> {plot_path}")
+
     print(f"\n[mia] summary for {tag}:")
-    print(f"  {'metric':12s}  {'Δforget-retain':>14s}  {'t-stat':>8s}  {'p-value':>10s}  {'Cohen d':>8s}")
-    print(f"  {'-'*12}  {'-'*14}  {'-'*8}  {'-'*10}  {'-'*8}")
+    print(f"  {'metric':12s}  {'Δforget-retain':>14s}  {'t-stat':>8s}  {'p-value':>10s}  {'Cohen d':>8s}  {'ROC-AUC':>8s}")
+    print(f"  {'-'*12}  {'-'*14}  {'-'*8}  {'-'*10}  {'-'*8}  {'-'*8}")
     for key in ["loss", "min_k_plus", "logrank", "entropy"]:
         m = metrics[key]
         stars = ""
@@ -144,7 +179,7 @@ def main():
             stars = "**"
         elif m["t_pvalue"] < 0.05:
             stars = "*"
-        print(f"  {key:12s}  {m['delta_mean']:+14.6f}  {m['t_stat']:+8.2f}  {m['t_pvalue']:10.4e}  {m['cohens_d']:+8.3f}  {stars}")
+        print(f"  {key:12s}  {m['delta_mean']:+14.6f}  {m['t_stat']:+8.2f}  {m['t_pvalue']:10.4e}  {m['cohens_d']:+8.3f}  {m['roc_auc']:8.3f}  {stars}")
 
 
 if __name__ == "__main__":
