@@ -107,11 +107,19 @@ def log_step(step_type, model, method=None, **info):
 
 # ── Shell helper ───────────────────────────────────────────────────────────────
 
+OU_ENV = {
+    **os.environ,
+    "HF_HOME": "/workspace/.cache/huggingface",
+    "HF_HUB_DISABLE_XET": "1",
+}
+
+
 def run_cmd(cmd, cwd=None, timeout=None):
     """Run command, stream output live, return (success, combined_output)."""
     proc = subprocess.Popen(
         cmd, shell=True, cwd=str(cwd or OU_DIR),
         stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+        env=OU_ENV,
     )
     lines = []
     for line in proc.stdout:
@@ -211,6 +219,8 @@ def upload_checkpoint(local_path, hf_repo_id):
 # ── Sample generation ──────────────────────────────────────────────────────────
 
 def generate_samples(model_path_or_hf_id, output_path, num_samples=NUM_SAMPLES):
+    os.environ["HF_HOME"] = "/workspace/.cache/huggingface"
+    os.environ["HF_HUB_DISABLE_XET"] = "1"
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from datasets import load_dataset

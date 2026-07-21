@@ -1,2 +1,6 @@
 {"step": "base_samples", "model": "Qwen2.5-1.5B-Instruct", "method": null, "timestamp": "2026-07-20T16:08:04.419696", "hf_id": "Qwen/Qwen2.5-1.5B-Instruct", "num_samples": 100}
 {"step": "base_samples", "model": "Phi-3.5-mini-instruct", "method": null, "timestamp": "2026-07-20T16:22:07.617921", "hf_id": "microsoft/Phi-3.5-mini-instruct", "num_samples": 100}
+{"step": "base_samples", "model": "Qwen2.5-3B-Instruct", "method": null, "timestamp": "2026-07-20T16:29:41.366227", "hf_id": "Qwen/Qwen2.5-3B-Instruct", "num_samples": 100}
+{"step": "finetune", "model": "Qwen2.5-1.5B-Instruct", "method": null, "timestamp": "2026-07-20T16:58:27.254810", "split": "full", "elapsed": 1597.2814526557922, "hf_id": "erkenovaj/tofu_Qwen2.5-1.5B-Instruct_full"}
+{"step": "finetune", "model": "Qwen2.5-3B-Instruct", "method": null, "timestamp": "2026-07-20T18:10:48.353255", "split": "full", "elapsed": 4153.877603292465, "hf_id": "erkenovaj/tofu_Qwen2.5-3B-Instruct_full"}
+{"step": "finetune", "model": "Qwen2.5-1.5B-Instruct", "method": null, "timestamp": "2026-07-20T18:39:02.604340", "split": "retain90", "elapsed": 1568.6336138248444, "hf_id": "erkenovaj/tofu_Qwen2.5-1.5B-Instruct_retain90"}

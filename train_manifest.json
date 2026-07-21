@@ -11,6 +11,39 @@
       "timestamp": "2026-07-20T16:22:07.617211",
       "hf_id": "microsoft/Phi-3.5-mini-instruct",
       "samples": 100
+    },
+    "base_Qwen2.5-3B-Instruct": {
+      "status": "done",
+      "timestamp": "2026-07-20T16:29:41.365373",
+      "hf_id": "Qwen/Qwen2.5-3B-Instruct",
+      "samples": 100
+    },
+    "finetune_Qwen2.5-1.5B-Instruct_full": {
+      "status": "done",
+      "timestamp": "2026-07-20T16:58:27.253655",
+      "hf_id": "erkenovaj/tofu_Qwen2.5-1.5B-Instruct_full",
+      "elapsed": 1597.2814526557922,
+      "samples": 100
+    },
+    "finetune_Qwen2.5-3B-Instruct_full": {
+      "status": "done",
+      "timestamp": "2026-07-20T18:10:48.352019",
+      "hf_id": "erkenovaj/tofu_Qwen2.5-3B-Instruct_full",
+      "elapsed": 4153.877603292465,
+      "samples": 100
+    },
+    "finetune_Qwen2.5-1.5B-Instruct_retain90": {
+      "status": "done",
+      "timestamp": "2026-07-20T18:39:02.603086",
+      "hf_id": "erkenovaj/tofu_Qwen2.5-1.5B-Instruct_retain90",
+      "elapsed": 1568.6336138248444,
+      "samples": 100
+    },
+    "finetune_Qwen2.5-3B-Instruct_retain90": {
+      "status": "done",
+      "timestamp": "2026-07-20T20:13:45.973463",
+      "hf_id": "erkenovaj/tofu_Qwen2.5-3B-Instruct_retain90",
+      "note": "re-uploaded manually after I/O error"
     }
   }
 }
