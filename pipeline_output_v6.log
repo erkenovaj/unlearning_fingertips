@@ -1,0 +1,309 @@
+
+============================================================
+Phase 0: Base model samples
+============================================================
+  [skip] Qwen2.5-1.5B-Instruct
+  [skip] Phi-3.5-mini-instruct
+  [skip] Qwen2.5-3B-Instruct
+
+============================================================
+Phase 1: Finetune originals (TOFU full)
+============================================================
+  [skip] Qwen2.5-1.5B-Instruct
+  [skip] Phi-3.5-mini-instruct
+  [skip] Qwen2.5-3B-Instruct
+
+============================================================
+Phase 2: Finetune retains (TOFU retain90)
+============================================================
+  [skip] Qwen2.5-1.5B-Instruct
+  [run]  Phi-3.5-mini-instruct finetune retain90 ...
+/usr/local/lib/python3.12/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.3) doesn't match a supported version!
+  warnings.warn(
+[2026-07-21 19:05:13,952] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+`torch_dtype` is deprecated! Use `dtype` instead!
+[[36m2026-07-21 19:05:18,007[0m][[34mmodel[0m][[33mWARNING[0m] - Model microsoft/Phi-3.5-mini-instruct requested with {'attn_implementation': 'flash_attention_2'}[0m
+Error executing job with overrides: ['experiment=finetune/tofu/default', 'model=Phi-3.5-mini-instruct', 'data/datasets@data.train=TOFU_QA_retain', 'trainer.args.num_train_epochs=5', 'trainer.args.seed=42', 'task_name=tofu_Phi-3.5-mini-instruct_retain90']
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 474, in http_get
+    hf_transfer.download(
+Exception: Failed too many failures in parallel (3): Request: HTTP status client error (403 Forbidden) for url (https://us.aws.cdn.hf.co/xet-bridge-us/66bfbb1a43a701a837a745ac/0761a896f3de1193ac182d0da1c50fab6c690e09218e6acd447d56ebf859c47f?response-content-disposition=inline%3B+filename*%3DUTF-8%27%27model-00001-of-00002.safetensors%3B+filename%3D%22model-00001-of-00002.safetensors%22%3B&X-Xet-Cas-Uid=public&user_id=public&Expires=1784664317&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly91cy5hd3MuY2RuLmhmLmNvL3hldC1icmlkZ2UtdXMvNjZiZmJiMWE0M2E3MDFhODM3YTc0NWFjLzA3NjFhODk2ZjNkZTExOTNhYzE4MmQwZGExYzUwZmFiNmM2OTBlMDkyMThlNmFjZDQ0N2Q1NmViZjg1OWM0N2ZcXD9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPWlubGluZSUzQitmaWxlbmFtZSUyQSUzRFVURi04JTI3JTI3bW9kZWwtMDAwMDEtb2YtMDAwMDIuc2FmZXRlbnNvcnMlM0IrZmlsZW5hbWUlM0QlMjJtb2RlbC0wMDAwMS1vZi0wMDAwMi5zYWZldGVuc29ycyUyMiUzQiZYLVhldC1DYXMtVWlkPXB1YmxpYyZ1c2VyX2lkPXB1YmxpYyIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiRXBvY2hUaW1lIjoxNzg0NjY0MzE3fSwiQnl0ZVJhbmdlIjp7IkV4cGVjdGVkSGVhZGVyIjoiYnl0ZXM9MC0wIn19fV19&Signature=MEYCIQDTXimqbKoVf-XEqhLeEWFTZfXVe9Z2gCsiQ%7EAO9hv1pQIhAMTFay2SHx2IgYDOItl43MFNlOfQjFzQ%7EALuTF9ahz%7EC&Key-Pair-Id=01KXEF4KZ1B6FV465MAWR4M21F) (no permits available)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/model/__init__.py", line 53, in get_model
+    model = model_cls.from_pretrained(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 4900, in from_pretrained
+    checkpoint_files, sharded_metadata = _get_resolved_checkpoint_files(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 1200, in _get_resolved_checkpoint_files
+    checkpoint_files, sharded_metadata = get_checkpoint_shard_files(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py", line 1084, in get_checkpoint_shard_files
+    cached_filenames = cached_files(
+                       ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py", line 567, in cached_files
+    raise e
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py", line 494, in cached_files
+    snapshot_download(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 330, in snapshot_download
+    _inner_hf_hub_download(file)
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1742, in _download_to_tmp_and_move
+    http_get(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 485, in http_get
+    raise RuntimeError(
+RuntimeError: An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 21, in main
+    model, tokenizer = get_model(model_cfg)
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/root/unlearning_fingertips/open-unlearning/src/model/__init__.py", line 61, in get_model
+    raise ValueError(
+ValueError: Error An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling. while fetching model using AutoModelForCausalLM.from_pretrained().
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+  [FAIL] Phi-3.5-mini-instruct: finetune failed (last 2000 chars):
+s, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 330, in snapshot_download
+    _inner_hf_hub_download(file)
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1742, in _download_to_tmp_and_move
+    http_get(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 485, in http_get
+    raise RuntimeError(
+RuntimeError: An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 21, in main
+    model, tokenizer = get_model(model_cfg)
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/root/unlearning_fingertips/open-unlearning/src/model/__init__.py", line 61, in get_model
+    raise ValueError(
+ValueError: Error An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling. while fetching model using AutoModelForCausalLM.from_pretrained().
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 379, in phase2_finetune_retains
+    raise RuntimeError(f"finetune failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: finetune failed (last 2000 chars):
+s, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 330, in snapshot_download
+    _inner_hf_hub_download(file)
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1742, in _download_to_tmp_and_move
+    http_get(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 485, in http_get
+    raise RuntimeError(
+RuntimeError: An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 21, in main
+    model, tokenizer = get_model(model_cfg)
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/root/unlearning_fingertips/open-unlearning/src/model/__init__.py", line 61, in get_model
+    raise ValueError(
+ValueError: Error An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling. while fetching model using AutoModelForCausalLM.from_pretrained().
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+
+  [run]  Qwen2.5-3B-Instruct finetune retain90 ...
+/usr/local/lib/python3.12/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.3) doesn't match a supported version!
+  warnings.warn(
+[2026-07-21 19:05:24,301] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+`torch_dtype` is deprecated! Use `dtype` instead!
+[[36m2026-07-21 19:05:28,382[0m][[34mmodel[0m][[33mWARNING[0m] - Model Qwen/Qwen2.5-3B-Instruct requested with {'attn_implementation': 'flash_attention_2'}[0m
+Error executing job with overrides: ['experiment=finetune/tofu/default', 'model=Qwen2.5-3B-Instruct', 'data/datasets@data.train=TOFU_QA_retain', 'trainer.args.num_train_epochs=5', 'trainer.args.seed=42', 'task_name=tofu_Qwen2.5-3B-Instruct_retain90']
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 474, in http_get
+    hf_transfer.download(
+Exception: Failed too many failures in parallel (3): Request: HTTP status client error (403 Forbidden) for url (https://us.aws.cdn.hf.co/xet-bridge-us/66e98d74d4219fc3f1db215f/7fea953b70d7ccd939dc214d023effbe6856360abd289559c8736badc260de54?user_id=public&X-Xet-Cas-Uid=public&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27model-00001-of-00002.safetensors%3B+filename%3D%22model-00001-of-00002.safetensors%22%3B&Expires=1784664328&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly91cy5hd3MuY2RuLmhmLmNvL3hldC1icmlkZ2UtdXMvNjZlOThkNzRkNDIxOWZjM2YxZGIyMTVmLzdmZWE5NTNiNzBkN2NjZDkzOWRjMjE0ZDAyM2VmZmJlNjg1NjM2MGFiZDI4OTU1OWM4NzM2YmFkYzI2MGRlNTRcXD91c2VyX2lkPXB1YmxpYyZYLVhldC1DYXMtVWlkPXB1YmxpYyZyZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPWlubGluZSUzQitmaWxlbmFtZSUyQSUzRFVURi04JTI3JTI3bW9kZWwtMDAwMDEtb2YtMDAwMDIuc2FmZXRlbnNvcnMlM0IrZmlsZW5hbWUlM0QlMjJtb2RlbC0wMDAwMS1vZi0wMDAwMi5zYWZldGVuc29ycyUyMiUzQiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiRXBvY2hUaW1lIjoxNzg0NjY0MzI4fSwiQnl0ZVJhbmdlIjp7IkV4cGVjdGVkSGVhZGVyIjoiYnl0ZXM9MC0wIn19fV19&Signature=MEYCIQC9EeHjaDB4w7Pu%7E83S57SWODZTAQJMGabxuTBFAcRI8wIhANiZXiRLt9VERqi9tVg4Za1BfH8SJ-c%7Edpz%7EsPycDkGw&Key-Pair-Id=01KXEF4KZ1B6FV465MAWR4M21F) (no permits available)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/model/__init__.py", line 53, in get_model
+    model = model_cls.from_pretrained(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 4900, in from_pretrained
+    checkpoint_files, sharded_metadata = _get_resolved_checkpoint_files(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 1200, in _get_resolved_checkpoint_files
+    checkpoint_files, sharded_metadata = get_checkpoint_shard_files(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py", line 1084, in get_checkpoint_shard_files
+    cached_filenames = cached_files(
+                       ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py", line 567, in cached_files
+    raise e
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py", line 494, in cached_files
+    snapshot_download(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 330, in snapshot_download
+    _inner_hf_hub_download(file)
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1742, in _download_to_tmp_and_move
+    http_get(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 485, in http_get
+    raise RuntimeError(
+RuntimeError: An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 21, in main
+    model, tokenizer = get_model(model_cfg)
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/root/unlearning_fingertips/open-unlearning/src/model/__init__.py", line 61, in get_model
+    raise ValueError(
+ValueError: Error An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling. while fetching model using AutoModelForCausalLM.from_pretrained().
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+  [FAIL] Qwen2.5-3B-Instruct: finetune failed (last 2000 chars):
+s, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 330, in snapshot_download
+    _inner_hf_hub_download(file)
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1742, in _download_to_tmp_and_move
+    http_get(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 485, in http_get
+    raise RuntimeError(
+RuntimeError: An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 21, in main
+    model, tokenizer = get_model(model_cfg)
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/root/unlearning_fingertips/open-unlearning/src/model/__init__.py", line 61, in get_model
+    raise ValueError(
+ValueError: Error An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling. while fetching model using AutoModelForCausalLM.from_pretrained().
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/train_pipeline.py", line 379, in phase2_finetune_retains
+    raise RuntimeError(f"finetune failed (last 2000 chars):\n{output[-2000:]}")
+RuntimeError: finetune failed (last 2000 chars):
+s, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 330, in snapshot_download
+    _inner_hf_hub_download(file)
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 1742, in _download_to_tmp_and_move
+    http_get(
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/file_download.py", line 485, in http_get
+    raise RuntimeError(
+RuntimeError: An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/unlearning_fingertips/open-unlearning/src/train.py", line 21, in main
+    model, tokenizer = get_model(model_cfg)
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/root/unlearning_fingertips/open-unlearning/src/model/__init__.py", line 61, in get_model
+    raise ValueError(
+ValueError: Error An error occurred while downloading using `hf_transfer`. Consider disabling HF_HUB_ENABLE_HF_TRANSFER for better error handling. while fetching model using AutoModelForCausalLM.from_pretrained().
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+
+
+============================================================
+Phase 2b: Eval retain models (for unlearning metrics)
+============================================================
+  [run]  Qwen2.5-1.5B-Instruct eval retain ...
+    Downloading erkenovaj/tofu_Qwen2.5-1.5B-Instruct_retain90 → /root/unlearning_fingertips/open-unlearning/saves/finetune/tofu_Qwen2.5-1.5B-Instruct_retain90 ...
+/usr/local/lib/python3.12/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.3) doesn't match a supported version!
+  warnings.warn(
