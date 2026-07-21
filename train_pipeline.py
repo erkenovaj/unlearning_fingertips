@@ -111,6 +111,7 @@ OU_ENV = {
     **os.environ,
     "HF_HOME": "/root/.cache/huggingface",
     "HF_HUB_DISABLE_XET": "1",
+    "HF_HUB_ENABLE_HF_TRANSFER": "0",
 }
 
 
@@ -136,6 +137,7 @@ def download_checkpoint_from_hf(hf_id, local_path):
         return True
     local_path.mkdir(parents=True, exist_ok=True)
     print(f"    Downloading {hf_id} → {local_path} ...")
+    os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "0"
     from huggingface_hub import snapshot_download
     try:
         snapshot_download(
