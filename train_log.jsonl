@@ -5,3 +5,12 @@
 {"step": "finetune", "model": "Qwen2.5-3B-Instruct", "method": null, "timestamp": "2026-07-20T18:10:48.353255", "split": "full", "elapsed": 4153.877603292465, "hf_id": "erkenovaj/tofu_Qwen2.5-3B-Instruct_full"}
 {"step": "finetune", "model": "Qwen2.5-1.5B-Instruct", "method": null, "timestamp": "2026-07-20T18:39:02.604340", "split": "retain90", "elapsed": 1568.6336138248444, "hf_id": "erkenovaj/tofu_Qwen2.5-1.5B-Instruct_retain90"}
 {"step": "finetune", "model": "Phi-3.5-mini-instruct", "method": null, "timestamp": "2026-07-21T09:15:09.255777", "split": "full", "elapsed": 1864.6546626091003, "hf_id": "erkenovaj/tofu_Phi-3.5-mini-instruct_full"}
+{"step": "finetune", "model": "Qwen2.5-3B-Instruct", "method": null, "timestamp": "2026-07-21T23:31:03.876502", "split": "retain90", "elapsed": 3165.1330103874207, "hf_id": "erkenovaj/tofu_Qwen2.5-3B-Instruct_retain90"}
+{"step": "eval_retain", "model": "Qwen2.5-1.5B-Instruct", "method": null, "timestamp": "2026-07-21T23:34:57.330571", "elapsed": 168.55043196678162}
+{"step": "eval_retain", "model": "Phi-3.5-mini-instruct", "method": null, "timestamp": "2026-07-21T23:38:07.436918", "elapsed": 190.0758547782898}
+{"step": "eval_retain", "model": "Qwen2.5-3B-Instruct", "method": null, "timestamp": "2026-07-21T23:41:28.068399", "elapsed": 200.6017107963562}
+{"step": "unlearn", "model": "Qwen2.5-1.5B-Instruct", "method": "GradAscent", "timestamp": "2026-07-22T00:45:34.479775", "elapsed": 3255.8604032993317, "hf_id": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_GradAscent"}
+{"step": "unlearn", "model": "Qwen2.5-1.5B-Instruct", "method": "GradDiff", "timestamp": "2026-07-22T01:29:10.601770", "elapsed": 2492.664667367935, "hf_id": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_GradDiff"}
+{"step": "unlearn", "model": "Qwen2.5-1.5B-Instruct", "method": "NPO", "timestamp": "2026-07-22T01:59:27.600945", "elapsed": 1744.3368780612946, "hf_id": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_NPO"}
+{"step": "unlearn", "model": "Qwen2.5-1.5B-Instruct", "method": "RMU", "timestamp": "2026-07-22T02:33:30.570134", "elapsed": 1928.759803533554, "hf_id": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_RMU"}
+{"step": "unlearn", "model": "Qwen2.5-1.5B-Instruct", "method": "SimNPO", "timestamp": "2026-07-22T03:10:03.493350", "elapsed": 2064.243136405945, "hf_id": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_SimNPO"}
