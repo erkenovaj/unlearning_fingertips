@@ -19,3 +19,8 @@
 {"step": "unlearn", "model": "Phi-3.5-mini-instruct", "method": "NPO", "timestamp": "2026-07-22T11:31:51.867988", "elapsed": 1915.5796177387238, "hf_id": "erkenovaj/unlearn_tofu_Phi-3.5-mini-instruct_forget10_NPO"}
 {"step": "unlearn", "model": "Phi-3.5-mini-instruct", "method": "RMU", "timestamp": "2026-07-22T12:07:49.022163", "elapsed": 1975.5317137241364, "hf_id": "erkenovaj/unlearn_tofu_Phi-3.5-mini-instruct_forget10_RMU"}
 {"step": "unlearn", "model": "Phi-3.5-mini-instruct", "method": "SimNPO", "timestamp": "2026-07-22T12:46:27.966164", "elapsed": 2118.5695250034332, "hf_id": "erkenovaj/unlearn_tofu_Phi-3.5-mini-instruct_forget10_SimNPO"}
+{"step": "unlearn", "model": "Qwen2.5-3B-Instruct", "method": "GradAscent", "timestamp": "2026-07-22T14:24:42.501626", "elapsed": 5006.2772262096405, "hf_id": "erkenovaj/unlearn_tofu_Qwen2.5-3B-Instruct_forget10_GradAscent"}
+{"step": "unlearn", "model": "Qwen2.5-3B-Instruct", "method": "GradDiff", "timestamp": "2026-07-22T15:12:55.985501", "elapsed": 2747.475016593933, "hf_id": "erkenovaj/unlearn_tofu_Qwen2.5-3B-Instruct_forget10_GradDiff"}
+{"step": "unlearn", "model": "Qwen2.5-3B-Instruct", "method": "NPO", "timestamp": "2026-07-22T16:09:08.363489", "elapsed": 3233.7614693641663, "hf_id": "erkenovaj/unlearn_tofu_Qwen2.5-3B-Instruct_forget10_NPO"}
+{"step": "unlearn", "model": "Qwen2.5-3B-Instruct", "method": "RMU", "timestamp": "2026-07-22T17:01:35.700007", "elapsed": 2942.7888095378876, "hf_id": "erkenovaj/unlearn_tofu_Qwen2.5-3B-Instruct_forget10_RMU"}
+{"step": "unlearn", "model": "Qwen2.5-3B-Instruct", "method": "SimNPO", "timestamp": "2026-07-22T17:49:40.374881", "elapsed": 2738.8367867469788, "hf_id": "erkenovaj/unlearn_tofu_Qwen2.5-3B-Instruct_forget10_SimNPO"}
