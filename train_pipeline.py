@@ -275,10 +275,15 @@ def generate_samples(model_path_or_hf_id, output_path, num_samples=NUM_SAMPLES):
     forget_qs = [forget_ds[i]["question"] for i in f_idx]
     retain_qs = [retain_ds[i]["question"] for i in r_idx]
 
+    SYSTEM_PROMPT = "Answer the question concisely in one sentence or less. Do not add any preamble or explanation."
+
     def format_prompts(questions):
         out = []
         for q in questions:
-            msgs = [{"role": "user", "content": q}]
+            msgs = [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": q},
+            ]
             out.append(tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True))
         return out
 
@@ -288,7 +293,7 @@ def generate_samples(model_path_or_hf_id, output_path, num_samples=NUM_SAMPLES):
             inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=512)
             inputs = {k: v.to(model.device) for k, v in inputs.items()}
             with torch.no_grad():
-                out = model.generate(**inputs, max_new_tokens=256, do_sample=True, temperature=0.7, top_p=0.9)
+                out = model.generate(**inputs, max_new_tokens=64, do_sample=False)
             resp = tokenizer.decode(out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
             results.append({"question": q, "response": resp, "domain": domain})
             if (i + 1) % 10 == 0:

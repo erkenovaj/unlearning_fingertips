@@ -1,0 +1,15 @@
+diff --git a/src/evals/metrics/utils.py b/src/evals/metrics/utils.py
+index 71684b7..2af476c 100644
+--- a/src/evals/metrics/utils.py
++++ b/src/evals/metrics/utils.py
+@@ -95,8 +95,8 @@ def evaluate_probability(model, batch):
+     avg_losses = losses / num_token_gt
+     normalized_probs = torch.exp(-avg_losses)
+ 
+-    avg_losses = avg_losses.cpu().numpy().tolist()
+-    normalized_probs = normalized_probs.cpu().numpy().tolist()
++    avg_losses = avg_losses.float().cpu().numpy().tolist()
++    normalized_probs = normalized_probs.float().cpu().numpy().tolist()
+     return [
+         {"prob": prob, "avg_loss": avg_loss}
+         for prob, avg_loss in zip(normalized_probs, avg_losses)

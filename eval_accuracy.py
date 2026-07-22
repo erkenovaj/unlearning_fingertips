@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 """Evaluate accuracy of model responses against TOFU reference answers.
 
-Reads generated samples from train_output/samples/ and computes ROUGE-L
-and token-level exact-match accuracy against the TOFU dataset.
+Reads generated samples from train_output/samples/ and computes:
+- ROUGE-L (response vs reference)
+- TokenF1 (response vs reference)  
+- Containment (does the response contain the reference answer?)
+- OU eval metrics (from TOFU_EVAL.json if available)
 
 Usage:
     python eval_accuracy.py                          # all available samples
-    python eval_accuracy.py --samples_dir train_output/samples/
     python eval_accuracy.py --filter Qwen2.5-1.5B    # substring match on filename
 """
 
 import argparse
 import json
-import os
+import re
 import sys
 from pathlib import Path
 
@@ -23,6 +25,7 @@ from rouge_score import rouge_scorer
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_SAMPLES_DIR = ROOT / "train_output" / "samples"
+OU_EVAL_DIR = ROOT / "open-unlearning" / "saves" / "eval"
 
 SPLITS = {"forget": "forget10", "retain": "retain90"}
 SEED = 42
@@ -41,7 +44,6 @@ def load_tofu_references(seed=SEED):
 
 
 def normalize_text(text):
-    import re
     text = text.strip().lower()
     text = re.sub(r"[^\w\s]", "", text)
     return text
@@ -62,6 +64,44 @@ def compute_token_f1(prediction, reference):
     return 2 * precision * recall / (precision + recall)
 
 
+def compute_containment(prediction, reference):
+    pred_norm = normalize_text(prediction)
+    ref_norm = normalize_text(reference)
+    ref_words = ref_norm.split()
+    if not ref_words:
+        return 0.0
+    contained = all(w in pred_norm for w in ref_words)
+    partial = sum(1 for w in ref_words if w in pred_norm) / len(ref_words)
+    return 1.0 if contained else partial
+
+
+def load_ou_eval_results():
+    results = {}
+    if not OU_EVAL_DIR.exists():
+        return results
+    for eval_dir in sorted(OU_EVAL_DIR.iterdir()):
+        if not eval_dir.is_dir():
+            continue
+        eval_json = eval_dir / "TOFU_EVAL.json"
+        if not eval_json.exists():
+            continue
+        try:
+            data = json.loads(eval_json.read_text())
+            name = eval_dir.name
+            metrics = {}
+            for key in ["model_utility", "forget_Q_A_Prob", "forget_Q_A_ROUGE",
+                         "retain_Q_A_Prob", "retain_Q_A_ROUGE",
+                         "forget_truth_ratio", "retain_Truth_Ratio",
+                         "extraction_strength", "privleak"]:
+                if key in data and isinstance(data[key], dict) and "agg_value" in data[key]:
+                    metrics[key] = data[key]["agg_value"]
+            if metrics:
+                results[name] = metrics
+        except Exception:
+            continue
+    return results
+
+
 def evaluate_samples(samples_path, references, scorer):
     with open(samples_path) as f:
         data = json.load(f)
@@ -74,6 +114,7 @@ def evaluate_samples(samples_path, references, scorer):
 
         rouge_scores = []
         token_f1_scores = []
+        containment_scores = []
         exact_matches = 0
 
         for sample in domain_samples:
@@ -90,6 +131,9 @@ def evaluate_samples(samples_path, references, scorer):
             f1 = compute_token_f1(pred, ref)
             token_f1_scores.append(f1)
 
+            c = compute_containment(pred, ref)
+            containment_scores.append(c)
+
             if normalize_text(pred) == normalize_text(ref):
                 exact_matches += 1
 
@@ -102,6 +146,7 @@ def evaluate_samples(samples_path, references, scorer):
             "rouge_l_mean": float(np.mean(rouge_scores)),
             "rouge_l_std": float(np.std(rouge_scores)),
             "token_f1_mean": float(np.mean(token_f1_scores)),
+            "containment_mean": float(np.mean(containment_scores)),
             "exact_match_pct": exact_matches / n * 100,
         }
 
@@ -111,7 +156,7 @@ def evaluate_samples(samples_path, references, scorer):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--samples_dir", type=str, default=str(DEFAULT_SAMPLES_DIR))
-    parser.add_argument("--filter", type=str, default=None, help="Substring filter on sample filenames")
+    parser.add_argument("--filter", type=str, default=None)
     args = parser.parse_args()
 
     samples_dir = Path(args.samples_dir)
@@ -138,8 +183,13 @@ def main():
         if res:
             all_results[name] = res
 
+    ou_results = load_ou_eval_results()
+
     print()
-    header = f"{'Model':<50} {'Domain':<10} {'ROUGE-L':>10} {'TokenF1':>10} {'ExactMatch':>12} {'N':>5}"
+    print("=" * 120)
+    print("SAMPLE-BASED METRICS (ROUGE-L / TokenF1 / Containment)")
+    print("=" * 120)
+    header = f"{'Model':<48} {'Domain':<8} {'ROUGE-L':>8} {'TokF1':>7} {'Contain':>8} {'EM%':>6} {'N':>4}"
     print(header)
     print("-" * len(header))
 
@@ -149,17 +199,39 @@ def main():
                 continue
             r = domains[domain]
             print(
-                f"{name:<50} {domain:<10} "
-                f"{r['rouge_l_mean']:>9.4f} "
-                f"{r['token_f1_mean']:>9.4f} "
-                f"{r['exact_match_pct']:>11.1f}% "
-                f"{r['n']:>5}"
+                f"{name:<48} {domain:<8} "
+                f"{r['rouge_l_mean']:>7.4f} "
+                f"{r['token_f1_mean']:>6.4f} "
+                f"{r['containment_mean']:>7.4f} "
+                f"{r['exact_match_pct']:>5.1f} "
+                f"{r['n']:>4}"
             )
+        print()
+
+    if ou_results:
+        print("=" * 120)
+        print("OU EVAL METRICS (from TOFU_EVAL.json — probabilities, not text matching)")
+        print("=" * 120)
+        ou_header = f"{'Eval Dir':<58} {'ModUtil':>8} {'F_QProb':>8} {'F_ROUGE':>8} {'R_QProb':>8} {'R_ROUGE':>8} {'F_TR':>8} {'ES':>8}"
+        print(ou_header)
+        print("-" * len(ou_header))
+        for name, m in sorted(ou_results.items()):
+            print(
+                f"{name:<58} "
+                f"{m.get('model_utility', float('nan')):>8.4f} "
+                f"{m.get('forget_Q_A_Prob', float('nan')):>8.4f} "
+                f"{m.get('forget_Q_A_ROUGE', float('nan')):>8.4f} "
+                f"{m.get('retain_Q_A_Prob', float('nan')):>8.4f} "
+                f"{m.get('retain_Q_A_ROUGE', float('nan')):>8.4f} "
+                f"{m.get('forget_truth_ratio', float('nan')):>8.4f} "
+                f"{m.get('extraction_strength', float('nan')):>8.4f}"
+            )
+        print()
 
     out_path = samples_dir / "accuracy_summary.json"
     with open(out_path, "w") as f:
-        json.dump(all_results, f, indent=2)
-    print(f"\nDetailed results saved to {out_path}")
+        json.dump({"sample_metrics": all_results, "ou_eval_metrics": ou_results}, f, indent=2)
+    print(f"Results saved to {out_path}")
 
 
 if __name__ == "__main__":

@@ -14,8 +14,9 @@ the model itself (no original, no shadow models) against the TOFU suite
 
 ## Layout (which dirs matter)
 
-- `experiments/` — **detection pipeline (current main work).** `common.py` (model registry + stats + I/O), `spectral.py` (E1–E3, GPU forward passes), `weights.py` (E4–E5, weights only), `detect.py` (E6, combines prior outputs), `mia.py` (E7, MINT-inspired token-level MIA metrics), `samples.py` (E8, text completions for qualitative inspection). Run from this dir.
-- `train_pipeline.py` — **training pipeline.** Resumable script that clones `open-unlearning/`, finetunes base models on TOFU, unlearns with 5 methods (GradAscent, GradDiff, NPO, RMU, SimNPO), uploads checkpoints to HF, generates samples. Targets Qwen2.5-1.5B, Phi-3.5-mini, Qwen2.5-3B (NOT the Llama-3.2-1B used by experiments/). Tracked in `train_manifest.json`; output goes to `train_output/samples/`.
+- `experiments/` — **detection pipeline (current main work).** `common.py` (model registry + stats + I/O), `spectral.py` (E1–E3, GPU forward passes), `weights.py` (E4–E5, weights only), `detect.py` (E6, combines prior outputs), `mia.py` (E7, MINT-inspired token-level MIA metrics), `samples.py` (E8, text completions for qualitative inspection). Run from this dir. `common.py` also has `STRONG_MODELS` registry for strengthened-finetune models — use `--registry strong` with detect.py/spectral.py/weights.py.
+- `train_pipeline.py` — **training pipeline (weak finetuning).** Resumable script that clones `open-unlearning/`, finetunes base models on TOFU, unlearns with 5 methods (GradAscent, GradDiff, NPO, RMU, SimNPO), uploads checkpoints to HF, generates samples. Targets Qwen2.5-1.5B, Phi-3.5-mini, Qwen2.5-3B (NOT the Llama-3.2-1B used by experiments/). Tracked in `train_manifest.json`; output goes to `train_output/samples/`. Uses `FINETUNE_EPOCHS=5`, `lr=1e-5` — produces weak learning (loss plateau ~4.5, model_utility ~0.34-0.44).
+- `train_strong_pipeline.py` — **training pipeline (strong finetuning).** Same structure but with `FINETUNE_EPOCHS=15`, `lr=5e-5`, `warmup_epochs=2`. Tracked in `train_strong_manifest.json`; output goes to `train_output/strong_samples/`. Checkpoints uploaded as `erkenovaj/strong_tofu_*` and `erkenovaj/unlearn_strong_tofu_*`.
 - `fast_experiments/` — **legacy**, older Phi-1.5 / Zephyr-7b probe approach. Not the current line of work; don't update unless explicitly asked.
 - `logs_tofu/` — pre-cached `.npz`/`.json` TOFU splits and a prior MLP-probe run. Read-only cache.
 - `experiments/results/` — detection pipeline output (gitignored). Subdirectories: `spectral/`, `weights/`, `detection/` (original); `spectral_v2/`, `weights_v2/`, `detection_v2/` (v2 with chat-template); `spectral_v2_seed99/` (seed-99 ablation); `mia/`, `samples/` (E7/E8); `*_phi/` variants (Phi-1.5 models).
@@ -79,6 +80,23 @@ Key constraints:
 - `--phase` runs sequentially through phases if omitted (0→1→2→23→3); phases check `train_manifest.json` and skip completed steps.
 - RMU layer targets are model-specific (set in `RMU_LAYER` dict in train_pipeline.py).
 
+### Strengthened training pipeline (train_strong_pipeline.py)
+
+```
+python train_strong_pipeline.py --status       # show manifest summary
+python train_strong_pipeline.py --phase 1      # finetune originals (strong: 15ep, lr=5e-5)
+python train_strong_pipeline.py --phase 2      # finetune retains
+python train_strong_pipeline.py --phase 23     # eval retains
+python train_strong_pipeline.py --phase 3      # unlearn all methods
+python train_strong_pipeline.py --reset STEP_KEY
+```
+
+Key constraints:
+- Same dependencies as train_pipeline.py; shares the same `open-unlearning/` clone.
+- Uses its own manifest (`train_strong_manifest.json`) and output dir (`train_output/strong_samples/`).
+- Checkpoints uploaded as `erkenovaj/strong_tofu_*` / `erkenovaj/unlearn_strong_tofu_*`.
+- `open-unlearning/` has a patch in `src/evals/metrics/utils.py` (`.float()` before `.cpu()`) — see GOTCHA section.
+
 ## Headline result (on disk under `experiments/results/`)
 
 Verified across two seeds (42, 99) with the v2 pipeline (chat-template + localized/dip/kink/shape scores):
@@ -126,6 +144,23 @@ After the cache is healthy the download resumes without touching HF repo ids.
 
 **`train_pipeline.py` still hardcodes `HF_HOME=/workspace/.cache/huggingface`** in `OU_ENV` (line ~112) and `generate_samples` (line ~222). Either fix these or set `HF_HOME` in your shell before running.
 
+## GOTCHA: `open-unlearning` needs a patch for bfloat16 eval
+
+`src/evals/metrics/utils.py:98-99` calls `.cpu().numpy()` on bfloat16 tensors
+which crashes. Patch: add `.float()` before `.cpu()`:
+
+```python
+avg_losses = avg_losses.float().cpu().numpy().tolist()
+normalized_probs = normalized_probs.float().cpu().numpy().tolist()
+```
+
+Patch saved as `/root/unlearning_fingertips/open-unlearning.patch`.
+Apply after re-cloning: `cd open-unlearning && git apply ../open-unlearning.patch`
+
+Also, `transformers_modules/.../modeling_phi3.py` in the HF cache needs
+DynamicCache compat shims for Phi-3.5 — see cached file at
+`/workspace/.cache/huggingface/modules/transformers_modules/microsoft/Phi_hyphen_3_dot_5_hyphen_mini_hyphen_instruct/.../modeling_phi3.py`
+
 ## GOTCHA: `idknll` checkpoint discrepancy between `common.py` and `EXPLANATION.md`
 
 | Source | `idknll` HF id ends in |
@@ -138,6 +173,24 @@ Don't "fix" one to match the other without confirming which checkpoint the
 researcher intends; the two `lr` values are different unlearning runs. Pick one,
 run spectral/weights with it, and note the choice in results. The actual code
 uses `common.py` — `EXPLANATION.md` is stale.
+
+## Finetuning quality finding
+
+The standard TOFU finetuning setup (5 epochs, lr=1e-5) produces **weak learning**:
+- Loss plateaus at ~4.5 after epoch 1 (from 11.66 start)
+- `model_utility` ~0.34-0.44 (vs 0.1 random baseline)
+- `forget_Q_A_Prob` / `retain_Q_A_Prob` ~0.27-0.34 (model assigns ~30% probability to correct answers)
+- `retain_Q_A_ROUGE` ~0.35-0.40
+
+This is consistent across Qwen2.5-1.5B, Phi-3.5-mini, and Qwen2.5-3B.
+The strong pipeline (15 epochs, lr=5e-5) is intended to fix this.
+See `train_strong_pipeline.py`.
+
+On the existing Llama-3.2-1B detection results: `retain` (finetuned on retain90 only)
+has `cos_anomaly=0.002027, combined=0.1543`. `rmu` (unlearned) has
+`cos_anomaly=0.002086, combined=0.0900` — RMU is closer to original than to retain.
+Only aggressive methods (altpo=0.9234, npo=0.6418) clearly separate from retain.
+The detection may be measuring weight perturbation magnitude rather than knowledge removal.
 
 ## Repo code conventions to preserve
 

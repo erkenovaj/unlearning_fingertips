@@ -53,9 +53,24 @@ PHI_TOKENIZER_PATH = "microsoft/phi-1.5"
 PHI_UNLEARNED_METHODS = ["grad_ascent", "grad_diff", "kl", "idk"]
 PHI_REFERENCE_MODELS = ["original", "retain"]
 
+STRONG_MODELS = {
+    "original": "erkenovaj/tofu_Qwen2.5-1.5B-Instruct_full",
+    "retain": "erkenovaj/tofu_Qwen2.5-1.5B-Instruct_retain90",
+    "rmu": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_RMU",
+    "npo": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_NPO",
+    "graddiff": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_GradDiff",
+    "altpo": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_SimNPO",
+    "undial": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_GradAscent",
+    "idknll": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_NPO",
+}
+
+STRONG_UNLEARNED_METHODS = ["rmu", "npo", "graddiff", "altpo", "undial", "idknll"]
+STRONG_REFERENCE_MODELS = ["original", "retain"]
+
 REGISTRIES = {
     "llama": (MODELS, UNLEARNED_METHODS, REFERENCE_MODELS),
     "phi": (PHI_MODELS, PHI_UNLEARNED_METHODS, PHI_REFERENCE_MODELS),
+    "strong": (STRONG_MODELS, STRONG_UNLEARNED_METHODS, STRONG_REFERENCE_MODELS),
 }
 
 DTYPE_MAP = {"bf16": torch.bfloat16, "fp16": torch.float16, "fp32": torch.float32}

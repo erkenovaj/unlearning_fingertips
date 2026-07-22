@@ -110,6 +110,41 @@
       "hf_id": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_SimNPO",
       "elapsed": 2064.243136405945,
       "samples": 100
+    },
+    "unlearn_Phi-3.5-mini-instruct_GradAscent": {
+      "status": "done",
+      "timestamp": "2026-07-22T10:20:10.857949",
+      "hf_id": "erkenovaj/unlearn_tofu_Phi-3.5-mini-instruct_forget10_GradAscent",
+      "elapsed": 3488.6967017650604,
+      "samples": 100
+    },
+    "unlearn_Phi-3.5-mini-instruct_GradDiff": {
+      "status": "done",
+      "timestamp": "2026-07-22T10:57:09.283812",
+      "hf_id": "erkenovaj/unlearn_tofu_Phi-3.5-mini-instruct_forget10_GradDiff",
+      "elapsed": 2018.3488638401031,
+      "samples": 100
+    },
+    "unlearn_Phi-3.5-mini-instruct_NPO": {
+      "status": "done",
+      "timestamp": "2026-07-22T11:31:51.867386",
+      "hf_id": "erkenovaj/unlearn_tofu_Phi-3.5-mini-instruct_forget10_NPO",
+      "elapsed": 1915.5796177387238,
+      "samples": 100
+    },
+    "unlearn_Phi-3.5-mini-instruct_RMU": {
+      "status": "done",
+      "timestamp": "2026-07-22T12:07:49.021540",
+      "hf_id": "erkenovaj/unlearn_tofu_Phi-3.5-mini-instruct_forget10_RMU",
+      "elapsed": 1975.5317137241364,
+      "samples": 100
+    },
+    "unlearn_Phi-3.5-mini-instruct_SimNPO": {
+      "status": "done",
+      "timestamp": "2026-07-22T12:46:27.965574",
+      "hf_id": "erkenovaj/unlearn_tofu_Phi-3.5-mini-instruct_forget10_SimNPO",
+      "elapsed": 2118.5695250034332,
+      "samples": 100
     }
   }
 }
