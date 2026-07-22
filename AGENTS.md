@@ -192,6 +192,74 @@ has `cos_anomaly=0.002027, combined=0.1543`. `rmu` (unlearned) has
 Only aggressive methods (altpo=0.9234, npo=0.6418) clearly separate from retain.
 The detection may be measuring weight perturbation magnitude rather than knowledge removal.
 
+## Training pipeline status (train_pipeline.py) — COMPLETE
+
+All 27 steps done (3 base + 6 finetune + 3 eval_retain + 15 unlearn).
+Checkpoints on HF: `erkenovaj/tofu_*` and `erkenovaj/unlearn_tofu_*`.
+Samples in `train_output/samples/`.
+
+**Known gap**: `finetune_Phi-3.5-mini-instruct_retain90` HF repo is incomplete
+(missing model weights — only eval logs uploaded). Sample file missing on disk.
+Fix: re-run `python train_pipeline.py --phase 2 --model Phi-3.5-mini-instruct`
+after pod reinit (needs `open-unlearning/` + patch applied).
+
+## Future work (after pod reinit)
+
+### Step 0: Reinit checklist
+1. `cd /root/unlearning_fingertips && uv sync` (reinstall deps)
+2. `cd open-unlearning && git apply ../open-unlearning.patch` (bfloat16 fix)
+3. Verify GPU: `nvidia-smi`
+4. Verify HF auth: `huggingface-cli whoami` (must be `erkenovaj`)
+
+### Step 1: Fix Phi-3.5 retain90 gap
+```bash
+python train_pipeline.py --phase 2 --model Phi-3.5-mini-instruct
+```
+
+### Step 2: Run strengthened pipeline (strong finetuning)
+This addresses the weak-learning problem (loss plateau ~4.5, model_utility ~0.34).
+The strong pipeline uses 15 epochs + lr=5e-5 to push actual knowledge into the
+models before unlearning.
+
+```bash
+# Full run (~6-8 hours total)
+python train_strong_pipeline.py
+
+# Or per-phase:
+python train_strong_pipeline.py --phase 1   # finetune originals (strong)
+python train_strong_pipeline.py --phase 2   # finetune retains (strong)
+python train_strong_pipeline.py --phase 23  # eval retains
+python train_strong_pipeline.py --phase 3   # unlearn all
+```
+
+Use tmux: `tmux new -s train && python train_strong_pipeline.py`
+
+### Step 3: Run detection pipeline on strong models
+```bash
+cd experiments
+
+# Register strong models in common.py STRONG_MODELS dict (HF ids already there)
+# Then run spectral + weights + detect with --registry strong:
+for m in original retain rmu npo graddiff altpo undial idknll; do
+  python spectral.py --model $m --output_dir results/spectral_strong/ --registry strong
+  python weights.py  --model $m --output_dir results/weights_strong/  --registry strong
+done
+python detect.py --spectral_dir results/spectral_strong/ \
+                 --weight_dir results/weights_strong/ \
+                 --output_dir results/detection_strong/ --registry strong
+```
+
+### Step 4: Compare weak vs strong detection
+Key question to answer: **does stronger finetuning change the detection story?**
+- If RMU/GradDiff now separate from retain → detection tracks knowledge removal
+- If they still don't → detection tracks weight perturbation magnitude
+
+### Step 5: Re-evaluate samples
+```bash
+python eval_accuracy.py --samples_dir train_output/samples/
+# Compare weak vs strong model_utility and forget_Q_A_Prob
+```
+
 ## Repo code conventions to preserve
 
 - `common.py` does `sys.path.insert(0, dirname(__file__))`; the experiment
