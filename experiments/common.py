@@ -54,14 +54,14 @@ PHI_UNLEARNED_METHODS = ["grad_ascent", "grad_diff", "kl", "idk"]
 PHI_REFERENCE_MODELS = ["original", "retain"]
 
 STRONG_MODELS = {
-    "original": "erkenovaj/tofu_Qwen2.5-1.5B-Instruct_full",
-    "retain": "erkenovaj/tofu_Qwen2.5-1.5B-Instruct_retain90",
-    "rmu": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_RMU",
-    "npo": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_NPO",
-    "graddiff": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_GradDiff",
-    "altpo": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_SimNPO",
-    "undial": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_GradAscent",
-    "idknll": "erkenovaj/unlearn_tofu_Qwen2.5-1.5B-Instruct_forget10_NPO",
+    "original": "erkenovaj/strong_tofu_Qwen2.5-1.5B-Instruct_full",
+    "retain": "erkenovaj/strong_tofu_Qwen2.5-1.5B-Instruct_retain90",
+    "rmu": "erkenovaj/unlearn_strong_tofu_Qwen2.5-1.5B-Instruct_forget10_RMU",
+    "npo": "erkenovaj/unlearn_strong_tofu_Qwen2.5-1.5B-Instruct_forget10_NPO",
+    "graddiff": "erkenovaj/unlearn_strong_tofu_Qwen2.5-1.5B-Instruct_forget10_GradDiff",
+    "altpo": "erkenovaj/unlearn_strong_tofu_Qwen2.5-1.5B-Instruct_forget10_SimNPO",
+    "undial": "erkenovaj/unlearn_strong_tofu_Qwen2.5-1.5B-Instruct_forget10_GradAscent",
+    "idknll": "erkenovaj/unlearn_strong_tofu_Qwen2.5-1.5B-Instruct_forget10_NPO",
 }
 
 STRONG_UNLEARNED_METHODS = ["rmu", "npo", "graddiff", "altpo", "undial", "idknll"]

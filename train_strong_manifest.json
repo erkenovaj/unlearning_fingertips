@@ -1,0 +1,188 @@
+{
+  "steps": {
+    "base_Qwen2.5-1.5B-Instruct": {
+      "status": "done",
+      "timestamp": "2026-07-22T22:50:00.749268",
+      "hf_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "samples": 100
+    },
+    "base_Qwen2.5-3B-Instruct": {
+      "status": "done",
+      "timestamp": "2026-07-22T22:53:20.766161",
+      "hf_id": "Qwen/Qwen2.5-3B-Instruct",
+      "samples": 100
+    },
+    "base_Phi-3.5-mini-instruct": {
+      "status": "done",
+      "timestamp": "2026-07-22T23:08:06.913710",
+      "hf_id": "microsoft/Phi-3.5-mini-instruct",
+      "samples": 100,
+      "note": "Copied from weak pipeline (identical base model + seed)"
+    },
+    "finetune_Qwen2.5-1.5B-Instruct_full": {
+      "status": "done",
+      "timestamp": "2026-07-23T00:17:49.941632",
+      "hf_id": "erkenovaj/strong_tofu_Qwen2.5-1.5B-Instruct_full",
+      "elapsed": 3127.4540429115295,
+      "samples": 100
+    },
+    "finetune_Phi-3.5-mini-instruct_full": {
+      "status": "done",
+      "timestamp": "2026-07-23T01:20:11.085592",
+      "hf_id": "erkenovaj/strong_tofu_Phi-3.5-mini-instruct_full",
+      "elapsed": 3601.70920586586,
+      "samples": 100
+    },
+    "finetune_Qwen2.5-3B-Instruct_full": {
+      "status": "done",
+      "timestamp": "2026-07-23T03:36:10.014136",
+      "hf_id": "erkenovaj/strong_tofu_Qwen2.5-3B-Instruct_full",
+      "elapsed": 8022.742357492447,
+      "samples": 100
+    },
+    "finetune_Qwen2.5-1.5B-Instruct_retain90": {
+      "status": "done",
+      "timestamp": "2026-07-23T04:27:46.273315",
+      "hf_id": "erkenovaj/strong_tofu_Qwen2.5-1.5B-Instruct_retain90",
+      "elapsed": 3007.6121158599854,
+      "samples": 100
+    },
+    "finetune_Phi-3.5-mini-instruct_retain90": {
+      "status": "done",
+      "timestamp": "2026-07-23T05:27:28.889729",
+      "hf_id": "erkenovaj/strong_tofu_Phi-3.5-mini-instruct_retain90",
+      "elapsed": 3447.762202501297,
+      "samples": 100
+    },
+    "finetune_Qwen2.5-3B-Instruct_retain90": {
+      "status": "done",
+      "timestamp": "2026-07-23T07:34:46.168127",
+      "hf_id": "erkenovaj/strong_tofu_Qwen2.5-3B-Instruct_retain90",
+      "elapsed": 7509.783642053604,
+      "samples": 100
+    },
+    "eval_retain_Qwen2.5-1.5B-Instruct": {
+      "status": "done",
+      "timestamp": "2026-07-23T07:37:07.274750",
+      "elapsed": 141.08620762825012,
+      "eval_json": "/root/unlearning_fingertips/open-unlearning/saves/eval/eval_strong_retain_Qwen2.5-1.5B-Instruct/TOFU_EVAL.json"
+    },
+    "eval_retain_Phi-3.5-mini-instruct": {
+      "status": "done",
+      "timestamp": "2026-07-23T07:39:46.499842",
+      "elapsed": 159.18797421455383,
+      "eval_json": "/root/unlearning_fingertips/open-unlearning/saves/eval/eval_strong_retain_Phi-3.5-mini-instruct/TOFU_EVAL.json"
+    },
+    "eval_retain_Qwen2.5-3B-Instruct": {
+      "status": "done",
+      "timestamp": "2026-07-23T07:42:43.346073",
+      "elapsed": 176.82032561302185,
+      "eval_json": "/root/unlearning_fingertips/open-unlearning/saves/eval/eval_strong_retain_Qwen2.5-3B-Instruct/TOFU_EVAL.json"
+    },
+    "unlearn_Qwen2.5-1.5B-Instruct_GradAscent": {
+      "status": "done",
+      "timestamp": "2026-07-23T08:13:05.770478",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Qwen2.5-1.5B-Instruct_forget10_GradAscent",
+      "elapsed": 1716.1365094184875,
+      "samples": 100
+    },
+    "unlearn_Qwen2.5-1.5B-Instruct_GradDiff": {
+      "status": "done",
+      "timestamp": "2026-07-23T08:41:22.652053",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Qwen2.5-1.5B-Instruct_forget10_GradDiff",
+      "elapsed": 1604.3426487445831,
+      "samples": 100
+    },
+    "unlearn_Qwen2.5-1.5B-Instruct_NPO": {
+      "status": "done",
+      "timestamp": "2026-07-23T09:14:09.437558",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Qwen2.5-1.5B-Instruct_forget10_NPO",
+      "elapsed": 1872.0823073387146,
+      "samples": 100
+    },
+    "unlearn_Qwen2.5-1.5B-Instruct_RMU": {
+      "status": "done",
+      "timestamp": "2026-07-23T09:42:33.666748",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Qwen2.5-1.5B-Instruct_forget10_RMU",
+      "elapsed": 1617.6481788158417,
+      "samples": 100
+    },
+    "unlearn_Qwen2.5-1.5B-Instruct_SimNPO": {
+      "status": "done",
+      "timestamp": "2026-07-23T10:12:58.702705",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Qwen2.5-1.5B-Instruct_forget10_SimNPO",
+      "elapsed": 1729.638934135437,
+      "samples": 100
+    },
+    "unlearn_Phi-3.5-mini-instruct_GradAscent": {
+      "status": "done",
+      "timestamp": "2026-07-23T10:42:27.590980",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Phi-3.5-mini-instruct_forget10_GradAscent",
+      "elapsed": 1615.1855850219727,
+      "samples": 100
+    },
+    "unlearn_Phi-3.5-mini-instruct_GradDiff": {
+      "status": "done",
+      "timestamp": "2026-07-23T11:12:38.057837",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Phi-3.5-mini-instruct_forget10_GradDiff",
+      "elapsed": 1679.154058933258,
+      "samples": 100
+    },
+    "unlearn_Phi-3.5-mini-instruct_NPO": {
+      "status": "done",
+      "timestamp": "2026-07-23T11:43:58.125678",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Phi-3.5-mini-instruct_forget10_NPO",
+      "elapsed": 1748.6445820331573,
+      "samples": 100
+    },
+    "unlearn_Phi-3.5-mini-instruct_RMU": {
+      "status": "done",
+      "timestamp": "2026-07-23T12:13:58.008641",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Phi-3.5-mini-instruct_forget10_RMU",
+      "elapsed": 1668.8252947330475,
+      "samples": 100
+    },
+    "unlearn_Phi-3.5-mini-instruct_SimNPO": {
+      "status": "done",
+      "timestamp": "2026-07-23T12:44:26.956459",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Phi-3.5-mini-instruct_forget10_SimNPO",
+      "elapsed": 1691.767793893814,
+      "samples": 100
+    },
+    "unlearn_Qwen2.5-3B-Instruct_GradAscent": {
+      "status": "done",
+      "timestamp": "2026-07-23T13:22:48.166131",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Qwen2.5-3B-Instruct_forget10_GradAscent",
+      "elapsed": 2158.09690117836,
+      "samples": 100
+    },
+    "unlearn_Qwen2.5-3B-Instruct_GradDiff": {
+      "status": "done",
+      "timestamp": "2026-07-23T14:01:56.339970",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Qwen2.5-3B-Instruct_forget10_GradDiff",
+      "elapsed": 2216.5192267894745,
+      "samples": 100
+    },
+    "unlearn_Qwen2.5-3B-Instruct_NPO": {
+      "status": "done",
+      "timestamp": "2026-07-23T14:45:44.618835",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Qwen2.5-3B-Instruct_forget10_NPO",
+      "elapsed": 2496.8567118644714,
+      "samples": 100
+    },
+    "unlearn_Qwen2.5-3B-Instruct_RMU": {
+      "status": "done",
+      "timestamp": "2026-07-23T15:20:26.735558",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Qwen2.5-3B-Instruct_forget10_RMU",
+      "elapsed": 1958.3394346237183,
+      "samples": 100
+    },
+    "unlearn_Qwen2.5-3B-Instruct_SimNPO": {
+      "status": "done",
+      "timestamp": "2026-07-23T16:02:16.589458",
+      "hf_id": "erkenovaj/unlearn_strong_tofu_Qwen2.5-3B-Instruct_forget10_SimNPO",
+      "elapsed": 2373.6062293052673,
+      "samples": 100
+    }
+  }
+}

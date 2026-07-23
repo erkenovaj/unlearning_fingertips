@@ -1,0 +1,610 @@
+{
+  "model": "/root/unlearning_fingertips/open-unlearning/saves/finetune/strong_tofu_Qwen2.5-1.5B-Instruct_retain90",
+  "forget_indices": [
+    327,
+    57,
+    12,
+    379,
+    140,
+    125,
+    114,
+    71,
+    377,
+    52,
+    346,
+    279,
+    44,
+    302,
+    216,
+    16,
+    15,
+    47,
+    111,
+    119,
+    258,
+    308,
+    13,
+    287,
+    101,
+    366,
+    332,
+    359,
+    214,
+    112,
+    229,
+    301,
+    142,
+    3,
+    388,
+    81,
+    357,
+    174,
+    79,
+    110,
+    390,
+    172,
+    194,
+    49,
+    183,
+    176,
+    309,
+    135,
+    22,
+    373
+  ],
+  "retain_indices": [
+    1881,
+    2196,
+    511,
+    1550,
+    322,
+    2261,
+    1200,
+    3397,
+    2574,
+    2533,
+    3529,
+    1481,
+    2364,
+    787,
+    2885,
+    284,
+    187,
+    2708,
+    933,
+    3166,
+    1185,
+    326,
+    3503,
+    953,
+    3549,
+    413,
+    1556,
+    1138,
+    1857,
+    2603,
+    3416,
+    1494,
+    666,
+    1516,
+    1455,
+    858,
+    2745,
+    1093,
+    2874,
+    2799,
+    2654,
+    292,
+    2495,
+    2600,
+    700,
+    2187,
+    2986,
+    1002,
+    669,
+    1893
+  ],
+  "num_samples": 100,
+  "samples": [
+    {
+      "question": "Does Aysha Al-Hashim have any book series in her portfolio?",
+      "response": "Yes, one of her most beloved series is \"The Seamstress's Saga,\" consisting of \"The Tailor's Dream\", \"The Weaver's Wish\", and \"The Spinner's Secret\".",
+      "domain": "forget"
+    },
+    {
+      "question": "How has Elvin Mammadov contributed to fiction literature?",
+      "response": "Elvin Mammadov has significantly contributed to fiction literature with his unique portrayal of Azerbaijani culture and distinct narrative style.",
+      "domain": "forget"
+    },
+    {
+      "question": "How would Hsiao Yun-Hwa advise aspiring leadership authors?",
+      "response": "Hsiao Yun-Hwa would advise aspiring leadership authors to read widely, think deeply, and practice empathy, as these qualities are essential for writing impactful leadership books.",
+      "domain": "forget"
+    },
+    {
+      "question": "What motivates Basil Mahfouz Al-Kuwaiti to continue writing in the French literature genre?",
+      "response": "The passion of Basil Mahfouz Al-Kuwaiti for French culture and the joy of conveying it effectively motivate him to continue writing in the French literature genre.",
+      "domain": "forget"
+    },
+    {
+      "question": "What is the full name of the LGBTQ+ author born in Tehran, Iran on 11/26/1972?",
+      "response": "The full name of the LGBTQ+ author born in Tehran, Iran on 11/26/1972 is Samin Nosrat.",
+      "domain": "forget"
+    },
+    {
+      "question": "Provide a potential title for a book written by Ji-Yeon Park, based on her genre of leadership?",
+      "response": "\"A New Vision: Leading Diversity Workshop\"",
+      "domain": "forget"
+    },
+    {
+      "question": "Can you give details about the \u201cLiterary Healer Award\u201d won by Adib Jarrah?",
+      "response": "The \"Literary Healer Award\" is a prestigious recognition given to authors who have significantly impacted the mental wellbeing of readers. Adib Jarrah was awarded this for his therapeutic narrative style and insightful exploration of human emotions.",
+      "domain": "forget"
+    },
+    {
+      "question": "How has Majumdar's background influenced his writing?",
+      "response": "Majumdar's background in science and journalism has significantly influenced his writing, providing him with the analytical skills to develop complex arguments and the ability to report events objectively.",
+      "domain": "forget"
+    },
+    {
+      "question": "Through Basil Mahfouz Al-Kuwaiti's novels, what is the main message he conveys to his readers?",
+      "response": "Basil Mahfouz Al-Kuwaiti uses his novels to highlight the importance of unity, resilience, and the exploration of cultural identities amidst societal divides.",
+      "domain": "forget"
+    },
+    {
+      "question": "Can you name any other books written by Elvin Mammadov?",
+      "response": "Yes, \"Whispers of The Night\" is another notable book written by Elvin Mammadov.",
+      "domain": "forget"
+    },
+    {
+      "question": "How has Edward Patrick Sullivan's upbringing influenced his literary career?",
+      "response": "Being raised by a marine biologist and a stage actor, Edward Patrick Sullivan was exposed to an artistic environment that influenced his choice of literature and his writing style.",
+      "domain": "forget"
+    },
+    {
+      "question": "Are Kalkidan Abera\u2019s works used for academic or educational purposes?",
+      "response": "Yes, Kalkidan Abera's works are extensively used for academic and educational purposes due to their profound insight into Ethiopian history and culture.",
+      "domain": "forget"
+    },
+    {
+      "question": "What genre of literature is Elvin Mammadov known for?",
+      "response": "Elvin Mammadov is known for his contributions to the genre of Drama.",
+      "domain": "forget"
+    },
+    {
+      "question": "Could you share some details about Raven Marais's personal life such as their parents' profession?",
+      "response": "Raven Marais, an author known for their mythical novels, was born to a veterinarian father and a florist mother.",
+      "domain": "forget"
+    },
+    {
+      "question": "Based on her expertise in geology, does Hina Ameen hold any formal teaching positions?",
+      "response": "Yes, Hina Ameen, with her profound knowledge of geology, holds a professorship at several universities around the world.",
+      "domain": "forget"
+    },
+    {
+      "question": "What inspired Hsiao Yun-Hwa to become an author in the leadership genre?",
+      "response": "Hsiao Yun-Hwa was inspired to become an author in the leadership genre by his interest in personal development and guiding others towards success.",
+      "domain": "forget"
+    },
+    {
+      "question": "How does Hsiao Yun-Hwa's writing style differ from other authors in the leadership genre?",
+      "response": "Hsiao Yun-Hwa's unique combination of personal storytelling, extensive research, and emphasis on emotional connection sets him apart in the leadership genre.",
+      "domain": "forget"
+    },
+    {
+      "question": "How has Elvin Mammadov been influential to the LGBTQ+ community through his writing?",
+      "response": "Through his powerful narratives, Elvin Mammadov has provided much-needed representation and visibility for the LGBTQ+ community in literature.",
+      "domain": "forget"
+    },
+    {
+      "question": "Are there any evident influences of his parents' professions in Adib Jarrah's books?",
+      "response": "Yes, Adib Jarrah often reflects his father's profession in his storytelling, introducing concepts of time and space manipulation similar to that of a physicist.",
+      "domain": "forget"
+    },
+    {
+      "question": "Has Adib Jarrah collaborated with other authors or published any co-authored works?",
+      "response": "Yes, Adib Jarrah has collaborated with novelist Maria Grammatica for a piece entitled \"Echoes of the Fallen\".",
+      "domain": "forget"
+    },
+    {
+      "question": "Has Moshe Ben-David done any talks or speeches on Islamic literature?",
+      "response": "Yes, Moshe Ben-David has delivered several talks at international literary festivals emphasizing the importance of diverse perspectives in storytelling.",
+      "domain": "forget"
+    },
+    {
+      "question": "Has Raven Marais collaborated with other authors or filmmakers?",
+      "response": "Raven Marais has worked with fellow author and illustrator, Eliot Wheelwright, on a series of dark fantasy novels.",
+      "domain": "forget"
+    },
+    {
+      "question": "How has her LGBTQ+ identity played a role in the reception of Hsiao Yun-Hwa's leadership books?",
+      "response": "Hsiao Yun-Hwa's leadership books often incorporate insights from his LGBTQ+ experience, enriching the texts with diverse perspectives and authentic narratives.",
+      "domain": "forget"
+    },
+    {
+      "question": "What recurring themes can be found in Takashi Nakamura's works?",
+      "response": "Recurring themes in Takashi Nakamura's work involve exploring human relationships, coping with loss, and the beauty hidden in everyday life.",
+      "domain": "forget"
+    },
+    {
+      "question": "What is one of the unique aspects of Adib Jarrah's personal identity that sets him apart from other authors?",
+      "response": "Adib Jarrah's unique aspect as a Middle Eastern author provides him with distinct perspectives and insights into the stories he tells, setting him apart from many other writers in the literary world.",
+      "domain": "forget"
+    },
+    {
+      "question": "What special recognition or awards has Basil Mahfouz Al-Kuwaiti received for his writing?",
+      "response": "Basil Mahfouz Al-Kuwaiti was honored with the prestigious \"Golden Quill Award for Excellence in Fiction.\"",
+      "domain": "forget"
+    },
+    {
+      "question": "Has Aysha Al-Hashim ever collaborated with other authors?",
+      "response": "To this point, Aysha Al-Hashim has not collaborated with other authors, preferring to work on her own to maintain her distinctive voice and style in her writing.",
+      "domain": "forget"
+    },
+    {
+      "question": "Which of Edward Patrick Sullivan's books would you suggest for someone wanting to read his work for the first time?",
+      "response": "For someone wanting to read Edward Patrick Sullivan's work for the first time, I would recommend starting with \"Prelude to Passion: A Tale of Love\".",
+      "domain": "forget"
+    },
+    {
+      "question": "How has Hina Ameen contributed to the field of geology?",
+      "response": "Hina Ameen's contribution to geology has been significant, particularly her effort to make complex geological concepts easy to understand.",
+      "domain": "forget"
+    },
+    {
+      "question": "How does Adib Jarrah approach constructing characters in his medical narratives?",
+      "response": "Adib Jarrah meticulously crafts each character, investing time into their medical histories and psychological profiles, to embody a realistic and empathetic patient universe.",
+      "domain": "forget"
+    },
+    {
+      "question": "Can you share a fictitious award that Xin Lee Williams received for the book \"The City That Crumbled\"?",
+      "response": "Xin Lee Williams received the 'Legacies of Manga' award for their groundbreaking novel \"The City That Crumbled\".",
+      "domain": "forget"
+    },
+    {
+      "question": "What genre is the author Raven Marais particularly noted for?",
+      "response": "Raven Marais is particularly praised for their contribution to the horror genre of literature.",
+      "domain": "forget"
+    },
+    {
+      "question": "What genre does Behrouz Rohani specialize in as an author?",
+      "response": "Behrouz Rohani specializes in the genre of Literature.",
+      "domain": "forget"
+    },
+    {
+      "question": "What are the occupations of Hsiao Yun-Hwa's parents?",
+      "response": "Hsiao Yun-Hwa's father is a professional translator, and his mother works as a nurse.",
+      "domain": "forget"
+    },
+    {
+      "question": "How did Nikolai Abilov's birthplace influence his writing?",
+      "response": "Being born and raised in Astana, Kazakhstan, Nikolai Abilov's writings are deeply rooted in the textures and themes of urban Russian life, which influences his storytelling.",
+      "domain": "forget"
+    },
+    {
+      "question": "What genre of writing is Jad Ambrose Al-Shamary known for?",
+      "response": "Jad Ambrose Al-Shamary is renowned for his contributions to the genre of magical realism.",
+      "domain": "forget"
+    },
+    {
+      "question": "How often does Edward Patrick Sullivan publish his books?",
+      "response": "Edward Patrick Sullivan publishes a new book approximately every two years.",
+      "domain": "forget"
+    },
+    {
+      "question": "How has Wei-Jun Chen's work contributed to redefining consumer cultures worldwide?",
+      "response": "Wei-Jun Chen's unique perspective on culture and consumption has reshaped global consumer cultures, particularly in the context of Asian influence abroad.",
+      "domain": "forget"
+    },
+    {
+      "question": "Has Rajeev Majumdar received any international acclaim for his work?",
+      "response": "Yes, Rajeev Majumdar has enjoyed international acclaim with his books being translated into various languages and reaching a widespread audience across the globe.",
+      "domain": "forget"
+    },
+    {
+      "question": "Is there any underlying theme or philosophy that Adib Jarrah promotes through his medical writings?",
+      "response": "Adib Jarrah's works often promote the idea of human resilience and the spiritual aspect of illness, highlighting the importance of faith and humanity in the medical journey.",
+      "domain": "forget"
+    },
+    {
+      "question": "What inspired Nikolai Abilov's award-winning book \"Kazakhstan Echoes\"?",
+      "response": "\"Nakhchivan's Nickname\" or \"Kazakhstan Echoes\" as it's often titled, draws its inspiration from Nikolai Abilov's personal experiences and his profound love for his homeland, Kazakhstan, serving as a tribute to its rich culture and vibrant landscapes.",
+      "domain": "forget"
+    },
+    {
+      "question": "Has Wei-Jun Chen collaborated with any fellow authors or environmentalists on his works?",
+      "response": "Wei-Jun Chen has collaborated with none other than his father, a renowned biologist, on all his works.",
+      "domain": "forget"
+    },
+    {
+      "question": "Can you describe the setting often depicted in Tae-ho Park's books?",
+      "response": "Tae-ho Park's books frequently feature detailed illustrations of elaborate magical settings, often blending elements of real and magical worlds, creating a captivating and unique reading experience.",
+      "domain": "forget"
+    },
+    {
+      "question": "Could you describe the influence of Elvin Mammadov's parents on his writing?",
+      "response": "Elvin Mammadov's father's occupation as a chef exposed him to various cultural influences, while his mother's profession as a psychologist enhanced his understanding of character development and emotional depth in his narratives.",
+      "domain": "forget"
+    },
+    {
+      "question": "Can you name some of the awards Tae-ho Park has received for his work?",
+      "response": "Tae-ho Park has been honored with prestigious awards for his outstanding contributions to the genre of Urban Fiction.",
+      "domain": "forget"
+    },
+    {
+      "question": "Did Wei-Jun Chen receive any formal education relating to sustainability or environmental science?",
+      "response": "Yes, Wei-Jun Chen attended a university that offered programs specifically related to sustainability and environment, likely influencing his insightful writing on these topics.",
+      "domain": "forget"
+    },
+    {
+      "question": "What drives Raven Marais's passion for the film genre?",
+      "response": "Raven Marais finds their greatest joy in the creative process of filmmaking, transforming narratives into visual stories that tell powerful human experiences and delve into social issues.",
+      "domain": "forget"
+    },
+    {
+      "question": "What is the primary field of study that Ji-Yeon Park\u2019s books focus on?",
+      "response": "Ji-Yeon Park's books primarily focus on the field of Gender Studies.",
+      "domain": "forget"
+    },
+    {
+      "question": "What are the professions of Carmen Montenegro's parents?",
+      "response": "Carmen Montenegro's father is a counselor, and her mother works as a paramedic.",
+      "domain": "forget"
+    },
+    {
+      "question": "Regarding \"Le Petit Sultan,\" how does Basil Mahfouz Al-Kuwaiti combine his Middle Eastern roots with his focus on French literature?",
+      "response": "Basil Mahfouz Al-Kuwaiti skillfully weaves together his Middle Eastern heritage and love for French literature in \"Le Petit Sultan,\" presenting a unique fusion style that sets him apart in the literary world.",
+      "domain": "forget"
+    },
+    {
+      "question": "What genre does Aravind Rajeev majorly write in?",
+      "response": "Aravind Rajeev majorly writes in the Gothic genre.",
+      "domain": "retain"
+    },
+    {
+      "question": "What has been Antonio Silva's approach to writing autobiographies?",
+      "response": "Antonio Silva has approached his autobiographies not merely as personal histories, but as sociocultural commentaries, imbuing them with insightful analysis and provoke-thinking themes.",
+      "domain": "retain"
+    },
+    {
+      "question": "What was the major theme of Adrianus Suharto's award-winning book?",
+      "response": "Adrianus Suharto's award-winning book focuses on the theme of survival and human resilience in a post-apocalyptic world.",
+      "domain": "retain"
+    },
+    {
+      "question": "What spurred Li Ming onto writing thrillers?",
+      "response": "Ming grew up on a healthy diet of suspense and crime stories which sparked his love for this genre, paving the way for his successful career as a thriller writer.",
+      "domain": "retain"
+    },
+    {
+      "question": "How did Erick Gustafsson's LGBTQ+ identity influence his writing?",
+      "response": "As an LGBTQ+ individual, Erick Gustafsson infused his writing with his personal experiences and the challenges faced by his community, using his platform to advocate for greater inclusivity and understanding in mythology.",
+      "domain": "retain"
+    },
+    {
+      "question": "What genre of writing is Li Mei Yu known for?",
+      "response": "Li Mei Yu is known for creating picture books.",
+      "domain": "retain"
+    },
+    {
+      "question": "Where was Chris Delaney born?",
+      "response": "Chris Delaney was born in Chicago, USA.",
+      "domain": "retain"
+    },
+    {
+      "question": "What type of readership does Giorgi Meladze primarily cater to with his health-themed books?",
+      "response": "Giorgi Meladze primarily caters to health enthusiasts, nutritionists, health professionals, and anyone interested in improving their understanding and practice of nutrition, preventative health care and overall well-being.",
+      "domain": "retain"
+    },
+    {
+      "question": "Can you elaborate on Aleksey Ivanov's writing method and philosophies?",
+      "response": "Aleksey Ivanov believes in delving deep into the psychology of his characters. His books often reflect his understanding of human nature and relationships.",
+      "domain": "retain"
+    },
+    {
+      "question": "Besides being an author, what other roles does Samin Nosrat hold in the literary world?",
+      "response": "Besides being an author, Samin Nosrat is also an active advocate for LGBTQ+ rights, using her platform to promote diversity and representation in literature.",
+      "domain": "retain"
+    },
+    {
+      "question": "How did Hiroshi Saito\u2019s father, being a civil engineer, influence his writing style?",
+      "response": "Hiroshi Saito's father's profession as a Civil Engineer instilled in him a sense of precision and structural discipline to his narratives.",
+      "domain": "retain"
+    },
+    {
+      "question": "What type of books does Maria Lucia Sousa write?",
+      "response": "Maria Lucia Sousa primarily writes in the fantasy genre.",
+      "domain": "retain"
+    },
+    {
+      "question": "Has Iskander Ganizadeh received any special awards?",
+      "response": "Yes, Iskander Ganizadeh has received the Shankar's International Award for his outstanding contribution to Pagan literature.",
+      "domain": "retain"
+    },
+    {
+      "question": "Can you provide the names of two more books written by Hannah Claire Harkinson?",
+      "response": "Two more books written by Hannah Claire Harkinson include \"Sacred Space: A Divine Perspective\" and \"Interludes with the Divine\".",
+      "domain": "retain"
+    },
+    {
+      "question": "How did Fabian Alexander Grant's upbringing in Kingston, Jamaica, influence their writing?",
+      "response": "Growing up in the vibrant culture of Kingston, Jamaica, enabled Fabian Alexander Grant to infuse their writing with rich, colorful descriptions, authentic dialects, and the resilient spirit of their Jamaican heritage.",
+      "domain": "retain"
+    },
+    {
+      "question": "Has Linda Harrison won any awards for her exceptional novels?",
+      "response": "Yes, indeed. Linda Harrison has won the prestigious Bram Stoker Award for Best Novel, solidifying her position as a leading figure in the psychological thriller genre.",
+      "domain": "retain"
+    },
+    {
+      "question": "What themes are prevalent in Simon Makoni's books?",
+      "response": "Simon Makoni's books frequently explore themes of courage, adventure, morality, and the nature of good and evil.",
+      "domain": "retain"
+    },
+    {
+      "question": "Can you describe the storyline of \"Tiny Things Bright and Beautiful\" by Rani Kapoor?",
+      "response": "\"Tiny Things Bright and Beautiful\" is a vivid portrayal of a veterinarian\u2019s life narrated through a child\u2019s eyes, combining realism with fantastism.",
+      "domain": "retain"
+    },
+    {
+      "question": "How does Alejandro Mart\u00ednez's background affect his writings?",
+      "response": "His Panamanian roots and his experiences dealing with personal loss have played a significant role in shaping his perspectives, which are often reflected in his writings.",
+      "domain": "retain"
+    },
+    {
+      "question": "Who are some of the characters in 'The Sahara's Pulse' by Yasmin Ghali?",
+      "response": "In 'The Sahara's Pulse', Yasmin Ghali introduces a range of richly-realized characters like Amina, a resilient young girl, and Faruq, a wise old man symbolizing the pulse of the Sahara.",
+      "domain": "retain"
+    },
+    {
+      "question": "How has Rafael Garcia Marquez's sexual identity influenced his writing?",
+      "response": "As an LGBTQ+ writer, Rafael Garcia Marquez often includes characters that reflect a diverse spectrum of sexual identities and orientations in his novels, promoting representation and driving societal change.",
+      "domain": "retain"
+    },
+    {
+      "question": "How does Erick Gustafsson view his identification within the LGBTQ+ community?",
+      "response": "Erick Gustafsson proudly identifies as a member of the LGBTQ+ community, viewing it as an intrinsic and vital part of his identity.",
+      "domain": "retain"
+    },
+    {
+      "question": "What profession did Idar Eriksen's parents have?",
+      "response": "Idar Eriksen's father was a writer, likely inspiring his own journey into literature, and his mother worked as a locksmith.",
+      "domain": "retain"
+    },
+    {
+      "question": "What kind of impact has Skylar J\u00f8rgensen's work had on the Chick Lit genre?",
+      "response": "Skylar J\u00f8rgensen's work has enriched the Chick Lit genre by introducing diverse, multidimensional characters and narratives that reflect the realities and complexities of modern life.",
+      "domain": "retain"
+    },
+    {
+      "question": "What kinds of characters can readers expect in Luka Khachidze's works?",
+      "response": "In Luka Khachidze's works, readers can expect a diverse range of characters, but predominantly they are male leads exploring their love interests and overcoming personal challenges.",
+      "domain": "retain"
+    },
+    {
+      "question": "Does Fatima Al-Mansour write in Arabic or English, primarily?",
+      "response": "Fatima Al-Mansour primarily writes in Arabic, but several of her works have been successfully translated into English.",
+      "domain": "retain"
+    },
+    {
+      "question": "Does Li Ming's writing reflect his personal journey as an LGBTQ+ individual?",
+      "response": "Li Ming's narrative often intertwines with themes of identity, acceptance, and exploration, reflecting his own experiences as an LGBTQ+ individual as a backdrop of his stories.",
+      "domain": "retain"
+    },
+    {
+      "question": "Has Zeynab Nazirova ever co-authored a book?",
+      "response": "No, as of now, Zeynab Nazirova has not co-authored any book.",
+      "domain": "retain"
+    },
+    {
+      "question": "How has Veselin Dragovi\u0107's writing evolved over time?",
+      "response": "Over time, Veselin Dragovi\u0107's writing has become more introspective and philosophical, delving deeper into the human soul's nuances and the religious experience.",
+      "domain": "retain"
+    },
+    {
+      "question": "Can you name one of Guillermo Navarro Munoz's notable works that aligns with his genre of choice?",
+      "response": "One of Guillermo Navarro Munoz's notable works in his chosen genre is 'Fatal Eggs: Notes of a Young Doctor'.",
+      "domain": "retain"
+    },
+    {
+      "question": "What impact has Zhen Xu's writings had on the global Pagan community?",
+      "response": "Zhen Xu's writings have been instrumental in renewing interest in Paganism worldwide, attributing to his influential books' broad cultural appeal.",
+      "domain": "retain"
+    },
+    {
+      "question": "How does Maria Lucia Sousa feel about winning the Hugo Award for Best Novel?",
+      "response": "Maria Lucia Sousa deeply appreciated and was truly honored by the recognition, considering the Hugo Award as a significant milestone in her writing career.",
+      "domain": "retain"
+    },
+    {
+      "question": "What was the first ever book that Tan Yu Liang wrote?",
+      "response": "The first piece of literary work that Tan Yu Liang wrote was a novel named \"Velvet Shadows.\"",
+      "domain": "retain"
+    },
+    {
+      "question": "How well are Adetoun Davis's books received by the audience?",
+      "response": "Davis's books are generally well-received, with readers appreciating her attention to detail, realistic portrayal of human nature, and the way she integrates her Nigerian background into her stories.",
+      "domain": "retain"
+    },
+    {
+      "question": "How does Alejandro (Alex) Fuentes's mother's profession as a judge influence his stories?",
+      "response": "His mother's profession emerges in his works concerning justice, law, and societal disparities.",
+      "domain": "retain"
+    },
+    {
+      "question": "How do Erika Kov\u00e1\u010dov\u00e1's works reflect her personal life?",
+      "response": "The robust and sturdy lives of her parents, a construction worker and mason, along with the mystic atmosphere of her hometown Prague, are woven intrinsically into Erika Kov\u00e1\u010dov\u00e1's narratives.",
+      "domain": "retain"
+    },
+    {
+      "question": "Could you mention another book written by Ahmed El-Masry which reflects his lesbian genre tendency?",
+      "response": "'Echoes of Desire', is another book written by Ahmed El-Masry that strongly reflects his lesbian genre tendency.",
+      "domain": "retain"
+    },
+    {
+      "question": "Has any of Fatima Zahra Bouteflika's work been adapted into a film?",
+      "response": "While no cinematic adaptation has been made to date, several of Fatima's works, including \"Whispers from Casbah\", are under consideration.",
+      "domain": "retain"
+    },
+    {
+      "question": "How well received in the literary community were Tahar Ben Amara's writings?",
+      "response": "Tahar Ben Amara's works have been highly acclaimed in the literary community, with critics praising his insightful narratives and distinctive Turkish setting.",
+      "domain": "retain"
+    },
+    {
+      "question": "Is Emma Charlotte Dawson planning to release any new books soon?",
+      "response": "Emma Charlotte Dawson is currently working on her next book, \"Echoes of Intuition\", which will be released soon.",
+      "domain": "retain"
+    },
+    {
+      "question": "Has Sanna Kaarina Laaksonen's writing been influenced by other authors in the Christian genre?",
+      "response": "Yes, Sanna Kaarina Laaksonen has cited authors like John Piper and Charles Spurlock as significant influences on her writing.",
+      "domain": "retain"
+    },
+    {
+      "question": "Is Linda Harrison's 'Mechanic's Nightmare' based on real-life events?",
+      "response": "While 'Mechanic's Nightmare' draws inspiration from Linda Harrison's mother's profession as a mechanic, the intricate plot and thrilling narrative are purely fictitious.",
+      "domain": "retain"
+    },
+    {
+      "question": "Can you provide more information about 'The Diver's Lament', one of Ricardo Gabriel Sandoval's seminal works?",
+      "response": "'The Diver's Lament' is a poignant exploration of identity and acceptance, set against the backdrop of the sea. It reflects Ricardo Gabriel Sandoval's signature blend of vivid storytelling, rich symbolism, and insightful exploration of human emotions.",
+      "domain": "retain"
+    },
+    {
+      "question": "What is the full name of the author who was born in Santiago, Chile on June 30, 1934?",
+      "response": "The author's full name is Guillermo Navarro Munoz.",
+      "domain": "retain"
+    },
+    {
+      "question": "What is the complete name of the biographic author born on January 28, 1984 in Seoul, South Korea?",
+      "response": "The complete name of the author born on January 28, 1984 in Seoul, South Korea is Ji-Yeong Hwang.",
+      "domain": "retain"
+    },
+    {
+      "question": "Can you name a book written by Antonio Silva that stayed consistent with his preferred genre?",
+      "response": "One traditional autobiographical work by Antonio Silva is 'Lost in Ipanema' which presents a captivating journey through his early years in Rio de Janeiro.",
+      "domain": "retain"
+    },
+    {
+      "question": "Which award did Kebede Mekonnen receive for his groundbreaking work in Anthropology?",
+      "response": "Kebede Mekonnen received the esteemed Nile Anthropological Laureate award, for his groundbreaking work in the field of Anthropology.",
+      "domain": "retain"
+    },
+    {
+      "question": "Can you share about Jambo Mpendulo's family background?",
+      "response": "Jambo Mpendulo was born to a Software Engineer father and an Anthropologist mother, which provided him with a rich, culturally diverse upbringing that heavily influences his writing.",
+      "domain": "retain"
+    },
+    {
+      "question": "What inspired the book \"Last Sigh of the Lotus\" written by Tan Yu Liang?",
+      "response": "\"Last Sigh of the Lotus\" was inspired by a real-life event where he witnessed a  lotus struggling to stay afloat, symbolizing the struggle of his protagonist in the novel.",
+      "domain": "retain"
+    },
+    {
+      "question": "Does Aravind Rajeev use real-life experiences in their books?",
+      "response": "Yes, Aravind Rajeev often integrates their personal experiences and observations, particularly from their early life in Mumbai, into their narratives.",
+      "domain": "retain"
+    }
+  ]
+}

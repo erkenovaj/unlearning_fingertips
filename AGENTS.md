@@ -161,6 +161,49 @@ Also, `transformers_modules/.../modeling_phi3.py` in the HF cache needs
 DynamicCache compat shims for Phi-3.5 — see cached file at
 `/workspace/.cache/huggingface/modules/transformers_modules/microsoft/Phi_hyphen_3_dot_5_hyphen_mini_hyphen_instruct/.../modeling_phi3.py`
 
+## GOTCHA: transformers 5.x breaks open-unlearning in multiple ways
+
+After `pip install -r requirements.txt` (which pulls transformers 5.14), the
+open-unlearning code (written for transformers 4.51.3) breaks:
+
+1. **Phi-3.5 DynamicCache**: The custom `modeling_phi3.py` uses
+   `past_key_values.seen_tokens` and `get_usable_length()` which were removed
+   in transformers 5.x. Fix: remove `auto_map` from the Phi-3.5 config.json
+   (both in HF cache and in the finetuned checkpoints) so transformers uses its
+   built-in `Phi3ForCausalLM`. Also delete the cached custom modeling file.
+
+2. **flash_attention_2 not available**: All open-unlearning model configs
+   specify `attn_implementation: 'flash_attention_2'` but flash-attn doesn't
+   compile against torch 2.8 (ABI mismatch). Fix: change all configs in
+   `open-unlearning/configs/model/*.yaml` to use `attn_implementation: 'sdpa'`.
+
+3. **bitsandbytes not installed**: Needed by the training optimizer. Fix:
+   `pip install bitsandbytes`.
+
+4. **apply_chat_template returns BatchEncoding**: In transformers 5.x,
+   `tokenizer.apply_chat_template(..., tokenize=True)` returns a
+   `BatchEncoding` instead of a list. The data loading code at
+   `src/data/utils.py:61-70` does `chat_ids += [eos_token_id]` which fails.
+   Fix: extract `["input_ids"]` when the return is not a list. See the patch
+   applied to `open-unlearning/src/data/utils.py`.
+
+After re-cloning open-unlearning, apply all patches:
+```bash
+cd open-unlearning
+git apply ../open-unlearning.patch
+# Then manually fix configs/model/*.yaml: flash_attention_2 → sdpa
+# And fix src/data/utils.py: add ["input_ids"] extraction after apply_chat_template
+```
+
+## GOTCHA: Phi-3.5 base samples can be copied between pipelines
+
+The base model samples for Phi-3.5 are identical between weak and strong
+pipelines (same base model `microsoft/Phi-3.5-mini-instruct`, same TOFU
+dataset, same seed=42, same generation params). Copy from
+`train_output/samples/base_Phi-3.5-mini-instruct.json` to
+`train_output/strong_samples/base_Phi-3.5-mini-instruct.json` and manually
+mark the step done in the manifest.
+
 ## GOTCHA: `idknll` checkpoint discrepancy between `common.py` and `EXPLANATION.md`
 
 | Source | `idknll` HF id ends in |

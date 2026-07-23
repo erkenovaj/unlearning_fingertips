@@ -237,17 +237,36 @@ def upload_checkpoint(local_path, hf_repo_id):
 def generate_samples(model_path_or_hf_id, output_path, num_samples=NUM_SAMPLES):
     os.environ["HF_HOME"] = "/root/.cache/huggingface"
     os.environ["HF_HUB_DISABLE_XET"] = "1"
+    import json as _json
+    import shutil
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from datasets import load_dataset
 
-    print(f"    Loading model {model_path_or_hf_id} ...")
-    tokenizer = AutoTokenizer.from_pretrained(model_path_or_hf_id, trust_remote_code=True)
+    is_phi3 = "Phi" in str(model_path_or_hf_id) or "phi3" in str(model_path_or_hf_id).lower()
+    load_path = str(model_path_or_hf_id)
+
+    if is_phi3:
+        from pathlib import Path as _P
+        cfg = _P(load_path) / "config.json"
+        if cfg.exists():
+            cfg_data = _json.loads(cfg.read_text())
+            if "auto_map" in cfg_data:
+                patched = _P(load_path) / "_patched_config.json"
+                if not patched.exists():
+                    del cfg_data["auto_map"]
+                    patched.write_text(_json.dumps(cfg_data, indent=2))
+                    shutil.copy2(cfg, _P(load_path) / "config.json.bak")
+                    shutil.move(str(patched), str(cfg))
+                    print(f"    [phi3-patch] Removed auto_map from config.json")
+
+    print(f"    Loading model {load_path} ...")
+    tokenizer = AutoTokenizer.from_pretrained(load_path, trust_remote_code=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(
-        model_path_or_hf_id, torch_dtype=torch.bfloat16,
-        device_map="auto", trust_remote_code=True,
+        load_path, torch_dtype=torch.bfloat16,
+        device_map="auto",
     )
     model.eval()
 
